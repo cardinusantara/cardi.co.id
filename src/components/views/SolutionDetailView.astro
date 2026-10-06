@@ -1,0 +1,260 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../Navbar.astro';
+import Footer from '../Footer.astro';
+import ConsultModal from '../ConsultModal.astro';
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../../i18n/utils';
+import type { LangKey } from '../../i18n/ui';
+import type { SolutionItem } from '../../data/solutions';
+
+interface Props {
+  solution: SolutionItem;
+  lang?: LangKey;
+}
+
+const { solution, lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+const titleText = solution.title[lang] || solution.title.id;
+const descText = solution.desc[lang] || solution.desc.id;
+const heroSubText = solution.heroSub ? (solution.heroSub[lang] || solution.heroSub.id) : descText;
+const badgeText = solution.badge ? (solution.badge[lang] || solution.badge.id) : 'SOLUSI CARDI';
+const benefitsList = solution.benefits[lang] || solution.benefits.id || [];
+---
+
+<Layout title={`${titleText} — Solusi Cardi Business Ecosystem`} description={descText} lang={lang}>
+  <Navbar lang={lang} />
+
+  <!-- HERO SECTION -->
+  <section class="sol-detail-hero">
+    <div class="wrap">
+      <div class="sol-hero-badge">
+        <span class="sol-hero-icon">{solution.icon}</span>
+        <span>{badgeText}</span>
+      </div>
+
+      <h1 class="sol-hero-title">{titleText}</h1>
+      <p class="sol-hero-sub">{heroSubText}</p>
+
+      <div class="sol-hero-cta">
+        <button class="btn open-consult-modal-btn" type="button">
+          Jadwalkan Konsultasi Solusi ini &rarr;
+        </button>
+        <a href={translatePath('/solusi')} class="btn ghost">
+          {t('solPage.back')}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS BANNER (IF AVAILABLE) -->
+  {solution.metrics && solution.metrics.length > 0 && (
+    <section class="sol-metrics-section">
+      <div class="wrap">
+        <div class="sol-metrics-grid">
+          {solution.metrics.map(m => (
+            <div class="sol-metric-card">
+              <div class="metric-val">{m.val}</div>
+              <div class="metric-lbl">{m.label[lang] || m.label.id}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- BENEFITS & CAPABILITIES SECTION -->
+  <section class="sol-benefits-section">
+    <div class="wrap">
+      <div class="center" style="margin-bottom: 40px;">
+        <div class="eyebrow">{t('solPage.benefitsTitle')}</div>
+        <h2 class="h2">Mengapa Memilih Solusi {titleText}?</h2>
+        <p class="sub">Dirancang khusus untuk efisiensi operasional dan pertumbuhan pendapatan yang terukur.</p>
+      </div>
+
+      <div class="benefits-grid">
+        {benefitsList.map((item, idx) => (
+          <div class="benefit-card">
+            <div class="benefit-num">0{idx + 1}</div>
+            <p>{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA BANNER -->
+  <section class="cta">
+    <div class="wrap">
+      <div class="ctaBox">
+        <h2>{t('solPage.ctaHeading')}</h2>
+        <p>{t('solPage.ctaDesc')}</p>
+        <div class="heroCta" style="margin-top:28px;">
+          <button class="btn white open-consult-modal-btn" type="button">
+            {t('hero.ctaConsult')} &rarr;
+          </button>
+          <a class="btn line" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20solution." target="_blank">
+            Chat WhatsApp &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer lang={lang} />
+  <ConsultModal lang={lang} />
+</Layout>
+
+<style>
+  .sol-detail-hero {
+    padding: 80px 0 60px;
+    text-align: center;
+    background: radial-gradient(800px 400px at 50% 0%, rgba(30,79,255,0.06), transparent 70%);
+  }
+
+  .sol-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #EEF3FF;
+    border: 1px solid #C7D9FE;
+    padding: 6px 16px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--blue, #0258a4);
+    margin-bottom: 24px;
+  }
+
+  .sol-hero-icon {
+    font-size: 16px;
+  }
+
+  .sol-hero-title {
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--ink, #0A1633);
+    max-width: 800px;
+    margin: 0 auto 20px;
+  }
+
+  .sol-hero-sub {
+    font-size: 17px;
+    color: var(--body, #3D4B6B);
+    line-height: 1.65;
+    max-width: 680px;
+    margin: 0 auto 36px;
+  }
+
+  .sol-hero-cta {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* METRICS */
+  .sol-metrics-section {
+    padding: 32px 0;
+    background: var(--soft, #F5F8FE);
+    border-top: 1px solid var(--line, #E6ECF7);
+    border-bottom: 1px solid var(--line, #E6ECF7);
+  }
+
+  .sol-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .sol-metrics-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .sol-metric-card {
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 16px -6px rgba(10, 22, 51, 0.05);
+  }
+
+  .metric-val {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--blue, #0258a4);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+
+  .metric-lbl {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--muted, #6B7A9C);
+  }
+
+  /* BENEFITS GRID */
+  .sol-benefits-section {
+    padding: 80px 0;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 900px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .benefit-card {
+    background: #ffffff;
+    border: 1px solid var(--line, #E6ECF7);
+    border-radius: 20px;
+    padding: 32px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -15px rgba(10, 22, 51, 0.12);
+    border-color: #D3DEF5;
+  }
+
+  .benefit-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--blue, #0258a4);
+    margin-bottom: 16px;
+    font-family: monospace;
+  }
+
+  .benefit-card p {
+    font-size: 15px;
+    color: var(--ink, #0A1633);
+    line-height: 1.6;
+    font-weight: 600;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btns = document.querySelectorAll('.open-consult-modal-btn');
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const modal = document.getElementById('consultModal');
+        if (modal) modal.classList.add('active');
+      });
+    });
+  });
+</script>

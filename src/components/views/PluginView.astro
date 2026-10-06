@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../Navbar.astro';
+import Footer from '../Footer.astro';
+import ConsultModal from '../ConsultModal.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import type { LangKey } from '../../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Layout title={t('seo.pluginTitle')} description={t('seo.pluginDesc')} lang={lang}>
+  <Navbar lang={lang} />
+
+  <!-- PLUGIN HERO -->
+  <section class="hero" style="text-align: center; padding: 80px 0 40px;">
+    <div class="wrap">
+      <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(0,168,126,0.1); border:1px solid rgba(0,168,126,0.2); border-radius:99px; padding:6px 16px; font-size:12px; font-weight:800; letter-spacing:1px; color:#00A87E; text-transform:uppercase; margin-bottom:24px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg> {t('plugin.badge')}
+      </div>
+      <h1 style="font-size: clamp(32px, 5vw, 54px); font-weight: 800; line-height: 1.15; letter-spacing: -1.5px; color: var(--ink); max-width: 840px; margin: 0 auto 20px;">
+        {t('plugin.title')}
+      </h1>
+      <p style="font-size: 17px; color: var(--body); line-height: 1.65; max-width: 640px; margin: 0 auto 32px;">
+        {t('plugin.sub')}
+      </p>
+      <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+        <a href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20get%20Optima%20SEO%20Plugin.%20%F0%9F%98%81%F0%9F%98%81" target="_blank" class="btn" style="background:#00A87E;">{t('plugin.ctaGet')}</a>
+        <a href="#fitur" class="btn ghost">{t('plugin.ctaExplore')}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES GRID -->
+  <section id="fitur" style="background: var(--soft);">
+    <div class="wrap">
+      <div class="center">
+        <div class="eyebrow" style="color:#00A87E;">{t('plugin.eyebrow')}</div>
+        <h2 class="h2">{t('plugin.fTitle')}</h2>
+        <p class="sub">{t('plugin.fSub')}</p>
+      </div>
+
+      <div class="prodGrid" style="margin-top:44px;">
+        <div class="scard">
+          <div class="ic" style="background:#E3F6EF;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00A87E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <h3>{t('plugin.c1Title')}</h3>
+          <p>{t('plugin.c1Desc')}</p>
+        </div>
+        <div class="scard">
+          <div class="ic" style="background:#E3F6EF;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00A87E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <h3>{t('plugin.c2Title')}</h3>
+          <p>{t('plugin.c2Desc')}</p>
+        </div>
+        <div class="scard">
+          <div class="ic" style="background:#E3F6EF;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00A87E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <h3>{t('plugin.c3Title')}</h3>
+          <p>{t('plugin.c3Desc')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer lang={lang} />
+  <ConsultModal lang={lang} />
+</Layout>

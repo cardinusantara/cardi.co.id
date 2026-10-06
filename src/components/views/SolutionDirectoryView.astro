@@ -1,0 +1,388 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../Navbar.astro';
+import Footer from '../Footer.astro';
+import ConsultModal from '../ConsultModal.astro';
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../../i18n/utils';
+import type { LangKey } from '../../i18n/ui';
+import { solutionsData } from '../../data/solutions';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+const industries = solutionsData.filter(s => s.category === 'industri');
+const roles = solutionsData.filter(s => s.category === 'role');
+const features = solutionsData.filter(s => s.category === 'fitur');
+const integrations = solutionsData.filter(s => s.category === 'integrasi');
+---
+
+<Layout title="Direktori Solusi — Cardi Business Ecosystem" description="Cari solusi otomatisasi AI, industri, tim, dan integrasi sistem terpadu dari Cardi." lang={lang}>
+  <Navbar lang={lang} />
+
+  <!-- HERO -->
+  <section class="sol-dir-hero">
+    <div class="wrap">
+      <div class="eyebrow" style="margin-bottom:12px;">{t('solMenu.tag')}</div>
+      <h1 class="h1">{t('solMenu.title')}</h1>
+      <p class="sub" style="margin: 0 auto 28px; max-width:640px;">
+        Temukan solusi spesifik yang dirancang untuk otomasi operasional, akselerasi penjualan, dan kesiapan investasi bisnis Anda.
+      </p>
+
+      <!-- SEARCH INPUT BOX IN HERO -->
+      <div class="dir-search-container">
+        <svg class="dir-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+          type="text" 
+          id="dirSearchInput" 
+          placeholder={t('solMenu.searchPlaceholder')}
+          autocomplete="off"
+        />
+        <button type="button" id="dirSearchClear" class="dir-search-clear" style="display:none;">&times;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTIONS SECTIONS BY CATEGORY -->
+  <section class="sol-dir-content">
+    <div class="wrap" style="display:flex; flex-direction:column; gap:56px;">
+      
+      <!-- 1. INDUSTRI -->
+      <div class="cat-section-block" id="block-industri">
+        <div class="cat-header">
+          <h2>🏢 {t('solMenu.tabIndustri')}</h2>
+          <p>Solusi terukur khusus untuk sektor industri bisnis Anda.</p>
+        </div>
+        <div class="sol-dir-grid">
+          {industries.map(sol => (
+            <a 
+              href={translatePath(`/solusi/${sol.slug}`)} 
+              class="sol-dir-card"
+              data-keywords={`${sol.title[lang] || sol.title.id} ${sol.desc[lang] || sol.desc.id} ${sol.slug}`}
+            >
+              <div class="dir-icon">{sol.icon}</div>
+              <h3>{sol.title[lang] || sol.title.id}</h3>
+              <p>{sol.desc[lang] || sol.desc.id}</p>
+              <span class="dir-arrow">Lihat Solusi &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- 2. FITUR AI & OTOMASI -->
+      <div class="cat-section-block" id="block-fitur">
+        <div class="cat-header">
+          <h2>⚡ {t('solMenu.tabFitur')}</h2>
+          <p>Mesin otomasi dan fitur canggih untuk efisiensi tim.</p>
+        </div>
+        <div class="sol-dir-grid">
+          {features.map(sol => (
+            <a 
+              href={translatePath(`/solusi/${sol.slug}`)} 
+              class="sol-dir-card"
+              data-keywords={`${sol.title[lang] || sol.title.id} ${sol.desc[lang] || sol.desc.id} ${sol.slug}`}
+            >
+              <div class="dir-icon">{sol.icon}</div>
+              <h3>{sol.title[lang] || sol.title.id}</h3>
+              <p>{sol.desc[lang] || sol.desc.id}</p>
+              <span class="dir-arrow">Lihat Solusi &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- 3. ROLE / PERAN -->
+      <div class="cat-section-block" id="block-role">
+        <div class="cat-header">
+          <h2>👤 {t('solMenu.tabRole')}</h2>
+          <p>Dukungan otomatisasi terfokus untuk setiap fungsi kepemimpinan & tim.</p>
+        </div>
+        <div class="sol-dir-grid">
+          {roles.map(sol => (
+            <a 
+              href={translatePath(`/solusi/${sol.slug}`)} 
+              class="sol-dir-card"
+              data-keywords={`${sol.title[lang] || sol.title.id} ${sol.desc[lang] || sol.desc.id} ${sol.slug}`}
+            >
+              <div class="dir-icon">{sol.icon}</div>
+              <h3>{sol.title[lang] || sol.title.id}</h3>
+              <p>{sol.desc[lang] || sol.desc.id}</p>
+              <span class="dir-arrow">Lihat Solusi &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- 4. INTEGRASI -->
+      <div class="cat-section-block" id="block-integrasi">
+        <div class="cat-header">
+          <h2>🔗 {t('solMenu.tabIntegrasi')}</h2>
+          <p>Konektivitas instan ke platform channel & pembayaran utama.</p>
+        </div>
+        <div class="sol-dir-grid">
+          {integrations.map(sol => (
+            <a 
+              href={translatePath(`/solusi/${sol.slug}`)} 
+              class="sol-dir-card"
+              data-keywords={`${sol.title[lang] || sol.title.id} ${sol.desc[lang] || sol.desc.id} ${sol.slug}`}
+            >
+              <div class="dir-icon">{sol.icon}</div>
+              <h3>{sol.title[lang] || sol.title.id}</h3>
+              <p>{sol.desc[lang] || sol.desc.id}</p>
+              <span class="dir-arrow">Lihat Solusi &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Global Empty Search State -->
+      <div class="dir-empty-state" id="dirEmptyState" style="display:none;">
+        <div style="font-size:36px; margin-bottom:12px;">🔍</div>
+        <h3>Tidak ada solusi yang cocok dengan pencarian Anda.</h3>
+        <p style="color:var(--body); margin-top:6px; font-size:14.5px;">Coba gunakan kata kunci lain seperti <strong>"ticketing"</strong>, <strong>"haji"</strong>, <strong>"lead"</strong>, atau <strong>"whatsapp"</strong>.</p>
+        <button class="btn open-consult-trigger" type="button" style="margin-top:20px;">
+          Konsultasi Solusi Custom &rarr;
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="wrap">
+      <div class="ctaBox">
+        <h2>{t('solMenu.consultHeading')}</h2>
+        <p>{t('cta.desc')}</p>
+        <div class="heroCta" style="margin-top:28px;">
+          <a class="btn white" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank">{t('cta.b1')}</a>
+          <a class="btn line" href="mailto:deo@cardinusantara.com">{t('cta.b2')}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer lang={lang} />
+  <ConsultModal lang={lang} />
+</Layout>
+
+<style>
+  .sol-dir-hero {
+    padding: 80px 0 44px;
+    text-align: center;
+    background: radial-gradient(700px 340px at 50% 0%, rgba(30,79,255,0.06), transparent 70%);
+  }
+
+  .h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--ink, #0A1633);
+    margin-bottom: 16px;
+  }
+
+  /* SEARCH BAR IN HERO */
+  .dir-search-container {
+    position: relative;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .dir-search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94A3B8;
+  }
+
+  .dir-search-container input {
+    width: 100%;
+    padding: 14px 44px 14px 50px;
+    border-radius: 16px;
+    border: 1.5px solid var(--line, #E6ECF7);
+    background: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink, #0A1633);
+    outline: none;
+    box-shadow: 0 12px 32px -8px rgba(10, 22, 51, 0.08);
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  .dir-search-container input:focus {
+    border-color: var(--blue, #0258a4);
+    box-shadow: 0 16px 40px -10px rgba(2, 88, 164, 0.18);
+  }
+
+  .dir-search-clear {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #94A3B8;
+    cursor: pointer;
+  }
+
+  .cat-header {
+    margin-bottom: 20px;
+  }
+
+  .cat-header h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--ink, #0A1633);
+    margin-bottom: 6px;
+  }
+
+  .cat-header p {
+    font-size: 14.5px;
+    color: var(--body, #3D4B6B);
+  }
+
+  .sol-dir-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .sol-dir-card {
+    background: #ffffff;
+    border: 1px solid var(--line, #E6ECF7);
+    border-radius: 18px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: all 0.25s ease;
+    text-decoration: none;
+  }
+
+  .sol-dir-card:hover {
+    border-color: #93C5FD;
+    box-shadow: 0 16px 40px -12px rgba(10, 22, 51, 0.12);
+    transform: translateY(-3px);
+  }
+
+  .dir-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #EEF3FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+
+  .sol-dir-card h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--ink, #0A1633);
+  }
+
+  .sol-dir-card:hover h3 {
+    color: var(--blue, #0258a4);
+  }
+
+  .sol-dir-card p {
+    font-size: 14px;
+    color: var(--body, #3D4B6B);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .dir-arrow {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--blue, #0258a4);
+    margin-top: 8px;
+  }
+
+  .dir-empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: #ffffff;
+    border: 1px dashed var(--line, #E6ECF7);
+    border-radius: 24px;
+  }
+
+  .dir-empty-state h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--ink, #0A1633);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const dirSearchInput = document.getElementById('dirSearchInput') as HTMLInputElement;
+    const dirSearchClear = document.getElementById('dirSearchClear');
+    const catBlocks = document.querySelectorAll('.cat-section-block');
+    const emptyState = document.getElementById('dirEmptyState');
+    const consultTriggers = document.querySelectorAll('.open-consult-trigger');
+
+    function filterDirectory() {
+      const query = (dirSearchInput?.value || '').toLowerCase().trim();
+      let totalVisible = 0;
+
+      if (dirSearchClear) {
+        dirSearchClear.style.display = query ? 'block' : 'none';
+      }
+
+      catBlocks.forEach(block => {
+        const cards = block.querySelectorAll('.sol-dir-card');
+        let blockVisibleCount = 0;
+
+        cards.forEach(card => {
+          const keywords = (card.getAttribute('data-keywords') || '').toLowerCase();
+          if (!query || keywords.includes(query)) {
+            (card as HTMLElement).style.display = 'flex';
+            blockVisibleCount++;
+            totalVisible++;
+          } else {
+            (card as HTMLElement).style.display = 'none';
+          }
+        });
+
+        // Hide section block if no cards inside match the query
+        (block as HTMLElement).style.display = (blockVisibleCount > 0) ? 'block' : 'none';
+      });
+
+      if (emptyState) {
+        emptyState.style.display = (totalVisible === 0) ? 'block' : 'none';
+      }
+    }
+
+    if (dirSearchInput) {
+      dirSearchInput.addEventListener('input', filterDirectory);
+    }
+
+    if (dirSearchClear && dirSearchInput) {
+      dirSearchClear.addEventListener('click', () => {
+        dirSearchInput.value = '';
+        filterDirectory();
+        dirSearchInput.focus();
+      });
+    }
+
+    consultTriggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const modal = document.getElementById('consultModal');
+        if (modal) modal.classList.add('active');
+      });
+    });
+  });
+</script>

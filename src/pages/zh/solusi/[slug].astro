@@ -1,0 +1,19 @@
+---
+import SolutionDetailView from '../../../components/views/SolutionDetailView.astro';
+import { solutionsData, getSolutionBySlug } from '../../../data/solutions';
+
+export function getStaticPaths() {
+  return solutionsData.map(sol => ({
+    params: { slug: sol.slug }
+  }));
+}
+
+const { slug } = Astro.params;
+const solution = getSolutionBySlug(slug as string);
+
+if (!solution) {
+  return Astro.redirect('/zh/solusi');
+}
+---
+
+<SolutionDetailView solution={solution} lang="zh" />

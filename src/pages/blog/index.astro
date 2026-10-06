@@ -1,0 +1,248 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
+---
+
+<Layout title="Wawasan & Publikasi Bisnis | Cardi" description="Artikel, panduan pertumbuhan skala bisnis, automasi operasional, dan persiapan IPO dari Cardi Ecosystem.">
+  <Navbar />
+
+  <main class="blog-hub">
+    <!-- Header Hero -->
+    <section class="hub-hero">
+      <div class="wrap">
+        <div class="badge">Wawasan & Knowledge Hub</div>
+        <h1>Pusat Riset & Strategi Akselerasi Bisnis</h1>
+        <p class="subtitle">Kumpulan artikel analitis mengenai scale-up bisnis, automasi enterprise, tata kelola, dan strategi IPO di Indonesia.</p>
+      </div>
+    </section>
+
+    <!-- Post Grid -->
+    <section class="posts-section">
+      <div class="wrap">
+        <div class="grid">
+          {posts.map((post, idx) => {
+            const cleanSlug = (post.data.slug || post.id).replace(/\.mdx?$/, '');
+            const isFeatured = idx === 0;
+            return (
+              <article class={`card ${isFeatured ? 'card-featured' : ''}`}>
+                <a href={`/${cleanSlug}/`} class="card-link">
+                  <div class="card-thumb">
+                    {post.data.cover ? (
+                      <img src={post.data.cover} alt={post.data.title} />
+                    ) : (
+                      <div class="thumb-placeholder">
+                        <span>Cardi Insights</span>
+                      </div>
+                    )}
+                    <span class="pill">Insight Bisnis</span>
+                  </div>
+
+                  <div class="card-content">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {post.data.pubDate.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </time>
+                    <h2 class="card-title">{post.data.title}</h2>
+                    <p class="card-desc">{post.data.description}</p>
+
+                    <div class="read-more">
+                      <span>Baca Selengkapnya</span>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    </div>
+                  </div>
+                </a>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .blog-hub {
+    padding-top: 100px;
+    background: #FAFCFF;
+    min-height: 100vh;
+  }
+
+  .hub-hero {
+    padding: 56px 0 40px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(2, 88, 164, 0.05) 0%, transparent 100%);
+    border-bottom: 1px solid var(--line, #E6ECF7);
+  }
+
+  .badge {
+    display: inline-flex;
+    background: rgba(2, 88, 164, 0.08);
+    color: var(--blue, #0258a4);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 6px 14px;
+    border-radius: 99px;
+    margin-bottom: 16px;
+  }
+
+  .hub-hero h1 {
+    font-size: clamp(32px, 4.5vw, 50px);
+    font-weight: 800;
+    color: var(--ink, #0A1633);
+    margin-bottom: 14px;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    font-size: 17px;
+    color: var(--body, #3D4B6B);
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .posts-section {
+    padding: 48px 0 96px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 28px;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--line, #E6ECF7);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 16px rgba(10, 22, 51, 0.03);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(2, 88, 164, 0.08);
+    border-color: rgba(2, 88, 164, 0.3);
+  }
+
+  .card-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card-thumb {
+    position: relative;
+    height: 190px;
+    overflow: hidden;
+    background: var(--soft, #F5F8FE);
+  }
+
+  .card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  .card:hover .card-thumb img {
+    transform: scale(1.04);
+  }
+
+  .thumb-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0A1633 0%, #0258a4 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+  }
+
+  .pill {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    color: var(--blue, #0258a4);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .card-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .card-content time {
+    font-size: 12px;
+    color: var(--muted, #6B7A9C);
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .card-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--ink, #0A1633);
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    color: var(--body, #3D4B6B);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex-grow: 1;
+  }
+
+  .read-more {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--blue, #0258a4);
+    font-size: 13px;
+    font-weight: 700;
+    transition: gap 0.2s;
+  }
+  .card:hover .read-more {
+    gap: 10px;
+  }
+
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
