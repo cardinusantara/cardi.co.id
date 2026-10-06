@@ -1,0 +1,184 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../Navbar.astro';
+import Footer from '../Footer.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+import type { LangKey } from '../../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+
+const copy = {
+  id: {
+    title: 'Toko Cardi — Produk AI & IT Siap Pakai',
+    desc: 'Toko produk AI & IT dari Cardi: kartu Google Review NFC, kartu nama NFC, dan lainnya.',
+    eyebrow: 'Toko Cardi',
+    heading: 'Produk AI & IT siap pakai untuk bisnis.',
+    lead: 'Dibeli sekali, langsung dipakai. Sebagian produk terhubung ke aplikasi Cardi Agent.',
+    btnShop: 'Belanja di TikTok Shop',
+    btnWa: 'Tanya via WhatsApp',
+    secTitle: 'Pilihan produk.',
+    secEyebrow: 'Produk',
+    p1Tag: 'Terlaris',
+    p1Title: 'Kartu Google Review NFC + QR',
+    p1Desc: 'Pelanggan cukup tap atau scan, langsung ke halaman ulasan Google bisnis kamu. Powered by Cardi Agent AI Loyal.',
+    p1Foot: 'Harga: Terjangkau untuk UMKM & Ritel',
+    p1Link: 'Detail produk →',
+    p2Title: 'Kartu nama NFC (Cardi Smart Business Card)',
+    p2Desc: 'Tap untuk berbagi kontak dan profil. Terhubung ke Cardi Agent AI MoM.',
+    p2Foot: 'Harga: Paket Personal & Korporat',
+    p2Link: 'Detail produk →',
+    p3Tag: 'Segera',
+    p3Title: 'Produk AI & IT lainnya',
+    p3Desc: 'Perangkat dan aksesori pendukung bisnis digital.',
+    p3Foot: 'Ikuti TikTok Toko Cardi untuk rilis terbaru',
+    partnerEyebrow: 'Program mitra',
+    partnerHeading: 'Jual kartu Google Review di kotamu.',
+    partnerDesc: 'Untuk reseller, agen, dan affiliator. Dapatkan harga khusus mitra serta panduan pemasaran lengkap.',
+    partnerBtn: 'Daftar jadi mitra'
+  },
+  en: {
+    title: 'Cardi Store — Ready-to-Use AI & IT Products',
+    desc: 'AI & IT products from Cardi: NFC Google Review cards, NFC business cards, and more.',
+    eyebrow: 'Cardi Store',
+    heading: 'Ready-to-use AI & IT products for your business.',
+    lead: 'One-time purchase, instant setup. Seamlessly connected to Cardi Agent applications.',
+    btnShop: 'Shop on TikTok Shop',
+    btnWa: 'Inquire via WhatsApp',
+    secTitle: 'Product selection.',
+    secEyebrow: 'Products',
+    p1Tag: 'Best Seller',
+    p1Title: 'NFC + QR Google Review Card',
+    p1Desc: 'Customers simply tap or scan to open your business Google review page instantly. Powered by Cardi Agent AI Loyal.',
+    p1Foot: 'Affordable for SMBs & Retailers',
+    p1Link: 'Product details →',
+    p2Title: 'NFC Smart Business Card',
+    p2Desc: 'Tap to instantly share contact info and profile. Integrated with Cardi Agent AI MoM.',
+    p2Foot: 'Personal & Corporate Packages',
+    p2Link: 'Product details →',
+    p3Tag: 'Coming Soon',
+    p3Title: 'More AI & Hardware Products',
+    p3Desc: 'Smart devices and essential accessories for modern digital businesses.',
+    p3Foot: 'Follow TikTok Toko Cardi for upcoming releases',
+    partnerEyebrow: 'Partner Program',
+    partnerHeading: 'Distribute Google Review NFC cards in your city.',
+    partnerDesc: 'For resellers, agencies, and affiliates. Access special partner pricing and comprehensive sales enablement.',
+    partnerBtn: 'Become a Partner'
+  },
+  zh: {
+    title: 'Cardi 官方商店 — 开箱即用的 AI 与 IT 产品',
+    desc: 'Cardi AI 与 IT 产品：NFC 谷歌评价卡、NFC 智能名片等。',
+    eyebrow: 'Cardi 商店',
+    heading: '适用于企业的即用型 AI 与 IT 产品。',
+    lead: '一次购买，立即可用。无缝连接 Cardi Agent 智能系统。',
+    btnShop: '在 TikTok 商店选购',
+    btnWa: 'WhatsApp 咨询',
+    secTitle: '精选产品',
+    secEyebrow: '产品系列',
+    p1Tag: '热销',
+    p1Title: 'NFC + QR 谷歌好评卡',
+    p1Desc: '顾客只需轻触或扫码，即可直达谷歌评价页面。Cardi Agent AI Loyal 提供技术支持。',
+    p1Foot: '中小企业与实体零售首选',
+    p1Link: '产品详情 →',
+    p2Title: 'NFC 智能商务名片',
+    p2Desc: '轻碰即刻分享联系方式与商务主页。与 Cardi Agent AI MoM 深度集成。',
+    p2Foot: '个人与企业定制方案',
+    p2Link: '产品详情 →',
+    p3Tag: '即将推出',
+    p3Title: '更多 AI 与智能硬件产品',
+    p3Desc: '支持数字化业务演进的智能硬件与配件。',
+    p3Foot: '关注 Toko Cardi 抖音/TikTok 获悉首发资讯',
+    partnerEyebrow: '合作伙伴计划',
+    partnerHeading: '在您的城市代理销售 NFC 谷歌好评卡。',
+    partnerDesc: '面向分销商、代理商与合作伙伴。尊享专属渠道价格与销售赋能资料。',
+    partnerBtn: '申请成为合伙人'
+  }
+};
+
+const c = copy[lang] || copy.id;
+---
+
+<Layout title={c.title} description={c.desc} lang={lang}>
+  <Navbar lang={lang} />
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-copy">
+          <span class="eyebrow">{c.eyebrow}</span>
+          <h1>{c.heading}</h1>
+          <p class="lead">{c.lead}</p>
+          <div class="btns">
+            <a class="btn btn-dark" href="https://www.tiktok.com/@tokocardi" target="_blank" rel="noopener">{c.btnShop}</a>
+            <a class="btn btn-outline" href="https://wa.me/6281289895646?text=Halo%20Toko%20Cardi%2C%20saya%20ingin%20tanya%20produk." target="_blank" rel="noopener">{c.btnWa}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Daftar Produk -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">{c.secEyebrow}</span>
+          <h2>{c.secTitle}</h2>
+        </div>
+        <div class="grid g3">
+          <article class="card">
+            <div class="card-top">
+              <span class="tag gold">{c.p1Tag}</span>
+            </div>
+            <h3>{c.p1Title}</h3>
+            <p>{c.p1Desc}</p>
+            <div class="card-foot">{c.p1Foot}</div>
+            <a class="card-link" href="https://aiagent.cardi.co.id/cardiloyal/card/" target="_blank" rel="noopener">{c.p1Link}</a>
+          </article>
+
+          <article class="card">
+            <div class="card-top"></div>
+            <h3>{c.p2Title}</h3>
+            <p>{c.p2Desc}</p>
+            <div class="card-foot">{c.p2Foot}</div>
+            <a class="card-link" href="https://aiagent.cardi.co.id/cardimom/card/" target="_blank" rel="noopener">{c.p2Link}</a>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <span class="tag soon">{c.p3Tag}</span>
+            </div>
+            <h3>{c.p3Title}</h3>
+            <p>{c.p3Desc}</p>
+            <div class="card-foot">{c.p3Foot}</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Program Mitra -->
+    <section class="sec sec-white">
+      <div class="wrap">
+        <div class="split">
+          <div class="prose">
+            <span class="eyebrow">{c.partnerEyebrow}</span>
+            <h2 style="font-size:34px; color:var(--ink);">{c.partnerHeading}</h2>
+            <p>{c.partnerDesc}</p>
+            <a class="btn btn-dark" href="https://wa.me/6281289895646?text=Halo%20Toko%20Cardi%2C%20saya%20ingin%20jadi%20mitra%20reseller%20kartu%20Google%20Review%20NFC." target="_blank" rel="noopener" style="align-self:flex-start;">{c.partnerBtn}</a>
+          </div>
+          <div class="card" style="min-height:280px; display:flex; flex-direction:column; justify-content:center; align-items:center; background:var(--bg); border:1px dashed var(--line); border-radius:var(--radius-lg); text-align:center; padding:32px;">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:14px; opacity:0.85;">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <line x1="2" y1="10" x2="22" y2="10" />
+            </svg>
+            <span style="font-weight:700; color:var(--ink); font-size:16px;">Cardi Smart NFC Card Series</span>
+            <p style="font-size:14px; color:var(--muted); max-width:320px; margin-top:6px;">Google Review Tap Card & Smart Contact Business Card with instant cloud synchronization.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</Layout>

@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
 import type { LangKey } from '../i18n/ui';
 
 interface Props {
@@ -8,6 +8,7 @@ interface Props {
 
 const { lang = getLangFromUrl(Astro.url) } = Astro.props;
 const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 ---
 
 <div class="hero-story" id="heroStory">
@@ -44,7 +45,7 @@ const t = useTranslations(lang);
             <p class="hero-story-body" id="heroIntroBody">{t('hero.body')}</p>
             <div class="heroCta hero-story-cta" id="heroIntroCta">
               <a class="btn" href="#pintu">{t('hero.ctaPath')}</a>
-              <a class="btn ghost" href="https://wa.me/6281289895646?text=Halo%20Cardi,%20saya%20mau%20Cek%20Brand%20Gratis" target="_blank" rel="noopener noreferrer">{t('hero.ctaCheckBrand')}</a>
+              <a class="btn ghost" href={translatePath('/cek-brand/')}>{t('hero.ctaCheckBrand')}</a>
             </div>
           </div>
         </div>

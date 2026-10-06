@@ -1,0 +1,53 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import type { LangKey } from '../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div class="journey" aria-label={t('journey.tag')}>
+  <div class="j-group">
+    <div class="j-steps" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+      <div class="j-step">
+        <small>{t('journey.s1Num')}</small>
+        <b>{t('journey.s1Title')}</b>
+        <span>{t('journey.s1Desc')}</span>
+      </div>
+      <div class="j-step">
+        <small>{t('journey.s2Num')}</small>
+        <b>{t('journey.s2Title')}</b>
+        <span>{t('journey.s2Desc')}</span>
+      </div>
+      <div class="j-step">
+        <small>{t('journey.s3Num')}</small>
+        <b>{t('journey.s3Title')}</b>
+        <span>{t('journey.s3Desc')}</span>
+      </div>
+    </div>
+    <a class="j-label gold" href="https://cardinusantara.com/" target="_blank" rel="noopener noreferrer">
+      {t('journey.nusantaraLabel')}
+    </a>
+  </div>
+  <div class="j-group">
+    <div class="j-steps" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+      <div class="j-step ai">
+        <small>{t('journey.s4Num')}</small>
+        <b>{t('journey.s4Title')}</b>
+        <span>{t('journey.s4Desc')}</span>
+      </div>
+      <div class="j-step ai">
+        <small>{t('journey.s5Num')}</small>
+        <b>{t('journey.s5Title')}</b>
+        <span>{t('journey.s5Desc')}</span>
+      </div>
+    </div>
+    <a class="j-label green" href="https://aiagent.cardi.co.id/" target="_blank" rel="noopener noreferrer">
+      {t('journey.agentLabel')}
+    </a>
+  </div>
+</div>

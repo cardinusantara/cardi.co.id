@@ -7,7 +7,16 @@
     { "source": "/zh/agent", "destination": "https://aiagent.cardi.co.id", "permanent": true },
     { "source": "/mom", "destination": "https://aiagent.cardi.co.id/mom", "permanent": true },
     { "source": "/en/mom", "destination": "https://aiagent.cardi.co.id/mom", "permanent": true },
-    { "source": "/zh/mom", "destination": "https://aiagent.cardi.co.id/mom", "permanent": true }
+    { "source": "/zh/mom", "destination": "https://aiagent.cardi.co.id/mom", "permanent": true },
+    { "source": "/solusi/:path*", "destination": "/ekosistem", "permanent": true },
+    { "source": "/en/solusi/:path*", "destination": "/en/ekosistem", "permanent": true },
+    { "source": "/zh/solusi/:path*", "destination": "/zh/ekosistem", "permanent": true },
+    { "source": "/plugin", "destination": "/ekosistem", "permanent": true },
+    { "source": "/en/plugin", "destination": "/en/ekosistem", "permanent": true },
+    { "source": "/zh/plugin", "destination": "/zh/ekosistem", "permanent": true },
+    { "source": "/blog", "destination": "/insight", "permanent": true },
+    { "source": "/en/blog", "destination": "/en/insight", "permanent": true },
+    { "source": "/zh/blog", "destination": "/zh/insight", "permanent": true }
   ],
   "headers": [
     {

@@ -1,0 +1,184 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../Navbar.astro';
+import Footer from '../Footer.astro';
+import { getLangFromUrl, useTranslatedPath } from '../../i18n/utils';
+import type { LangKey } from '../../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const translatePath = useTranslatedPath(lang);
+
+const copy = {
+  id: {
+    title: 'Deo Cardi Nathanael — Founder Cardi',
+    desc: 'Profil Deo Cardi Nathanael, Founder & Creative Director Cardi.',
+    eyebrow: 'Founder',
+    name: 'Deo Cardi Nathanael',
+    lead: 'Founder & Creative Director Cardi. Sekitar 10 tahun membangun brand dan sistem pemasaran digital untuk bisnis Indonesia.',
+    btnWa: 'Hubungi via WhatsApp',
+    btnEco: 'Lihat ekosistem Cardi',
+    founderRole: 'Founder & CEO Cardi',
+    secTimelineEyebrow: 'Perjalanan',
+    secTimelineTitle: 'Dari sistem IT, startup, kuliner, sampai AI.',
+    timeline: [
+      { year: '2012', role: 'Teaching Assistant', place: 'BINUS University.' },
+      { year: '—', role: 'System Analyst', place: 'PT Nusantara Compnet Integrator.' },
+      { year: '—', role: 'Co-Founder & CMO, Kotagrosir.com', place: 'Startup IT yang meraih pendanaan dalam USD.' },
+      { year: '2016', role: 'Pendiri Foodinhands', place: 'Media dan komunitas kuliner.' },
+      { year: '2017', role: 'Pendiri Inhands Agency', place: 'PT Inhands Solusi Digital — konsultan F&B dan branding.' },
+      { year: '—', role: 'VP Marketing, Nikmat Group', place: 'Kopi Lain Hati, Street Boba, Gildak.' },
+      { year: '2023', role: 'Founder Cardi Nusantara', place: 'PT Digital Cardi Nusantara — kini induk ekosistem Cardi.' }
+    ],
+    principlesTitle: 'Prinsip kerja',
+    principlesP1: 'Kejelasan brand — bukan sekadar kualitas produk — yang menentukan bisnis mana yang dipercaya dan tumbuh. Setelah brand jelas, sistem penjualan harus berjalan setiap hari.',
+    principlesP2: 'Prinsip itu kini menjadi dua mesin Cardi: <strong>Cardi Nusantara</strong> untuk membangun brand, dan <strong>Cardi Agent</strong> untuk menjalankan penjualan dengan AI.',
+    otherRolesTitle: 'Peran lain',
+    otherRolesDesc: 'Branding Consultant di BNI Passion.',
+    ctaTitle: 'Undang Deo sebagai pembicara atau mitra diskusi.',
+    ctaDesc: 'Topik: branding, go-to-market, dan AI untuk bisnis Indonesia.',
+    ctaBtn: 'Hubungi via WhatsApp'
+  },
+  en: {
+    title: 'Deo Cardi Nathanael — Founder of Cardi',
+    desc: 'Profile of Deo Cardi Nathanael, Founder & Creative Director of Cardi.',
+    eyebrow: 'Founder',
+    name: 'Deo Cardi Nathanael',
+    lead: 'Founder & Creative Director of Cardi. A decade of architecting brands and digital marketing systems for Indonesian enterprise.',
+    btnWa: 'Reach out via WhatsApp',
+    btnEco: 'Explore Cardi ecosystem',
+    founderRole: 'Founder & CEO of Cardi',
+    secTimelineEyebrow: 'Trajectory',
+    secTimelineTitle: 'From enterprise IT, startups, F&B, to applied AI.',
+    timeline: [
+      { year: '2012', role: 'Teaching Assistant', place: 'BINUS University.' },
+      { year: '—', role: 'System Analyst', place: 'PT Nusantara Compnet Integrator.' },
+      { year: '—', role: 'Co-Founder & CMO, Kotagrosir.com', place: 'Venture-backed B2B tech startup.' },
+      { year: '2016', role: 'Founder, Foodinhands', place: 'Culinary community and media platform.' },
+      { year: '2017', role: 'Founder, Inhands Agency', place: 'PT Inhands Solusi Digital — specialized F&B & brand consultancy.' },
+      { year: '—', role: 'VP Marketing, Nikmat Group', place: 'Kopi Lain Hati, Street Boba, Gildak.' },
+      { year: '2023', role: 'Founder, Cardi Nusantara', place: 'PT Digital Cardi Nusantara — parent ecosystem of Cardi.' }
+    ],
+    principlesTitle: 'Core Principles',
+    principlesP1: 'Brand clarity — beyond mere product utility — defines which business commands trust and sustainable margins. Once positioning is razor sharp, automated sales engines must operate non-stop.',
+    principlesP2: 'That conviction fuels Cardi’s dual engines: <strong>Cardi Nusantara</strong> for strategic brand equity, and <strong>Cardi Agent</strong> for relentless AI-driven sales execution.',
+    otherRolesTitle: 'Key Appointments',
+    otherRolesDesc: 'Branding Consultant at BNI Passion.',
+    ctaTitle: 'Invite Deo for keynotes or strategic advisory.',
+    ctaDesc: 'Key themes: Brand differentiation, Go-to-Market, and practical AI adoption.',
+    ctaBtn: 'Connect via WhatsApp'
+  },
+  zh: {
+    title: 'Deo Cardi Nathanael — Cardi 创始人',
+    desc: 'Cardi 创始人兼创意总监 Deo Cardi Nathanael 简介与经历。',
+    eyebrow: '创始人',
+    name: 'Deo Cardi Nathanael',
+    lead: 'Cardi 创始人兼创意总监。深耕印尼本土品牌塑造与数字化营销体系逾十年。',
+    btnWa: '通过 WhatsApp 沟通',
+    btnEco: '浏览 Cardi 生态版图',
+    founderRole: 'Cardi 创始人兼首席执行官',
+    secTimelineEyebrow: '创业征程',
+    secTimelineTitle: '从企业 IT 架构、互联网创业、餐饮消费，到落地 AI。',
+    timeline: [
+      { year: '2012', role: '助教 (Teaching Assistant)', place: 'BINUS 大学' },
+      { year: '—', role: '系统分析师 (System Analyst)', place: 'PT Nusantara Compnet Integrator' },
+      { year: '—', role: '联合创始人兼 CMO, Kotagrosir.com', place: '获得美元风投的 B2B 电商科技企业' },
+      { year: '2016', role: '创立 Foodinhands', place: '知名美食垂直媒体与社群平台' },
+      { year: '2017', role: '创立 Inhands Agency', place: 'PT Inhands Solusi Digital — 餐饮与品牌全案咨询' },
+      { year: '—', role: '市场营销副总裁 (VP Marketing), Nikmat Group', place: '操盘旗下 Kopi Lain Hati, Street Boba, Gildak 等国民茶饮连锁' },
+      { year: '2023', role: '创立 Cardi Nusantara', place: 'PT Digital Cardi Nusantara — 现为 Cardi 商业生态母实体' }
+    ],
+    principlesTitle: '商业哲学',
+    principlesP1: '品牌清晰度 — 远甚于单纯的产品堆砌 — 决定了哪家企业能够真正赢得客户信赖并稳步扩张。确立核心定位之后，系统化的获客转化流程必须日夜不息地运转。',
+    principlesP2: '这套哲学铸就了 Cardi 的双核引擎：<strong>Cardi Nusantara</strong> 筑牢高端品牌护城河，<strong>Cardi Agent</strong> 借助前沿 AI 自动化驱动实效销售。',
+    otherRolesTitle: '其他社会职务',
+    otherRolesDesc: 'BNI Passion 资深品牌顾问。',
+    ctaTitle: '邀请 Deo 进行主题演讲或商业咨询交流。',
+    ctaDesc: '聚焦领域：品牌破局、市场拓展战略 (GTM)、以及印尼商业 AI 实战落地。',
+    ctaBtn: '通过 WhatsApp 预约沟通'
+  }
+};
+
+const c = copy[lang] || copy.id;
+---
+
+<Layout title={c.title} description={c.desc} lang={lang}>
+  <Navbar lang={lang} />
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-split" style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px; align-items:center;">
+          <div class="hero-copy">
+            <span class="eyebrow">{c.eyebrow}</span>
+            <h1>{c.name}</h1>
+            <p class="lead">{c.lead}</p>
+            <div class="btns">
+              <a class="btn btn-dark" href="https://wa.me/6281289895646?text=Halo%20Pak%20Deo%2C%20saya%20ingin%20berdiskusi." target="_blank" rel="noopener">{c.btnWa}</a>
+              <a class="btn btn-light" href={translatePath('/ekosistem/')}>{c.btnEco}</a>
+            </div>
+          </div>
+          <div class="hero-side" style="display:flex; justify-content:center;">
+            <div style="width:100%; max-width:340px; aspect-ratio:4/5; border-radius:24px; background:linear-gradient(135deg, rgba(26,75,240,0.08), rgba(229,169,60,0.12)); border:1px solid var(--line); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px;">
+              <div style="width:96px; height:96px; border-radius:50%; background:var(--blue); color:#fff; display:flex; align-items:center; justify-content:center; font-size:36px; font-weight:800; margin-bottom:16px;">
+                D
+              </div>
+              <h3 style="font-size:20px; font-weight:700; color:var(--ink); margin:0;">{c.name}</h3>
+              <p style="font-size:14px; color:var(--muted); margin:4px 0 0;">{c.founderRole}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Perjalanan / Timeline -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">{c.secTimelineEyebrow}</span>
+          <h2>{c.secTimelineTitle}</h2>
+        </div>
+        <div class="split">
+          <ol class="timeline">
+            {c.timeline.map((item) => (
+              <li>
+                <b>{item.year}</b>
+                <h3>{item.role}</h3>
+                <p>{item.place}</p>
+              </li>
+            ))}
+          </ol>
+
+          <div class="prose">
+            <h3 style="font-size:24px; color:var(--ink); margin-bottom:12px;">{c.principlesTitle}</h3>
+            <p set:html={c.principlesP1}></p>
+            <p set:html={c.principlesP2}></p>
+            
+            <h3 style="font-size:24px; color:var(--ink); margin:28px 0 12px;">{c.otherRolesTitle}</h3>
+            <p>{c.otherRolesDesc}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Band -->
+    <section class="sec" style="padding-top:0;">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>{c.ctaTitle}</h2>
+            <p>{c.ctaDesc}</p>
+          </div>
+          <div class="btns">
+            <a class="btn btn-light" href="https://wa.me/6281289895646?text=Halo%20Pak%20Deo%2C%20saya%20ingin%20mengundang%20Anda%20sebagai%20pembicara." target="_blank" rel="noopener">{c.ctaBtn}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</Layout>

@@ -2,8 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../Navbar.astro';
 import Footer from '../Footer.astro';
-import ConsultModal from '../ConsultModal.astro';
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../../i18n/utils';
 import type { LangKey } from '../../i18n/ui';
 
 interface Props {
@@ -12,391 +11,122 @@ interface Props {
 
 const { lang = getLangFromUrl(Astro.url) } = Astro.props;
 const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 
-const missions = [
-  { num: '01', title: t('about.m1Title'), desc: t('about.m1Desc') },
-  { num: '02', title: t('about.m2Title'), desc: t('about.m2Desc') },
-  { num: '03', title: t('about.m3Title'), desc: t('about.m3Desc') },
-  { num: '04', title: t('about.m4Title'), desc: t('about.m4Desc') },
-  { num: '05', title: t('about.m5Title'), desc: t('about.m5Desc') },
+const timeline = [
+  { year: '2016', name: 'Foodinhands', desc: 'Media dan komunitas kuliner — belajar langsung bagaimana brand F&B dilihat dan diingat.' },
+  { year: '2017', name: 'Inhands Agency', desc: 'Konsultan F&B dan branding untuk bisnis yang ingin naik kelas.' },
+  { year: '—', name: 'Nikmat Group', desc: 'Memimpin marketing untuk Kopi Lain Hati, Street Boba, dan Gildak sebagai VP Marketing.' },
+  { year: '2023', name: 'Cardi Nusantara', desc: 'Membangun grup jasa branding, digital, go-to-market, dan IPO Partner.' },
+  { year: '2026', name: 'Ekosistem Cardi', desc: 'Cardi menjadi induk dari dua mesin: Cardi Nusantara (tim ahli) dan Cardi Agent (tim AI).' }
 ];
 
-const values = [
-  { letter: 'C', word: t('about.v1Word'), company: t('about.v1Company'), employee: t('about.v1Employee') },
-  { letter: 'A', word: t('about.v2Word'), company: t('about.v2Company'), employee: t('about.v2Employee') },
-  { letter: 'R', word: t('about.v3Word'), company: t('about.v3Company'), employee: t('about.v3Employee') },
-  { letter: 'D', word: t('about.v4Word'), company: t('about.v4Company'), employee: t('about.v4Employee') },
-  { letter: 'I', word: t('about.v5Word'), company: t('about.v5Company'), employee: t('about.v5Employee') },
-];
-
-const petalLabelPos = [
-  { x: 200, y: 130 },
-  { x: 277, y: 185 },
-  { x: 248, y: 278 },
-  { x: 152, y: 278 },
-  { x: 123, y: 185 },
+const pillars = [
+  { num: '01', title: 'Dilihat', desc: 'Brand hadir di tempat pelanggan mencari.' },
+  { num: '02', title: 'Diingat', desc: 'Identitas dan pesan yang konsisten.' },
+  { num: '03', title: 'Dipercaya', desc: 'Reputasi yang dibangun dengan bukti.' },
+  { num: '04', title: 'Dibeli', desc: 'Sistem penjualan yang berjalan setiap hari.' }
 ];
 ---
 
-<Layout title={t('seo.aboutTitle')} description={t('seo.aboutDesc')} lang={lang}>
+<Layout title="Tentang Cardi — Dilihat, Diingat, Dipercaya, Dibeli" description="Cerita dan filosofi Cardi: dilihat, diingat, dipercaya — lalu dibeli." lang={lang}>
   <Navbar lang={lang} />
 
-  <div class="about-page">
-    <!-- HERO / LOGO PHILOSOPHY -->
-    <section class="about-hero reveal">
-      <div class="wrap about-hero-grid">
-        <svg class="hero-flower" viewBox="0 0 400 400">
-          <g>
-            <path class="petal" transform="rotate(0 200 200)"   d="M200,200 C165,160 165,100 200,70  C235,100 235,160 200,200 Z"/>
-            <path class="petal" transform="rotate(60 200 200)"  d="M200,200 C165,160 165,100 200,70  C235,100 235,160 200,200 Z" opacity="0.92"/>
-            <path class="petal" transform="rotate(120 200 200)" d="M200,200 C165,160 165,100 200,70  C235,100 235,160 200,200 Z" opacity="0.84"/>
-            <path class="petal" transform="rotate(180 200 200)" d="M200,200 C165,160 165,100 200,70  C235,100 235,160 200,200 Z"/>
-            <path class="petal" transform="rotate(240 200 200)" d="M200,200 C165,160 165,100 200,70  C235,100 235,160 200,200 Z" opacity="0.92"/>
-            <path class="petal" transform="rotate(300 200 200)" d="M200,200 C165,160 165,100 200,70  C235,100 235,160 200,200 Z" opacity="0.84"/>
-          </g>
-        </svg>
-        <div>
-          <div class="eyebrow">{t('about.philosophyEyebrow')}</div>
-          <h1 class="about-h1">{t('about.philosophyTitle')}</h1>
-          <p class="about-p">{t('about.philosophyP1')}</p>
-          <p class="about-p">{t('about.philosophyP2')}</p>
-        </div>
-      </div>
-    </section>
-
-    <div class="tagline-strip reveal">
-      <div class="words">{t('about.tagline')}</div>
-    </div>
-
-    <!-- VISION -->
-    <section class="about-vision reveal">
-      <div class="wrap center">
-        <div class="eyebrow">{t('about.visionEyebrow')}</div>
-        <blockquote class="about-quote">&ldquo;{t('about.visionQuote')}&rdquo;</blockquote>
-      </div>
-    </section>
-
-    <!-- MISSION -->
-    <section class="reveal" style="padding-top:0;">
+  <main id="main">
+    <section class="hero">
       <div class="wrap">
-        <div class="eyebrow">{t('about.missionEyebrow')}</div>
-        <div class="mission-list">
-          {missions.map(m => (
-            <div class="mission-row">
-              <div class="mission-num">{m.num}</div>
-              <h3>{m.title}</h3>
-              <p>{m.desc}</p>
-            </div>
-          ))}
+        <div class="hero-copy">
+          <span class="eyebrow">Tentang Cardi</span>
+          <h1>Brand yang jelas adalah awal semua pertumbuhan.</h1>
+          <p class="lead">Cardi lahir dari satu keyakinan: yang menentukan bisnis dipercaya dan tumbuh bukan hanya kualitas produk, tapi kejelasan brand-nya — lalu sistem yang membuat penjualan terus berjalan.</p>
         </div>
       </div>
     </section>
 
-    <!-- VALUES -->
-    <section class="about-values reveal">
+    <!-- Perjalanan / Timeline -->
+    <section class="sec">
       <div class="wrap">
-        <div class="center values-head">
-          <div class="eyebrow">{t('about.valuesEyebrow')}</div>
-          <h2 class="h2">{t('about.valuesTitle')}</h2>
-          <p class="sub">{t('about.valuesSub')}</p>
+        <div class="sec-head">
+          <span class="eyebrow">Perjalanan</span>
+          <h2>Dari komunitas kuliner sampai ekosistem AI.</h2>
         </div>
-
-        <div class="bloom-wrap">
-          <svg viewBox="0 0 400 400">
-            <g>
-              <path class="petal" transform="rotate(0 200 200)"   d="M200,200 C165,160 165,100 200,60  C235,100 235,160 200,200 Z"/>
-              <path class="petal" transform="rotate(72 200 200)"  d="M200,200 C165,160 165,100 200,60  C235,100 235,160 200,200 Z" opacity="0.9"/>
-              <path class="petal" transform="rotate(144 200 200)" d="M200,200 C165,160 165,100 200,60  C235,100 235,160 200,200 Z" opacity="0.8"/>
-              <path class="petal" transform="rotate(216 200 200)" d="M200,200 C165,160 165,100 200,60  C235,100 235,160 200,200 Z" opacity="0.9"/>
-              <path class="petal" transform="rotate(288 200 200)" d="M200,200 C165,160 165,100 200,60  C235,100 235,160 200,200 Z" opacity="0.8"/>
-            </g>
-            {values.map((v, i) => (
-              <text class="petal-label" x={petalLabelPos[i].x} y={petalLabelPos[i].y} text-anchor="middle">{v.letter}</text>
+        <div class="split">
+          <div class="prose">
+            <p>Selama lebih dari satu dekade kami membantu bisnis Indonesia membangun brand. Polanya selalu sama: bisnis yang brand-nya jelas lebih mudah dipercaya — tapi banyak yang berhenti di situ karena penjualan, tagihan, dan pelanggan lama tidak terurus.</p>
+            <p>Karena itu Cardi kini punya dua mesin. <strong>Cardi Nusantara</strong> membangun brand bersama tim ahli. <strong>Cardi Agent</strong> menjalankan sistem penjualan dengan AI.</p>
+          </div>
+          <ol class="timeline">
+            {timeline.map((item) => (
+              <li>
+                <b>{item.year}</b>
+                <h3>{item.name}</h3>
+                <p>{item.desc}</p>
+              </li>
             ))}
-          </svg>
+          </ol>
         </div>
+      </div>
+    </section>
 
-        <div class="value-cards">
-          {values.map(v => (
-            <div class="vcard">
-              <div><div class="letter">{v.letter}</div><div class="word">{v.word}</div></div>
-              <div class="divider"></div>
-              <div class="block"><b>{t('about.companyLabel')}</b>{v.company}</div>
-              <div class="block"><b>{t('about.employeeLabel')}</b>{v.employee}</div>
-            </div>
+    <!-- 4 Pilar Filosofi -->
+    <section class="sec sec-white">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Filosofi</span>
+          <h2>Dilihat, diingat, dipercaya — lalu dibeli.</h2>
+        </div>
+        <div class="grid g4">
+          {pillars.map((p) => (
+            <article class="card">
+              <div class="card-top">
+                <span class="num">{p.num}</span>
+              </div>
+              <h3>{p.title}</h3>
+              <p>{p.desc}</p>
+            </article>
           ))}
         </div>
       </div>
     </section>
 
-    <div class="about-foot reveal">
-      <div class="words">{t('about.footWords')}</div>
-      <div class="sub-caption">{t('about.footSub')}</div>
-    </div>
-  </div>
+    <!-- Kepemimpinan -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Kepemimpinan</span>
+          <h2>Orang di balik Cardi.</h2>
+        </div>
+        <div class="grid g2">
+          <article class="card">
+            <div class="card-top"></div>
+            <h3>Deo Cardi Nathanael</h3>
+            <p>Founder &amp; CEO · Creative Director</p>
+            <a class="card-link" href={translatePath('/deo-cardi-nathanael-profile')}>Profil →</a>
+          </article>
+          <article class="card">
+            <div class="card-top"></div>
+            <h3>Vanesha Octania</h3>
+            <p>Creative Director &amp; Brand Strategist</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Band -->
+    <section class="sec" style="padding-top:0;">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Mari bicara soal bisnismu.</h2>
+            <p>Kami dengarkan dulu, lalu tunjukkan pintu yang tepat.</p>
+          </div>
+          <div class="btns">
+            <a class="btn btn-light" href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20ingin%20kenal%20lebih%20jauh." target="_blank" rel="noopener">Konsultasi via WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <Footer lang={lang} />
-  <ConsultModal lang={lang} />
 </Layout>
-
-<style>
-  .about-hero {
-    padding-top: 56px;
-    padding-bottom: 48px;
-  }
-
-  .about-hero-grid {
-    display: grid;
-    grid-template-columns: 0.95fr 1.05fr;
-    gap: 48px;
-    align-items: center;
-  }
-
-  .hero-flower {
-    width: 100%;
-    max-width: 340px;
-    justify-self: center;
-  }
-
-  .petal {
-    fill: var(--blue);
-  }
-
-  .about-h1 {
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.16;
-    color: var(--ink);
-    margin-bottom: 18px;
-  }
-
-  .about-p {
-    font-size: 15.5px;
-    color: var(--body);
-    line-height: 1.7;
-    max-width: 56ch;
-  }
-
-  .about-p + .about-p {
-    margin-top: 14px;
-  }
-
-  .tagline-strip {
-    background: var(--ink);
-    color: #fff;
-    padding: 30px 24px;
-    text-align: center;
-  }
-
-  .tagline-strip .words {
-    font-weight: 700;
-    font-size: clamp(15px, 2.2vw, 21px);
-    letter-spacing: 0.02em;
-  }
-
-  .about-vision {
-    padding-top: 76px;
-    padding-bottom: 40px;
-  }
-
-  .about-quote {
-    font-weight: 700;
-    font-size: clamp(22px, 3vw, 32px);
-    line-height: 1.34;
-    max-width: 880px;
-    margin: 18px auto 0;
-    color: var(--blue-d);
-  }
-
-  .mission-list {
-    margin-top: 30px;
-    border-top: 1px solid var(--line);
-  }
-
-  .mission-row {
-    display: grid;
-    grid-template-columns: 60px 1fr 1.4fr;
-    gap: 24px;
-    padding: 24px 0;
-    border-bottom: 1px solid var(--line);
-    align-items: start;
-  }
-
-  .mission-num {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--blue);
-    padding-top: 3px;
-  }
-
-  .mission-row h3 {
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  .mission-row p {
-    color: var(--body);
-    font-size: 15px;
-    line-height: 1.6;
-  }
-
-  .about-values {
-    background: var(--soft);
-    padding: 76px 0 84px;
-  }
-
-  .values-head {
-    max-width: 680px;
-    margin: 0 auto 44px;
-  }
-
-  .bloom-wrap {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 48px;
-  }
-
-  .bloom-wrap svg {
-    width: min(380px, 82vw);
-    height: auto;
-  }
-
-  .petal-label {
-    font-weight: 800;
-    font-size: 30px;
-    fill: #fff;
-  }
-
-  .value-cards {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
-  }
-
-  .vcard {
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 24px 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .vcard .letter {
-    font-weight: 800;
-    font-size: 32px;
-    color: var(--blue);
-    line-height: 1;
-  }
-
-  .vcard .word {
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 6px;
-    font-weight: 700;
-  }
-
-  .vcard .block {
-    font-size: 13px;
-    color: var(--body);
-    line-height: 1.55;
-  }
-
-  .vcard .block b {
-    display: block;
-    font-size: 10.5px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--blue-d);
-    margin-bottom: 5px;
-    font-weight: 700;
-  }
-
-  .vcard .divider {
-    height: 1px;
-    background: var(--line);
-  }
-
-  .about-foot {
-    text-align: center;
-    padding: 56px 24px 64px;
-  }
-
-  .about-foot .words {
-    font-weight: 700;
-    font-size: clamp(17px, 2.2vw, 24px);
-    color: var(--blue-d);
-  }
-
-  .about-foot .sub-caption {
-    margin-top: 10px;
-    font-size: 11.5px;
-    letter-spacing: 0.06em;
-    color: var(--muted);
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .reveal.in {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .reveal {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-  }
-
-  @media (max-width: 880px) {
-    .about-hero-grid {
-      grid-template-columns: 1fr;
-    }
-    .hero-flower {
-      max-width: 240px;
-    }
-    .mission-row {
-      grid-template-columns: 36px 1fr;
-    }
-    .mission-row p {
-      grid-column: 2 / 3;
-    }
-    .value-cards {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  @media (max-width: 520px) {
-    .value-cards {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
-
-<script>
-  const els = document.querySelectorAll('.about-page .reveal');
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    els.forEach((el) => io.observe(el));
-  } else {
-    els.forEach((el) => el.classList.add('in'));
-  }
-</script>

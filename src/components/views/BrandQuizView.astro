@@ -1,0 +1,251 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../Navbar.astro';
+import Footer from '../Footer.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+import type { LangKey } from '../../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+
+const pillars = [
+  {
+    key: 'dilihat',
+    title: 'Dilihat',
+    subtitle: 'Visibility — seberapa terlihat brand kamu di pasar.',
+    questions: [
+      'Brand saya mudah ditemukan saat calon pelanggan mencari di Google atau Maps.',
+      'Brand saya hadir aktif di channel tempat pelanggan saya berada (Instagram, TikTok, marketplace, dll.).',
+      'Jangkauan komunikasi atau distribusi brand saya sudah luas sesuai target pasar.',
+      'Target pasar saya umumnya sudah pernah mendengar nama brand saya.'
+    ]
+  },
+  {
+    key: 'diingat',
+    title: 'Diingat',
+    subtitle: 'Memorable — seberapa jelas dan konsisten brand kamu.',
+    questions: [
+      'Brand saya punya identitas visual dan verbal yang jelas (logo, warna, gaya bahasa).',
+      'Tampilan brand saya konsisten di semua titik sentuh — toko, media sosial, kemasan, website.',
+      'Pelanggan bisa menjelaskan brand saya dalam satu kalimat yang sama.',
+      'Brand saya jelas berbeda dari kompetitor terdekat.'
+    ]
+  },
+  {
+    key: 'dipercaya',
+    title: 'Dipercaya',
+    subtitle: 'Trusted — seberapa kuat reputasi brand kamu.',
+    questions: [
+      'Ulasan dan reputasi brand saya di pasar umumnya positif.',
+      'Pelanggan memandang brand saya sesuai dengan yang ingin kami tampilkan.',
+      'Brand saya konsisten menepati janji yang dikomunikasikan.',
+      'Posisi brand saya kuat dibanding pesaing di industri ini.'
+    ]
+  }
+];
+---
+
+<Layout title="Cek Brand Gratis — Cardi" description="Cek kekuatan brand kamu dalam 3 pilar: Dilihat, Diingat, Dipercaya. Gratis, 3 menit." lang={lang}>
+  <Navbar lang={lang} />
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-copy">
+          <span class="eyebrow">Cek brand gratis</span>
+          <h1>Seberapa kuat brand kamu hari ini?</h1>
+          <p class="lead">Nilai 12 pernyataan dalam 3 pilar: Dilihat, Diingat, Dipercaya. Butuh sekitar 3 menit. Hasilnya langsung menunjukkan apakah kamu perlu membangun brand dulu, atau siap menaikkan penjualan.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiz Form Section -->
+    <section class="sec">
+      <div class="wrap">
+        <form class="quiz" id="brand-quiz" novalidate>
+          <div class="field" style="max-width:480px">
+            <label for="q-bisnis">Nama bisnis (opsional)</label>
+            <input id="q-bisnis" name="bisnis" type="text" placeholder="contoh: Toko Bangunan Sinar Jaya" />
+          </div>
+
+          {pillars.map((pillar) => (
+            <fieldset class="q-pillar">
+              <legend>{pillar.title}</legend>
+              <p class="q-sub">{pillar.subtitle}</p>
+              <div class="q-legend">
+                <span>1 = sangat tidak setuju</span>
+                <span>5 = sangat setuju</span>
+              </div>
+
+              {pillar.questions.map((q, idx) => (
+                <div class="q-item" data-pillar={pillar.key}>
+                  <p>{q}</p>
+                  <div class="scale" role="radiogroup" aria-label="Nilai 1 sampai 5">
+                    {[1, 2, 3, 4, 5].map((val) => (
+                      <label>
+                        <input type="radio" name={`${pillar.key}${idx}`} value={val} aria-label={`${val} — ${q.slice(0, 40)}`} />
+                        <span>{val}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </fieldset>
+          ))}
+
+          <p id="quiz-warn" class="note" hidden style="color:#e11d48; font-weight:700; font-size:15px;"></p>
+          <button class="btn btn-dark" type="submit" style="align-self:flex-start; padding:14px 28px; font-size:16px;">Lihat hasil</button>
+        </form>
+
+        <!-- Quiz Result Box (Client-side populated) -->
+        <div class="result" id="quiz-result" hidden aria-live="polite" style="margin-top: 32px;">
+          <span class="eyebrow" style="color:var(--gold);">Hasil cek brand</span>
+          <h2 style="font-size: clamp(28px, 4vw, 40px); color: #ffffff;">Skor brand: <span data-total>0</span>/100</h2>
+          
+          <div class="bars">
+            <div class="bar-row">
+              <span>Dilihat</span>
+              <div class="bar"><i data-bar="dilihat" style="width:0"></i></div>
+              <span data-val="dilihat">0</span>
+            </div>
+            <div class="bar-row">
+              <span>Diingat</span>
+              <div class="bar"><i data-bar="diingat" style="width:0"></i></div>
+              <span data-val="diingat">0</span>
+            </div>
+            <div class="bar-row">
+              <span>Dipercaya</span>
+              <div class="bar"><i data-bar="dipercaya" style="width:0"></i></div>
+              <span data-val="dipercaya">0</span>
+            </div>
+          </div>
+
+          <p data-rec style="font-size: 16px; margin: 8px 0;"></p>
+
+          <div class="btns" style="display:flex; flex-wrap:wrap; gap:12px;">
+            <a class="btn" data-go data-nus="https://cardinusantara.com/branding/" data-agent="https://aiagent.cardi.co.id/ai/" href="#" target="_blank" rel="noopener" style="background:var(--gold); color:#0B132B; font-weight:700;">Lihat rekomendasi</a>
+            <a class="btn btn-light" data-wa href="https://wa.me/6281289895646" target="_blank" rel="noopener">Kirim hasil ke WhatsApp</a>
+          </div>
+
+          <p class="note" style="color:rgba(255,255,255,0.7); font-size:13px; margin-top:8px;">
+            Ini cek mandiri. Untuk audit menyeluruh, Brand Check Up dari Cardi Nusantara memberi laporan audit lengkap plus rekomendasi strategis dan rencana aksi.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mau Lebih Dalam Section -->
+    <section class="sec sec-white">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Mau lebih dalam?</span>
+          <h2>Dari cek mandiri ke audit menyeluruh.</h2>
+        </div>
+        <div class="grid g2">
+          <article class="card">
+            <div class="card-top"><span class="tag gold">Gratis</span></div>
+            <h3>Cek brand mandiri</h3>
+            <p>12 pernyataan, skor 3 pilar, dan rekomendasi jalur — langsung di halaman ini.</p>
+          </article>
+          <article class="card">
+            <div class="card-top"><span class="tag gold">Rp 5 jt · atau gratis dalam 7 hari</span></div>
+            <h3>Brand Check Up</h3>
+            <p>Laporan audit brand menyeluruh plus rekomendasi strategis dan rencana aksi, dikerjakan tim ahli Cardi Nusantara.</p>
+            <a class="card-link" href="https://cardinusantara.com/branding/" target="_blank" rel="noopener">Pelajari →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</Layout>
+
+<script>
+  const WA = '6281289895646';
+  const quiz = document.getElementById('brand-quiz');
+
+  if (quiz) {
+    quiz.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const pillars = ['dilihat', 'diingat', 'dipercaya'];
+      const scores: Record<string, number> = {};
+      let missing = 0;
+
+      pillars.forEach(function (p) {
+        let sum = 0;
+        let cnt = 0;
+        quiz.querySelectorAll('[data-pillar="' + p + '"]').forEach(function (item) {
+          const c = item.querySelector('input:checked') as HTMLInputElement | null;
+          if (c) {
+            sum += parseInt(c.value, 10);
+            cnt++;
+          } else {
+            missing++;
+          }
+        });
+        scores[p] = cnt ? Math.round(((sum / cnt) - 1) / 4 * 100) : 0;
+      });
+
+      const res = document.getElementById('quiz-result');
+      const warn = document.getElementById('quiz-warn');
+      if (!res || !warn) return;
+
+      if (missing) {
+        warn.hidden = false;
+        warn.textContent = 'Masih ada ' + missing + ' pernyataan yang belum dinilai.';
+        return;
+      }
+      warn.hidden = true;
+
+      const total = Math.round((scores.dilihat + scores.diingat + scores.dipercaya) / 3);
+      pillars.forEach(function (p) {
+        const barEl = res.querySelector('[data-bar="' + p + '"]') as HTMLElement | null;
+        const valEl = res.querySelector('[data-val="' + p + '"]');
+        if (barEl) barEl.style.width = scores[p] + '%';
+        if (valEl) valEl.textContent = String(scores[p]);
+      });
+
+      const totalEl = res.querySelector('[data-total]');
+      if (totalEl) totalEl.textContent = String(total);
+
+      const weakest = pillars.slice().sort(function (a, b) {
+        return scores[a] - scores[b];
+      })[0];
+      const names: Record<string, string> = { dilihat: 'Dilihat', diingat: 'Diingat', dipercaya: 'Dipercaya' };
+
+      const rec = res.querySelector('[data-rec]');
+      const go = res.querySelector('[data-go]') as HTMLAnchorElement | null;
+      let path = '';
+
+      if (total < 60 || scores[weakest] < 50) {
+        if (rec) rec.textContent = 'Pilar terlemah: ' + names[weakest] + '. Brand kamu perlu dibangun dulu supaya penjualan berikutnya lebih mudah. Rekomendasi: mulai dengan tim ahli Cardi Nusantara (Brand Check Up lengkap).';
+        path = 'Cardi Nusantara';
+        if (go) {
+          go.href = go.getAttribute('data-nus') || '#';
+          go.textContent = 'Ke Cardi Nusantara';
+        }
+      } else {
+        if (rec) rec.textContent = 'Fondasi brand kamu sudah cukup kuat (pilar terlemah: ' + names[weakest] + '). Saatnya mengubah kepercayaan jadi penjualan. Rekomendasi: Cardi Agent AI untuk marketing, sales, dan retensi.';
+        path = 'Cardi Agent AI';
+        if (go) {
+          go.href = go.getAttribute('data-agent') || '#';
+          go.textContent = 'Ke Cardi Agent AI';
+        }
+      }
+
+      const bizEl = document.getElementById('q-bisnis') as HTMLInputElement | null;
+      const biz = bizEl ? bizEl.value.trim() : '';
+      const msg = 'Halo Cardi, ini hasil Cek Brand saya' + (biz ? ' (' + biz + ')' : '') + ':\nDilihat ' + scores.dilihat + ' · Diingat ' + scores.diingat + ' · Dipercaya ' + scores.dipercaya + ' · Total ' + total + '/100\nRekomendasi: ' + path + '. Saya ingin konsultasi lanjutan.';
+
+      const waBtn = res.querySelector('[data-wa]') as HTMLAnchorElement | null;
+      if (waBtn) waBtn.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+
+      res.hidden = false;
+      res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+</script>

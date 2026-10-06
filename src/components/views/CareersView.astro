@@ -1,0 +1,169 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../Navbar.astro';
+import Footer from '../Footer.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+import type { LangKey } from '../../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+
+const copy = {
+  id: {
+    title: 'Karier di Cardi — Ekosistem Pertumbuhan Bisnis Indonesia',
+    desc: 'Lowongan dan budaya kerja di ekosistem Cardi. Bergabung dengan tim kreatif dan teknologi AI kami.',
+    eyebrow: 'Karier',
+    heading: 'Bangun brand dan AI untuk bisnis Indonesia, bersama kami.',
+    lead: 'Tim Cardi bekerja di dua dunia sekaligus: strategi kreatif dan teknologi AI.',
+    secPosEyebrow: 'Posisi',
+    secPosTitle: 'Posisi yang sering kami cari.',
+    secPosLead: 'Daftar ini adalah posisi utama kami. Kami selalu terbuka bagi talenta luar biasa.',
+    positions: [
+      { tag: 'Teknologi', title: 'AI Engineer', desc: 'Membangun dan menyetel agent Cardi Agent AI.', loc: 'Jakarta / Remote · Penuh Waktu' },
+      { tag: 'Sales', title: 'B2B Sales — Cardi Agent AI', desc: 'Menjual AI CRM ke distributor dan grosir.', loc: 'Jakarta · Penuh Waktu' },
+      { tag: 'Brand', title: 'Brand Strategist', desc: 'Memimpin proyek branding di Cardi Nusantara.', loc: 'Jakarta · Penuh Waktu' },
+      { tag: 'Kreatif', title: 'Content Creator', desc: 'Konten untuk klien dan brand Cardi.', loc: 'Jakarta · Penuh Waktu' }
+    ],
+    secWhyEyebrow: 'Kenapa Cardi',
+    secWhyTitle: 'Yang kamu dapat.',
+    perks: [
+      { title: 'Belajar dari proyek nyata', desc: 'Puluhan klien dari F&B, retail, jasa, sampai manufaktur.' },
+      { title: 'Kreatif bertemu AI', desc: 'Bekerja dengan tools AI yang kami bangun sendiri.' },
+      { title: 'Tumbuh bersama ekosistem', desc: 'Pindah lintas brand sesuai minat dan kemampuan.' }
+    ],
+    ctaTitle: 'Tidak ada posisi yang pas?',
+    ctaDesc: 'Kirim CV dan portofolio, kami simpan untuk kebutuhan berikutnya.',
+    ctaBtn: 'Kirim CV ke karir@cardi.co.id'
+  },
+  en: {
+    title: 'Careers at Cardi — Business Growth Ecosystem',
+    desc: 'Open positions and culture at Cardi. Join our creative strategy and AI engineering teams.',
+    eyebrow: 'Careers',
+    heading: 'Build brands and AI for Indonesian businesses, with us.',
+    lead: 'The Cardi team bridges two worlds: creative strategy and applied AI engineering.',
+    secPosEyebrow: 'Openings',
+    secPosTitle: 'Positions we actively seek.',
+    secPosLead: 'These represent our core recurring roles. We always welcome outstanding talent.',
+    positions: [
+      { tag: 'Engineering', title: 'AI Engineer', desc: 'Build and fine-tune specialized Cardi Agent AI models.', loc: 'Jakarta / Remote · Full-time' },
+      { tag: 'Sales', title: 'B2B Sales — Cardi Agent AI', desc: 'Distribute enterprise AI CRM to manufacturers & distributors.', loc: 'Jakarta · Full-time' },
+      { tag: 'Brand', title: 'Brand Strategist', desc: 'Lead comprehensive branding projects at Cardi Nusantara.', loc: 'Jakarta · Full-time' },
+      { tag: 'Creative', title: 'Content Creator', desc: 'Produce high-converting content for Cardi and partner brands.', loc: 'Jakarta · Full-time' }
+    ],
+    secWhyEyebrow: 'Why Cardi',
+    secWhyTitle: 'What you will gain.',
+    perks: [
+      { title: 'Real-world impact', desc: 'Engage with dozens of active clients in F&B, retail, services, and manufacturing.' },
+      { title: 'Creative meets AI', desc: 'Hands-on experience deploying in-house proprietary AI systems.' },
+      { title: 'Ecosystem growth', desc: 'Cross-functional mobility across various business units.' }
+    ],
+    ctaTitle: "Don't see an exact match?",
+    ctaDesc: 'Send your CV and portfolio. We will keep your profile in our talent pool for upcoming openings.',
+    ctaBtn: 'Send CV to karir@cardi.co.id'
+  },
+  zh: {
+    title: '加入 Cardi — 印尼商业成长生态招聘',
+    desc: '了解 Cardi 招聘岗位与企业文化。携手共创创意品牌与 AI 尖端系统。',
+    eyebrow: '职业生涯',
+    heading: '与我们携手，为印尼商业构建卓越品牌与 AI 引擎。',
+    lead: 'Cardi 团队横跨两大领域：创意品牌策略与人工智能技术落地。',
+    secPosEyebrow: '招聘职位',
+    secPosTitle: '常态热招岗位。',
+    secPosLead: '以下为核心招聘方向。我们始终欢迎卓越人才随时加入。',
+    positions: [
+      { tag: '技术研发', title: 'AI 算法工程师', desc: '构建与微调 Cardi Agent AI 智能体体系。', loc: '雅加达 / 远程 · 全职' },
+      { tag: '商务拓展', title: 'B2B 销售经理 — Cardi Agent AI', desc: '面向全国分销商与批发商推广 AI CRM 解决方案。', loc: '雅加达 · 全职' },
+      { tag: '品牌策略', title: '品牌策略总监', desc: '统筹 Cardi Nusantara 重点品牌咨询项目。', loc: '雅加达 · 全职' },
+      { tag: '创意制作', title: '内容创作者', desc: '负责 Cardi 官方与服务品牌的高质感数字内容产出。', loc: '雅加达 · 全职' }
+    ],
+    secWhyEyebrow: '为何选择 Cardi',
+    secWhyTitle: '您将收获。',
+    perks: [
+      { title: '真实商业实战', desc: '赋能从餐饮 FMCG、零售、专业服务到制造业的标杆客户。' },
+      { title: '创意与 AI 深度融合', desc: '亲自参与自研前沿 AI 工具在实际业务中的应用。' },
+      { title: '跨生态成长通道', desc: '根据个人兴趣与能力在生态各板块间灵活轮岗晋升。' }
+    ],
+    ctaTitle: '暂未找到契合的职位？',
+    ctaDesc: '欢迎投递个人简历与作品集，我们将纳入储备人才库，优先通知后续岗位。',
+    ctaBtn: '投递简历至 karir@cardi.co.id'
+  }
+};
+
+const c = copy[lang] || copy.id;
+---
+
+<Layout title={c.title} description={c.desc} lang={lang}>
+  <Navbar lang={lang} />
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-copy">
+          <span class="eyebrow">{c.eyebrow}</span>
+          <h1>{c.heading}</h1>
+          <p class="lead">{c.lead}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Posisi -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">{c.secPosEyebrow}</span>
+          <h2>{c.secPosTitle}</h2>
+          <p class="lead" style="font-size:15px; margin-top:4px;">{c.secPosLead}</p>
+        </div>
+        <div class="grid g4">
+          {c.positions.map((pos) => (
+            <article class="card">
+              <div class="card-top"><span class="tag gold">{pos.tag}</span></div>
+              <h3>{pos.title}</h3>
+              <p>{pos.desc}</p>
+              <div class="card-foot" style="margin-top:auto; padding-top:12px; font-size:12.5px; color:var(--muted); font-weight:600;">{pos.loc}</div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Kenapa Cardi -->
+    <section class="sec sec-white">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">{c.secWhyEyebrow}</span>
+          <h2>{c.secWhyTitle}</h2>
+        </div>
+        <div class="grid g3">
+          {c.perks.map((perk) => (
+            <article class="card">
+              <div class="card-top"></div>
+              <h3>{perk.title}</h3>
+              <p>{perk.desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Band -->
+    <section class="sec" style="padding-top:0;">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>{c.ctaTitle}</h2>
+            <p>{c.ctaDesc}</p>
+          </div>
+          <div class="btns">
+            <a class="btn btn-light" href="mailto:karir@cardi.co.id">{c.ctaBtn}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</Layout>

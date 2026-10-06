@@ -1,0 +1,193 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../Navbar.astro';
+import Footer from '../Footer.astro';
+import Journey from '../Journey.astro';
+import { getLangFromUrl, useTranslatedPath } from '../../i18n/utils';
+import type { LangKey } from '../../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const translatePath = useTranslatedPath(lang);
+---
+
+<Layout title="Ekosistem Cardi — Satu Induk, Dua Mesin Pertumbuhan" description="Peta ekosistem Cardi: Cardi Nusantara (jasa), Cardi Agent (AI), dan Toko Cardi." lang={lang}>
+  <Navbar lang={lang} />
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-copy">
+          <span class="eyebrow">Ekosistem</span>
+          <h1>Satu induk, dua mesin, satu tujuan: bisnis kamu tumbuh.</h1>
+          <p class="lead">Cardi Nusantara membangun kepercayaan. Cardi Agent mengubah kepercayaan itu jadi penjualan. Toko Cardi menjual produk AI &amp; IT siap pakai.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Journey -->
+    <section class="sec sec-tight">
+      <div class="wrap">
+        <Journey lang={lang} />
+      </div>
+    </section>
+
+    <!-- Peta Brand -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Peta brand</span>
+          <h2>Siapa mengerjakan apa.</h2>
+        </div>
+        <div class="grid g3">
+          <article class="card">
+            <div class="card-top"><span class="tag gold">Jasa · Tim ahli</span></div>
+            <h3>Cardi Nusantara</h3>
+            <p>cardinusantara.com</p>
+            <ul class="checks">
+              <li>Branding</li>
+              <li>Digital</li>
+              <li>Go-to-Market</li>
+              <li>IPO Partner</li>
+            </ul>
+            <a class="card-link" href="https://cardinusantara.com/" target="_blank" rel="noopener">Kunjungi →</a>
+          </article>
+
+          <article class="card dark">
+            <div class="card-top"><span class="tag live">Teknologi · Tim AI</span></div>
+            <h3 style="color:#fff;">Cardi Agent</h3>
+            <p style="color:var(--muted);">aiagent.cardi.co.id</p>
+            <ul class="checks">
+              <li style="color:#e2e8f0;">Cardi Agent AI — AI CRM</li>
+              <li style="color:#e2e8f0;">Cardi Agent AI MoM — notulen</li>
+              <li style="color:#e2e8f0;">Cardi Agent AI Loyal — loyalty &amp; review</li>
+            </ul>
+            <a class="card-link" href="https://aiagent.cardi.co.id/" target="_blank" rel="noopener" style="color:var(--gold);">Kunjungi →</a>
+          </article>
+
+          <article class="card">
+            <div class="card-top"><span class="tag">Produk</span></div>
+            <h3>Toko Cardi</h3>
+            <p>Produk AI &amp; IT siap pakai</p>
+            <ul class="checks">
+              <li>Kartu Google Review NFC</li>
+              <li>Kartu nama NFC</li>
+              <li>Produk AI &amp; IT lainnya</li>
+            </ul>
+            <a class="card-link" href={translatePath('/toko')}>Lihat toko →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Panduan Cepat Table -->
+    <section class="sec sec-white">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Panduan cepat</span>
+          <h2>Kebutuhanmu, pintunya di sini.</h2>
+        </div>
+        <div class="table-wrap" style="overflow-x:auto;">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th scope="col">Kebutuhan bisnis</th>
+                <th scope="col">Arahkan ke</th>
+                <th scope="col">Contoh</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Brand belum jelas atau belum dikenal</th>
+                <td>Cardi Nusantara · Branding</td>
+                <td>Strategi, identitas, guideline</td>
+              </tr>
+              <tr>
+                <th scope="row">Konten &amp; iklan belum menghasilkan</th>
+                <td>Cardi Nusantara · Digital</td>
+                <td>Konten, Meta &amp; Google Ads, SEO</td>
+              </tr>
+              <tr>
+                <th scope="row">Mau meluncurkan produk atau masuk pasar baru</th>
+                <td>Cardi Nusantara · GTM</td>
+                <td>Riset, positioning, rencana peluncuran</td>
+              </tr>
+              <tr>
+                <th scope="row">Bersiap menuju IPO</th>
+                <td>Cardi Nusantara · IPO Partner</td>
+                <td>Branding, marketing, sales &amp; sistem IT</td>
+              </tr>
+              <tr>
+                <th scope="row">Lead banyak tapi follow-up berantakan</th>
+                <td>Cardi Agent AI · Sales</td>
+                <td>AI Admin Sales, AI Supervisor</td>
+              </tr>
+              <tr>
+                <th scope="row">Piutang menumpuk</th>
+                <td>Cardi Agent AI · Sales</td>
+                <td>AI Penagih</td>
+              </tr>
+              <tr>
+                <th scope="row">Pelanggan jarang kembali</th>
+                <td>Cardi Agent AI · Retensi / Loyal</td>
+                <td>AI Reaktivasi, program loyalty</td>
+              </tr>
+              <tr>
+                <th scope="row">Meeting banyak, tindak lanjut hilang</th>
+                <td>Cardi Agent AI MoM</td>
+                <td>Notulen otomatis ke WhatsApp</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Saling Menguatkan -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Saling menguatkan</span>
+          <h2>Bagaimana kedua mesin bekerja bersama.</h2>
+        </div>
+        <div class="grid g3">
+          <article class="card">
+            <div class="card-top"><span class="num">01</span></div>
+            <h3>Cek brand sebagai pintu masuk</h3>
+            <p>Hasil cek brand gratis mengarahkan bisnis ke jalur yang tepat: bangun brand dulu, atau langsung naikkan penjualan.</p>
+          </article>
+          <article class="card">
+            <div class="card-top"><span class="num">02</span></div>
+            <h3>Dari jasa ke sistem</h3>
+            <p>Klien Cardi Nusantara yang brand-nya sudah siap dilanjutkan dengan Cardi Agent AI, supaya hasil kampanye jadi penjualan.</p>
+          </article>
+          <article class="card">
+            <div class="card-top"><span class="num">03</span></div>
+            <h3>Dari sistem ke jasa</h3>
+            <p>Pengguna Cardi Agent AI yang butuh strategi brand atau kampanye besar dibantu langsung oleh tim ahli Cardi Nusantara.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Band -->
+    <section class="sec" style="padding-top:0;">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Tidak yakin mulai dari mana?</h2>
+            <p>Cek brand gratis — hasilnya langsung menunjukkan jalurmu.</p>
+          </div>
+          <div class="btns">
+            <a class="btn btn-light" href={translatePath('/cek-brand/')}>Cek brand gratis</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</Layout>

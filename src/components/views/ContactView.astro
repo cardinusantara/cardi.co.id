@@ -1,0 +1,219 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../Navbar.astro';
+import Footer from '../Footer.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+import type { LangKey } from '../../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+
+const copy = {
+  id: {
+    title: 'Kontak — Cardi',
+    desc: 'Hubungi Cardi lewat WhatsApp, email, atau form.',
+    eyebrow: 'Kontak',
+    heading: 'Ceritakan bisnismu. Kami bantu pilih langkah pertama.',
+    lead: 'Balasan tercepat lewat WhatsApp pada jam kerja.',
+    waTitle: 'WhatsApp',
+    waText: 'Chat sekarang →',
+    emailTitle: 'Email',
+    emailText: 'Kirim email →',
+    officeTitle: 'Kantor',
+    officeDesc: 'PT Digital Cardi Nusantara · Jakarta, Indonesia',
+    formIntro: 'Isi form, lalu lanjutkan percakapan di WhatsApp.',
+    nameLabel: 'Nama *',
+    namePlaceholder: 'Nama kamu',
+    bizLabel: 'Nama bisnis *',
+    bizPlaceholder: 'Nama perusahaan / brand',
+    needsLabel: 'Kebutuhan *',
+    needsSelect: 'Pilih…',
+    needsOptions: [
+      'Branding / Digital / GTM / IPO (Cardi Nusantara)',
+      'AI CRM — marketing, sales, retensi (Cardi Agent AI)',
+      'Cardi Agent AI MoM',
+      'Cardi Agent AI Loyal / kartu NFC',
+      'Lainnya'
+    ],
+    msgLabel: 'Ceritakan singkat',
+    msgPlaceholder: 'Kondisi bisnis dan apa yang ingin dicapai',
+    btnSubmit: 'Kirim via WhatsApp',
+    formNote: 'Form ini membuka WhatsApp dengan pesan yang sudah terisi. Tidak ada data yang disimpan di situs.'
+  },
+  en: {
+    title: 'Contact — Cardi',
+    desc: 'Reach out to Cardi via WhatsApp, email, or contact form.',
+    eyebrow: 'Contact',
+    heading: 'Tell us about your business. We help take the first leap.',
+    lead: 'Fastest response via WhatsApp during business hours.',
+    waTitle: 'WhatsApp',
+    waText: 'Chat now →',
+    emailTitle: 'Email',
+    emailText: 'Send email →',
+    officeTitle: 'Office',
+    officeDesc: 'PT Digital Cardi Nusantara · Jakarta, Indonesia',
+    formIntro: 'Fill the form to start a conversation directly on WhatsApp.',
+    nameLabel: 'Name *',
+    namePlaceholder: 'Your full name',
+    bizLabel: 'Business Name *',
+    bizPlaceholder: 'Company or brand name',
+    needsLabel: 'Requirement *',
+    needsSelect: 'Select…',
+    needsOptions: [
+      'Branding / Digital / GTM / IPO (Cardi Nusantara)',
+      'AI CRM — marketing, sales, retention (Cardi Agent AI)',
+      'Cardi Agent AI MoM',
+      'Cardi Agent AI Loyal / NFC cards',
+      'Other'
+    ],
+    msgLabel: 'Brief overview',
+    msgPlaceholder: 'Current business stage and targets',
+    btnSubmit: 'Send via WhatsApp',
+    formNote: 'This form pre-fills a WhatsApp message. No data is stored on our servers.'
+  },
+  zh: {
+    title: '联系我们 — Cardi',
+    desc: '通过 WhatsApp、电子邮件或在线表单联系 Cardi 团队。',
+    eyebrow: '联系合作',
+    heading: '告诉我们您的业务蓝图，我们协助规划关键第一步。',
+    lead: '工作时间内 WhatsApp 渠道响应最为迅速。',
+    waTitle: 'WhatsApp',
+    waText: '立即咨询 →',
+    emailTitle: '电子邮箱',
+    emailText: '发送邮件 →',
+    officeTitle: '企业总部',
+    officeDesc: 'PT Digital Cardi Nusantara · 印尼 雅加达',
+    formIntro: '填写表单信息，一键跳转 WhatsApp 对话。',
+    nameLabel: '您的姓名 *',
+    namePlaceholder: '姓名',
+    bizLabel: '企业 / 品牌名称 *',
+    bizPlaceholder: '公司或品牌全称',
+    needsLabel: '合作需求 *',
+    needsSelect: '请选择…',
+    needsOptions: [
+      '品牌咨询 / 数字营销 / GTM / IPO 伙伴 (Cardi Nusantara)',
+      'AI CRM — 营销、销售转化与复购 (Cardi Agent AI)',
+      'Cardi Agent AI MoM 纪要系统',
+      'Cardi Agent AI Loyal / NFC 智能名片',
+      '其他咨询'
+    ],
+    msgLabel: '简要说明',
+    msgPlaceholder: '当前业务现状与预期目标',
+    btnSubmit: '通过 WhatsApp 发送',
+    formNote: '本表单仅用于预填 WhatsApp 消息文本，不会在云端存储任何数据。'
+  }
+};
+
+const c = copy[lang] || copy.id;
+---
+
+<Layout title={c.title} description={c.desc} lang={lang}>
+  <Navbar lang={lang} />
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-copy">
+          <span class="eyebrow">{c.eyebrow}</span>
+          <h1>{c.heading}</h1>
+          <p class="lead">{c.lead}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <div class="split">
+          <!-- Info kontak cards -->
+          <div style="display:flex; flex-direction:column; gap:18px;">
+            <div class="grid g3">
+              <article class="card">
+                <div class="card-top"></div>
+                <h3>{c.waTitle}</h3>
+                <p>0812-8989-5646</p>
+                <a class="card-link" href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener">{c.waText}</a>
+              </article>
+
+              <article class="card">
+                <div class="card-top"></div>
+                <h3>{c.emailTitle}</h3>
+                <p>halo@cardi.co.id</p>
+                <a class="card-link" href="mailto:halo@cardi.co.id">{c.emailText}</a>
+              </article>
+
+              <article class="card">
+                <div class="card-top"></div>
+                <h3>{c.officeTitle}</h3>
+                <p>{c.officeDesc}</p>
+              </article>
+            </div>
+          </div>
+
+          <!-- Form WhatsApp -->
+          <form class="form" id="contact-form">
+            <p class="form-intro">{c.formIntro}</p>
+            
+            <div class="field">
+              <label for="kontak-nama">{c.nameLabel}</label>
+              <input id="kontak-nama" name="nama" type="text" placeholder={c.namePlaceholder} required />
+            </div>
+
+            <div class="field">
+              <label for="kontak-bisnis">{c.bizLabel}</label>
+              <input id="kontak-bisnis" name="bisnis" type="text" placeholder={c.bizPlaceholder} required />
+            </div>
+
+            <div class="field">
+              <label for="kontak-kebutuhan">{c.needsLabel}</label>
+              <select id="kontak-kebutuhan" name="kebutuhan" required>
+                <option value="">{c.needsSelect}</option>
+                {c.needsOptions.map((opt) => (
+                  <option value={opt}>{opt}</option>
+                ))}
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="kontak-pesan">{c.msgLabel}</label>
+              <textarea id="kontak-pesan" name="pesan" rows="4" placeholder={c.msgPlaceholder}></textarea>
+            </div>
+
+            <button class="btn btn-dark" type="submit" style="width:100%; justify-content:center; padding:14px;">{c.btnSubmit}</button>
+            <p class="form-note">{c.formNote}</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</Layout>
+
+<script>
+  const WA = '6281289895646';
+  const f = document.getElementById('contact-form') as HTMLFormElement | null;
+  if (f) {
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const nama = (document.getElementById('kontak-nama') as HTMLInputElement)?.value.trim() || '';
+      const bisnis = (document.getElementById('kontak-bisnis') as HTMLInputElement)?.value.trim() || '';
+      const kebutuhan = (document.getElementById('kontak-kebutuhan') as HTMLSelectElement)?.value || '';
+      const pesan = (document.getElementById('kontak-pesan') as HTMLTextAreaElement)?.value.trim() || '';
+
+      const lines = [
+        '*Pesan dari Website cardi.co.id*',
+        'Nama: ' + nama,
+        'Nama Bisnis: ' + bisnis,
+        'Kebutuhan: ' + kebutuhan
+      ];
+      if (pesan) {
+        lines.push('Catatan: ' + pesan);
+      }
+
+      window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+    });
+  }
+</script>

@@ -44,9 +44,9 @@ const translatePath = useTranslatedPath(lang);
 
       <div class="mega-consult-card">
         <div class="consult-text">{t('solMenu.consultHeading')}</div>
-        <button class="consult-btn open-consult-trigger" type="button">
+        <a class="consult-btn" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank" rel="noopener noreferrer" style="display:block; text-align:center; text-decoration:none;">
           {t('solMenu.consultBtn')}
-        </button>
+        </a>
       </div>
     </div>
 
@@ -490,16 +490,6 @@ const translatePath = useTranslatedPath(lang);
         searchInput.focus();
       });
     }
-
-    // Open Consultation Modal from Mega Menu trigger
-    consultTriggers.forEach(trigger => {
-      trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const modal = document.getElementById('consultModal');
-        if (modal) modal.classList.add('active');
-      });
-    });
 
     // Initial filter
     filterCards();

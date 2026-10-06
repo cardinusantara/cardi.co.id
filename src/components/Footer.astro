@@ -1,5 +1,4 @@
 ---
-import LanguageSelector from './LanguageSelector.astro';
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
 import type { LangKey } from '../i18n/ui';
 
@@ -27,9 +26,6 @@ const translatePath = useTranslatedPath(lang);
             {t('foot.waBtn')}
           </a>
         </div>
-        <div style="margin-top: 16px;">
-          <LanguageSelector currentLang={lang} />
-        </div>
       </div>
 
       <!-- Kolom 1: Cardi -->
@@ -41,6 +37,7 @@ const translatePath = useTranslatedPath(lang);
         <a href={translatePath('/insight')}>{t('foot.insight')}</a>
         <a href={translatePath('/toko')}>{t('foot.shop')}</a>
         <a href={translatePath('/karier')}>{t('foot.careers')}</a>
+        <a href={translatePath('/kontak')}>{t('foot.contact')}</a>
         <a href={translatePath('/deo-cardi-nathanael-profile')}>{t('foot.founder')}</a>
       </div>
 

@@ -1,0 +1,129 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../Navbar.astro';
+import Footer from '../Footer.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+import type { LangKey } from '../../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+
+const copy = {
+  id: {
+    title: 'Insight — Cardi',
+    desc: 'Catatan soal brand, AI, dan pertumbuhan bisnis Indonesia dari tim Cardi.',
+    eyebrow: 'Insight',
+    heading: 'Catatan soal brand, AI, dan pertumbuhan bisnis Indonesia.',
+    lead: 'Artikel praktis dari tim Cardi Nusantara dan Cardi Agent.',
+    comingSoon: 'Segera terbit.',
+    comingSoonDate: 'Segera hadir',
+    articles: [
+      { tag: 'Branding', title: '3 pilar brand: kenapa "dilihat" saja tidak cukup' },
+      { tag: 'AI CRM', title: 'CRM yang tidak perlu diisi: cara kerja agent di WhatsApp' },
+      { tag: 'Sales', title: 'Menagih piutang tempo tanpa merusak hubungan dengan toko' },
+      { tag: 'Digital', title: 'Membaca laporan iklan mingguan dalam 5 menit' },
+      { tag: 'Retensi', title: 'Kartu Google Review NFC: dari kunjungan ke ulasan' },
+      { tag: 'IPO', title: 'Kesiapan brand dan sistem sebelum menuju IPO' }
+    ],
+    ctaTitle: 'Dapatkan insight terbaru di WhatsApp.',
+    ctaDesc: 'Kami kirim ringkasan artikel baru, sebulan sekali.',
+    ctaBtn: 'Daftar via WhatsApp'
+  },
+  en: {
+    title: 'Insights — Cardi',
+    desc: 'Perspectives on branding, AI CRM, sales, and business expansion in Indonesia.',
+    eyebrow: 'Insights',
+    heading: 'Field notes on brand, AI, and business growth in Indonesia.',
+    lead: 'Practical analyses from the Cardi Nusantara and Cardi Agent teams.',
+    comingSoon: 'Coming soon.',
+    comingSoonDate: 'Upcoming',
+    articles: [
+      { tag: 'Branding', title: 'The 3 Brand Pillars: Why "being seen" is never sufficient' },
+      { tag: 'AI CRM', title: 'Zero-effort CRM: How WhatsApp AI agents capture every lead' },
+      { tag: 'Sales', title: 'Receivables collection without damaging merchant relationships' },
+      { tag: 'Digital', title: 'Reading weekly performance ad audits in 5 minutes' },
+      { tag: 'Retention', title: 'NFC Google Review Cards: Converting walk-ins into reviews' },
+      { tag: 'IPO', title: 'Brand readiness and system scalability before going public' }
+    ],
+    ctaTitle: 'Receive latest insights via WhatsApp.',
+    ctaDesc: 'We dispatch a concise monthly digest of new playbooks and field guides.',
+    ctaBtn: 'Subscribe via WhatsApp'
+  },
+  zh: {
+    title: '商业洞察 — Cardi',
+    desc: '来自 Cardi 团队关于印尼市场品牌构建、AI CRM 与商业扩张的实战手记。',
+    eyebrow: '商业洞察',
+    heading: '关于品牌塑造、AI 落地与印尼商业增长的实战笔记。',
+    lead: '汇聚 Cardi Nusantara 与 Cardi Agent 前线操盘实录。',
+    comingSoon: '即将发布。',
+    comingSoonDate: '筹备中',
+    articles: [
+      { tag: '品牌战略', title: '三大品牌支柱：为何单纯“被看见”远远不够' },
+      { tag: 'AI CRM', title: '无需手动录入的 CRM：深入拆解 WhatsApp AI 智能体工作流' },
+      { tag: '销售催收', title: '如何在维系分销客情的同时高效回收应收账期' },
+      { tag: '数字营销', title: '5 分钟读懂周度广告数据投放复盘报告' },
+      { tag: '私域复购', title: 'NFC 谷歌评价卡：线下到店流量转化为真实口碑' },
+      { tag: 'IPO 辅导', title: '企业上市 (IPO) 关键节点前的品牌护城河与系统治理' }
+    ],
+    ctaTitle: '通过 WhatsApp 订阅最新商业洞察。',
+    ctaDesc: '每月推送精炼的前沿商业策略与增长指南。',
+    ctaBtn: '通过 WhatsApp 订阅'
+  }
+};
+
+const c = copy[lang] || copy.id;
+---
+
+<Layout title={c.title} description={c.desc} lang={lang}>
+  <Navbar lang={lang} />
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-copy">
+          <span class="eyebrow">{c.eyebrow}</span>
+          <h1>{c.heading}</h1>
+          <p class="lead">{c.lead}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Daftar Artikel -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="grid g3">
+          {c.articles.map((art) => (
+            <article class="card">
+              <div class="card-top">
+                <span class="tag gold">{art.tag}</span>
+              </div>
+              <h3 style="font-size:18px; line-height:1.4; margin-bottom:8px;">{art.title}</h3>
+              <p>{c.comingSoon}</p>
+              <div class="card-foot" style="margin-top:auto; padding-top:12px; font-size:12.5px; color:var(--muted); font-weight:600;">{c.comingSoonDate}</div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Band -->
+    <section class="sec" style="padding-top:0;">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>{c.ctaTitle}</h2>
+            <p>{c.ctaDesc}</p>
+          </div>
+          <div class="btns">
+            <a class="btn btn-light" href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20ingin%20menerima%20insight%20terbaru." target="_blank" rel="noopener">{c.ctaBtn}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</Layout>
