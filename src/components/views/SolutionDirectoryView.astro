@@ -25,33 +25,35 @@ const integrations = solutionsData.filter(s => s.category === 'integrasi');
   <Navbar lang={lang} />
 
   <!-- HERO -->
-  <section class="sol-dir-hero">
+  <section class="hero">
     <div class="wrap">
-      <div class="eyebrow" style="margin-bottom:12px;">{t('solMenu.tag')}</div>
-      <h1 class="h1">{t('solMenu.title')}</h1>
-      <p class="sub" style="margin: 0 auto 28px; max-width:640px;">
-        Temukan solusi spesifik yang dirancang untuk otomasi operasional, akselerasi penjualan, dan kesiapan investasi bisnis Anda.
-      </p>
+      <div class="hero-copy">
+        <span class="eyebrow">{t('solMenu.tag')}</span>
+        <h1>{t('solMenu.title')}</h1>
+        <p class="lead" style="margin-bottom: 32px;">
+          Temukan solusi spesifik yang dirancang untuk otomasi operasional, akselerasi penjualan, dan kesiapan investasi bisnis Anda.
+        </p>
 
-      <!-- SEARCH INPUT BOX IN HERO -->
-      <div class="dir-search-container">
-        <svg class="dir-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        <input 
-          type="text" 
-          id="dirSearchInput" 
-          placeholder={t('solMenu.searchPlaceholder')}
-          autocomplete="off"
-        />
-        <button type="button" id="dirSearchClear" class="dir-search-clear" style="display:none;">&times;</button>
+        <!-- SEARCH INPUT BOX IN HERO -->
+        <div class="dir-search-container">
+          <svg class="dir-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input 
+            type="text" 
+            id="dirSearchInput" 
+            placeholder={t('solMenu.searchPlaceholder')}
+            autocomplete="off"
+          />
+          <button type="button" id="dirSearchClear" class="dir-search-clear" style="display:none;">&times;</button>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- SOLUTIONS SECTIONS BY CATEGORY -->
-  <section class="sol-dir-content">
+  <section class="sec" style="padding-top: 0;">
     <div class="wrap" style="display:flex; flex-direction:column; gap:56px;">
       
       <!-- 1. INDUSTRI -->
@@ -155,15 +157,16 @@ const integrations = solutionsData.filter(s => s.category === 'integrasi');
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta">
+  <!-- CTA BAND -->
+  <section class="sec" style="padding-top:0;">
     <div class="wrap">
-      <div class="ctaBox">
-        <h2>{t('solMenu.consultHeading')}</h2>
-        <p>{t('cta.desc')}</p>
-        <div class="heroCta" style="margin-top:28px;">
-          <a class="btn white" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank">{t('cta.b1')}</a>
-          <a class="btn line" href="mailto:deo@cardinusantara.com">{t('cta.b2')}</a>
+      <div class="cta-band">
+        <div>
+          <h2>{t('solMenu.consultHeading')}</h2>
+          <p>{t('cta.desc')}</p>
+        </div>
+        <div class="btns">
+          <a class="btn btn-light" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank" rel="noopener noreferrer">{t('cta.b1')}</a>
         </div>
       </div>
     </div>
@@ -174,21 +177,6 @@ const integrations = solutionsData.filter(s => s.category === 'integrasi');
 </Layout>
 
 <style>
-  .sol-dir-hero {
-    padding: 80px 0 44px;
-    text-align: center;
-    background: radial-gradient(700px 340px at 50% 0%, rgba(30,79,255,0.06), transparent 70%);
-  }
-
-  .h1 {
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.03em;
-    color: var(--ink, #0A1633);
-    margin-bottom: 16px;
-  }
-
   /* SEARCH BAR IN HERO */
   .dir-search-container {
     position: relative;
