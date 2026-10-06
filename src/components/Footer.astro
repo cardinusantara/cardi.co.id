@@ -15,42 +15,66 @@ const translatePath = useTranslatedPath(lang);
   <div class="wrap">
     <div class="fGrid">
       <div class="fBrand">
-        <div class="brand" style="display:flex; align-items:center;">
+        <a class="brand" href={translatePath('/')} style="display:flex; align-items:center;">
           <img src="/logocardi.png" alt="Cardi" width="110" style="width:110px; height:auto; max-height:38px; display:block; object-fit:contain;" />
+        </a>
+        <p>{t('foot.tagline')}</p>
+        <div style="margin-top: 16px;">
+          <a class="btn wa" href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener" style="font-size:13px; padding:8px 14px; display:inline-flex;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.2 2.4 1.5 2.7 1.7.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .7-.1 1.4Z" />
+            </svg>
+            {t('foot.waBtn')}
+          </a>
         </div>
-        <p>{t('foot.desc')}</p>
         <div style="margin-top: 16px;">
           <LanguageSelector currentLang={lang} />
         </div>
       </div>
+
+      <!-- Kolom 1: Cardi -->
       <div class="fCol">
-        <h4>{t('foot.eco')}</h4>
-        <a href="https://aiagent.cardi.co.id/" target="_blank" rel="noopener">Cardi Agent</a>
-        <a href="https://cardinusantara.com/" target="_blank">Cardi Nusantara</a>
-        <a href="https://digital.cardinusantara.com/" target="_blank">Cardi Digital</a>
-        <a href="https://branding.cardinusantara.com/" target="_blank">Cardi Branding</a>
-      </div>
-      <div class="fCol">
-        <h4>{t('foot.comp')}</h4>
+        <h4>Cardi</h4>
         <a href={translatePath('/tentang-kami')}>{t('foot.about')}</a>
-        <a href="#">{t('foot.careers')}</a>
-        <a href="#">{t('foot.partners')}</a>
-        <a href="mailto:deo@cardinusantara.com">{t('foot.contact')}</a>
+        <a href={translatePath('/ekosistem')}>{t('nav.ecosystem')}</a>
+        <a href={translatePath('/cek-brand')}>{t('foot.checkBrand')}</a>
+        <a href={translatePath('/insight')}>{t('foot.insight')}</a>
+        <a href={translatePath('/toko')}>{t('foot.shop')}</a>
+        <a href={translatePath('/karier')}>{t('foot.careers')}</a>
+        <a href={translatePath('/deo-cardi-nathanael-profile')}>{t('foot.founder')}</a>
       </div>
+
+      <!-- Kolom 2: Cardi Nusantara -->
       <div class="fCol">
-        <h4>{t('foot.sol')}</h4>
-        <a href="#solusi">{t('sol.c1Title')}</a>
-        <a href="#solusi">{t('sol.c2Title')}</a>
-        <a href="#solusi">{t('sol.c3Title')}</a>
-        <a href="#solusi">{t('sol.c4Title')}</a>
+        <h4>Cardi Nusantara</h4>
+        <a href="https://cardinusantara.com/branding/" target="_blank" rel="noopener">{t('foot.branding')}</a>
+        <a href="https://cardinusantara.com/digital/" target="_blank" rel="noopener">{t('foot.digital')}</a>
+        <a href="https://cardinusantara.com/gtm/" target="_blank" rel="noopener">{t('foot.gtm')}</a>
+        <a href="https://cardinusantara.com/ipo-partner/" target="_blank" rel="noopener">{t('foot.ipoPartner')}</a>
+        <a href="https://cardinusantara.com/portofolio/" target="_blank" rel="noopener">{t('foot.portfolio')}</a>
+        <a href="https://cardinusantara.com/brief/" target="_blank" rel="noopener">{t('foot.sendBrief')}</a>
+      </div>
+
+      <!-- Kolom 3: Cardi Agent -->
+      <div class="fCol">
+        <h4>Cardi Agent</h4>
+        <a href="https://aiagent.cardi.co.id/ai/" target="_blank" rel="noopener">{t('foot.agentAI')}</a>
+        <a href="https://aiagent.cardi.co.id/cardimom/" target="_blank" rel="noopener">{t('foot.agentMoM')}</a>
+        <a href="https://aiagent.cardi.co.id/cardiloyal/" target="_blank" rel="noopener">{t('foot.agentLoyal')}</a>
+        <a href="https://aiagent.cardi.co.id/ai/harga/" target="_blank" rel="noopener">{t('foot.pricing')}</a>
+        <a href="https://aiagent.cardi.co.id/ai/pilot/" target="_blank" rel="noopener">{t('foot.pilot')}</a>
+        <a href="https://aiagent.cardi.co.id/bantuan/" target="_blank" rel="noopener">{t('foot.help')}</a>
       </div>
     </div>
+
     <div class="fBottom">
       <div>{t('foot.rights')}</div>
+      <div style="font-size: 13px; color: var(--muted); font-weight: 500;">
+        cardi.co.id · cardinusantara.com · aiagent.cardi.co.id
+      </div>
       <div style="display:flex; gap:16px;">
-        <a href="mailto:deo@cardinusantara.com" style="color:var(--blue); font-weight:700;">deo@cardinusantara.com</a>
-        <a href="#">{t('foot.privacy')}</a>
-        <a href="#">{t('foot.terms')}</a>
+        <a href={translatePath('/kebijakan-privasi')}>{t('foot.privacy')}</a>
+        <a href={translatePath('/syarat-ketentuan')}>{t('foot.terms')}</a>
       </div>
     </div>
   </div>

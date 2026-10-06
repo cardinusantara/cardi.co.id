@@ -39,11 +39,12 @@ const t = useTranslations(lang);
 
         <div class="hero-intro-anchor">
           <div class="hero-intro-copy" id="heroIntroCopy">
+            <div class="eyebrow hero-story-eyebrow" id="heroIntroEyebrow">{t('hero.eyebrow')}</div>
             <h1 class="hero-story-title" id="heroIntroTitle">{t('hero.title')}</h1>
             <p class="hero-story-body" id="heroIntroBody">{t('hero.body')}</p>
             <div class="heroCta hero-story-cta" id="heroIntroCta">
-              <a class="btn" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank">{t('hero.ctaConsult')}</a>
-              <a class="btn ghost" href="#produk">{t('hero.ctaExplore')}</a>
+              <a class="btn" href="#pintu">{t('hero.ctaPath')}</a>
+              <a class="btn ghost" href="https://wa.me/6281289895646?text=Halo%20Cardi,%20saya%20mau%20Cek%20Brand%20Gratis" target="_blank" rel="noopener noreferrer">{t('hero.ctaCheckBrand')}</a>
             </div>
           </div>
         </div>
@@ -108,6 +109,7 @@ const t = useTranslations(lang);
     const logoGroup = document.getElementById('heroIntroLogoGroup');
     const logoEl = document.getElementById('heroIntroLogo');
     const wordmarkEl = document.getElementById('heroIntroWordmark');
+    const eyebrowEl = document.getElementById('heroIntroEyebrow');
     const titleEl = document.getElementById('heroIntroTitle');
     const bodyEl = document.getElementById('heroIntroBody');
     const ctaEl = document.getElementById('heroIntroCta');
@@ -226,7 +228,13 @@ const t = useTranslations(lang);
 
       if (collapseP >= 1 && !navRevealed) revealNav();
 
-      // TITLE lines, staggered, overlapping the tail of the collapse.
+      // EYEBROW and TITLE lines, staggered, overlapping the tail of the collapse.
+      if (eyebrowEl) {
+        const eyeLp = easeOutCubic(clamp01((p - 0.24) / 0.18));
+        eyebrowEl.style.opacity = String(eyeLp);
+        eyebrowEl.style.transform = `translateY(${lerp(12, 0, eyeLp)}px)`;
+      }
+
       const lineStart = 0.28;
       const lineStagger = 0.08;
       const lineDur = 0.22;

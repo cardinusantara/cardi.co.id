@@ -1,9 +1,7 @@
 ---
 import LanguageSelector from './LanguageSelector.astro';
-import SolutionsMegaMenu from './SolutionsMegaMenu.astro';
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
 import type { LangKey } from '../i18n/ui';
-import { solutionsData } from '../data/solutions';
 
 interface Props {
   lang?: LangKey;
@@ -21,52 +19,20 @@ const translatePath = useTranslatedPath(lang);
     
     <!-- Desktop Menu -->
     <div class="menu">
-      <div class="menu-item">
-        <a href="#produk">{t('nav.products')} <span class="car">▼</span></a>
-        <div class="dropdown wide">
-          <a href="https://aiagent.cardi.co.id/" target="_blank" rel="noopener">
-            <span class="dLock">
-              <svg width="22" height="22" viewBox="0 0 120 120" fill="none">
-                <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#1e4fff"
-                  transform="translate(66 60) rotate(90) scale(1.3) translate(-60 -38)" />
-                <circle cx="26" cy="60" r="8" fill="#1e4fff" />
-              </svg>
-              <span class="dTx"><small>cardi</small><b>ai agent</b></span>
-            </span>
-            <span class="dDesc">{t('nav.agentDesc')}</span>
-          </a>
-          <a href="https://cardinusantara.com/" target="_blank">
-            <span class="dLock">
-              <svg width="22" height="22" viewBox="0 0 120 120" fill="none">
-                <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#0A1633"
-                  transform="translate(60 60) rotate(45) scale(1.3) translate(-60 -38)" />
-              </svg>
-              <span class="dTx"><small>cardi</small><b>nusantara</b></span>
-            </span>
-            <span class="dDesc">{t('nav.nusantaraDesc')}</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Solusi Mega Dropdown -->
-      <div class="menu-item">
-        <a href={translatePath('/solusi')}>{t('nav.solutions')} <span class="car">▼</span></a>
-        <SolutionsMegaMenu lang={lang} />
-      </div>
-
-      <a href="#harga">{t('nav.pricing')}</a>
       <a href={translatePath('/tentang-kami')}>{t('foot.about')}</a>
-      <a href={translatePath('/blog')}>Blog</a>
+      <a href={translatePath('/ekosistem')}>{t('nav.ecosystem')}</a>
+      <a href={translatePath('/toko')}>{t('foot.shop')}</a>
     </div>
 
     <!-- Desktop CTA & Language Switcher -->
     <div class="navR">
       <LanguageSelector currentLang={lang} />
-      <a class="btn wa" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.2 2.4 1.5 2.7 1.7.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .7-.1 1.4Z" />
+      <a class="btn" href={translatePath('/cek-brand')} style="background:var(--blue); color:#fff; border-color:var(--blue); font-weight:700;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-        {t('nav.cta')}
+        {t('nav.checkBrand')}
       </a>
     </div>
 
@@ -79,85 +45,33 @@ const translatePath = useTranslatedPath(lang);
   </div>
 </nav>
 
-<!-- Mobile Nav Drawer Overlay (kept outside <nav> — a fixed element nested inside a
-     position:sticky ancestor gets mispositioned on mobile Safari once scrolled) -->
+<!-- Mobile Nav Drawer Overlay -->
 <div class="mobile-nav-drawer" id="mobileNavDrawer">
-    <div class="mobile-nav-content">
-      
-      <!-- Mobile Language Switcher Row -->
-      <div style="display:flex; justify-content:space-between; align-items:center; padding: 4px 16px 12px; border-bottom:1px solid var(--line);">
-        <span style="font-size:13px; font-weight:700; color:var(--muted)">Bahasa / Language</span>
-        <LanguageSelector currentLang={lang} />
-      </div>
-
-      <!-- Collapsible Accordion: Produk & Layanan -->
-      <div class="mobile-menu-group">
-        <button class="mobile-menu-trigger" type="button">
-          <span>{t('nav.products')}</span>
-          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="mobile-accordion-body">
-          <a href="https://aiagent.cardi.co.id/" target="_blank" rel="noopener" class="mobile-sub-link">
-            <span class="dLock">
-              <svg width="20" height="20" viewBox="0 0 120 120" fill="none">
-                <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#1e4fff" transform="translate(66 60) rotate(90) scale(1.3) translate(-60 -38)" />
-                <circle cx="26" cy="60" r="8" fill="#1e4fff" />
-              </svg>
-              <b>Cardi AI Agent</b>
-            </span>
-            <small>{t('nav.agentDesc')}</small>
-          </a>
-          <a href="https://cardinusantara.com/" target="_blank" class="mobile-sub-link">
-            <span class="dLock">
-              <svg width="20" height="20" viewBox="0 0 120 120" fill="none">
-                <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#0A1633" transform="translate(60 60) rotate(45) scale(1.3) translate(-60 -38)" />
-              </svg>
-              <b>Cardi Nusantara</b>
-            </span>
-            <small>{t('nav.nusantaraDesc')}</small>
-          </a>
-        </div>
-      </div>
-
-      <!-- Collapsible Accordion: Solusi -->
-      <div class="mobile-menu-group">
-        <button class="mobile-menu-trigger" type="button">
-          <span>{t('nav.solutions')}</span>
-          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="mobile-accordion-body">
-          <a href={translatePath('/solusi')} class="mobile-sub-link" style="background:#EEF3FF; border-color:#C7D9FE;">
-            <b>{t('solMenu.viewAll')}</b>
-            <small>{t('solMenu.title')}</small>
-          </a>
-          {solutionsData.slice(0, 6).map(sol => (
-            <a href={translatePath(`/solusi/${sol.slug}`)} class="mobile-sub-link">
-              <span class="dLock">
-                <span style="font-size:16px; margin-right:4px;">{sol.icon}</span>
-                <b>{sol.title[lang] || sol.title.id}</b>
-              </span>
-              <small>{sol.desc[lang] || sol.desc.id}</small>
-            </a>
-          ))}
-        </div>
-      </div>
-
-      <a href="#harga" class="mobile-nav-link">{t('nav.pricing')}</a>
-      <a href={translatePath('/tentang-kami')} class="mobile-nav-link">{t('foot.about')}</a>
-      <a href={translatePath('/blog')} class="mobile-nav-link">Blog</a>
-
-      <!-- Mobile CTA Button -->
-      <div class="mobile-nav-cta">
-        <a class="btn wa" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank" style="width:100%; justify-content:center;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.2 2.4 1.5 2.7 1.7.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .7-.1 1.4Z" />
-          </svg>
-          {t('nav.cta')}
-        </a>
-      </div>
-
+  <div class="mobile-nav-content">
+    
+    <!-- Mobile Language Switcher Row -->
+    <div style="display:flex; justify-content:space-between; align-items:center; padding: 4px 16px 12px; border-bottom:1px solid var(--line);">
+      <span style="font-size:13px; font-weight:700; color:var(--muted)">Bahasa / Language</span>
+      <LanguageSelector currentLang={lang} />
     </div>
+
+    <a href={translatePath('/tentang-kami')} class="mobile-nav-link">{t('foot.about')}</a>
+    <a href={translatePath('/ekosistem')} class="mobile-nav-link">{t('nav.ecosystem')}</a>
+    <a href={translatePath('/toko')} class="mobile-nav-link">{t('foot.shop')}</a>
+
+    <!-- Mobile CTA Button -->
+    <div class="mobile-nav-cta">
+      <a class="btn" href={translatePath('/cek-brand')} style="width:100%; justify-content:center; background:var(--blue); color:#fff; border-color:var(--blue); font-weight:700;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        {t('nav.checkBrand')}
+      </a>
+    </div>
+
   </div>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
