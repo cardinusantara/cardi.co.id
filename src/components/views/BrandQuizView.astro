@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../Navbar.astro';
 import Footer from '../Footer.astro';
-import { getLangFromUrl } from '../../i18n/utils';
+import { getLangFromUrl, useTranslatedPath } from '../../i18n/utils';
 import type { LangKey } from '../../i18n/ui';
 
 interface Props {
@@ -10,242 +10,2349 @@ interface Props {
 }
 
 const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const currentLang = (lang as string) === 'en' ? 'en' : (lang as string) === 'zh' ? 'zh' : 'id';
+const translatePath = useTranslatedPath(lang);
 
-const pillars = [
-  {
-    key: 'dilihat',
-    title: 'Dilihat',
-    subtitle: 'Visibility — seberapa terlihat brand kamu di pasar.',
-    questions: [
-      'Brand saya mudah ditemukan saat calon pelanggan mencari di Google atau Maps.',
-      'Brand saya hadir aktif di channel tempat pelanggan saya berada (Instagram, TikTok, marketplace, dll.).',
-      'Jangkauan komunikasi atau distribusi brand saya sudah luas sesuai target pasar.',
-      'Target pasar saya umumnya sudah pernah mendengar nama brand saya.'
-    ]
+const metaContent = {
+  id: {
+    title: 'Live Brand Check · Cardi Nusantara',
+    description: 'Diagnosa mandiri kekuatan brand Anda dalam 3 pilar: Dilihat, Diingat, Dipercaya, serta rekomendasi channel dan budget sesuai Cardi Matrix.'
   },
-  {
-    key: 'diingat',
-    title: 'Diingat',
-    subtitle: 'Memorable — seberapa jelas dan konsisten brand kamu.',
-    questions: [
-      'Brand saya punya identitas visual dan verbal yang jelas (logo, warna, gaya bahasa).',
-      'Tampilan brand saya konsisten di semua titik sentuh — toko, media sosial, kemasan, website.',
-      'Pelanggan bisa menjelaskan brand saya dalam satu kalimat yang sama.',
-      'Brand saya jelas berbeda dari kompetitor terdekat.'
-    ]
+  en: {
+    title: 'Live Brand Check · Cardi Nusantara',
+    description: 'Self-audit your brand across three pillars: Seen, Remembered, and Trusted, plus channel and budget recommendations based on Cardi Matrix.'
   },
-  {
-    key: 'dipercaya',
-    title: 'Dipercaya',
-    subtitle: 'Trusted — seberapa kuat reputasi brand kamu.',
-    questions: [
-      'Ulasan dan reputasi brand saya di pasar umumnya positif.',
-      'Pelanggan memandang brand saya sesuai dengan yang ingin kami tampilkan.',
-      'Brand saya konsisten menepati janji yang dikomunikasikan.',
-      'Posisi brand saya kuat dibanding pesaing di industri ini.'
-    ]
+  zh: {
+    title: '实时品牌诊断 · Cardi Nusantara',
+    description: '自主诊断品牌三大核心支柱：被看见、被记住、被信任，并获取基于 Cardi Matrix 发展阶段的匹配渠道与预算建议。'
   }
-];
+};
+
+const pageMeta = metaContent[currentLang] || metaContent.id;
 ---
 
-<Layout title="Cek Brand Gratis — Cardi" description="Cek kekuatan brand kamu dalam 3 pilar: Dilihat, Diingat, Dipercaya. Gratis, 3 menit." lang={lang}>
+<Layout title={pageMeta.title} description={pageMeta.description} lang={lang}>
   <Navbar lang={lang} />
 
-  <main id="main">
-    <section class="hero">
-      <div class="wrap">
-        <div class="hero-copy">
-          <span class="eyebrow">Cek brand gratis</span>
-          <h1>Seberapa kuat brand kamu hari ini?</h1>
-          <p class="lead">Nilai 12 pernyataan dalam 3 pilar: Dilihat, Diingat, Dipercaya. Butuh sekitar 3 menit. Hasilnya langsung menunjukkan apakah kamu perlu membangun brand dulu, atau siap menaikkan penjualan.</p>
-        </div>
-      </div>
-    </section>
+  <!-- Preload fonts & export libraries -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head" />
+  <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" slot="head" />
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" slot="head"></script>
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" slot="head"></script>
 
-    <!-- Quiz Form Section -->
-    <section class="sec">
-      <div class="wrap">
-        <form class="quiz" id="brand-quiz" novalidate>
-          <div class="field" style="max-width:480px">
-            <label for="q-bisnis">Nama bisnis (opsional)</label>
-            <input id="q-bisnis" name="bisnis" type="text" placeholder="contoh: Toko Bangunan Sinar Jaya" />
+  <main id="main" class="brand-check-page">
+    <div class="wrap">
+      <!-- Header bar with breadcrumbs & tool actions -->
+      <header class="tool-header">
+        <div class="header-left">
+          <span class="badge-tag">Tools & Diagnostics</span>
+          <h1 class="page-title">Live Brand Check</h1>
+        </div>
+        <div class="tools-bar">
+          <div class="lang-picker">
+            <label for="lang-select" class="sr">Pilih Bahasa</label>
+            <select id="lang-select" class="lang-select" aria-label="Language selector">
+              <option value="id" selected={currentLang === 'id'}>🇮🇩 Indonesia</option>
+              <option value="en" selected={currentLang === 'en'}>🇬🇧 English</option>
+              <option value="zh" selected={currentLang === 'zh'}>🇨🇳 中文</option>
+            </select>
+          </div>
+          <a class="btn-tool btn-wa-direct" id="wahead" href="https://wa.me/6281289895646" target="_blank" rel="noopener">
+            <svg class="icon-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg>
+            <span id="wahead-text">Konsultasi via WhatsApp</span>
+          </a>
+          <button class="btn-tool" id="btn-fs" type="button" title="Full screen">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            <span id="fs-text">Layar penuh</span>
+          </button>
+          <button class="btn-tool btn-reset" id="btn-reset" type="button" title="Reset">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/></svg>
+            <span id="reset-text">Mulai brand baru</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Audit Layout -->
+      <div class="audit-layout">
+        <div class="audit-inputs">
+          <!-- Brand Input Field -->
+          <div class="brand-entry-card">
+            <p class="section-label" id="intro-p">Brand yang dibedah hari ini</p>
+            <label for="brand" class="sr" id="brand-label">Nama brand</label>
+            <input type="text" id="brand" class="brand-input" placeholder="Ketik nama brand Anda di sini..." autocomplete="off" />
           </div>
 
-          {pillars.map((pillar) => (
-            <fieldset class="q-pillar">
-              <legend>{pillar.title}</legend>
-              <p class="q-sub">{pillar.subtitle}</p>
-              <div class="q-legend">
-                <span>1 = sangat tidak setuju</span>
-                <span>5 = sangat setuju</span>
+          <!-- Cardi Matrix Business Stage Section -->
+          <section class="card-section matrix-section" id="bizblock">
+            <div class="sec-header-row">
+              <div>
+                <p class="section-label" id="biz-part">Posisi bisnis</p>
+                <h2 class="section-title">Cardi Matrix</h2>
+              </div>
+            </div>
+            <p class="sec-instruction" id="biz-q">Berapa omzet per tahun bisnis ini saat ini?</p>
+
+            <div class="stairs-grid" id="stairs" role="group" aria-label="Level Cardi Matrix"></div>
+
+            <p class="sec-instruction" id="tg-q">Syarat naik level, sudah terpenuhi?</p>
+            <div class="toggles-row">
+              <button type="button" class="toggle-btn" id="roas" aria-pressed="false">
+                <i class="check-icon" aria-hidden="true"></i>
+                <span id="roas-text">ROAS stabil</span>
+              </button>
+              <button type="button" class="toggle-btn" id="grow" aria-pressed="false">
+                <i class="check-icon" aria-hidden="true"></i>
+                <span id="grow-text">Omzet terus naik</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- 3 Pillars Dynamic Containers -->
+          <div id="pillars" class="pillars-container"></div>
+        </div>
+
+        <!-- Sticky Result Dashboard Sidebar -->
+        <aside class="audit-dashboard" aria-live="polite">
+          <div class="dashboard-sticky-inner">
+            <div class="dashboard-card">
+              <!-- Level Indicator -->
+              <div class="level-badge-box" id="lvbadge">
+                <div class="level-num" id="lvn">–</div>
+                <div class="level-info">
+                  <strong id="lvt">Level belum dipilih</strong>
+                  <span id="lvo">Pilih omzet per tahun</span>
+                </div>
               </div>
 
-              {pillar.questions.map((q, idx) => (
-                <div class="q-item" data-pillar={pillar.key}>
-                  <p>{q}</p>
-                  <div class="scale" role="radiogroup" aria-label="Nilai 1 sampai 5">
-                    {[1, 2, 3, 4, 5].map((val) => (
-                      <label>
-                        <input type="radio" name={`${pillar.key}${idx}`} value={val} aria-label={`${val} — ${q.slice(0, 40)}`} />
-                        <span>{val}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </fieldset>
-          ))}
+              <!-- Animated Concentric Gauge Dial -->
+              <div class="dial-container">
+                <svg class="dial-svg" id="dial-svg" viewBox="0 0 400 400" role="img" aria-label="Skor tiga pilar">
+                  <g transform="rotate(-90 200 200)">
+                    <circle class="track" cx="200" cy="200" r="170" stroke-width="20"></circle>
+                    <circle class="track" cx="200" cy="200" r="136" stroke-width="20"></circle>
+                    <circle class="track" cx="200" cy="200" r="102" stroke-width="20"></circle>
+                    <circle class="arc arc-p1" id="a0" cx="200" cy="200" r="170" stroke-width="20" stroke-linecap="round"></circle>
+                    <circle class="arc arc-p2" id="a1" cx="200" cy="200" r="136" stroke-width="20" stroke-linecap="round"></circle>
+                    <circle class="arc arc-p3" id="a2" cx="200" cy="200" r="102" stroke-width="20" stroke-linecap="round"></circle>
+                  </g>
+                  <text x="200" y="196" text-anchor="middle" class="dial-pct" id="pct">0%</text>
+                  <text x="200" y="232" text-anchor="middle" class="dial-totl" id="totl">0 dari 30</text>
+                </svg>
+              </div>
 
-          <p id="quiz-warn" class="note" hidden style="color:#e11d48; font-weight:700; font-size:15px;"></p>
-          <button class="btn btn-dark" type="submit" style="align-self:flex-start; padding:14px 28px; font-size:16px;">Lihat hasil</button>
-        </form>
+              <!-- Pillar Legend Swatches -->
+              <div class="swatches-row">
+                <span class="swatch-item"><i class="swatch-dot s1"></i><span id="k0-name">Dilihat</span> <b id="k0">–</b></span>
+                <span class="swatch-item"><i class="swatch-dot s2"></i><span id="k1-name">Diingat</span> <b id="k1">–</b></span>
+                <span class="swatch-item"><i class="swatch-dot s3"></i><span id="k2-name">Dipercaya</span> <b id="k2">–</b></span>
+              </div>
 
-        <!-- Quiz Result Box (Client-side populated) -->
-        <div class="result" id="quiz-result" hidden aria-live="polite" style="margin-top: 32px;">
-          <span class="eyebrow" style="color:var(--gold);">Hasil cek brand</span>
-          <h2 style="font-size: clamp(28px, 4vw, 40px); color: #ffffff;">Skor brand: <span data-total>0</span>/100</h2>
-          
-          <div class="bars">
-            <div class="bar-row">
-              <span>Dilihat</span>
-              <div class="bar"><i data-bar="dilihat" style="width:0"></i></div>
-              <span data-val="dilihat">0</span>
-            </div>
-            <div class="bar-row">
-              <span>Diingat</span>
-              <div class="bar"><i data-bar="diingat" style="width:0"></i></div>
-              <span data-val="diingat">0</span>
-            </div>
-            <div class="bar-row">
-              <span>Dipercaya</span>
-              <div class="bar"><i data-bar="dipercaya" style="width:0"></i></div>
-              <span data-val="dipercaya">0</span>
+              <!-- Verdict Box -->
+              <div class="verdict-box">
+                <h3 class="verdict-title" id="vt">Beri skor untuk memulai</h3>
+                <p class="verdict-desc" id="vd">Pilih level bisnis, lalu nilai tiap pilar dari 1 sampai 10.</p>
+              </div>
+
+              <!-- Export Action Buttons -->
+              <div class="export-actions-bar" id="result-export-actions" hidden>
+                <button type="button" class="btn-export btn-export-jpg">📸 Simpan JPEG</button>
+                <button type="button" class="btn-export btn-export-pdf">📄 Download PDF</button>
+                <button type="button" class="btn-export btn-share" hidden>📲 Bagikan Hasil</button>
+              </div>
             </div>
           </div>
+        </aside>
+      </div>
 
-          <p data-rec style="font-size: 16px; margin: 8px 0;"></p>
-
-          <div class="btns" style="display:flex; flex-wrap:wrap; gap:12px;">
-            <a class="btn" data-go data-nus="https://cardinusantara.com/branding/" data-agent="https://aiagent.cardi.co.id/ai/" href="#" target="_blank" rel="noopener" style="background:var(--gold); color:#0B132B; font-weight:700;">Lihat rekomendasi</a>
-            <a class="btn btn-light" data-wa href="https://wa.me/6281289895646" target="_blank" rel="noopener">Kirim hasil ke WhatsApp</a>
+      <!-- Solutions Matrix Section (Opsi Solusi) -->
+      <section class="solutions-section" id="sol">
+        <div class="solutions-header">
+          <div class="sol-title-wrap">
+            <span class="badge-tag">Strategi & Eksekusi</span>
+            <h2 class="section-title" id="solh">Opsi solusi</h2>
+            <p class="sec-instruction" id="solp">Rekomendasi muncul setelah level bisnis dipilih dan ketiga pilar dinilai.</p>
           </div>
+          <div class="export-actions-bar" id="sol-export-actions" hidden>
+            <button type="button" class="btn-export btn-export-jpg">📸 Simpan JPEG</button>
+            <button type="button" class="btn-export btn-export-pdf">📄 Download PDF</button>
+            <button type="button" class="btn-export btn-share" hidden>📲 Bagikan Hasil</button>
+          </div>
+        </div>
 
-          <p class="note" style="color:rgba(255,255,255,0.7); font-size:13px; margin-top:8px;">
-            Ini cek mandiri. Untuk audit menyeluruh, Brand Check Up dari Cardi Nusantara memberi laporan audit lengkap plus rekomendasi strategis dan rencana aksi.
-          </p>
+        <div class="solution-cards-grid">
+          <div class="solution-card" id="c1"></div>
+          <div class="solution-card" id="c2"></div>
+          <div class="solution-card" id="c3"></div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Mau Lebih Dalam Section -->
-    <section class="sec sec-white">
-      <div class="wrap">
-        <div class="sec-head">
-          <span class="eyebrow">Mau lebih dalam?</span>
-          <h2>Dari cek mandiri ke audit menyeluruh.</h2>
-        </div>
-        <div class="grid g2">
-          <article class="card">
-            <div class="card-top"><span class="tag gold">Gratis</span></div>
-            <h3>Cek brand mandiri</h3>
-            <p>12 pernyataan, skor 3 pilar, dan rekomendasi jalur — langsung di halaman ini.</p>
-          </article>
-          <article class="card">
-            <div class="card-top"><span class="tag gold">Rp 5 jt · atau gratis dalam 7 hari</span></div>
-            <h3>Brand Check Up</h3>
-            <p>Laporan audit brand menyeluruh plus rekomendasi strategis dan rencana aksi, dikerjakan tim ahli Cardi Nusantara.</p>
-            <a class="card-link" href="https://cardinusantara.com/branding/" target="_blank" rel="noopener">Pelajari →</a>
-          </article>
-        </div>
+      <!-- Bottom Banner / Footer Note -->
+      <div class="bottom-brand-note">
+        <p id="footer-text">Dilihat, diingat, dipercaya. Cardi Nusantara.</p>
       </div>
-    </section>
+    </div>
   </main>
+
+  <!-- Hidden High-Res Export Sheet for html2canvas & jsPDF -->
+  <div id="export-sheet-wrapper" class="export-sheet-wrapper" aria-hidden="true">
+    <div id="export-sheet" class="export-sheet">
+      <div class="esh-header">
+        <div class="esh-brand">
+          <img alt="Cardi Nusantara" src="/logocardi.png" class="esh-logo-img" />
+          <span class="esh-title">Live Brand Check · Cardi Nusantara</span>
+        </div>
+        <div class="esh-meta">
+          <span id="esh-date" class="esh-date"></span>
+          <span class="esh-tag" id="esh-tag">Ringkasan Hasil</span>
+        </div>
+      </div>
+
+      <div class="esh-brand-row">
+        <div class="esh-brand-info">
+          <span class="esh-label">Nama Brand</span>
+          <h1 id="esh-brand-name" class="esh-brand-name">Brand</h1>
+        </div>
+        <div class="level-badge-box esh-lvbadge" id="esh-lvbadge">
+          <div class="level-num" id="esh-lvn">–</div>
+          <div class="level-info">
+            <strong id="esh-lvt">Level belum dipilih</strong>
+            <span id="esh-lvo">Pilih omzet per tahun</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="esh-score-grid">
+        <div class="esh-dial-col">
+          <div class="esh-dial-wrap">
+            <svg class="dial-svg esh-dial" id="esh-dial-svg" viewBox="0 0 400 400" role="img" aria-label="Skor tiga pilar">
+              <g transform="rotate(-90 200 200)">
+                <circle class="track" cx="200" cy="200" r="170" stroke-width="20"></circle>
+                <circle class="track" cx="200" cy="200" r="136" stroke-width="20"></circle>
+                <circle class="track" cx="200" cy="200" r="102" stroke-width="20"></circle>
+                <circle class="arc arc-p1" id="esh-a0" cx="200" cy="200" r="170" stroke-width="20" stroke-linecap="round"></circle>
+                <circle class="arc arc-p2" id="esh-a1" cx="200" cy="200" r="136" stroke-width="20" stroke-linecap="round"></circle>
+                <circle class="arc arc-p3" id="esh-a2" cx="200" cy="200" r="102" stroke-width="20" stroke-linecap="round"></circle>
+              </g>
+              <text x="200" y="196" text-anchor="middle" class="dial-pct" id="esh-pct">0%</text>
+              <text x="200" y="232" text-anchor="middle" class="dial-totl" id="esh-totl">0 dari 30</text>
+            </svg>
+            <div class="swatches-row esh-keys">
+              <span class="swatch-item"><i class="swatch-dot s1"></i><span id="esh-k0-name">Dilihat</span> <b id="esh-k0">–</b></span>
+              <span class="swatch-item"><i class="swatch-dot s2"></i><span id="esh-k1-name">Diingat</span> <b id="esh-k1">–</b></span>
+              <span class="swatch-item"><i class="swatch-dot s3"></i><span id="esh-k2-name">Dipercaya</span> <b id="esh-k2">–</b></span>
+            </div>
+          </div>
+        </div>
+        <div class="esh-verdict-col">
+          <div class="verdict-box esh-verdict">
+            <span class="esh-label">Diagnosa &amp; Rekomendasi</span>
+            <h3 class="verdict-title" id="esh-vt">Beri skor untuk memulai</h3>
+            <p class="verdict-desc" id="esh-vd">Pilih level bisnis, lalu nilai tiap pilar dari 1 sampai 10.</p>
+          </div>
+          <div class="esh-matrix-status" id="esh-matrix-status"></div>
+        </div>
+      </div>
+
+      <div class="esh-sol-section">
+        <h3 class="esh-sol-title" id="esh-sol-title">Rekomendasi Channel, Budget &amp; Eksekusi</h3>
+        <div class="solution-cards-grid esh-solgrid">
+          <div class="solution-card esh-card" id="esh-c1"></div>
+          <div class="solution-card esh-card" id="esh-c2"></div>
+          <div class="solution-card esh-card" id="esh-c3"></div>
+        </div>
+      </div>
+
+      <div class="esh-footer">
+        <span>Dilihat, diingat, dipercaya. <strong>Cardi Nusantara</strong></span>
+        <span>cardi.co.id · Konsultasi: wa.me/6281289895646</span>
+      </div>
+    </div>
+  </div>
 
   <Footer lang={lang} />
 </Layout>
 
-<script>
-  const WA = '6281289895646';
-  const quiz = document.getElementById('brand-quiz');
+<style>
+  :root {
+    --p1-col: #3B82F6;
+    --p2-col: #6366F1;
+    --p3-col: #0258A4;
+    --warn-col: #E11D48;
+    --line-subtle: #E2E8F0;
+    --card-bg: #FFFFFF;
+    --card-hover: #F8FAFC;
+    --serif-font: 'Gloock', Georgia, 'Times New Roman', serif;
+  }
 
-  if (quiz) {
-    quiz.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const pillars = ['dilihat', 'diingat', 'dipercaya'];
-      const scores: Record<string, number> = {};
-      let missing = 0;
+  .brand-check-page {
+    padding-top: 112px;
+    padding-bottom: 80px;
+    background: #F8FAFC;
+    color: var(--ink);
+    min-height: 100vh;
+  }
 
-      pillars.forEach(function (p) {
-        let sum = 0;
-        let cnt = 0;
-        quiz.querySelectorAll('[data-pillar="' + p + '"]').forEach(function (item) {
-          const c = item.querySelector('input:checked') as HTMLInputElement | null;
-          if (c) {
-            sum += parseInt(c.value, 10);
-            cnt++;
-          } else {
-            missing++;
-          }
-        });
-        scores[p] = cnt ? Math.round(((sum / cnt) - 1) / 4 * 100) : 0;
-      });
+  /* Header Bar */
+  .tool-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line-subtle);
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
 
-      const res = document.getElementById('quiz-result');
-      const warn = document.getElementById('quiz-warn');
-      if (!res || !warn) return;
+  .badge-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--blue);
+    background: rgba(2, 88, 164, 0.08);
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 6px;
+  }
 
-      if (missing) {
-        warn.hidden = false;
-        warn.textContent = 'Masih ada ' + missing + ' pernyataan yang belum dinilai.';
-        return;
+  .page-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .tools-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .lang-select {
+    background: #FFFFFF;
+    border: 1px solid var(--line-subtle);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    transition: all 0.2s ease;
+  }
+  .lang-select:hover, .lang-select:focus-visible {
+    border-color: var(--blue);
+    outline: none;
+  }
+
+  .btn-tool {
+    background: #FFFFFF;
+    border: 1px solid var(--line-subtle);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--body);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    text-decoration: none;
+  }
+  .btn-tool:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+    background: #FFFFFF;
+  }
+
+  .btn-wa-direct {
+    background: #25D366;
+    color: #064E24;
+    border-color: #25D366;
+  }
+  .btn-wa-direct:hover {
+    background: #20BD5A;
+    color: #043819;
+    border-color: #20BD5A;
+  }
+
+  /* Two Column Audit Layout */
+  .audit-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(320px, 1fr);
+    gap: 36px;
+    align-items: start;
+  }
+  @media (max-width: 960px) {
+    .audit-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Left Column */
+  .brand-entry-card {
+    background: #FFFFFF;
+    border: 1px solid var(--line-subtle);
+    border-radius: 20px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(10, 22, 51, 0.03);
+  }
+
+  .section-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .brand-input {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid var(--line-subtle);
+    font-family: var(--serif-font);
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.2;
+    padding: 6px 0 10px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .brand-input:focus {
+    border-bottom-color: var(--blue);
+  }
+  .brand-input::placeholder {
+    color: #CBD5E1;
+  }
+
+  .card-section {
+    background: #FFFFFF;
+    border: 1px solid var(--line-subtle);
+    border-radius: 20px;
+    padding: 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(10, 22, 51, 0.03);
+  }
+
+  .section-title {
+    font-family: var(--serif-font);
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 400;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .sec-instruction {
+    font-size: 15px;
+    color: var(--muted);
+    margin: 8px 0 16px;
+  }
+
+  /* Matrix Stairs */
+  .stairs-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    align-items: end;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 600px) {
+    .stairs-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  :global(.stair-btn) {
+    border: 1px solid var(--line-subtle);
+    background: #F8FAFC;
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 12px 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+  }
+  :global(.stair-btn:hover) {
+    border-color: var(--blue);
+    background: #FFFFFF;
+  }
+  :global(.stair-btn .s-num) {
+    font-family: var(--serif-font);
+    font-size: 26px;
+    line-height: 1;
+    color: var(--ink);
+  }
+  :global(.stair-btn .s-title) {
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 1.2;
+    margin-top: 8px;
+    color: var(--ink);
+  }
+  :global(.stair-btn .s-rev) {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  :global(.stair-btn.on) {
+    background: var(--blue) !important;
+    border-color: var(--blue) !important;
+    color: #FFFFFF !important;
+  }
+  :global(.stair-btn.on .s-num),
+  :global(.stair-btn.on .s-title) {
+    color: #FFFFFF !important;
+  }
+  :global(.stair-btn.on .s-rev) {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+  :global(.stair-btn.past) {
+    background: rgba(2, 88, 164, 0.08);
+    border-color: rgba(2, 88, 164, 0.2);
+  }
+
+  .toggles-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .toggle-btn {
+    border: 1px solid var(--line-subtle);
+    background: #F8FAFC;
+    border-radius: 999px;
+    padding: 8px 16px 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--body);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+  }
+  .toggle-btn:hover {
+    border-color: var(--blue);
+  }
+  .check-icon {
+    font-style: normal;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid #CBD5E1;
+    display: inline-grid;
+    place-items: center;
+    font-size: 11px;
+    background: #FFFFFF;
+  }
+  .toggle-btn[aria-pressed="true"] {
+    border-color: var(--blue);
+    background: rgba(2, 88, 164, 0.08);
+    color: var(--blue);
+  }
+  .toggle-btn[aria-pressed="true"] .check-icon {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: #FFFFFF;
+  }
+
+  /* Pillar Blocks */
+  :global(.pillar-block) {
+    background: #FFFFFF;
+    border: 1px solid var(--line-subtle);
+    border-radius: 20px;
+    padding: 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(10, 22, 51, 0.03);
+    position: relative;
+    overflow: hidden;
+  }
+  :global(.pillar-block::before) {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: var(--pillar-color, var(--blue));
+  }
+  :global(.pillar-header) {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+  :global(.pillar-header h2) {
+    font-family: var(--serif-font);
+    font-size: clamp(24px, 3vw, 30px);
+    font-weight: 400;
+    color: var(--ink);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  :global(.pillar-score-text) {
+    font-family: var(--serif-font);
+    font-size: 32px;
+    color: var(--ink);
+  }
+  :global(.pillar-score-text small) {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  :global(.pillar-question) {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 0 0 16px;
+    max-width: 60ch;
+  }
+
+  /* 1-10 Scale Buttons */
+  :global(.scale-grid) {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 480px) {
+    :global(.scale-grid) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+  :global(.scale-btn) {
+    aspect-ratio: 1.1 / 1;
+    border: 1px solid var(--line-subtle);
+    background: #F8FAFC;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--muted);
+    transition: all 0.15s ease;
+  }
+  :global(.scale-btn:hover) {
+    border-color: var(--blue);
+    color: var(--ink);
+  }
+  :global(.scale-btn.on) {
+    background: var(--pillar-color, var(--blue));
+    border-color: var(--pillar-color, var(--blue));
+    color: #FFFFFF;
+  }
+
+  /* Chips */
+  :global(.chips-row) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  :global(.chip-btn) {
+    border: 1px solid var(--line-subtle);
+    background: #F8FAFC;
+    border-radius: 999px;
+    padding: 6px 14px 6px 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--body);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+  }
+  :global(.chip-btn i) {
+    font-style: normal;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid #CBD5E1;
+    display: inline-grid;
+    place-items: center;
+    font-size: 10px;
+    background: #FFFFFF;
+  }
+  :global(.chip-btn[data-s="1"]) {
+    border-color: var(--blue);
+    background: rgba(2, 88, 164, 0.08);
+    color: var(--blue);
+  }
+  :global(.chip-btn[data-s="1"] i) {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: #FFFFFF;
+  }
+  :global(.chip-btn[data-s="2"]) {
+    border-color: var(--warn-col);
+    background: rgba(225, 29, 72, 0.08);
+    color: var(--warn-col);
+  }
+  :global(.chip-btn[data-s="2"] i) {
+    background: var(--warn-col);
+    border-color: var(--warn-col);
+    color: #FFFFFF;
+  }
+
+  :global(.legend-hint) {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0 0 12px;
+  }
+  :global(.pillar-notes) {
+    width: 100%;
+    background: #F8FAFC;
+    border: 1px solid var(--line-subtle);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: var(--ink);
+    resize: none;
+    min-height: 44px;
+    transition: border-color 0.2s ease;
+  }
+  :global(.pillar-notes:focus) {
+    outline: none;
+    border-color: var(--blue);
+    background: #FFFFFF;
+  }
+
+  /* Right Dashboard Sidebar */
+  .audit-dashboard {
+    position: sticky;
+    top: 104px;
+  }
+  @media (max-width: 960px) {
+    .audit-dashboard {
+      position: static;
+    }
+  }
+
+  .dashboard-card {
+    background: #FFFFFF;
+    border: 1px solid var(--line-subtle);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 8px 30px rgba(10, 22, 51, 0.05);
+  }
+
+  .level-badge-box {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #F8FAFC;
+    border: 1px solid var(--line-subtle);
+    border-radius: 14px;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+  }
+  .level-num {
+    font-family: var(--serif-font);
+    font-size: 36px;
+    color: var(--blue);
+    line-height: 1;
+    min-width: 32px;
+  }
+  .level-info strong {
+    display: block;
+    color: var(--ink);
+    font-size: 16px;
+  }
+  .level-info span {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .dial-container {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .dial-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .dial-svg circle {
+    fill: none;
+  }
+  .track {
+    stroke: #E2E8F0;
+  }
+  .arc {
+    transition: stroke-dashoffset 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .arc-p1 { stroke: var(--p1-col); }
+  .arc-p2 { stroke: var(--p2-col); }
+  .arc-p3 { stroke: var(--p3-col); }
+
+  .dial-pct {
+    font-family: var(--serif-font);
+    font-size: 64px;
+    font-weight: 700;
+    fill: var(--ink);
+  }
+  .dial-totl {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    fill: var(--muted);
+  }
+
+  .swatches-row {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 14px 0 20px;
+    font-size: 13px;
+    color: var(--body);
+  }
+  .swatch-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .swatch-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .swatch-dot.s1 { background: var(--p1-col); }
+  .swatch-dot.s2 { background: var(--p2-col); }
+  .swatch-dot.s3 { background: var(--p3-col); }
+
+  .verdict-box {
+    border-top: 1px solid var(--line-subtle);
+    padding-top: 18px;
+    margin-top: 8px;
+  }
+  .verdict-title {
+    font-family: var(--serif-font);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .verdict-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .export-actions-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line-subtle);
+  }
+  .btn-export {
+    background: #F8FAFC;
+    border: 1px solid var(--line-subtle);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-export:hover {
+    border-color: var(--blue);
+    background: rgba(2, 88, 164, 0.08);
+    color: var(--blue);
+  }
+  .btn-export:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+
+  /* Solutions Section */
+  .solutions-section {
+    margin-top: 48px;
+    padding-top: 36px;
+    border-top: 1px solid var(--line-subtle);
+  }
+  .solutions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .solution-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+  @media (max-width: 960px) {
+    .solution-cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  :global(.solution-card) {
+    background: #FFFFFF;
+    border: 1px solid var(--line-subtle);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 4px 16px rgba(10, 22, 51, 0.03);
+    display: flex;
+    flex-direction: column;
+  }
+  :global(.solution-card h3) {
+    font-family: var(--serif-font);
+    font-size: 22px;
+    margin: 0 0 10px;
+    color: var(--ink);
+  }
+  :global(.solution-card p) {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0 0 14px;
+  }
+  :global(.solution-card ul) {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  :global(.solution-card li) {
+    padding: 10px 0;
+    border-top: 1px solid var(--line-subtle);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 14px;
+  }
+  :global(.solution-card li:first-child) {
+    border-top: 0;
+  }
+  :global(.dot-mark) {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex: none;
+    margin-top: 6px;
+  }
+  :global(.dot-mark.full) { background: var(--blue); }
+  :global(.dot-mark.new) { background: var(--p1-col); }
+  :global(.dot-mark.opt) { background: transparent; border: 2px solid var(--blue); opacity: 0.6; }
+
+  :global(.budget-big) {
+    font-family: var(--serif-font);
+    font-size: 32px;
+    color: var(--ink);
+    margin: 6px 0;
+    line-height: 1.1;
+  }
+  :global(.step-box) {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    background: #F8FAFC;
+    border: 1px solid var(--line-subtle);
+    font-size: 13px;
+    color: var(--body);
+  }
+  :global(.step-box b) {
+    color: var(--ink);
+  }
+
+  :global(.service-item) {
+    padding: 12px 0;
+    border-top: 1px solid var(--line-subtle);
+  }
+  :global(.service-item:first-of-type) {
+    border-top: 0;
+  }
+  :global(.service-item strong) {
+    display: block;
+    color: var(--ink);
+    font-size: 14px;
+  }
+  :global(.service-item.hi strong) {
+    color: var(--blue);
+  }
+  :global(.service-item span) {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  :global(.wa-consult-btn) {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    background: #25D366;
+    color: #064E24;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 999px;
+    padding: 10px 18px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+  :global(.wa-consult-btn:hover) {
+    background: #20BD5A;
+  }
+
+  .bottom-brand-note {
+    text-align: center;
+    margin-top: 48px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  /* Hidden Export Sheet Container */
+  .export-sheet-wrapper {
+    position: fixed;
+    top: 0;
+    left: -99999px;
+    width: 960px;
+    z-index: -9999;
+    pointer-events: none;
+    opacity: 0;
+  }
+  .export-sheet-wrapper.is-rendering {
+    left: 0;
+    top: 0;
+    opacity: 1;
+  }
+  .export-sheet {
+    width: 960px;
+    background: #FFFFFF;
+    color: var(--ink);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    padding: 36px;
+    box-sizing: border-box;
+  }
+  .esh-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 18px;
+    border-bottom: 2px solid var(--line-subtle);
+    margin-bottom: 24px;
+  }
+  .esh-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+  }
+  .esh-logo-img {
+    height: 32px;
+    width: auto;
+  }
+  .esh-title {
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .esh-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .esh-tag {
+    background: rgba(2, 88, 164, 0.08);
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .esh-brand-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background: #F8FAFC;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    border: 1px solid var(--line-subtle);
+  }
+  .esh-label {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+  .esh-brand-name {
+    font-family: var(--serif-font);
+    font-size: 36px;
+    margin: 0;
+    color: var(--ink);
+  }
+  .esh-score-grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .esh-dial-col {
+    background: #F8FAFC;
+    border-radius: 16px;
+    padding: 22px;
+    border: 1px solid var(--line-subtle);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .esh-dial-wrap {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+  .esh-dial {
+    max-width: 240px;
+    margin: 0 auto;
+  }
+  .esh-verdict-col {
+    background: #F8FAFC;
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid var(--line-subtle);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .esh-matrix-status {
+    margin-top: 16px;
+    padding: 12px 14px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    font-size: 13px;
+    border: 1px solid var(--line-subtle);
+    color: var(--body);
+  }
+  .esh-sol-title {
+    font-family: var(--serif-font);
+    font-size: 22px;
+    margin: 0 0 14px;
+    color: var(--ink);
+  }
+  .esh-solgrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .esh-card {
+    background: #F8FAFC;
+    border-radius: 14px;
+    padding: 18px;
+    border: 1px solid var(--line-subtle);
+    font-size: 13px;
+  }
+  .esh-card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .esh-card .wa-consult-btn {
+    display: none !important;
+  }
+  .esh-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--line-subtle);
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 20px;
+  }
+  .sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+</style>
+
+<script is:inline>
+  const LEVELS_DATA = [
+    {
+      n: 1, min: 0, max: 1,
+      id: { t: 'Validasi', o: '< Rp 1 M/thn', focus: 'Buktikan produk laku dan gunakan marketing organik.' },
+      en: { t: 'Validation', o: '< IDR 1 B/yr', focus: 'Prove product-market fit and leverage organic marketing.' },
+      zh: { t: '验证阶段', o: '< 10 亿 IDR/年', focus: '验证产品市场契合度，侧重自然获客与内容营销。' }
+    },
+    {
+      n: 2, min: 1, max: 5,
+      id: { t: 'Growth', o: 'Rp 1–5 M/thn', focus: 'Gunakan ads dan scale channel digital yang terbukti profit.' },
+      en: { t: 'Growth', o: 'IDR 1–5 B/yr', focus: 'Run ads and scale digital channels that prove profitable.' },
+      zh: { t: '成长阶段', o: '10 亿–50 亿 IDR/年', focus: '投放付费广告并扩展已实现盈利的数字化渠道。' }
+    },
+    {
+      n: 3, min: 5, max: 10,
+      id: { t: 'Ekspansi', o: 'Rp 5–10 M/thn', focus: 'Multi-channel dan mulai masuk distribusi offline.' },
+      en: { t: 'Expansion', o: 'IDR 5–10 B/yr', focus: 'Multi-channel expansion and initiate offline distribution.' },
+      zh: { t: '扩张阶段', o: '50 亿–100 亿 IDR/年', focus: '多渠道协同扩张，逐步渗透线下分销渠道。' }
+    },
+    {
+      n: 4, min: 20, max: 100,
+      id: { t: 'Brand Building', o: 'Rp 20–100 M/thn', focus: 'Awareness nasional: artis, KOL, dan OOH selektif.' },
+      en: { t: 'Brand Building', o: 'IDR 20–100 B/yr', focus: 'National awareness: celebrities, KOLs, and selective OOH.' },
+      zh: { t: '品牌塑造', o: '200 亿–1000 亿 IDR/年', focus: '建立全国知名度：明星代言、头部KOL及重点户外大牌。' }
+    },
+    {
+      n: 5, min: 100, max: null,
+      id: { t: 'Market Leader', o: 'Rp 100+ M/thn', focus: 'Top of mind: TV, YouTube, dan spot OOH premium.' },
+      en: { t: 'Market Leader', o: 'IDR 100+ B/yr', focus: 'Top of mind: TV, YouTube, and prime OOH placements.' },
+      zh: { t: '行业领袖', o: '1000 亿+ IDR/年', focus: '占据心智第一位置：主流电视、YouTube及顶级户外广告。' }
+    }
+  ];
+
+  const CHANNELS_DATA = [
+    {
+      weights: [2, 2, 2, 2, 2],
+      name: {
+        id: 'Konten organik, media sosial, SEO & GBP',
+        en: 'Organic content, social media, SEO & GBP',
+        zh: '自然内容、社交媒体、SEO与谷歌商家资料'
       }
-      warn.hidden = true;
-
-      const total = Math.round((scores.dilihat + scores.diingat + scores.dipercaya) / 3);
-      pillars.forEach(function (p) {
-        const barEl = res.querySelector('[data-bar="' + p + '"]') as HTMLElement | null;
-        const valEl = res.querySelector('[data-val="' + p + '"]');
-        if (barEl) barEl.style.width = scores[p] + '%';
-        if (valEl) valEl.textContent = String(scores[p]);
-      });
-
-      const totalEl = res.querySelector('[data-total]');
-      if (totalEl) totalEl.textContent = String(total);
-
-      const weakest = pillars.slice().sort(function (a, b) {
-        return scores[a] - scores[b];
-      })[0];
-      const names: Record<string, string> = { dilihat: 'Dilihat', diingat: 'Diingat', dipercaya: 'Dipercaya' };
-
-      const rec = res.querySelector('[data-rec]');
-      const go = res.querySelector('[data-go]') as HTMLAnchorElement | null;
-      let path = '';
-
-      if (total < 60 || scores[weakest] < 50) {
-        if (rec) rec.textContent = 'Pilar terlemah: ' + names[weakest] + '. Brand kamu perlu dibangun dulu supaya penjualan berikutnya lebih mudah. Rekomendasi: mulai dengan tim ahli Cardi Nusantara (Brand Check Up lengkap).';
-        path = 'Cardi Nusantara';
-        if (go) {
-          go.href = go.getAttribute('data-nus') || '#';
-          go.textContent = 'Ke Cardi Nusantara';
-        }
-      } else {
-        if (rec) rec.textContent = 'Fondasi brand kamu sudah cukup kuat (pilar terlemah: ' + names[weakest] + '). Saatnya mengubah kepercayaan jadi penjualan. Rekomendasi: Cardi Agent AI untuk marketing, sales, dan retensi.';
-        path = 'Cardi Agent AI';
-        if (go) {
-          go.href = go.getAttribute('data-agent') || '#';
-          go.textContent = 'Ke Cardi Agent AI';
-        }
+    },
+    {
+      weights: [2, 2, 2, 2, 2],
+      name: {
+        id: 'Iklan marketplace (Shopee / Tokopedia)',
+        en: 'Marketplace Ads (Shopee / Tokopedia)',
+        zh: '电商平台广告 (Shopee / Tokopedia)'
       }
+    },
+    {
+      weights: [2, 2, 2, 2, 2],
+      name: {
+        id: 'Meta Ads (Facebook & Instagram)',
+        en: 'Meta Ads (Facebook & Instagram)',
+        zh: 'Meta 广告 (Facebook & Instagram)'
+      }
+    },
+    {
+      weights: [2, 2, 2, 2, 2],
+      name: {
+        id: 'TikTok Ads & Affiliate',
+        en: 'TikTok Ads & Affiliate',
+        zh: 'TikTok 广告与达人分销带货'
+      }
+    },
+    {
+      weights: [2, 2, 2, 2, 2],
+      name: {
+        id: 'KOL nano–micro',
+        en: 'Nano–Micro KOLs',
+        zh: '纳米与微型 KOL 合作'
+      }
+    },
+    {
+      weights: [1, 2, 2, 2, 2],
+      name: {
+        id: 'Google Search Ads & SEM',
+        en: 'Google Search Ads & SEM',
+        zh: '谷歌搜索广告与 SEM'
+      }
+    },
+    {
+      weights: [0, 0, 2, 2, 2],
+      name: {
+        id: 'YouTube Ads',
+        en: 'YouTube Ads',
+        zh: 'YouTube 视频广告'
+      }
+    },
+    {
+      weights: [1, 1, 2, 2, 2],
+      name: {
+        id: 'KOL macro',
+        en: 'Macro KOLs',
+        zh: '头部大体量 KOL'
+      }
+    },
+    {
+      weights: [0, 0, 2, 2, 2],
+      name: {
+        id: 'Distribusi retail offline (GT/MT)',
+        en: 'Offline retail distribution (GT/MT)',
+        zh: '线下零售渠道铺货 (传统/现代商超)'
+      }
+    },
+    {
+      weights: [1, 1, 1, 2, 2],
+      name: {
+        id: 'Artis / mega endorsement (Rp 200 jt+)',
+        en: 'Celebrity / mega endorsements (IDR 200M+)',
+        zh: '明星代言 / 头部红人背书 (2 亿 IDR+)'
+      }
+    },
+    {
+      weights: [0, 0, 0, 1, 2],
+      isOOH: true,
+      name: {
+        id: 'OOH / billboard',
+        en: 'OOH / Billboard',
+        zh: '户外大牌 / 高速广告牌 (OOH)'
+      }
+    },
+    {
+      weights: [1, 1, 1, 1, 1],
+      name: {
+        id: 'TV & sponsorship besar',
+        en: 'TV & major sponsorships',
+        zh: '电视媒体与大型赞助'
+      }
+    }
+  ];
 
-      const bizEl = document.getElementById('q-bisnis') as HTMLInputElement | null;
-      const biz = bizEl ? bizEl.value.trim() : '';
-      const msg = 'Halo Cardi, ini hasil Cek Brand saya' + (biz ? ' (' + biz + ')' : '') + ':\nDilihat ' + scores.dilihat + ' · Diingat ' + scores.diingat + ' · Dipercaya ' + scores.dipercaya + ' · Total ' + total + '/100\nRekomendasi: ' + path + '. Saya ingin konsultasi lanjutan.';
+  const PILLARS_DATA = [
+    {
+      color: '#3B82F6',
+      id: {
+        name: 'Dilihat',
+        q: 'Kalau calon klien mencari kategori bisnis ini, apakah brand-nya muncul?',
+        items: ['Visibilitas brand', 'Kehadiran di pasar', 'Jangkauan channel', 'Tingkat awareness'],
+        svc: 'Digital Cardi Nusantara',
+        svcd: 'SEO, Google Business Profile, Meta & TikTok Ads, dan riset keyword.'
+      },
+      en: {
+        name: 'Seen',
+        q: 'When potential clients search for this business category, does your brand appear?',
+        items: ['Brand visibility', 'Market presence', 'Channel reach', 'Awareness level'],
+        svc: 'Digital Cardi Nusantara',
+        svcd: 'SEO, Google Business Profile, Meta & TikTok Ads, and keyword research.'
+      },
+      zh: {
+        name: '被看见',
+        q: '当潜在客户搜索该品类时，您的品牌是否会出现？',
+        items: ['品牌可见度', '市场覆盖率', '渠道触达', '知名度水平'],
+        svc: 'Cardi Nusantara 数字化营销',
+        svcd: 'SEO搜索引擎优化、谷歌商家资料(GBP)、Meta与TikTok广告及关键词策略。'
+      }
+    },
+    {
+      color: '#6366F1',
+      id: {
+        name: 'Diingat',
+        q: 'Bisakah pelanggan menjelaskan bisnis ini dalam satu kalimat?',
+        items: ['Identitas brand', 'Konsistensi visual', 'Kejelasan pesan', 'Diferensiasi'],
+        svc: 'Branding Cardi Nusantara',
+        svcd: 'Positioning, identitas visual, pesan brand, dan brand guideline.'
+      },
+      en: {
+        name: 'Remembered',
+        q: 'Can customers describe this business in a single sentence?',
+        items: ['Brand identity', 'Visual consistency', 'Message clarity', 'Differentiation'],
+        svc: 'Branding Cardi Nusantara',
+        svcd: 'Positioning, visual identity, brand messaging, and brand guidelines.'
+      },
+      zh: {
+        name: '被记住',
+        q: '客户能否用一句话清晰描述您的业务？',
+        items: ['品牌识别体系', '视觉统一性', '信息传达清晰度', '差异化定位'],
+        svc: 'Cardi Nusantara 品牌设计与定位',
+        svcd: '品牌定位、视觉识别系统(VI)、核心传播话语及品牌资产手册。'
+      }
+    },
+    {
+      color: '#0258A4',
+      id: {
+        name: 'Dipercaya',
+        q: 'Apakah jejak online-nya meyakinkan orang yang belum kenal?',
+        items: ['Reputasi', 'Persepsi pelanggan', 'Keaslian brand', 'Posisi kompetitif'],
+        svc: 'Cardi Loyalty & review',
+        svcd: 'Kartu review Google NFC/QR, program loyalitas, dan studi kasus pelanggan.'
+      },
+      en: {
+        name: 'Trusted',
+        q: 'Does your online footprint convince strangers to trust you?',
+        items: ['Reputation', 'Customer perception', 'Brand authenticity', 'Competitive positioning'],
+        svc: 'Cardi Loyalty & review',
+        svcd: 'Google NFC/QR review cards, loyalty programs, and customer case studies.'
+      },
+      zh: {
+        name: '被信任',
+        q: '线上的品牌数字足迹能否让初次接触的人产生信任？',
+        items: ['品牌声誉', '客户感知', '品牌真实可信度', '竞争壁垒'],
+        svc: 'Cardi 客户信任与忠诚度',
+        svcd: '谷歌NFC/二维码评价卡、会员忠诚度计划及客户案例证明。'
+      }
+    }
+  ];
 
-      const waBtn = res.querySelector('[data-wa]') as HTMLAnchorElement | null;
-      if (waBtn) waBtn.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+  const I18N = {
+    id: {
+      title: 'Live Brand Check · Cardi Nusantara',
+      waHead: 'Konsultasi via WhatsApp',
+      fs: 'Layar penuh',
+      reset: 'Mulai brand baru',
+      introP: 'Brand yang dibedah hari ini',
+      brandLabel: 'Nama brand',
+      brandPlaceholder: 'Ketik nama brand Anda di sini...',
+      defaultBrandName: 'Brand ini',
+      bizPart: 'Posisi bisnis',
+      matrixTitle: 'Cardi Matrix',
+      bizQ: 'Berapa omzet per tahun bisnis ini saat ini?',
+      matrixAria: 'Level Cardi Matrix',
+      tgQ: 'Syarat naik level, sudah terpenuhi?',
+      roas: 'ROAS stabil',
+      grow: 'Omzet terus naik',
+      pillarPart: function(i) { return 'Pilar ' + (i + 1) + ' dari 3'; },
+      scaleAria: function(name) { return 'Skor ' + name; },
+      legend: 'Ketuk sekali untuk kuat (✓), dua kali untuk perlu diperbaiki (!).',
+      noteSr: function(name) { return 'Catatan ' + name; },
+      notePlaceholder: function(name) { return 'Catatan singkat untuk ' + name.toLowerCase(); },
+      unselectedLevel: 'Level belum dipilih',
+      selectRevenue: 'Pilih omzet per tahun',
+      levelLabel: function(n, t) { return 'Level ' + n + ': ' + t; },
+      scoreTotal: function(t) { return t + ' dari 30'; },
+      dialAria: 'Skor tiga pilar',
+      verdictNotDoneTitle: function(rem) { return rem ? rem + ' pilar lagi' : 'Beri skor untuk memulai'; },
+      verdictNotDoneDesc: 'Pilih level bisnis, lalu nilai tiap pilar dari 1 sampai 10.',
+      verdictDone: [
+        { max: 14, title: function(nm) { return nm + ' belum terlihat jelas'; }, desc: 'Produknya mungkin bagus, tapi pasar belum bisa menemukan dan memahaminya.' },
+        { max: 21, title: function(nm) { return nm + ' terlihat, tapi belum melekat'; }, desc: 'Orang sudah melihat, namun belum cukup mengingat atau yakin untuk memilih.' },
+        { max: 26, title: function(nm) { return nm + ' kuat dan siap naik kelas'; }, desc: 'Fondasinya sudah ada. Saatnya menajamkan pembeda dan memperluas jangkauan.' },
+        { max: 999, title: function(nm) { return nm + ' adalah brand yang dipercaya'; }, desc: 'Dilihat, diingat, dan dipercaya. Jaga konsistensinya saat bisnis tumbuh.' }
+      ],
+      solHeading: function(b) { return b ? 'Opsi solusi untuk ' + b : 'Opsi solusi'; },
+      solDescInitial: 'Rekomendasi muncul setelah level bisnis dipilih dan ketiga pilar dinilai.',
+      solDescWithLevel: function(n, b) { return 'Gabungan posisi bisnis di Level ' + n + ' dan hasil tiga pilar ' + b + '.'; },
+      solDescNoLevel: 'Pilih level bisnis untuk melengkapi rekomendasi channel dan budget.',
+      c1EmptyTitle: 'Channel yang tepat',
+      c1EmptyDesc: 'Pilih level bisnis di Cardi Matrix untuk melihat channel yang sesuai.',
+      c1Title: function(n, t) { return 'Channel Level ' + n + ': ' + t; },
+      tagNew: '(baru di level ini)',
+      tagOpt: '(opsional)',
+      tagOptStrongCity: '(opsional, kota terkuat saja)',
+      tagStrongCity: '(hanya kota terkuat)',
+      c2EmptyTitle: 'Budget & langkah naik level',
+      c2EmptyDesc: 'Muncul setelah level dipilih.',
+      c2Title: 'Budget & langkah naik level',
+      budgetIdeal: 'Budget marketing ideal, 10–20% dari omzet',
+      budgetPeriod: function(m, y) { return m + ' per bulan, atau ' + y + ' per tahun'; },
+      budget: { upTo: 'hingga' },
+      reqReady: function(n, t) { return 'Siap menuju Level ' + n + ': ' + t + '.'; },
+      reqNotReady: function(n) { return 'Kuasai Level ' + n + ' dulu.'; },
+      reqUnlock: function(ch) { return 'Channel yang terbuka berikutnya: ' + ch + '.'; },
+      reqExpand: 'perluasan channel yang sudah ada',
+      reqConditions: function(roas, grow) { return 'Syarat naik level: ROAS stabil dan omzet terus naik. ' + (roas ? 'ROAS sudah stabil. ' : '') + (grow ? 'Omzet sudah naik. ' : ''); },
+      reqPeakTitle: 'Posisi puncak.',
+      reqPeakDesc: 'Fokus menjaga top of mind dan konsistensi brand.',
+      c3EmptyTitle: 'Solusi brand dari Cardi',
+      c3EmptyDesc: 'Nilai ketiga pilar untuk melihat prioritas perbaikan.',
+      c3Title: 'Solusi brand dari Cardi',
+      c3Desc: 'Diurutkan dari pilar yang paling perlu diperbaiki.',
+      priorityPrefix: 'Prioritas: ',
+      memberBoxTitle: 'Brand Check Up lengkap, gratis untuk member.',
+      memberBoxDesc: 'Senilai Rp 5.000.000. Daftar dalam 7 hari ke Deo, Cardi Nusantara.',
+      memberBoxWa: 'Konsultasi via WhatsApp',
+      footer: 'Dilihat, diingat, dipercaya. Cardi Nusantara.',
+      waGreeting: 'Halo Deo, saya sudah mencoba Live Brand Check Cardi Nusantara.',
+      waBrand: function(b) { return 'Brand: ' + b; },
+      waLevel: function(n, t, o) { return 'Level bisnis: ' + n + ' (' + t + ', ' + o + ')'; },
+      waScores: function(s0, s1, s2) { return 'Skor: Dilihat ' + s0 + ', Diingat ' + s1 + ', Dipercaya ' + s2; },
+      waClosing: 'Saya tertarik dengan Brand Check Up gratis.',
+      btnJpg: '📸 Simpan JPEG',
+      btnPdf: '📄 Download PDF',
+      btnShare: '📲 Bagikan Hasil',
+      exporting: 'Memproses...',
+      exportSummaryHeading: 'Ringkasan Hasil Brand Check',
+      exportSolHeading: 'Rekomendasi Channel, Budget & Eksekusi'
+    },
+    en: {
+      title: 'Live Brand Check · Cardi Nusantara',
+      waHead: 'Consult via WhatsApp',
+      fs: 'Full screen',
+      reset: 'Start new brand',
+      introP: 'Brand being audited today',
+      brandLabel: 'Brand name',
+      brandPlaceholder: 'Type your brand name here...',
+      defaultBrandName: 'This brand',
+      bizPart: 'Business stage',
+      matrixTitle: 'Cardi Matrix',
+      bizQ: 'What is this business\'s current annual revenue?',
+      matrixAria: 'Cardi Matrix Level',
+      tgQ: 'Requirements to level up, are they met?',
+      roas: 'Stable ROAS',
+      grow: 'Continuous revenue growth',
+      pillarPart: function(i) { return 'Pillar ' + (i + 1) + ' of 3'; },
+      scaleAria: function(name) { return 'Score for ' + name; },
+      legend: 'Tap once for strong (✓), twice for needs improvement (!).',
+      noteSr: function(name) { return 'Notes for ' + name; },
+      notePlaceholder: function(name) { return 'Brief notes for ' + name.toLowerCase(); },
+      unselectedLevel: 'Level not selected',
+      selectRevenue: 'Select annual revenue',
+      levelLabel: function(n, t) { return 'Level ' + n + ': ' + t; },
+      scoreTotal: function(t) { return t + ' of 30'; },
+      dialAria: 'Three pillars score',
+      verdictNotDoneTitle: function(rem) { return rem ? rem + ' more pillar' + (rem > 1 ? 's' : '') : 'Score to begin'; },
+      verdictNotDoneDesc: 'Select business level, then rate each pillar from 1 to 10.',
+      verdictDone: [
+        { max: 14, title: function(nm) { return nm + ' is not clearly visible yet'; }, desc: 'The product may be great, but the market cannot easily find or understand it.' },
+        { max: 21, title: function(nm) { return nm + ' is seen, but not yet memorable'; }, desc: 'People have seen it, but don’t remember or trust it enough to buy.' },
+        { max: 26, title: function(nm) { return nm + ' is strong and ready to scale'; }, desc: 'The foundation is solid. Time to sharpen differentiation and expand reach.' },
+        { max: 999, title: function(nm) { return nm + ' is a highly trusted brand'; }, desc: 'Seen, remembered, and trusted. Maintain consistency as the business scales.' }
+      ],
+      solHeading: function(b) { return b ? 'Strategic solutions for ' + b : 'Strategic solutions'; },
+      solDescInitial: 'Recommendations appear after selecting a business level and rating all three pillars.',
+      solDescWithLevel: function(n, b) { return 'Combined analysis of Level ' + n + ' and three pillar scores for ' + b + '.'; },
+      solDescNoLevel: 'Select business level to complete channel and budget recommendations.',
+      c1EmptyTitle: 'Right Channels',
+      c1EmptyDesc: 'Select a business level in the Cardi Matrix to view suitable channels.',
+      c1Title: function(n, t) { return 'Level ' + n + ' Channels: ' + t; },
+      tagNew: '(new at this level)',
+      tagOpt: '(optional)',
+      tagOptStrongCity: '(optional, strongest cities only)',
+      tagStrongCity: '(strongest cities only)',
+      c2EmptyTitle: 'Budget & Level-up Steps',
+      c2EmptyDesc: 'Appears once level is selected.',
+      c2Title: 'Budget & Level-up Steps',
+      budgetIdeal: 'Ideal marketing budget, 10–20% of revenue',
+      budgetPeriod: function(m, y) { return m + ' per month, or ' + y + ' per year'; },
+      budget: { upTo: 'up to' },
+      reqReady: function(n, t) { return 'Ready for Level ' + n + ': ' + t + '.'; },
+      reqNotReady: function(n) { return 'Master Level ' + n + ' first.'; },
+      reqUnlock: function(ch) { return 'Next unlocked channels: ' + ch + '.'; },
+      reqExpand: 'expansion of existing channels',
+      reqConditions: function(roas, grow) { return 'Prerequisites: Stable ROAS and sustained revenue growth. ' + (roas ? 'ROAS is stable. ' : '') + (grow ? 'Revenue is growing. ' : ''); },
+      reqPeakTitle: 'Peak market position.',
+      reqPeakDesc: 'Focus on defending top-of-mind recall and brand consistency.',
+      c3EmptyTitle: 'Brand Solutions from Cardi',
+      c3EmptyDesc: 'Rate all three pillars to reveal optimization priorities.',
+      c3Title: 'Brand Solutions from Cardi',
+      c3Desc: 'Ranked starting with the pillar needing most improvement.',
+      priorityPrefix: 'Priority: ',
+      memberBoxTitle: 'Comprehensive Brand Check Up, free for members.',
+      memberBoxDesc: 'Valued at IDR 5,000,000. Register within 7 days with Deo, Cardi Nusantara.',
+      memberBoxWa: 'Consult via WhatsApp',
+      footer: 'Seen, remembered, trusted. Cardi Nusantara.',
+      waGreeting: 'Hello Deo, I have completed the Cardi Nusantara Live Brand Check.',
+      waBrand: function(b) { return 'Brand: ' + b; },
+      waLevel: function(n, t, o) { return 'Business Level: ' + n + ' (' + t + ', ' + o + ')'; },
+      waScores: function(s0, s1, s2) { return 'Score: Seen ' + s0 + ', Remembered ' + s1 + ', Trusted ' + s2; },
+      waClosing: 'I am interested in the free Brand Check Up.',
+      btnJpg: '📸 Save JPEG',
+      btnPdf: '📄 Download PDF',
+      btnShare: '📲 Share Results',
+      exporting: 'Processing...',
+      exportSummaryHeading: 'Live Brand Check Summary',
+      exportSolHeading: 'Recommended Channels, Budget & Execution'
+    },
+    zh: {
+      title: '实时品牌诊断 · Cardi Nusantara',
+      waHead: '通过 WhatsApp 咨询',
+      fs: '全屏模式',
+      reset: '评估新品牌',
+      introP: '今日评估品牌',
+      brandLabel: '品牌名称',
+      brandPlaceholder: '在此输入您的品牌名称...',
+      defaultBrandName: '该品牌',
+      bizPart: '业务阶段',
+      matrixTitle: 'Cardi Matrix',
+      bizQ: '该业务目前年营业额是多少？',
+      matrixAria: 'Cardi Matrix 发展阶段',
+      tgQ: '晋级下一阶段的条件是否达成？',
+      roas: 'ROAS 稳定',
+      grow: '营业额持续增长',
+      pillarPart: function(i) { return '支柱 ' + (i + 1) + ' / 3'; },
+      scaleAria: function(name) { return name + ' 评分'; },
+      legend: '点击一次标为优势 (✓)，点击两次标为需改进 (!)。',
+      noteSr: function(name) { return name + ' 备忘'; },
+      notePlaceholder: function(name) { return '针对' + name + '的简要记录'; },
+      unselectedLevel: '尚未选择阶段',
+      selectRevenue: '请选择年营业额',
+      levelLabel: function(n, t) { return '第 ' + n + ' 级：' + t; },
+      scoreTotal: function(t) { return t + ' / 30 分'; },
+      dialAria: '三大支柱得分',
+      verdictNotDoneTitle: function(rem) { return rem ? '还差 ' + rem + ' 个支柱' : '评分以开始诊断'; },
+      verdictNotDoneDesc: '选择业务发展阶段，并为每个支柱评定 1 到 10 分。',
+      verdictDone: [
+        { max: 14, title: function(nm) { return nm + ' 尚未获得足够可见度'; }, desc: '产品本身可能很出色，但市场尚未能轻松发现并理解它。' },
+        { max: 21, title: function(nm) { return nm + ' 已被看见，但尚未深入人心'; }, desc: '用户已有所触达，但记忆度与信任度不足以促成首选。' },
+        { max: 26, title: function(nm) { return nm + ' 实力扎实，蓄势跃升'; }, desc: '基础已稳固，现在是深化差异化定位并扩大市场覆盖的良机。' },
+        { max: 999, title: function(nm) { return nm + ' 已成为深受信任的标杆品牌'; }, desc: '被看见、被记住、被信任。在业务持续增长中保持长效一致性。' }
+      ],
+      solHeading: function(b) { return b ? '针对 ' + b + ' 的解决方案' : '解决方案建议'; },
+      solDescInitial: '选择业务发展阶段并完成三大支柱评分后生成定制建议。',
+      solDescWithLevel: function(n, b) { return '结合第 ' + n + ' 阶段定位与 ' + b + ' 的三大支柱评估结果。'; },
+      solDescNoLevel: '请选择业务阶段以补全渠道与预算建议。',
+      c1EmptyTitle: '匹配营销渠道',
+      c1EmptyDesc: '在 Cardi Matrix 中选择业务阶段以查看适用的营销渠道。',
+      c1Title: function(n, t) { return '第 ' + n + ' 级渠道矩阵：' + t; },
+      tagNew: '(此阶段新增)',
+      tagOpt: '(可选)',
+      tagOptStrongCity: '(可选，仅限核心城市)',
+      tagStrongCity: '(仅限重点城市)',
+      c2EmptyTitle: '预算与跃升规划',
+      c2EmptyDesc: '选择业务阶段后显示。',
+      c2Title: '预算与跃升规划',
+      budgetIdeal: '理想营销预算：占年营业额的 10–20%',
+      budgetPeriod: function(m, y) { return m + ' 每月，或 ' + y + ' 每年'; },
+      budget: { upTo: '最高' },
+      reqReady: function(n, t) { return '已具备冲刺第 ' + n + ' 级（' + t + '）的条件。'; },
+      reqNotReady: function(n) { return '建议先夯实第 ' + n + ' 级核心。'; },
+      reqUnlock: function(ch) { return '下一阶段将解锁的渠道：' + ch + '。'; },
+      reqExpand: '进一步深耕现有渠道',
+      reqConditions: function(roas, grow) { return '晋级前提：ROAS保持稳定且营业额持续增长。' + (roas ? 'ROAS已达标稳定。' : '') + (grow ? '营业额正在稳步增长。' : ''); },
+      reqPeakTitle: '行业顶峰地位。',
+      reqPeakDesc: '重点维护心智垄断与长效品牌资产一致性。',
+      c3EmptyTitle: 'Cardi 专属品牌解决方案',
+      c3EmptyDesc: '请为全部三大支柱评分以查看优化优先级。',
+      c3Title: 'Cardi 专属品牌解决方案',
+      c3Desc: '按最迫切需要优化的支柱优先排序。',
+      priorityPrefix: '首要优化项：',
+      memberBoxTitle: '深度品牌全案体检（会员免费）。',
+      memberBoxDesc: '价值 5,000,000 印尼盾。7天内向 Cardi Nusantara 的 Deo 预约。',
+      memberBoxWa: '通过 WhatsApp 咨询',
+      footer: '被看见，被记住，被信任。Cardi Nusantara。',
+      waGreeting: '您好 Deo，我刚完成了 Cardi Nusantara 的实时品牌诊断（Live Brand Check）。',
+      waBrand: function(b) { return '品牌：' + b; },
+      waLevel: function(n, t, o) { return '业务阶段：第 ' + n + ' 级（' + t + '，' + o + '）'; },
+      waScores: function(s0, s1, s2) { return '得分：被看见 ' + s0 + '、被记住 ' + s1 + '、被信任 ' + s2; },
+      waClosing: '我对免费的品牌深度诊断（Brand Check Up）很感兴趣。',
+      btnJpg: '📸 保存 JPEG',
+      btnPdf: '📄 下载 PDF',
+      btnShare: '📲 分享结果',
+      exporting: '处理中...',
+      exportSummaryHeading: '品牌诊断报告摘要',
+      exportSolHeading: '渠道矩阵、预算与落地建议'
+    }
+  };
 
-      res.hidden = false;
-      res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const LANG_KEY = 'cardi_brand_check_lang';
+  let currentLang = window.location.pathname.startsWith('/en') ? 'en' : (window.location.pathname.startsWith('/zh') ? 'zh' : 'id');
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved && ['id', 'en', 'zh'].includes(saved)) currentLang = saved;
+  } catch (e) {}
+
+  function getLevel(n, lang) {
+    if (!n) return null;
+    const l = lang || currentLang;
+    const item = LEVELS_DATA[n - 1];
+    const loc = item[l] || item.id;
+    return {
+      n: item.n,
+      min: item.min,
+      max: item.max,
+      t: loc.t,
+      o: loc.o,
+      focus: loc.focus
+    };
+  }
+
+  function getPillars(lang) {
+    const l = lang || currentLang;
+    return PILLARS_DATA.map(function(p) {
+      const loc = p[l] || p.id;
+      return {
+        color: p.color,
+        name: loc.name,
+        q: loc.q,
+        items: loc.items,
+        svc: loc.svc,
+        svcd: loc.svcd
+      };
     });
   }
+
+  const STORAGE_KEY = 'cardi-live-brand-check-v2';
+  const blankState = function() {
+    return {
+      brand: '',
+      level: 0,
+      roas: false,
+      grow: false,
+      scores: [0, 0, 0],
+      chips: [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]],
+      notes: ['', '', '']
+    };
+  };
+
+  let S = blankState();
+  try {
+    const savedState = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+    if (savedState && savedState.scores) S = Object.assign(blankState(), savedState);
+  } catch (e) {}
+
+  function saveState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(S)); } catch (e) {}
+  }
+
+  const circ = [170, 136, 102].map(function(r) { return 2 * Math.PI * r; });
+  const WA = '6281289895646';
+  const WAICON = '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg>';
+
+  function buildStairs() {
+    const st = document.getElementById('stairs');
+    if (!st) return;
+    st.innerHTML = '';
+    const levels = [1, 2, 3, 4, 5].map(function(n) { return getLevel(n, currentLang); });
+    levels.forEach(function(l) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'stair-btn';
+      b.dataset.l = String(l.n);
+      b.style.minHeight = (74 + l.n * 14) + 'px';
+      b.innerHTML = '<span class="s-num">' + l.n + '</span><span><span class="s-title">' + l.t + '</span><br><span class="s-rev">' + l.o + '</span></span>';
+      b.addEventListener('click', function() {
+        S.level = S.level === l.n ? 0 : l.n;
+        saveState();
+        render();
+      });
+      st.appendChild(b);
+    });
+  }
+
+  function buildPillars() {
+    const root = document.getElementById('pillars');
+    if (!root) return;
+    root.innerHTML = '';
+    const P = getPillars(currentLang);
+    const t = I18N[currentLang];
+    P.forEach(function(p, i) {
+      const sec = document.createElement('section');
+      sec.className = 'pillar-block';
+      sec.style.setProperty('--pillar-color', p.color);
+      sec.innerHTML = '<p class="section-label">' + t.pillarPart(i) + '</p>' +
+        '<div class="pillar-header">' +
+          '<h2><i class="swatch-dot s' + (i + 1) + '"></i>' + p.name + '</h2>' +
+          '<div class="pillar-score-text"><span data-ps>–</span><small> /10</small></div>' +
+        '</div>' +
+        '<p class="pillar-question">' + p.q + '</p>' +
+        '<div class="scale-grid" role="group" aria-label="' + t.scaleAria(p.name) + '">' +
+          [1,2,3,4,5,6,7,8,9,10].map(function(k) {
+            return '<button type="button" class="scale-btn" data-v="' + k + '" aria-pressed="false">' + k + '</button>';
+          }).join('') +
+        '</div>' +
+        '<div class="chips-row">' +
+          p.items.map(function(it, k) {
+            return '<button type="button" class="chip-btn" data-k="' + k + '" data-s="0"><i aria-hidden="true"></i>' + it + '</button>';
+          }).join('') +
+        '</div>' +
+        '<p class="legend-hint">' + t.legend + '</p>' +
+        '<label class="sr" for="n' + i + '">' + t.noteSr(p.name) + '</label>' +
+        '<textarea class="pillar-notes" id="n' + i + '" rows="1" placeholder="' + t.notePlaceholder(p.name) + '"></textarea>';
+
+      sec.querySelectorAll('.scale-grid button').forEach(function(b) {
+        b.addEventListener('click', function() {
+          const v = parseInt(b.dataset.v || '0', 10);
+          S.scores[i] = S.scores[i] === v ? 0 : v;
+          saveState();
+          render();
+        });
+      });
+
+      sec.querySelectorAll('.chip-btn').forEach(function(ch) {
+        ch.addEventListener('click', function() {
+          const k = parseInt(ch.dataset.k || '0', 10);
+          S.chips[i][k] = (S.chips[i][k] + 1) % 3;
+          saveState();
+          render();
+        });
+      });
+
+      const ta = sec.querySelector('textarea');
+      if (ta) {
+        ta.value = S.notes[i] || '';
+        ta.addEventListener('input', function() {
+          S.notes[i] = ta.value;
+          ta.style.height = 'auto';
+          ta.style.height = ta.scrollHeight + 'px';
+          saveState();
+        });
+      }
+      root.appendChild(sec);
+    });
+  }
+
+  function fmtNumber(v, lang) {
+    const l = lang || currentLang;
+    if (l === 'zh') {
+      if (v >= 100) return (v / 100).toLocaleString('zh-CN', { maximumFractionDigits: 1 }) + ' 亿 IDR';
+      return Math.round(v).toLocaleString('zh-CN') + ' 百万 IDR';
+    }
+    if (l === 'en') {
+      return v >= 1000
+        ? 'IDR ' + (v / 1000).toLocaleString('en-US', { maximumFractionDigits: 1 }) + ' B'
+        : 'IDR ' + Math.round(v).toLocaleString('en-US') + ' M';
+    }
+    return v >= 1000
+      ? 'Rp ' + (v / 1000).toLocaleString('id-ID', { maximumFractionDigits: 1 }) + ' M'
+      : 'Rp ' + Math.round(v).toLocaleString('id-ID') + ' jt';
+  }
+
+  function getBudget(l, lang) {
+    const curL = lang || currentLang;
+    const lo = l.min * 1000 * 0.10;
+    const hi = l.max ? l.max * 1000 * 0.20 : null;
+    const t = I18N[curL];
+    if (l.n === 1) return { y: t.budget.upTo + ' ' + fmtNumber(200, curL), m: t.budget.upTo + ' ' + fmtNumber(200 / 12, curL) };
+    if (!hi) return { y: fmtNumber(lo, curL) + '+', m: fmtNumber(lo / 12, curL) + '+' };
+    return { y: fmtNumber(lo, curL) + ' – ' + fmtNumber(hi, curL), m: fmtNumber(lo / 12, curL) + ' – ' + fmtNumber(hi / 12, curL) };
+  }
+
+  function buildWaLink() {
+    const t = I18N[currentLang];
+    const L = S.level ? getLevel(S.level, currentLang) : null;
+    const b = S.brand.trim();
+    let m = t.waGreeting;
+    if (b) m += '\n' + t.waBrand(b);
+    if (L) m += '\n' + t.waLevel(L.n, L.t, L.o);
+    if (S.scores.some(Boolean)) {
+      m += '\n' + t.waScores(S.scores[0] || '-', S.scores[1] || '-', S.scores[2] || '-');
+    }
+    m += '\n' + t.waClosing;
+    return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(m);
+  }
+
+  function render() {
+    const t = I18N[currentLang];
+
+    // Update stairs state
+    document.querySelectorAll('.stair-btn').forEach(function(b) {
+      const n = parseInt(b.dataset.l || '0', 10);
+      b.classList.toggle('on', n === S.level);
+      b.classList.toggle('past', !!S.level && n < S.level);
+      b.setAttribute('aria-pressed', String(n === S.level));
+    });
+
+    // Update toggles
+    ['roas', 'grow'].forEach(function(k) {
+      const b = document.getElementById(k);
+      if (b) {
+        b.setAttribute('aria-pressed', String(S[k]));
+        const icon = b.querySelector('.check-icon');
+        if (icon) icon.textContent = S[k] ? '✓' : '';
+      }
+    });
+
+    // Update pillar buttons
+    document.querySelectorAll('.pillar-block').forEach(function(sec, i) {
+      const v = S.scores[i];
+      const psEl = sec.querySelector('[data-ps]');
+      if (psEl) psEl.textContent = v ? String(v) : '–';
+      sec.querySelectorAll('.scale-btn').forEach(function(b) {
+        const bv = parseInt(b.dataset.v || '0', 10);
+        b.classList.toggle('on', bv <= v);
+        b.setAttribute('aria-pressed', String(bv === v));
+      });
+      sec.querySelectorAll('.chip-btn').forEach(function(ch) {
+        const k = parseInt(ch.dataset.k || '0', 10);
+        const s = S.chips[i][k];
+        ch.dataset.s = String(s);
+        const icon = ch.querySelector('i');
+        if (icon) icon.textContent = s === 1 ? '✓' : s === 2 ? '!' : '';
+      });
+    });
+
+    // Update Dial Arcs & Key Legends
+    S.scores.forEach(function(v, i) {
+      const a = document.getElementById('a' + i);
+      if (a) {
+        a.style.strokeDasharray = String(circ[i]);
+        a.style.strokeDashoffset = String(circ[i] * (1 - v / 10));
+      }
+      const k = document.getElementById('k' + i);
+      if (k) k.textContent = v ? String(v) : '–';
+    });
+
+    const totalScore = S.scores.reduce(function(a, b) { return a + b; }, 0);
+    const completedCount = S.scores.filter(Boolean).length;
+    const pctEl = document.getElementById('pct');
+    if (pctEl) pctEl.textContent = Math.round(totalScore / 30 * 100) + '%';
+    const totlEl = document.getElementById('totl');
+    if (totlEl) totlEl.textContent = t.scoreTotal(totalScore);
+
+    // Update Level Box
+    const L = S.level ? getLevel(S.level, currentLang) : null;
+    const lvn = document.getElementById('lvn');
+    if (lvn) lvn.textContent = L ? String(L.n) : '–';
+    const lvt = document.getElementById('lvt');
+    if (lvt) lvt.textContent = L ? t.levelLabel(L.n, L.t) : t.unselectedLevel;
+    const lvo = document.getElementById('lvo');
+    if (lvo) lvo.textContent = L ? L.o : t.selectRevenue;
+
+    // Update Verdict
+    const brandName = S.brand.trim() || t.defaultBrandName;
+    const vt = document.getElementById('vt');
+    const vd = document.getElementById('vd');
+    if (vt && vd) {
+      if (completedCount < 3) {
+        vt.textContent = t.verdictNotDoneTitle(3 - completedCount);
+        vd.textContent = t.verdictNotDoneDesc;
+      } else {
+        const item = t.verdictDone.find(function(v) { return totalScore <= v.max; }) || t.verdictDone[t.verdictDone.length - 1];
+        vt.textContent = item.title(brandName);
+        vd.textContent = item.desc;
+      }
+    }
+
+    // Toggle export visibility
+    const isComplete = completedCount === 3;
+    document.querySelectorAll('.export-actions-bar').forEach(function(el) {
+      el.hidden = !isComplete;
+    });
+    const canShare = typeof navigator !== 'undefined' && typeof navigator.share === 'function';
+    document.querySelectorAll('.btn-share').forEach(function(el) {
+      el.hidden = !canShare || !isComplete;
+    });
+
+    renderSolutions(L, completedCount, totalScore);
+  }
+
+  function renderSolutions(L, completedCount, totalScore) {
+    const t = I18N[currentLang];
+    const waHead = document.getElementById('wahead');
+    if (waHead) waHead.href = buildWaLink();
+
+    const c1 = document.getElementById('c1');
+    const c2 = document.getElementById('c2');
+    const c3 = document.getElementById('c3');
+    const solh = document.getElementById('solh');
+    if (solh) solh.textContent = t.solHeading(S.brand.trim());
+
+    // Card 1: Channel Matrix
+    if (c1 && c2) {
+      if (!L) {
+        c1.innerHTML = '<h3>' + t.c1EmptyTitle + '</h3><p class="empty-hint">' + t.c1EmptyDesc + '</p>';
+        c2.innerHTML = '<h3>' + t.c2EmptyTitle + '</h3><p class="empty-hint">' + t.c2EmptyDesc + '</p>';
+      } else {
+        const i = L.n - 1;
+        const pri = CHANNELS_DATA.filter(function(r) { return r.weights[i] === 2; });
+        const opt = CHANNELS_DATA.filter(function(r) { return r.weights[i] === 1; });
+        const newAt = CHANNELS_DATA.filter(function(r) { return r.weights[i] === 2 && (i === 0 || r.weights[i - 1] < 2); });
+
+        const priHtml = pri.map(function(r) {
+          const isNew = newAt.includes(r) && i > 0;
+          const chName = r.name[currentLang] || r.name.id;
+          let tag = '';
+          if (isNew) tag += ' <span class="muted">' + t.tagNew + '</span>';
+          if (L.n === 4 && r.isOOH) tag += ' <span class="muted">' + t.tagStrongCity + '</span>';
+          return '<li><span class="dot-mark ' + (isNew ? 'new' : 'full') + '"></span><span>' + chName + tag + '</span></li>';
+        }).join('');
+
+        const optHtml = opt.map(function(r) {
+          const chName = r.name[currentLang] || r.name.id;
+          const optTag = (L.n === 4 && r.isOOH) ? t.tagOptStrongCity : t.tagOpt;
+          return '<li><span class="dot-mark opt"></span><span>' + chName + ' <span class="muted">' + optTag + '</span></span></li>';
+        }).join('');
+
+        c1.innerHTML = '<h3>' + t.c1Title(L.n, L.t) + '</h3><p>' + L.focus + '</p><ul>' + priHtml + optHtml + '</ul>';
+
+        // Card 2: Marketing budget & level progression
+        const bud = getBudget(L, currentLang);
+        const nxt = L.n < 5 ? getLevel(L.n + 1, currentLang) : null;
+        const unlock = nxt ? CHANNELS_DATA.filter(function(r) { return r.weights[L.n] === 2 && r.weights[L.n - 1] < 2; }).map(function(r) { return r.name[currentLang] || r.name.id; }) : [];
+        const ready = S.roas && S.grow;
+        const sep = currentLang === 'zh' ? '、' : ', ';
+        const unlockText = unlock.length ? unlock.join(sep) : t.reqExpand;
+
+        c2.innerHTML = '<h3>' + t.c2Title + '</h3>' +
+          '<p class="muted">' + t.budgetIdeal + '</p>' +
+          '<div class="budget-big">' + bud.m + '</div>' +
+          '<p class="muted">' + t.budgetPeriod(bud.m, bud.y) + '</p>' +
+          (nxt ? ('<div class="step-box"><b>' + (ready ? t.reqReady(nxt.n, nxt.t) : t.reqNotReady(L.n)) + '</b><br>' +
+            (ready ? t.reqUnlock(unlockText) : t.reqConditions(S.roas, S.grow)) + '</div>')
+            : ('<div class="step-box"><b>' + t.reqPeakTitle + '</b><br>' + t.reqPeakDesc + '</div>'));
+      }
+    }
+
+    // Card 3: Brand fixes by pillar
+    const solp = document.getElementById('solp');
+    if (c3) {
+      if (completedCount < 3) {
+        c3.innerHTML = '<h3>' + t.c3EmptyTitle + '</h3><p class="empty-hint">' + t.c3EmptyDesc + '</p>';
+        if (solp) solp.textContent = t.solDescInitial;
+      } else {
+        const P = getPillars(currentLang);
+        const order = [0, 1, 2].sort(function(a, b) { return S.scores[a] - S.scores[b]; });
+        c3.innerHTML = '<h3>' + t.c3Title + '</h3><p>' + t.c3Desc + '</p>' +
+          order.map(function(k, j) {
+            return '<div class="service-item' + (j === 0 ? ' hi' : '') + '"><strong>' + (j === 0 ? t.priorityPrefix : '') + P[k].name + ' ' + S.scores[k] + '/10, ' + P[k].svc + '</strong><span>' + P[k].svcd + '</span></div>';
+          }).join('') +
+          '<div class="step-box"><b>' + t.memberBoxTitle + '</b><br>' + t.memberBoxDesc + '<br>' +
+          '<a class="wa-consult-btn" href="' + buildWaLink() + '" target="_blank" rel="noopener">' + WAICON + '<span>' + t.memberBoxWa + '</span></a></div>';
+        if (solp) solp.textContent = L ? t.solDescWithLevel(L.n, S.brand.trim() || t.defaultBrandName) : t.solDescNoLevel;
+      }
+    }
+
+    updateExportSummary();
+  }
+
+  function updateExportSummary() {
+    const t = I18N[currentLang];
+    const L = S.level ? getLevel(S.level, currentLang) : null;
+    const totalScore = S.scores.reduce(function(a, b) { return a + b; }, 0);
+    const brandName = S.brand.trim() || t.defaultBrandName;
+
+    const localeMap = { id: 'id-ID', en: 'en-US', zh: 'zh-CN' };
+    const dateStr = new Date().toLocaleDateString(localeMap[currentLang] || 'id-ID', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+    const dateEl = document.getElementById('esh-date');
+    if (dateEl) dateEl.textContent = dateStr;
+    const brandEl = document.getElementById('esh-brand-name');
+    if (brandEl) brandEl.textContent = brandName;
+    const tagEl = document.getElementById('esh-tag');
+    if (tagEl) tagEl.textContent = t.exportSummaryHeading;
+
+    const lvnEl = document.getElementById('esh-lvn');
+    const lvtEl = document.getElementById('esh-lvt');
+    const lvoEl = document.getElementById('esh-lvo');
+    if (lvnEl) lvnEl.textContent = L ? String(L.n) : '–';
+    if (lvtEl) lvtEl.textContent = L ? t.levelLabel(L.n, L.t) : t.unselectedLevel;
+    if (lvoEl) lvoEl.textContent = L ? L.o : t.selectRevenue;
+
+    const pctEl = document.getElementById('esh-pct');
+    const totlEl = document.getElementById('esh-totl');
+    if (pctEl) pctEl.textContent = Math.round(totalScore / 30 * 100) + '%';
+    if (totlEl) totlEl.textContent = t.scoreTotal(totalScore);
+
+    S.scores.forEach(function(v, i) {
+      const a = document.getElementById('esh-a' + i);
+      if (a) {
+        a.style.strokeDasharray = String(circ[i]);
+        a.style.strokeDashoffset = String(circ[i] * (1 - v / 10));
+      }
+      const k = document.getElementById('esh-k' + i);
+      if (k) k.textContent = v ? String(v) : '–';
+    });
+
+    const P = getPillars(currentLang);
+    ['esh-k0-name', 'esh-k1-name', 'esh-k2-name'].forEach(function(id, idx) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = P[idx].name;
+    });
+
+    const completedCount = S.scores.filter(Boolean).length;
+    const eshVt = document.getElementById('esh-vt');
+    const eshVd = document.getElementById('esh-vd');
+    if (eshVt && eshVd) {
+      if (completedCount < 3) {
+        eshVt.textContent = t.verdictNotDoneTitle(3 - completedCount);
+        eshVd.textContent = t.verdictNotDoneDesc;
+      } else {
+        const item = t.verdictDone.find(function(v) { return totalScore <= v.max; }) || t.verdictDone[t.verdictDone.length - 1];
+        eshVt.textContent = item.title(brandName);
+        eshVd.textContent = item.desc;
+      }
+    }
+
+    const eshStatus = document.getElementById('esh-matrix-status');
+    if (eshStatus) {
+      if (L) {
+        eshStatus.innerHTML = '<b>' + L.focus + '</b><br>' + t.roas + ': <b>' + (S.roas ? '✓' : '—') + '</b> · ' + t.grow + ': <b>' + (S.grow ? '✓' : '—') + '</b>';
+      } else {
+        eshStatus.innerHTML = '<em>' + t.selectRevenue + '</em>';
+      }
+    }
+
+    const solTitleEl = document.getElementById('esh-sol-title');
+    if (solTitleEl) solTitleEl.textContent = t.exportSolHeading;
+    const c1 = document.getElementById('c1');
+    const c2 = document.getElementById('c2');
+    const c3 = document.getElementById('c3');
+    const eshC1 = document.getElementById('esh-c1');
+    const eshC2 = document.getElementById('esh-c2');
+    const eshC3 = document.getElementById('esh-c3');
+    if (c1 && eshC1) eshC1.innerHTML = c1.innerHTML;
+    if (c2 && eshC2) eshC2.innerHTML = c2.innerHTML;
+    if (c3 && eshC3) eshC3.innerHTML = c3.innerHTML;
+  }
+
+  function setExportingState(isExporting) {
+    const t = I18N[currentLang];
+    document.querySelectorAll('.btn-export').forEach(function(b) {
+      b.disabled = isExporting;
+    });
+    if (isExporting) {
+      document.querySelectorAll('.btn-export-jpg').forEach(function(b) { b.textContent = t.exporting; });
+      document.querySelectorAll('.btn-export-pdf').forEach(function(b) { b.textContent = t.exporting; });
+      document.querySelectorAll('.btn-share').forEach(function(b) { b.textContent = t.exporting; });
+    } else {
+      document.querySelectorAll('.btn-export-jpg').forEach(function(b) { b.textContent = t.btnJpg; });
+      document.querySelectorAll('.btn-export-pdf').forEach(function(b) { b.textContent = t.btnPdf; });
+      document.querySelectorAll('.btn-share').forEach(function(b) { b.textContent = t.btnShare; });
+    }
+  }
+
+  async function prepareExportCanvas() {
+    updateExportSummary();
+    const wrapper = document.getElementById('export-sheet-wrapper');
+    const sheet = document.getElementById('export-sheet');
+
+    if (document.fonts && document.fonts.ready) {
+      try { await document.fonts.ready; } catch (e) {}
+    }
+
+    if (wrapper) wrapper.classList.add('is-rendering');
+    await new Promise(function(r) { requestAnimationFrame(r); });
+    await new Promise(function(r) { setTimeout(r, 60); });
+
+    try {
+      if (typeof html2canvas === 'undefined') throw new Error('html2canvas not loaded');
+      const canvas = await html2canvas(sheet, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#FFFFFF',
+        logging: false,
+        scrollX: 0,
+        scrollY: 0,
+        x: 0,
+        y: 0,
+        width: 960,
+        windowWidth: 1024
+      });
+      return canvas;
+    } finally {
+      if (wrapper) wrapper.classList.remove('is-rendering');
+    }
+  }
+
+  function getExportFileName() {
+    const rawBrand = S.brand.trim() || 'Brand';
+    const cleanBrand = rawBrand.replace(/[^a-zA-Z0-9_\u4e00-\u9fa5-]+/g, '-').replace(/^-+|-+$/g, '') || 'Brand';
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const dd = String(now.getDate()).padStart(2, '0');
+    return 'Brand-Check-' + cleanBrand + '-' + yyyy + '-' + mm + '-' + dd;
+  }
+
+  async function exportJPEG() {
+    setExportingState(true);
+    try {
+      const canvas = await prepareExportCanvas();
+      const fileName = getExportFileName() + '.jpg';
+      canvas.toBlob(function(blob) {
+        if (!blob) return;
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function() { URL.revokeObjectURL(url); }, 3000);
+      }, 'image/jpeg', 0.95);
+    } catch (err) {
+      console.error('Export JPEG error:', err);
+      alert('Gagal mengekspor JPEG. Silakan coba lagi.');
+    } finally {
+      setExportingState(false);
+    }
+  }
+
+  async function exportPDF() {
+    setExportingState(true);
+    try {
+      const canvas = await prepareExportCanvas();
+      const fileName = getExportFileName() + '.pdf';
+      const jsPDFClass = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
+      if (!jsPDFClass) throw new Error('jsPDF library not loaded');
+
+      const doc = new jsPDFClass({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+      const margin = 10;
+      const maxW = pageWidth - margin * 2;
+      const maxH = pageHeight - margin * 2;
+      const ratio = canvas.width / canvas.height;
+      let renderW = maxW;
+      let renderH = maxW / ratio;
+      if (renderH > maxH) {
+        renderH = maxH;
+        renderW = maxH * ratio;
+      }
+      const x = (pageWidth - renderW) / 2;
+      const y = (pageHeight - renderH) / 2;
+      const imgData = canvas.toDataURL('image/jpeg', 0.95);
+      doc.addImage(imgData, 'JPEG', x, y, renderW, renderH, undefined, 'FAST');
+      doc.save(fileName);
+    } catch (err) {
+      console.error('Export PDF error:', err);
+      alert('Gagal mengekspor PDF. Silakan coba lagi.');
+    } finally {
+      setExportingState(false);
+    }
+  }
+
+  async function shareResult() {
+    setExportingState(true);
+    try {
+      const canvas = await prepareExportCanvas();
+      const fileName = getExportFileName() + '.jpg';
+      const brandName = S.brand.trim() || I18N[currentLang].defaultBrandName;
+      canvas.toBlob(async function(blob) {
+        if (!blob) return;
+        const file = new File([blob], fileName, { type: 'image/jpeg' });
+        const shareData = {
+          title: 'Brand Check · ' + brandName,
+          text: 'Hasil Brand Check untuk ' + brandName + ' oleh Cardi Nusantara.'
+        };
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({ ...shareData, files: [file] });
+          } catch (err) {
+            if (err.name !== 'AbortError') console.warn('Share file error:', err);
+          }
+        } else if (navigator.share) {
+          try {
+            await navigator.share({ ...shareData, url: window.location.href });
+          } catch (err) {
+            if (err.name !== 'AbortError') console.warn('Share link error:', err);
+          }
+        }
+      }, 'image/jpeg', 0.95);
+    } catch (err) {
+      console.error('Share error:', err);
+      alert('Gagal membagikan hasil. Silakan coba lagi.');
+    } finally {
+      setExportingState(false);
+    }
+  }
+
+  function applyStaticTranslations() {
+    const t = I18N[currentLang];
+    document.title = t.title;
+    const wahead = document.getElementById('wahead-text');
+    if (wahead) wahead.textContent = t.waHead;
+    const fsEl = document.getElementById('fs-text');
+    if (fsEl) fsEl.textContent = t.fs;
+    const resetEl = document.getElementById('reset-text');
+    if (resetEl) resetEl.textContent = t.reset;
+    const introEl = document.getElementById('intro-p');
+    if (introEl) introEl.textContent = t.introP;
+    const brandLabel = document.getElementById('brand-label');
+    if (brandLabel) brandLabel.textContent = t.brandLabel;
+    const brandInput = document.getElementById('brand');
+    if (brandInput) brandInput.placeholder = t.brandPlaceholder;
+    const bizPart = document.getElementById('biz-part');
+    if (bizPart) bizPart.textContent = t.bizPart;
+    const bizQ = document.getElementById('biz-q');
+    if (bizQ) bizQ.textContent = t.bizQ;
+    const tgQ = document.getElementById('tg-q');
+    if (tgQ) tgQ.textContent = t.tgQ;
+    const roasEl = document.getElementById('roas-text');
+    if (roasEl) roasEl.textContent = t.roas;
+    const growEl = document.getElementById('grow-text');
+    if (growEl) growEl.textContent = t.grow;
+    const footEl = document.getElementById('footer-text');
+    if (footEl) footEl.textContent = t.footer;
+    const P = getPillars(currentLang);
+    const k0 = document.getElementById('k0-name');
+    const k1 = document.getElementById('k1-name');
+    const k2 = document.getElementById('k2-name');
+    if (k0) k0.textContent = P[0].name;
+    if (k1) k1.textContent = P[1].name;
+    if (k2) k2.textContent = P[2].name;
+  }
+
+  function switchLang(lang) {
+    if (!['id', 'en', 'zh'].includes(lang)) return;
+    currentLang = lang;
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+    applyStaticTranslations();
+    buildStairs();
+    buildPillars();
+    render();
+  }
+
+  // Setup event listeners on DOM load
+  document.addEventListener('DOMContentLoaded', function() {
+    const langSelect = document.getElementById('lang-select');
+    if (langSelect) {
+      langSelect.value = currentLang;
+      langSelect.addEventListener('change', function(e) {
+        switchLang(e.target.value);
+      });
+    }
+
+    const brandInput = document.getElementById('brand');
+    if (brandInput) {
+      brandInput.value = S.brand;
+      brandInput.addEventListener('input', function() {
+        S.brand = brandInput.value;
+        saveState();
+        render();
+      });
+    }
+
+    ['roas', 'grow'].forEach(function(k) {
+      const btn = document.getElementById(k);
+      if (btn) {
+        btn.addEventListener('click', function() {
+          S[k] = !S[k];
+          saveState();
+          render();
+        });
+      }
+    });
+
+    const resetBtn = document.getElementById('btn-reset');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', function() {
+        S = blankState();
+        saveState();
+        if (brandInput) {
+          brandInput.value = '';
+          brandInput.focus();
+        }
+        buildStairs();
+        buildPillars();
+        render();
+      });
+    }
+
+    const fsBtn = document.getElementById('btn-fs');
+    if (fsBtn) {
+      fsBtn.addEventListener('click', function() {
+        try {
+          if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+          else document.exitFullscreen();
+        } catch (e) {}
+      });
+    }
+
+    document.querySelectorAll('.btn-export-jpg').forEach(function(b) { b.addEventListener('click', exportJPEG); });
+    document.querySelectorAll('.btn-export-pdf').forEach(function(b) { b.addEventListener('click', exportPDF); });
+    document.querySelectorAll('.btn-share').forEach(function(b) { b.addEventListener('click', shareResult); });
+
+    applyStaticTranslations();
+    buildStairs();
+    buildPillars();
+    render();
+  });
 </script>

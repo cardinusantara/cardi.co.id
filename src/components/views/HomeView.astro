@@ -4,6 +4,7 @@ import Navbar from '../Navbar.astro';
 import Footer from '../Footer.astro';
 import HeroStory from '../HeroStory.astro';
 import Journey from '../Journey.astro';
+import ScrollFlowSection from '../ScrollFlowSection.astro';
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../../i18n/utils';
 import type { LangKey } from '../../i18n/ui';
 
@@ -133,6 +134,304 @@ const translatePath = useTranslatedPath(lang);
           <p style="font-size: 17px; line-height: 1.5; margin-bottom: 24px;"><strong style="color:var(--ink)">"{t('founder.quote')}"</strong></p>
           <a href={translatePath('/deo-cardi-nathanael-profile/')} class="btn ghost" style="display:inline-flex; align-items:center; gap:8px;">{t('founder.btn')}</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUK (SCROLL FLOW - EKOSISTEM BISNIS TERPADU) -->
+  <ScrollFlowSection lang={lang} />
+
+  <!-- SOLUSI -->
+  <section class="solusi" id="solusi">
+    <div class="wrap">
+      <div class="center">
+        <div class="eyebrow">{t('sol.tag')}</div>
+        <h2 class="h2">{t('sol.title')}</h2>
+        <p class="sub">{t('sol.sub')}</p>
+      </div>
+      <div class="solGrid">
+        <div class="scard">
+          <div class="ic" style="background:#E7EDFF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="#1e4fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" />
+            </svg></div>
+          <h3>{t('sol.c1Title')}</h3>
+          <p>{t('sol.c1Desc')}</p>
+        </div>
+        <div class="scard">
+          <div class="ic" style="background:#E3F6EF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="#00A87E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 17l6-6 4 4 8-8M21 7v6h-6" />
+            </svg></div>
+          <h3>{t('sol.c2Title')}</h3>
+          <p>{t('sol.c2Desc')}</p>
+        </div>
+        <div class="scard">
+          <div class="ic" style="background:#F1E7FF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="#8B3DFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" />
+              <rect x="14" y="3" width="7" height="7" rx="1.5" />
+              <rect x="3" y="14" width="7" height="7" rx="1.5" />
+              <rect x="14" y="14" width="7" height="7" rx="1.5" />
+            </svg></div>
+          <h3>{t('sol.c3Title')}</h3>
+          <p>{t('sol.c3Desc')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="wrap statGrid">
+      <div class="stat"><b>10<em>+</em></b><span>tahun pengalaman branding &amp; digital</span></div>
+      <div class="stat"><b>19<em>+</em></b><span>klien aktif lintas industri</span></div>
+      <div class="stat"><b>37</b><span>talenta dalam satu tim eksekusi</span></div>
+      <div class="stat"><b>24<em>/7</em></b><span>AI bekerja tanpa henti</span></div>
+    </div>
+  </section>
+
+  <!-- HARGA -->
+  <section id="harga" style="background: var(--soft);">
+    <div class="wrap">
+      <div class="center">
+        <div class="eyebrow">{t('pri.tag')}</div>
+        <h2 class="h2">{t('pri.title')}</h2>
+        <p class="sub">{t('pri.sub')}</p>
+      </div>
+    </div>
+
+    <div class="marquee-wrapper" style="margin-top: 40px;">
+      <div class="marquee-track" id="pricingTrack">
+        <div class="marquee-content">
+          <!-- Cardi Branding -->
+          <div class="marquee-card">
+            <div class="pcard" style="border-color: #FCD6D3; box-shadow: 0 12px 30px -10px rgba(255,59,48,.08);">
+              <div class="lock">
+                <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
+                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#fb3202"
+                    transform="translate(60 60) rotate(0) scale(1.3) translate(-60 -38)" />
+                </svg>
+                <div class="tx"><small>cardi</small><b>branding</b></div>
+              </div>
+              <h3 style="margin-top: 10px;">Cardi Branding</h3>
+              <p>{t('eco.s1Desc')}</p>
+              <div style="margin: 18px 0 8px;">
+                <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted); letter-spacing:.06em;">{t('pri.modelLabel')} · {t('eco.s1Model')}</small>
+                <span style="font-size:28px; font-weight:800; color:var(--ink); letter-spacing:-.02em;">{t('eco.s1Hook')}</span>
+              </div>
+              <a class="btn" href="https://branding.cardinusantara.com/" target="_blank" rel="noopener noreferrer" style="justify-content:center; background:#fb3202">{t('pri.brandingBtn')}</a>
+            </div>
+          </div>
+
+          <!-- Cardi Nusantara -->
+          <div class="marquee-card">
+            <div class="pcard" style="border-color: #D0D4DC; box-shadow: 0 12px 30px -10px rgba(10,22,51,.08);">
+              <div class="lock">
+                <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
+                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#0A1633"
+                    transform="translate(60 60) rotate(0) scale(1.3) translate(-60 -38)" />
+                </svg>
+                <div class="tx"><small>cardi</small><b>nusantara</b></div>
+              </div>
+              <h3 style="margin-top: 10px;">Cardi Nusantara</h3>
+              <p>{t('eco.s2Desc')}</p>
+              <div style="margin: 18px 0 8px;">
+                <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted); letter-spacing:.06em;">{t('pri.modelLabel')} · {t('eco.s2Model')}</small>
+                <span style="font-size:28px; font-weight:800; color:var(--ink); letter-spacing:-.02em;">{t('eco.s2Hook')}</span>
+              </div>
+              <a class="btn" href="https://cardinusantara.com/" target="_blank" rel="noopener noreferrer" style="justify-content:center; background:#0A1633">{t('pri.gtmBtn')}</a>
+            </div>
+          </div>
+
+          <!-- Cardi Digital -->
+          <div class="marquee-card">
+            <div class="pcard" style="border-color: #F8D3D0; box-shadow: 0 12px 30px -10px rgba(198,26,9,.08);">
+              <div class="lock">
+                <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
+                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#c42025"
+                    transform="translate(60 52) rotate(0) scale(1.3) translate(-60 -38)" />
+                  <circle cx="60" cy="102" r="8" fill="#c42025" />
+                </svg>
+                <div class="tx"><small>cardi</small><b>digital</b></div>
+              </div>
+              <h3 style="margin-top: 10px;">Cardi Digital</h3>
+              <p>{t('eco.s3Desc')}</p>
+              <div style="margin: 18px 0 8px;">
+                <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted); letter-spacing:.06em;">{t('pri.modelLabel')} · {t('eco.s3Model')}</small>
+                <span style="font-size:28px; font-weight:800; color:var(--ink); letter-spacing:-.02em;">{t('eco.s3Hook')}</span>
+              </div>
+              <a class="btn" href="https://digital.cardinusantara.com/" target="_blank" rel="noopener noreferrer" style="justify-content:center; background:#c42025">{t('pri.digitalBtn')}</a>
+            </div>
+          </div>
+
+          <!-- Cardi Agent -->
+          <div class="marquee-card">
+            <div class="pcard" style="border-color: #1e4fff; box-shadow: 0 12px 30px -10px rgba(30,79,255,.15);">
+              <div class="lock">
+                <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
+                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#1e4fff"
+                    transform="translate(66 60) rotate(90) scale(1.3) translate(-60 -38)" />
+                  <circle cx="26" cy="60" r="8" fill="#1e4fff" />
+                </svg>
+                <div class="tx"><small>cardi</small><b>agent</b></div>
+              </div>
+              <h3 style="margin-top: 10px;">Cardi Agent</h3>
+              <p>{t('eco.s4Desc')}</p>
+              <div style="margin: 18px 0 8px;">
+                <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted); letter-spacing:.06em;">{t('pri.modelLabel')} · {t('eco.s4Model')}</small>
+                <span style="font-size:28px; font-weight:800; color:var(--ink); letter-spacing:-.02em;">{t('eco.s4Hook')}</span>
+              </div>
+              <a class="btn" href="https://aiagent.cardi.co.id/" target="_blank" rel="noopener" style="justify-content:center; background:#1e4fff">{t('pri.ipoBtn')}</a>
+            </div>
+          </div>
+
+          <!-- SET 2 (duplicate for seamless loop) -->
+          <div class="marquee-card" aria-hidden="true">
+            <div class="pcard" style="border-color: #FCD6D3; box-shadow: 0 12px 30px -10px rgba(255,59,48,.08);">
+              <div class="lock">
+                <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
+                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#fb3202"
+                    transform="translate(60 60) rotate(0) scale(1.3) translate(-60 -38)" />
+                </svg>
+                <div class="tx"><small>cardi</small><b>branding</b></div>
+              </div>
+              <h3 style="margin-top: 10px;">Cardi Branding</h3>
+              <p>{t('eco.s1Desc')}</p>
+              <div style="margin: 18px 0 8px;">
+                <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted); letter-spacing:.06em;">{t('pri.modelLabel')} · {t('eco.s1Model')}</small>
+                <span style="font-size:28px; font-weight:800; color:var(--ink); letter-spacing:-.02em;">{t('eco.s1Hook')}</span>
+              </div>
+              <a class="btn" href="https://branding.cardinusantara.com/" target="_blank" rel="noopener noreferrer" style="justify-content:center; background:#fb3202">{t('pri.brandingBtn')}</a>
+            </div>
+          </div>
+
+          <div class="marquee-card" aria-hidden="true">
+            <div class="pcard" style="border-color: #D0D4DC; box-shadow: 0 12px 30px -10px rgba(10,22,51,.08);">
+              <div class="lock">
+                <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
+                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#0A1633"
+                    transform="translate(60 60) rotate(0) scale(1.3) translate(-60 -38)" />
+                </svg>
+                <div class="tx"><small>cardi</small><b>nusantara</b></div>
+              </div>
+              <h3 style="margin-top: 10px;">Cardi Nusantara</h3>
+              <p>{t('eco.s2Desc')}</p>
+              <div style="margin: 18px 0 8px;">
+                <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted); letter-spacing:.06em;">{t('pri.modelLabel')} · {t('eco.s2Model')}</small>
+                <span style="font-size:28px; font-weight:800; color:var(--ink); letter-spacing:-.02em;">{t('eco.s2Hook')}</span>
+              </div>
+              <a class="btn" href="https://cardinusantara.com/" target="_blank" rel="noopener noreferrer" style="justify-content:center; background:#0A1633">{t('pri.gtmBtn')}</a>
+            </div>
+          </div>
+
+          <div class="marquee-card" aria-hidden="true">
+            <div class="pcard" style="border-color: #F8D3D0; box-shadow: 0 12px 30px -10px rgba(198,26,9,.08);">
+              <div class="lock">
+                <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
+                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#c42025"
+                    transform="translate(60 52) rotate(0) scale(1.3) translate(-60 -38)" />
+                  <circle cx="60" cy="102" r="8" fill="#c42025" />
+                </svg>
+                <div class="tx"><small>cardi</small><b>digital</b></div>
+              </div>
+              <h3 style="margin-top: 10px;">Cardi Digital</h3>
+              <p>{t('eco.s3Desc')}</p>
+              <div style="margin: 18px 0 8px;">
+                <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted); letter-spacing:.06em;">{t('pri.modelLabel')} · {t('eco.s3Model')}</small>
+                <span style="font-size:28px; font-weight:800; color:var(--ink); letter-spacing:-.02em;">{t('eco.s3Hook')}</span>
+              </div>
+              <a class="btn" href="https://digital.cardinusantara.com/" target="_blank" rel="noopener noreferrer" style="justify-content:center; background:#c42025">{t('pri.digitalBtn')}</a>
+            </div>
+          </div>
+
+          <div class="marquee-card" aria-hidden="true">
+            <div class="pcard" style="border-color: #1e4fff; box-shadow: 0 12px 30px -10px rgba(30,79,255,.15);">
+              <div class="lock">
+                <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
+                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#1e4fff"
+                    transform="translate(66 60) rotate(90) scale(1.3) translate(-60 -38)" />
+                  <circle cx="26" cy="60" r="8" fill="#1e4fff" />
+                </svg>
+                <div class="tx"><small>cardi</small><b>agent</b></div>
+              </div>
+              <h3 style="margin-top: 10px;">Cardi Agent</h3>
+              <p>{t('eco.s4Desc')}</p>
+              <div style="margin: 18px 0 8px;">
+                <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted); letter-spacing:.06em;">{t('pri.modelLabel')} · {t('eco.s4Model')}</small>
+                <span style="font-size:28px; font-weight:800; color:var(--ink); letter-spacing:-.02em;">{t('eco.s4Hook')}</span>
+              </div>
+              <a class="btn" href="https://aiagent.cardi.co.id/" target="_blank" rel="noopener" style="justify-content:center; background:#1e4fff">{t('pri.ipoBtn')}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL MARQUEE -->
+  <section class="testi" id="testimoni">
+    <div class="wrap">
+      <div class="center">
+        <div class="eyebrow">{t('test.tag')}</div>
+        <h2 class="h2">{t('test.title')}</h2>
+        <p class="sub">{t('test.sub')}</p>
+      </div>
+    </div>
+
+    <div class="testi-marquee" aria-label="Testimonials">
+      <div class="testi-track">
+        <!-- SET 1 -->
+        <article class="testi-card">
+          <div class="testi-product" style="color:#fb3202">{t('test.t1Product')}</div>
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <blockquote>{t('test.t1Quote')}</blockquote>
+          <div class="testi-who">{t('test.t1Who')}</div>
+        </article>
+        <article class="testi-card">
+          <div class="testi-product" style="color:#0A1633">{t('test.t2Product')}</div>
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <blockquote>{t('test.t2Quote')}</blockquote>
+          <div class="testi-who">{t('test.t2Who')}</div>
+        </article>
+        <article class="testi-card">
+          <div class="testi-product" style="color:#c42025">{t('test.t3Product')}</div>
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <blockquote>{t('test.t3Quote')}</blockquote>
+          <div class="testi-who">{t('test.t3Who')}</div>
+        </article>
+        <article class="testi-card">
+          <div class="testi-product" style="color:#1e4fff">{t('test.t4Product')}</div>
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <blockquote>{t('test.t4Quote')}</blockquote>
+          <div class="testi-who">{t('test.t4Who')}</div>
+        </article>
+
+        <!-- SET 2 (duplicate for seamless loop) -->
+        <article class="testi-card" aria-hidden="true">
+          <div class="testi-product" style="color:#fb3202">{t('test.t1Product')}</div>
+          <div class="stars">★★★★★</div>
+          <blockquote>{t('test.t1Quote')}</blockquote>
+          <div class="testi-who">{t('test.t1Who')}</div>
+        </article>
+        <article class="testi-card" aria-hidden="true">
+          <div class="testi-product" style="color:#0A1633">{t('test.t2Product')}</div>
+          <div class="stars">★★★★★</div>
+          <blockquote>{t('test.t2Quote')}</blockquote>
+          <div class="testi-who">{t('test.t2Who')}</div>
+        </article>
+        <article class="testi-card" aria-hidden="true">
+          <div class="testi-product" style="color:#c42025">{t('test.t3Product')}</div>
+          <div class="stars">★★★★★</div>
+          <blockquote>{t('test.t3Quote')}</blockquote>
+          <div class="testi-who">{t('test.t3Who')}</div>
+        </article>
+        <article class="testi-card" aria-hidden="true">
+          <div class="testi-product" style="color:#1e4fff">{t('test.t4Product')}</div>
+          <div class="stars">★★★★★</div>
+          <blockquote>{t('test.t4Quote')}</blockquote>
+          <div class="testi-who">{t('test.t4Who')}</div>
+        </article>
       </div>
     </div>
   </section>

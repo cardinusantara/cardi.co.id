@@ -147,6 +147,134 @@ html.intro-pending #mainNav {
   opacity: .6;
 }
 
+/* ---------- NAV DROPDOWNS ---------- */
+.menu-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.menu-item>a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 18px 0;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 16px 36px -12px rgba(10, 22, 51, .15);
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .2s ease;
+  width: 270px;
+  z-index: 100;
+}
+
+.dropdown::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 0;
+  width: 100%;
+  height: 14px;
+  background: transparent;
+}
+
+.menu-item:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown.wide {
+  width: 520px;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+  padding: 18px;
+}
+
+.dropdown a {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: .15s;
+  text-align: left;
+}
+
+.dropdown a:hover {
+  background: var(--soft);
+}
+
+.dropdown b {
+  font-size: 13.5px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.dropdown span {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 500;
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+.dropdown .dLock {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.dropdown .dTx {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.dropdown .dTx small {
+  display: block;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #9AA7C4;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.dropdown .dTx b {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.dropdown .dDesc {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 500;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+/* Ensure internal pages give clearance for the fixed floating navbar */
+main#main,
+main.article-page {
+  padding-top: clamp(88px, 12vh, 120px);
+}
+
 .navR {
   margin-left: auto;
   display: flex;
@@ -645,11 +773,13 @@ html.intro-pending #mainNav {
    scale(scale), same values as the JS petalConfig array), so there's no
    flash of an already-assembled mark before the entrance takes over. */
 .hero-intro-petal:nth-child(1) { transform: rotate(0deg) translate(-200px, -55px) rotate(-100deg) scale(.25); }
-.hero-intro-petal:nth-child(2) { transform: rotate(60deg) translate(175px, -150px) rotate(95deg) scale(.25); }
-.hero-intro-petal:nth-child(3) { transform: rotate(120deg) translate(220px, 85px) rotate(-90deg) scale(.25); }
-.hero-intro-petal:nth-child(4) { transform: rotate(180deg) translate(-65px, 210px) rotate(100deg) scale(.25); }
-.hero-intro-petal:nth-child(5) { transform: rotate(240deg) translate(-220px, 50px) rotate(-95deg) scale(.25); }
-.hero-intro-petal:nth-child(6) { transform: rotate(300deg) translate(85px, -210px) rotate(90deg) scale(.25); }
+.hero-intro-petal:nth-child(2) { transform: rotate(45deg) translate(140px, -140px) rotate(80deg) scale(.25); }
+.hero-intro-petal:nth-child(3) { transform: rotate(90deg) translate(175px, -60px) rotate(95deg) scale(.25); }
+.hero-intro-petal:nth-child(4) { transform: rotate(135deg) translate(150px, 150px) rotate(-85deg) scale(.25); }
+.hero-intro-petal:nth-child(5) { transform: rotate(180deg) translate(-65px, 210px) rotate(100deg) scale(.25); }
+.hero-intro-petal:nth-child(6) { transform: rotate(225deg) translate(-150px, 150px) rotate(-70deg) scale(.25); }
+.hero-intro-petal:nth-child(7) { transform: rotate(270deg) translate(-220px, 50px) rotate(-95deg) scale(.25); }
+.hero-intro-petal:nth-child(8) { transform: rotate(315deg) translate(-120px, -170px) rotate(75deg) scale(.25); }
 
 .hero-intro-wordmark {
   font-size: clamp(34px, 9vw, 100px);
@@ -1464,7 +1594,7 @@ section {
 }
 
 .flow-sticky-side[data-stage="1"] .morphing-leaf {
-  transform: rotate(45deg) scale(1.3);
+  transform: rotate(0deg) scale(1.3);
   fill: #0A1633;
 }
 .flow-sticky-side[data-stage="1"] .morphing-dot {

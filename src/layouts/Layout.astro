@@ -114,6 +114,7 @@ const zhUrl = new URL(translatePath(Astro.url.pathname, 'zh'), 'https://cardi.co
       })();
     </script>
   )}
+  <slot name="head" />
 </head>
 <body>
   <slot />

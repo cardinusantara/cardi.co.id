@@ -10,170 +10,538 @@ interface Props {
 }
 
 const { lang = getLangFromUrl(Astro.url) } = Astro.props;
-const translatePath = useTranslatedPath(lang);
+const currentLang = (lang as string) === 'en' ? 'en' : (lang as string) === 'zh' ? 'zh' : 'id';
 
-const copy = {
+const content = {
   id: {
-    title: 'Deo Cardi Nathanael — Founder Cardi',
-    desc: 'Profil Deo Cardi Nathanael, Founder & Creative Director Cardi.',
-    eyebrow: 'Founder',
-    name: 'Deo Cardi Nathanael',
-    lead: 'Founder & Creative Director Cardi. Sekitar 10 tahun membangun brand dan sistem pemasaran digital untuk bisnis Indonesia.',
-    btnWa: 'Hubungi via WhatsApp',
-    btnEco: 'Lihat ekosistem Cardi',
-    founderRole: 'Founder & CEO Cardi',
-    secTimelineEyebrow: 'Perjalanan',
-    secTimelineTitle: 'Dari sistem IT, startup, kuliner, sampai AI.',
-    timeline: [
-      { year: '2012', role: 'Teaching Assistant', place: 'BINUS University.' },
-      { year: '—', role: 'System Analyst', place: 'PT Nusantara Compnet Integrator.' },
-      { year: '—', role: 'Co-Founder & CMO, Kotagrosir.com', place: 'Startup IT yang meraih pendanaan dalam USD.' },
-      { year: '2016', role: 'Pendiri Foodinhands', place: 'Media dan komunitas kuliner.' },
-      { year: '2017', role: 'Pendiri Inhands Agency', place: 'PT Inhands Solusi Digital — konsultan F&B dan branding.' },
-      { year: '—', role: 'VP Marketing, Nikmat Group', place: 'Kopi Lain Hati, Street Boba, Gildak.' },
-      { year: '2023', role: 'Founder Cardi Nusantara', place: 'PT Digital Cardi Nusantara — kini induk ekosistem Cardi.' }
+    metaTitle: "Deo Cardi Nathanael — Founder & CEO Cardi Nusantara | Profil",
+    metaDesc: "Profil Deo Cardi Nathanael, Founder & CEO Cardi Nusantara. 10+ tahun membangun 30+ brand di F&B, FMCG, fashion, skincare, otomotif, dan lifestyle. Dilihat, diingat, dipercaya.",
+    waMsg: "Halo Deo, saya dari halaman profil cardi.co.id. Saya ingin konsultasi tentang brand saya.",
+    kicker: "Founder & CEO, Cardi Nusantara",
+    nameFirst: "Deo Cardi",
+    nameLast: "Nathanael",
+    lead: "Lebih dari 10 tahun membangun brand dan bisnis. Dari startup IT, ke 30+ brand, sampai ekosistem pertumbuhan bisnis berbasis AI.",
+    btnWa: "Konsultasi brand Anda",
+    btnAcademy: "Cardi Matrix Academy",
+    tagMotto: "Dilihat, diingat, dipercaya.",
+    tagSub: "Brand Development · Business Development · Strategic Investment",
+    stats: [
+      { val: "10+", label: "tahun di brand & business development" },
+      { val: "30+", label: "brand dibangun dan dikembangkan" },
+      { val: "2.000+", label: "kreator F&B di komunitas Foodinhands" },
+      { val: "USD 37K", label: "pendanaan startup pertama, Kotagrosir.com" }
     ],
-    principlesTitle: 'Prinsip kerja',
-    principlesP1: 'Kejelasan brand — bukan sekadar kualitas produk — yang menentukan bisnis mana yang dipercaya dan tumbuh. Setelah brand jelas, sistem penjualan harus berjalan setiap hari.',
-    principlesP2: 'Prinsip itu kini menjadi dua mesin Cardi: <strong>Cardi Nusantara</strong> untuk membangun brand, dan <strong>Cardi Agent</strong> untuk menjalankan penjualan dengan AI.',
-    otherRolesTitle: 'Peran lain',
-    otherRolesDesc: 'Branding Consultant di BNI Passion.',
-    ctaTitle: 'Undang Deo sebagai pembicara atau mitra diskusi.',
-    ctaDesc: 'Topik: branding, go-to-market, dan AI untuk bisnis Indonesia.',
-    ctaBtn: 'Hubungi via WhatsApp'
+    aboutEb: "Tentang",
+    aboutH2: "Dimulai dari teknologi, tumbuh di branding.",
+    p1: "Deo Cardi Nathanael adalah seorang pengusaha yang memulai kariernya sebagai Teaching Assistant di BINUS University, Jakarta, sekitar 14 tahun yang lalu. Beliau kemudian menjadi System Analyst di PT Nusantara Compnet Integrator, lalu membangun startup IT pertamanya, Kotagrosir.com, sebagai Co-Founder & CMO, yang berhasil meraih pendanaan sebesar USD 37.000.",
+    p2: "Dari dunia teknologi, beliau beralih ke dunia brand. Tahun 2016 beliau mendirikan Foodinhands, media dan komunitas kuliner dengan lebih dari 2.000 kreator F&B. Tahun 2017 beliau mendirikan Inhands Agency (PT Inhands Solusi Digital), konsultan F&B dan branding di Jakarta. Beliau juga pernah menjabat VP Marketing Nikmat Group, yang menaungi Kopi Lain Hati, Street Boba, dan Gildak.",
+    p3: "Kini beliau memimpin Cardi Nusantara (PT Digital Cardi Nusantara), yang didirikan tahun 2023 di Jakarta sebagai ekosistem pertumbuhan bisnis. Di dalamnya ada Cardi Branding untuk strategi dan pengembangan brand, Cardi Digital untuk pemasaran digital, Cardi Agent untuk otomasi bisnis berbasis AI, dan Cardi IPO Partner untuk menyiapkan brand, marketing, sales, dan sistem IT bisnis menuju IPO.",
+    p4: "Cardi Nusantara lahir dari pengalaman lebih dari 10 tahun membangun lebih dari 30 brand di industri F&B, FMCG, fashion, skincare, dan lifestyle, di antaranya Kopi Lain Hati, Street Boba, Gudbite, Republic Padel, Tea N Tales, dan Surya Painting. Keunggulannya adalah pendampingan menyeluruh dalam satu ekosistem: dari strategi brand, eksekusi digital, dan sistem AI, sampai kesiapan komersial menuju IPO.",
+    motto: "Dilihat, diingat, dipercaya.",
+    jEb: "Perjalanan",
+    jH2: "Dari sistem, ke brand, kembali ke sistem.",
+    timeline: [
+      { year: "2012", title: "Teaching Assistant, BINUS University", desc: "Awal karier di Jakarta." },
+      { year: "2014", title: "System Analyst, PT Nusantara Compnet Integrator", desc: "Fondasi teknologi dan sistem." },
+      { year: "2015", title: "Co-Founder & CMO, Kotagrosir.com", pill: "USD 37.000", desc: "Startup IT pertama, diliput Tech in Asia." },
+      { year: "2016", title: "Mendirikan Foodinhands", desc: "Media dan komunitas kuliner dengan 2.000+ kreator F&B." },
+      { year: "2017", title: "Mendirikan Inhands Agency", desc: "PT Inhands Solusi Digital, konsultan F&B dan branding, dengan 30.000+ database brand F&B." },
+      { year: "2019", title: "VP Marketing, Nikmat Group & Cardi Branding", desc: "Kopi Lain Hati, Street Boba, dan Gildak. Lahirnya Cardi Branding: build the brands people trust & choose." },
+      { year: "2022", title: "Cardi Digital", desc: "Membawa brand lokal tumbuh ke pasar nasional dan global lewat digital marketing." },
+      { year: "2023", title: "Cardi Nusantara", desc: "PT Digital Cardi Nusantara, holding ekosistem pertumbuhan bisnis dan partner go-to-market." },
+      { year: "2026", isNow: true, title: "Cardi Agent", desc: "Otomasi bisnis berbasis AI, termasuk Cardi MoM dan Cardi LoyaL." }
+    ],
+    eEb: "Ekosistem Cardi",
+    eH2: "Building businesses from brand to IPO.",
+    ecosystem: [
+      { num: "01 · Build the brand", title: "Cardi Branding", desc: "Strategi dan pengembangan brand: positioning, identitas, dan pesan.", linkText: "branding.cardinusantara.com →", linkHref: "https://branding.cardinusantara.com/" },
+      { num: "02 · Grow the brand", title: "Cardi Digital", desc: "Pemasaran digital: SEO, ads, konten, dan performance marketing.", linkText: "digital.cardinusantara.com →", linkHref: "https://digital.cardinusantara.com/" },
+      { num: "03 · Automate the business", title: "Cardi Agent", desc: "AI agent untuk otomasi bisnis dan pertumbuhan.", linkText: "cardi.co.id →", linkHref: "https://www.cardi.co.id/" },
+      { num: "04 · Scale to IPO", title: "Cardi IPO Partner", desc: "Menyiapkan brand, marketing, sales, dan sistem IT bisnis menuju IPO.", linkText: "Diskusikan via WhatsApp →", linkHref: "https://api.whatsapp.com/send/?phone=6281289895646&text=Halo%20Deo%2C%20saya%20dari%20halaman%20profil%20cardi.co.id.%20Saya%20ingin%20konsultasi%20tentang%20brand%20saya." }
+    ],
+    brandsTitle: "Brand yang pernah dibangun dan dikembangkan",
+    brands: ["Kopi Lain Hati", "Street Boba", "Gildak", "Gudbite", "Republic Padel", "Tea N Tales", "Surya Painting"],
+    pubEb: "Publikasi",
+    pubH2: "Berbagi dan diliput.",
+    talksTitle: "Talks",
+    mediaTitle: "Liputan media",
+    seeAllMedia: "Lihat semua liputan ↓",
+    closeMedia: "Tutup ↑",
+    ctH2: "Mari bangun brand yang dipercaya.",
+    ctP: "Konsultasikan brand dan bisnis Anda langsung dengan Deo melalui WhatsApp.",
+    ctBtn: "Chat WhatsApp",
+    bniNote: "Member BNI (Business Network International), Chapter Passion · Brand Consulting"
   },
   en: {
-    title: 'Deo Cardi Nathanael — Founder of Cardi',
-    desc: 'Profile of Deo Cardi Nathanael, Founder & Creative Director of Cardi.',
-    eyebrow: 'Founder',
-    name: 'Deo Cardi Nathanael',
-    lead: 'Founder & Creative Director of Cardi. A decade of architecting brands and digital marketing systems for Indonesian enterprise.',
-    btnWa: 'Reach out via WhatsApp',
-    btnEco: 'Explore Cardi ecosystem',
-    founderRole: 'Founder & CEO of Cardi',
-    secTimelineEyebrow: 'Trajectory',
-    secTimelineTitle: 'From enterprise IT, startups, F&B, to applied AI.',
-    timeline: [
-      { year: '2012', role: 'Teaching Assistant', place: 'BINUS University.' },
-      { year: '—', role: 'System Analyst', place: 'PT Nusantara Compnet Integrator.' },
-      { year: '—', role: 'Co-Founder & CMO, Kotagrosir.com', place: 'Venture-backed B2B tech startup.' },
-      { year: '2016', role: 'Founder, Foodinhands', place: 'Culinary community and media platform.' },
-      { year: '2017', role: 'Founder, Inhands Agency', place: 'PT Inhands Solusi Digital — specialized F&B & brand consultancy.' },
-      { year: '—', role: 'VP Marketing, Nikmat Group', place: 'Kopi Lain Hati, Street Boba, Gildak.' },
-      { year: '2023', role: 'Founder, Cardi Nusantara', place: 'PT Digital Cardi Nusantara — parent ecosystem of Cardi.' }
+    metaTitle: "Deo Cardi Nathanael — Founder & CEO of Cardi Nusantara | Profile",
+    metaDesc: "Profile of Deo Cardi Nathanael, Founder & CEO of Cardi Nusantara. 10+ years building 30+ brands in F&B, FMCG, fashion, skincare, and lifestyle. Seen, remembered, trusted.",
+    waMsg: "Hi Deo, I found you through your profile page on cardi.co.id. I would like to consult about my brand.",
+    kicker: "Founder & CEO, Cardi Nusantara",
+    nameFirst: "Deo Cardi",
+    nameLast: "Nathanael",
+    lead: "More than 10 years building brands and businesses. From an IT startup, to 30+ brands, to an AI-powered business growth ecosystem.",
+    btnWa: "Consult on your brand",
+    btnAcademy: "Cardi Matrix Academy",
+    tagMotto: "Seen, remembered, trusted.",
+    tagSub: "Brand Development · Business Development · Strategic Investment",
+    stats: [
+      { val: "10+", label: "years in brand & business development" },
+      { val: "30+", label: "brands built and developed" },
+      { val: "2,000+", label: "F&B creators in the Foodinhands community" },
+      { val: "USD 37K", label: "raised by his first startup, Kotagrosir.com" }
     ],
-    principlesTitle: 'Core Principles',
-    principlesP1: 'Brand clarity — beyond mere product utility — defines which business commands trust and sustainable margins. Once positioning is razor sharp, automated sales engines must operate non-stop.',
-    principlesP2: 'That conviction fuels Cardi’s dual engines: <strong>Cardi Nusantara</strong> for strategic brand equity, and <strong>Cardi Agent</strong> for relentless AI-driven sales execution.',
-    otherRolesTitle: 'Key Appointments',
-    otherRolesDesc: 'Branding Consultant at BNI Passion.',
-    ctaTitle: 'Invite Deo for keynotes or strategic advisory.',
-    ctaDesc: 'Key themes: Brand differentiation, Go-to-Market, and practical AI adoption.',
-    ctaBtn: 'Connect via WhatsApp'
+    aboutEb: "About",
+    aboutH2: "Started in technology, grew in branding.",
+    p1: "Deo Cardi Nathanael is an entrepreneur who began his career as a Teaching Assistant at BINUS University, Jakarta, around 14 years ago. He then became a System Analyst at PT Nusantara Compnet Integrator, before building his first IT startup, Kotagrosir.com, as Co-Founder & CMO, which successfully raised USD 37,000 in funding.",
+    p2: "From technology, he moved into the world of brands. In 2016 he founded Foodinhands, a culinary media and community with more than 2,000 F&B creators. In 2017 he founded Inhands Agency (PT Inhands Solusi Digital), an F&B and branding consultancy in Jakarta. He also served as VP Marketing of Nikmat Group, home of Kopi Lain Hati, Street Boba, and Gildak.",
+    p3: "Today he leads Cardi Nusantara (PT Digital Cardi Nusantara), founded in 2023 in Jakarta as a business growth ecosystem. It includes Cardi Branding for brand strategy and development, Cardi Digital for digital marketing, Cardi Agent for AI-powered business automation, and Cardi IPO Partner for preparing a company’s brand, marketing, sales, and IT systems for IPO.",
+    p4: "Cardi Nusantara was born from more than 10 years of experience building over 30 brands across F&B, FMCG, fashion, skincare, and lifestyle, including Kopi Lain Hati, Street Boba, Gudbite, Republic Padel, Tea N Tales, and Surya Painting. Its strength is end-to-end support within one ecosystem: from brand strategy, digital execution, and AI systems, to commercial readiness for IPO.",
+    motto: "Seen, remembered, trusted.",
+    jEb: "Journey",
+    jH2: "From systems, to brands, and back to systems.",
+    timeline: [
+      { year: "2012", title: "Teaching Assistant, BINUS University", desc: "Career beginnings in Jakarta." },
+      { year: "2014", title: "System Analyst, PT Nusantara Compnet Integrator", desc: "A foundation in technology and systems." },
+      { year: "2015", title: "Co-Founder & CMO, Kotagrosir.com", pill: "USD 37,000", desc: "His first IT startup, featured in Tech in Asia." },
+      { year: "2016", title: "Founded Foodinhands", desc: "A culinary media and community with 2,000+ F&B creators." },
+      { year: "2017", title: "Founded Inhands Agency", desc: "PT Inhands Solusi Digital, an F&B and branding consultancy with a database of 30,000+ F&B brands." },
+      { year: "2019", title: "VP Marketing, Nikmat Group & Cardi Branding", desc: "Kopi Lain Hati, Street Boba, and Gildak. The birth of Cardi Branding: build the brands people trust & choose." },
+      { year: "2022", title: "Cardi Digital", desc: "Helping local brands scale into national and global markets through digital marketing." },
+      { year: "2023", title: "Cardi Nusantara", desc: "PT Digital Cardi Nusantara, the holding company of the business growth ecosystem and a go-to-market partner." },
+      { year: "2026", isNow: true, title: "Cardi Agent", desc: "AI-powered business automation, including Cardi MoM and Cardi LoyaL." }
+    ],
+    eEb: "The Cardi ecosystem",
+    eH2: "Building businesses from brand to IPO.",
+    ecosystem: [
+      { num: "01 · Build the brand", title: "Cardi Branding", desc: "Brand strategy and development: positioning, identity, and messaging.", linkText: "branding.cardinusantara.com →", linkHref: "https://branding.cardinusantara.com/" },
+      { num: "02 · Grow the brand", title: "Cardi Digital", desc: "Digital marketing: SEO, ads, content, and performance marketing.", linkText: "digital.cardinusantara.com →", linkHref: "https://digital.cardinusantara.com/" },
+      { num: "03 · Automate the business", title: "Cardi Agent", desc: "AI agents for business automation and growth.", linkText: "cardi.co.id →", linkHref: "https://www.cardi.co.id/" },
+      { num: "04 · Scale to IPO", title: "Cardi IPO Partner", desc: "Preparing a company’s brand, marketing, sales, and IT systems for IPO.", linkText: "Discuss on WhatsApp →", linkHref: "https://api.whatsapp.com/send/?phone=6281289895646&text=Hi%20Deo%2C%20I%20found%20you%20through%20your%20profile%20page%20on%20cardi.co.id.%20I%20would%20like%20to%20consult%20about%20my%20brand." }
+    ],
+    brandsTitle: "Brands built and developed",
+    brands: ["Kopi Lain Hati", "Street Boba", "Gildak", "Gudbite", "Republic Padel", "Tea N Tales", "Surya Painting"],
+    pubEb: "Publications",
+    pubH2: "Talks and press.",
+    talksTitle: "Talks",
+    mediaTitle: "Media coverage",
+    seeAllMedia: "See all coverage ↓",
+    closeMedia: "Close ↑",
+    ctH2: "Let’s build a brand people trust.",
+    ctP: "Consult on your brand and business directly with Deo via WhatsApp.",
+    ctBtn: "Chat on WhatsApp",
+    bniNote: "Member of BNI (Business Network International), Passion Chapter · Brand Consulting"
   },
   zh: {
-    title: 'Deo Cardi Nathanael — Cardi 创始人',
-    desc: 'Cardi 创始人兼创意总监 Deo Cardi Nathanael 简介与经历。',
-    eyebrow: '创始人',
-    name: 'Deo Cardi Nathanael',
-    lead: 'Cardi 创始人兼创意总监。深耕印尼本土品牌塑造与数字化营销体系逾十年。',
-    btnWa: '通过 WhatsApp 沟通',
-    btnEco: '浏览 Cardi 生态版图',
-    founderRole: 'Cardi 创始人兼首席执行官',
-    secTimelineEyebrow: '创业征程',
-    secTimelineTitle: '从企业 IT 架构、互联网创业、餐饮消费，到落地 AI。',
-    timeline: [
-      { year: '2012', role: '助教 (Teaching Assistant)', place: 'BINUS 大学' },
-      { year: '—', role: '系统分析师 (System Analyst)', place: 'PT Nusantara Compnet Integrator' },
-      { year: '—', role: '联合创始人兼 CMO, Kotagrosir.com', place: '获得美元风投的 B2B 电商科技企业' },
-      { year: '2016', role: '创立 Foodinhands', place: '知名美食垂直媒体与社群平台' },
-      { year: '2017', role: '创立 Inhands Agency', place: 'PT Inhands Solusi Digital — 餐饮与品牌全案咨询' },
-      { year: '—', role: '市场营销副总裁 (VP Marketing), Nikmat Group', place: '操盘旗下 Kopi Lain Hati, Street Boba, Gildak 等国民茶饮连锁' },
-      { year: '2023', role: '创立 Cardi Nusantara', place: 'PT Digital Cardi Nusantara — 现为 Cardi 商业生态母实体' }
+    metaTitle: "Deo Cardi Nathanael — Cardi Nusantara 创始人兼首席执行官 | 个人简介",
+    metaDesc: "Cardi Nusantara 创始人兼首席执行官 Deo Cardi Nathanael 简介与经历。深耕印尼本土品牌塑造与数字化营销体系逾十年。被看见，被记住，被信任。",
+    waMsg: "您好 Deo，我通过 cardi.co.id 个人主页联系您，想咨询关于我的品牌。",
+    kicker: "Cardi Nusantara 创始人兼首席执行官",
+    nameFirst: "Deo Cardi",
+    nameLast: "Nathanael",
+    lead: "十余年品牌与业务建设经验。从IT初创企业，到30多个品牌，再到AI驱动的企业增长生态系统。",
+    btnWa: "咨询您的品牌",
+    btnAcademy: "Cardi Matrix Academy",
+    tagMotto: "被看见，被记住，被信任。",
+    tagSub: "品牌发展 · 业务发展 · 战略投资",
+    stats: [
+      { val: "10+", label: "年品牌与业务发展经验" },
+      { val: "30+", label: "个品牌的打造与发展" },
+      { val: "2,000+", label: "Foodinhands 社区餐饮创作者" },
+      { val: "USD 37K", label: "首个创业项目 Kotagrosir.com 获得的融资" }
     ],
-    principlesTitle: '商业哲学',
-    principlesP1: '品牌清晰度 — 远甚于单纯的产品堆砌 — 决定了哪家企业能够真正赢得客户信赖并稳步扩张。确立核心定位之后，系统化的获客转化流程必须日夜不息地运转。',
-    principlesP2: '这套哲学铸就了 Cardi 的双核引擎：<strong>Cardi Nusantara</strong> 筑牢高端品牌护城河，<strong>Cardi Agent</strong> 借助前沿 AI 自动化驱动实效销售。',
-    otherRolesTitle: '其他社会职务',
-    otherRolesDesc: 'BNI Passion 资深品牌顾问。',
-    ctaTitle: '邀请 Deo 进行主题演讲或商业咨询交流。',
-    ctaDesc: '聚焦领域：品牌破局、市场拓展战略 (GTM)、以及印尼商业 AI 实战落地。',
-    ctaBtn: '通过 WhatsApp 预约沟通'
+    aboutEb: "关于",
+    aboutH2: "始于科技，成于品牌。",
+    p1: "Deo Cardi Nathanael 是一位企业家，约14年前在雅加达 BINUS 大学担任助教，由此开启职业生涯。随后，他在 PT Nusantara Compnet Integrator 担任系统分析师，之后以联合创始人兼首席营销官的身份创立了他的第一家IT初创企业 Kotagrosir.com，并成功获得37,000美元融资。",
+    p2: "他从科技领域转向品牌领域。2016年，他创立了 Foodinhands，一个拥有2,000多名餐饮创作者的美食媒体与社区。2017年，他在雅加达创立了 Inhands Agency（PT Inhands Solusi Digital），一家餐饮与品牌咨询公司。他还曾担任 Nikmat Group 营销副总裁，该集团旗下拥有 Kopi Lain Hati、Street Boba 和 Gildak。",
+    p3: "如今，他领导 Cardi Nusantara（PT Digital Cardi Nusantara）。公司于2023年在雅加达成立，定位为企业增长生态系统，旗下包括：负责品牌战略与发展的 Cardi Branding、负责数字营销的 Cardi Digital、提供AI业务自动化的 Cardi Agent，以及帮助企业在品牌、营销、销售和IT系统方面为IPO做好准备的 Cardi IPO Partner。",
+    p4: "Cardi Nusantara 源自十余年打造30多个品牌的经验，涵盖餐饮、快消品、时尚、护肤和生活方式等行业，代表品牌包括 Kopi Lain Hati、Street Boba、Gudbite、Republic Padel、Tea N Tales 和 Surya Painting。其优势在于在同一生态系统内提供全方位支持：从品牌战略、数字执行、AI系统，到迈向IPO的商业准备。",
+    motto: "被看见，被记住，被信任。",
+    jEb: "历程",
+    jH2: "从系统到品牌，再回到系统。",
+    timeline: [
+      { year: "2012", title: "BINUS 大学助教", desc: "在雅加达开启职业生涯。" },
+      { year: "2014", title: "PT Nusantara Compnet Integrator 系统分析师", desc: "奠定科技与系统基础。" },
+      { year: "2015", title: "Kotagrosir.com 联合创始人兼首席营销官", pill: "37,000 美元", desc: "首家IT初创企业，获 Tech in Asia 报道。" },
+      { year: "2016", title: "创立 Foodinhands", desc: "拥有2,000多名餐饮创作者的美食媒体与社区。" },
+      { year: "2017", title: "创立 Inhands Agency", desc: "PT Inhands Solusi Digital，餐饮与品牌咨询公司，拥有3万多个餐饮品牌数据库。" },
+      { year: "2019", title: "Nikmat Group 营销副总裁 & Cardi Branding", desc: "Kopi Lain Hati、Street Boba 和 Gildak。Cardi Branding 诞生：打造人们信任并选择的品牌。" },
+      { year: "2022", title: "Cardi Digital", desc: "通过数字营销帮助本土品牌拓展至全国及全球市场。" },
+      { year: "2023", title: "Cardi Nusantara", desc: "PT Digital Cardi Nusantara，企业增长生态系统的控股公司及市场进入合作伙伴。" },
+      { year: "2026", isNow: true, title: "Cardi Agent", desc: "AI驱动的业务自动化，包括 Cardi MoM 和 Cardi LoyaL。" }
+    ],
+    eEb: "Cardi 生态系统",
+    eH2: "从品牌到IPO，全程助力企业成长。",
+    ecosystem: [
+      { num: "01 · 打造品牌", title: "Cardi Branding", desc: "品牌战略与发展：定位、形象与品牌信息。", linkText: "branding.cardinusantara.com →", linkHref: "https://branding.cardinusantara.com/" },
+      { num: "02 · 发展品牌", title: "Cardi Digital", desc: "数字营销：SEO、广告、内容与效果营销。", linkText: "digital.cardinusantara.com →", linkHref: "https://digital.cardinusantara.com/" },
+      { num: "03 · 业务自动化", title: "Cardi Agent", desc: "用于业务自动化与增长的AI智能体。", linkText: "cardi.co.id →", linkHref: "https://www.cardi.co.id/" },
+      { num: "04 · 迈向IPO", title: "Cardi IPO Partner", desc: "为企业的品牌、营销、销售和IT系统做好IPO准备。", linkText: "通过 WhatsApp 洽谈 →", linkHref: "https://api.whatsapp.com/send/?phone=6281289895646&text=%E6%82%A8%E5%A5%BD%20Deo%EF%BC%8C%E6%88%91%E9%80%9A%E8%BF%87%20cardi.co.id%20%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5%E8%81%94%E7%B3%BB%E6%82%A8%EF%BC%8C%E6%83%B3%E5%92%A8%E8%AF%A2%E5%85%B3%E4%BA%8E%E6%88%91%E7%9A%84%E5%93%81%E7%89%8C%E3%80%82" }
+    ],
+    brandsTitle: "曾打造与发展的品牌",
+    brands: ["Kopi Lain Hati", "Street Boba", "Gildak", "Gudbite", "Republic Padel", "Tea N Tales", "Surya Painting"],
+    pubEb: "演讲与报道",
+    pubH2: "分享与媒体报道。",
+    talksTitle: "演讲",
+    mediaTitle: "媒体报道",
+    seeAllMedia: "查看全部报道 ↓",
+    closeMedia: "收起 ↑",
+    ctH2: "一起打造值得信赖的品牌。",
+    ctP: "通过 WhatsApp 直接与 Deo 咨询您的品牌与业务。",
+    ctBtn: "WhatsApp 联系",
+    bniNote: "BNI（国际商业网络）Passion 分会会员 · 品牌咨询"
   }
 };
 
-const c = copy[lang] || copy.id;
+const c = content[currentLang];
+const waUrl = `https://api.whatsapp.com/send/?phone=6281289895646&text=${encodeURIComponent(c.waMsg)}`;
+
+const talks = [
+  { source: "BNI 2025", title: "Collaboration with Kementerian Ekraf", href: "https://www.instagram.com/p/DLApdjIhfKQ/?img_index=1" },
+  { source: "BNI Chapter Passion 2025", title: "Branding & Blueprint Strategy", href: "https://www.instagram.com/reel/DKCCEX0Bcrz/" },
+  { source: "KBC Bizcom Serpong 2024", title: "Live Shopping di TikTok & Shopee", href: "https://www.instagram.com/reel/C9oCv8MyL6a/?locale=id" },
+  { source: "Maju Bersama TikTok 2023", title: "Diskusi panel", href: "https://www.instagram.com/p/CpfEbBYrezD/?img_index=1" },
+  { source: "A Cup of Moka Conference 2022", title: "Konferensi UMKM", href: "https://www.cnnindonesia.com/ekonomi/20220126104015-537-751359/konferensi-umkm-acom-2022-hadirkan-pelaku-usaha-inspiratif" },
+  { source: "ESB Live Webinar", title: "#HelpingTheMarkets", href: "https://www.youtube.com/watch?v=iUh5ZWBZnXg" },
+  { source: "BINUS University 2021", title: "Alumni Profile", href: "https://www.youtube.com/watch?v=frV7Ewfy2ts" },
+  { source: "AlphaClass", title: "F&B Digital Marketing: Viral Marketing", href: "https://www.instagram.com/p/CLT0qPMBqe7/" },
+  { source: "Entrepreneurs.id", title: "3 Strategi Sukses Membangun Bisnis dalam 1 Tahun", href: "https://ekbis.sindonews.com/read/274264/34/kena-phk-imbas-pandemi-yuk-lirik-peluang-usaha-bersama-entrepreneursid-1608397960" },
+  { source: "BINUS University 2015", title: "Seminar Public Speaking \"Dare to Speak Up\"", href: "https://event.binus.ac.id/blog/2015/05/24/seminar-public-speaking/" }
+];
+
+const mediaFeatured = [
+  { source: "Tech in Asia", title: "Kotagrosir, startup grosir online (2015)", href: "https://id.techinasia.com/beli-barang-grosir-online-kotagrosir" },
+  { source: "Marketing.co.id", title: "Kopi Lain Hati diantar BMW Series 5", href: "https://marketing.co.id/beli-kopi-lain-hati-diantar-bmw-series-5/" },
+  { source: "SWA", title: "Cara memilih KOL dan influencer management", href: "https://swa.co.id/read/344919/cara-memilih-kol-dan-influencer-management-yang-tepat" },
+  { source: "Media Indonesia", title: "Media sosial berdampak pada industri kue", href: "https://mediaindonesia.com/humaniora/776056/media-sosial-berdampak-pada-industri-kue" },
+  { source: "Trans7", title: "Cuan Boss: Nasgor Mas Jamil", href: "https://www.youtube.com/watch?v=BaQFDlXM5Vs" },
+  { source: "Suara.com", title: "Era baru milik TikTok", href: "https://www.suara.com/bisnis/2021/08/25/142427/tiktok-raup-hampir-2-miliar-pengguna-kalahkan-medsos-lainnya" }
+];
+
+const mediaMore = [
+  { source: "Trans TV", title: "Diary The Onsu", href: "https://www.youtube.com/watch?v=bRMoNiPl-SE" },
+  { source: "Berita Satu", title: "Cilok Netizen x Seblak Blakan", href: "https://www.beritasatu.com/lifestyle/895019/cilok-netizen-kolaborasi-seblak-blakan-dengan-juara-masterchef-indonesia" },
+  { source: "Liputan6", title: "Seblak dengan rasa internasional", href: "https://www.liputan6.com/citizen6/read/4527173/pencinta-pedas-wajib-coba-seblak-dengan-kreasi-baru-citarasa-internasional" },
+  { source: "Tribunnews", title: "Live.On milik XL Axiata terima penghargaan", href: "https://www.tribunnews.com/techno/2020/12/07/liveon-ajak-siapa-saja-bebas-berinternet-tanpa-was-was-batasan-kuota" },
+  { source: "Warta Ekonomi", title: "Seblak Blakan, makanan kekinian", href: "https://wartaekonomi.co.id/read335471/seblak-blakan-makanan-kekinian-dengan-rasa-internasional" },
+  { source: "Warta Ekonomi", title: "Goerengan, jajanan pasar naik kelas", href: "https://wartaekonomi.co.id/read328796/goerengan-jajanan-pasar-yang-naik-kelas" },
+  { source: "Fimela", title: "Snack Korea di Jakarta", href: "https://www.fimela.com/lifestyle/read/4357994/merasakan-snack-korea-di-jakarta-milik-jovi-adhiguna" },
+  { source: "KapanLagi", title: "Minuman boba kekinian 2020", href: "https://www.kapanlagi.com/showbiz/selebriti/terjun-ke-dunia-bisnis-keanu-agl-jualan-minuman-boba-169b44.html" },
+  { source: "DAAI TV", title: "DTS community di Halo Indonesia", href: "https://www.youtube.com/watch?v=1GvHgasNmBo" },
+  { source: "Tech in Asia", title: "4 startup teknologi Indonesia minggu ini (2015)", href: "https://id.techinasia.com/berita-startup-teknologi-di-indonesia-7-november-2015" }
+];
 ---
 
-<Layout title={c.title} description={c.desc} lang={lang}>
+<Layout title={c.metaTitle} description={c.metaDesc} lang={lang}>
+  <!-- Schema.org Person JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Deo Cardi Nathanael",
+    "alternateName": "Deo Cardi",
+    "jobTitle": "Founder & CEO",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Cardi Nusantara",
+      "legalName": "PT Digital Cardi Nusantara",
+      "url": "https://www.cardi.co.id/"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "BINUS University"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Jakarta",
+      "addressCountry": "ID"
+    },
+    "url": "https://cardi.co.id/deo-cardi-nathanael-profile/",
+    "sameAs": [
+      "https://deo.cardinusantara.com/",
+      "https://www.linkedin.com/in/deocardi/",
+      "https://www.instagram.com/deo_cardi/",
+      "https://www.tiktok.com/@deo_cardi",
+      "https://www.youtube.com/deocardi"
+    ],
+    "knowsAbout": [
+      "Brand Development",
+      "Brand Strategy",
+      "Digital Marketing",
+      "Business Development",
+      "F&B Branding",
+      "AI Agent for Business"
+    ]
+  })} />
+
   <Navbar lang={lang} />
 
-  <main id="main">
-    <section class="hero">
+  <main id="main" class="founder-page">
+    <!-- HERO SECTION -->
+    <section class="founder-hero">
       <div class="wrap">
-        <div class="hero-split" style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px; align-items:center;">
-          <div class="hero-copy">
-            <span class="eyebrow">{c.eyebrow}</span>
-            <h1>{c.name}</h1>
+        <!-- In-page language switcher pill -->
+        <div class="lang-bar">
+          <span class="lang-label">Language:</span>
+          <div class="lang-pills">
+            <a href="/deo-cardi-nathanael-profile" class={`lang-chip ${currentLang === 'id' ? 'active' : ''}`}>ID</a>
+            <a href="/en/deo-cardi-nathanael-profile" class={`lang-chip ${currentLang === 'en' ? 'active' : ''}`}>EN</a>
+            <a href="/zh/deo-cardi-nathanael-profile" class={`lang-chip ${currentLang === 'zh' ? 'active' : ''}`}>中文</a>
+          </div>
+        </div>
+
+        <div class="hero-grid">
+          <div class="hero-content">
+            <span class="kicker">{c.kicker}</span>
+            <h1 class="founder-title">
+              {c.nameFirst} <span class="highlight">{c.nameLast}</span>
+            </h1>
             <p class="lead">{c.lead}</p>
-            <div class="btns">
-              <a class="btn btn-dark" href="https://wa.me/6281289895646?text=Halo%20Pak%20Deo%2C%20saya%20ingin%20berdiskusi." target="_blank" rel="noopener">{c.btnWa}</a>
-              <a class="btn btn-light" href={translatePath('/ekosistem/')}>{c.btnEco}</a>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href={waUrl} target="_blank" rel="noopener">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/>
+                </svg>
+                <span>{c.btnWa}</span>
+              </a>
+              <a class="btn btn-secondary" href="https://www.youtube.com/c/DeoCardi" target="_blank" rel="noopener">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                <span>{c.btnAcademy}</span>
+              </a>
             </div>
           </div>
-          <div class="hero-side" style="display:flex; justify-content:center;">
-            <div style="width:100%; max-width:340px; aspect-ratio:4/5; border-radius:24px; background:linear-gradient(135deg, rgba(26,75,240,0.08), rgba(229,169,60,0.12)); border:1px solid var(--line); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px;">
-              <div style="width:96px; height:96px; border-radius:50%; background:var(--blue); color:#fff; display:flex; align-items:center; justify-content:center; font-size:36px; font-weight:800; margin-bottom:16px;">
-                D
+
+          <div class="hero-photo-wrap">
+            <figure class="founder-photo-card">
+              <img 
+                src="/images/deo-cardi-nathanael.jpg" 
+                alt="Deo Cardi Nathanael — Founder & CEO Cardi Nusantara" 
+                width="420" 
+                height="490" 
+                loading="eager"
+              />
+              <figcaption class="photo-badge">
+                <strong class="badge-motto">{c.tagMotto}</strong>
+                <span class="badge-sub">{c.tagSub}</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- STATS BAR -->
+        <div class="stats-bar">
+          {c.stats.map((s) => (
+            <div class="stat-item">
+              <b class="stat-number">{s.val}</b>
+              <span class="stat-label">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- TENTANG / ABOUT SECTION -->
+    <section id="tentang" class="section section-about">
+      <div class="wrap">
+        <div class="split-layout">
+          <div class="split-head">
+            <span class="eyebrow">{c.aboutEb}</span>
+            <h2 class="section-title">{c.aboutH2}</h2>
+          </div>
+          <div class="split-body story-body">
+            <p class="story-lead">{c.p1}</p>
+            <p>{c.p2}</p>
+            <p>{c.p3}</p>
+            <p>{c.p4}</p>
+            <div class="motto-callout">
+              <span class="motto-mark">“</span>
+              <p class="motto-text">{c.motto}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERJALANAN / JOURNEY TIMELINE -->
+    <section id="perjalanan" class="section section-timeline">
+      <div class="wrap">
+        <div class="timeline-header">
+          <span class="eyebrow">{c.jEb}</span>
+          <h2 class="section-title">{c.jH2}</h2>
+        </div>
+
+        <ol class="timeline-list">
+          {c.timeline.map((item) => (
+            <li class={`timeline-item ${item.isNow ? 'is-now' : ''}`}>
+              <div class="timeline-year-col">
+                <span class="timeline-year">{item.year}</span>
               </div>
-              <h3 style="font-size:20px; font-weight:700; color:var(--ink); margin:0;">{c.name}</h3>
-              <p style="font-size:14px; color:var(--muted); margin:4px 0 0;">{c.founderRole}</p>
-            </div>
-          </div>
-        </div>
+              <div class="timeline-marker"></div>
+              <div class="timeline-content-card">
+                <h3 class="timeline-title">
+                  {item.title}
+                  {item.pill && <span class="pill-badge">{item.pill}</span>}
+                  {item.isNow && <span class="pill-now">Active</span>}
+                </h3>
+                <p class="timeline-desc">{item.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
 
-    <!-- Perjalanan / Timeline -->
-    <section class="sec">
+    <!-- EKOSISTEM CARDI -->
+    <section id="ekosistem" class="section section-ecosystem">
       <div class="wrap">
-        <div class="sec-head">
-          <span class="eyebrow">{c.secTimelineEyebrow}</span>
-          <h2>{c.secTimelineTitle}</h2>
+        <div class="eco-header">
+          <span class="eyebrow">{c.eEb}</span>
+          <h2 class="section-title">{c.eH2}</h2>
         </div>
-        <div class="split">
-          <ol class="timeline">
-            {c.timeline.map((item) => (
-              <li>
-                <b>{item.year}</b>
-                <h3>{item.role}</h3>
-                <p>{item.place}</p>
-              </li>
+
+        <div class="eco-grid">
+          {c.ecosystem.map((card) => (
+            <a href={card.linkHref} class="eco-card" target="_blank" rel="noopener">
+              <span class="eco-number">{card.num}</span>
+              <h3 class="eco-title">{card.title}</h3>
+              <p class="eco-desc">{card.desc}</p>
+              <span class="eco-link">{card.linkText}</span>
+            </a>
+          ))}
+        </div>
+
+        <div class="brands-section">
+          <span class="eyebrow brands-eyebrow">{c.brandsTitle}</span>
+          <div class="brands-chips">
+            {c.brands.map((brand) => (
+              <span class="brand-chip">{brand}</span>
             ))}
-          </ol>
-
-          <div class="prose">
-            <h3 style="font-size:24px; color:var(--ink); margin-bottom:12px;">{c.principlesTitle}</h3>
-            <p set:html={c.principlesP1}></p>
-            <p set:html={c.principlesP2}></p>
-            
-            <h3 style="font-size:24px; color:var(--ink); margin:28px 0 12px;">{c.otherRolesTitle}</h3>
-            <p>{c.otherRolesDesc}</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA Band -->
-    <section class="sec" style="padding-top:0;">
+    <!-- PUBLIKASI / TALKS & MEDIA -->
+    <section id="publikasi" class="section section-publications">
       <div class="wrap">
-        <div class="cta-band">
-          <div>
-            <h2>{c.ctaTitle}</h2>
-            <p>{c.ctaDesc}</p>
+        <div class="pub-header">
+          <span class="eyebrow">{c.pubEb}</span>
+          <h2 class="section-title">{c.pubH2}</h2>
+        </div>
+
+        <div class="pub-columns">
+          <!-- Talks Column -->
+          <div class="pub-col">
+            <h3 class="pub-col-title">{c.talksTitle}</h3>
+            <ul class="pub-list">
+              {talks.map((t) => (
+                <li class="pub-item">
+                  <a href={t.href} target="_blank" rel="noopener" class="pub-link">
+                    <div class="pub-info">
+                      <span class="pub-source">{t.source}</span>
+                      <span class="pub-name">{t.title}</span>
+                    </div>
+                    <span class="pub-arr">↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div class="btns">
-            <a class="btn btn-light" href="https://wa.me/6281289895646?text=Halo%20Pak%20Deo%2C%20saya%20ingin%20mengundang%20Anda%20sebagai%20pembicara." target="_blank" rel="noopener">{c.ctaBtn}</a>
+
+          <!-- Media Coverage Column -->
+          <div class="pub-col">
+            <h3 class="pub-col-title">{c.mediaTitle}</h3>
+            <ul class="pub-list">
+              {mediaFeatured.map((m) => (
+                <li class="pub-item">
+                  <a href={m.href} target="_blank" rel="noopener" class="pub-link">
+                    <div class="pub-info">
+                      <span class="pub-source">{m.source}</span>
+                      <span class="pub-name">{m.title}</span>
+                    </div>
+                    <span class="pub-arr">↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <!-- Collapsible older items -->
+            <details class="pub-details">
+              <summary class="pub-summary">
+                <span class="more-label">{c.seeAllMedia}</span>
+                <span class="less-label">{c.closeMedia}</span>
+              </summary>
+              <ul class="pub-list pub-list-nested">
+                {mediaMore.map((m) => (
+                  <li class="pub-item">
+                    <a href={m.href} target="_blank" rel="noopener" class="pub-link">
+                      <div class="pub-info">
+                        <span class="pub-source">{m.source}</span>
+                        <span class="pub-name">{m.title}</span>
+                      </div>
+                      <span class="pub-arr">↗</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAK & NETWORK -->
+    <section id="kontak" class="section section-contact">
+      <div class="wrap">
+        <div class="contact-card">
+          <div class="contact-main">
+            <h2 class="contact-title">{c.ctH2}</h2>
+            <p class="contact-lead">{c.ctP}</p>
+            <div class="contact-actions">
+              <a class="btn btn-primary-light" href={waUrl} target="_blank" rel="noopener">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/>
+                </svg>
+                <span>{c.ctBtn}</span>
+              </a>
+              <a class="btn btn-ghost-light" href="https://deo.cardinusantara.com/" target="_blank" rel="noopener">
+                deo.cardinusantara.com
+              </a>
+            </div>
+            <p class="bni-badge">
+              <span class="bni-dot"></span>
+              {c.bniNote}
+            </p>
+          </div>
+
+          <div class="contact-social">
+            <span class="social-title">Connect</span>
+            <ul class="social-list">
+              <li>
+                <a href="https://www.linkedin.com/in/deocardi/" target="_blank" rel="noopener" class="social-link">
+                  <span>LinkedIn</span>
+                  <span class="arr">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/deo_cardi/" target="_blank" rel="noopener" class="social-link">
+                  <span>Instagram</span>
+                  <span class="arr">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.tiktok.com/@deo_cardi" target="_blank" rel="noopener" class="social-link">
+                  <span>TikTok</span>
+                  <span class="arr">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/deocardi" target="_blank" rel="noopener" class="social-link">
+                  <span>YouTube</span>
+                  <span class="arr">↗</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -182,3 +550,754 @@ const c = copy[lang] || copy.id;
 
   <Footer lang={lang} />
 </Layout>
+
+<style>
+  /* PURE LIGHT THEME - Matching landing page design system */
+  :root {
+    --c-ink: #0A1633;
+    --c-body: #3D4B6B;
+    --c-muted: #6B7A9C;
+    --c-paper: #FFFFFF;
+    --c-soft: #F5F8FE;
+    --c-soft-hover: #EBF1FD;
+    --c-line: #E6ECF7;
+    --c-blue: #0258a4;
+    --c-blue-hover: #01417a;
+    --c-blue-subtle: #E8F1FC;
+  }
+
+  .founder-page {
+    background: var(--c-paper);
+    color: var(--c-ink);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+  }
+
+  /* LANGUAGE SWITCHER */
+  .lang-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .lang-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--c-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .lang-pills {
+    display: inline-flex;
+    background: var(--c-soft);
+    border: 1px solid var(--c-line);
+    border-radius: 999px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .lang-chip {
+    padding: 4px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--c-muted);
+    border-radius: 999px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .lang-chip:hover {
+    color: var(--c-blue);
+  }
+  .lang-chip.active {
+    background: var(--c-blue);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(2, 88, 164, 0.25);
+  }
+
+  /* HERO */
+  .founder-hero {
+    padding: 40px 0 60px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F5F8FE 100%);
+    border-bottom: 1px solid var(--c-line);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .kicker {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--c-blue);
+    margin-bottom: 12px;
+  }
+  .founder-title {
+    font-size: clamp(40px, 6vw, 68px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--c-ink);
+    margin: 0 0 20px;
+  }
+  .founder-title .highlight {
+    color: var(--c-blue);
+  }
+  .lead {
+    font-size: clamp(17px, 1.6vw, 20px);
+    line-height: 1.55;
+    color: var(--c-body);
+    max-width: 44ch;
+    margin: 0 0 32px;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 13px 26px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--c-blue);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(2, 88, 164, 0.25);
+  }
+  .btn-primary:hover {
+    background: var(--c-blue-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(2, 88, 164, 0.32);
+    color: #ffffff;
+  }
+  .btn-secondary {
+    background: #ffffff;
+    color: var(--c-ink);
+    border: 1px solid var(--c-line);
+    box-shadow: 0 2px 6px rgba(10, 22, 51, 0.04);
+  }
+  .btn-secondary:hover {
+    border-color: var(--c-blue);
+    color: var(--c-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(10, 22, 51, 0.08);
+  }
+
+  /* PHOTO CARD */
+  .hero-photo-wrap {
+    display: flex;
+    justify-content: center;
+  }
+  .founder-photo-card {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    max-width: 440px;
+    aspect-ratio: 420/490;
+    border-radius: 28px;
+    overflow: hidden;
+    background: #E8EEF8;
+    box-shadow:
+      0 20px 40px -15px rgba(2, 88, 164, 0.16),
+      0 0 0 1px rgba(230, 236, 247, 0.9);
+  }
+  .founder-photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .founder-photo-card:hover img {
+    transform: scale(1.02);
+  }
+
+  .photo-badge {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    background: rgba(10, 22, 51, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #ffffff;
+    border-radius: 18px;
+    padding: 14px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .badge-motto {
+    display: block;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+    margin-bottom: 2px;
+  }
+  .badge-sub {
+    display: block;
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.82);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid var(--c-line);
+  }
+  @media (max-width: 800px) {
+    .stats-bar {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+  }
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .stat-number {
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 800;
+    color: var(--c-blue);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat-label {
+    font-size: 14px;
+    color: var(--c-body);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  /* SECTION COMMONS */
+  .section {
+    padding: clamp(60px, 8vw, 96px) 0;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--c-blue);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-size: clamp(32px, 4.4vw, 48px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--c-ink);
+    margin: 0;
+  }
+
+  /* SPLIT LAYOUT (TENTANG) */
+  .section-about {
+    background: var(--c-paper);
+  }
+  .split-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(32px, 6vw, 72px);
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .split-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+  .story-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .story-body p {
+    font-size: clamp(16px, 1.4vw, 18px);
+    line-height: 1.7;
+    color: var(--c-body);
+    margin: 0;
+  }
+  .story-lead {
+    font-size: clamp(17px, 1.5vw, 19px) !important;
+    color: var(--c-ink) !important;
+    font-weight: 500;
+  }
+  .motto-callout {
+    margin-top: 16px;
+    padding: 20px 24px;
+    background: var(--c-soft);
+    border-left: 4px solid var(--c-blue);
+    border-radius: 0 16px 16px 0;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .motto-mark {
+    font-size: 32px;
+    line-height: 0;
+    color: var(--c-blue);
+    font-weight: 800;
+  }
+  .motto-text {
+    font-size: clamp(22px, 2.5vw, 28px) !important;
+    font-weight: 800;
+    color: var(--c-blue) !important;
+    letter-spacing: -0.01em;
+  }
+
+  /* TIMELINE */
+  .section-timeline {
+    background: #FAFCFF;
+    border-top: 1px solid var(--c-line);
+    border-bottom: 1px solid var(--c-line);
+  }
+  .timeline-header {
+    margin-bottom: 48px;
+  }
+  .timeline-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 80px 32px 1fr;
+    align-items: start;
+    position: relative;
+    padding-bottom: 32px;
+  }
+  .timeline-item:last-child {
+    padding-bottom: 0;
+  }
+  @media (max-width: 640px) {
+    .timeline-item {
+      grid-template-columns: 60px 24px 1fr;
+    }
+  }
+
+  .timeline-year-col {
+    text-align: right;
+    padding-right: 14px;
+    padding-top: 2px;
+  }
+  .timeline-year {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--c-blue);
+    letter-spacing: -0.02em;
+  }
+
+  .timeline-marker {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid var(--c-blue);
+    margin-top: 6px;
+    z-index: 2;
+  }
+  .timeline-item.is-now .timeline-marker {
+    background: var(--c-blue);
+    box-shadow: 0 0 0 4px var(--c-blue-subtle);
+  }
+  /* Connector vertical line */
+  .timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: calc(80px + 6px);
+    top: 20px;
+    bottom: 0;
+    width: 2px;
+    background: var(--c-line);
+  }
+  @media (max-width: 640px) {
+    .timeline-item:not(:last-child)::after {
+      left: calc(60px + 6px);
+    }
+  }
+
+  .timeline-content-card {
+    padding-left: 20px;
+  }
+  .timeline-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--c-ink);
+    margin: 0 0 4px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  .timeline-desc {
+    font-size: 15px;
+    color: var(--c-body);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .pill-badge {
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--c-blue-subtle);
+    color: var(--c-blue);
+    border-radius: 999px;
+    padding: 2px 10px;
+  }
+  .pill-now {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: #DEF7EC;
+    color: #03543F;
+    border-radius: 999px;
+    padding: 2px 8px;
+  }
+
+  /* ECOSYSTEM */
+  .section-ecosystem {
+    background: var(--c-paper);
+  }
+  .eco-header {
+    margin-bottom: 40px;
+  }
+  .eco-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .eco-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .eco-card {
+    background: #ffffff;
+    border: 1px solid var(--c-line);
+    border-radius: 20px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 10px rgba(10, 22, 51, 0.03);
+  }
+  .eco-card:hover {
+    border-color: var(--c-blue);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px -6px rgba(2, 88, 164, 0.12);
+  }
+  .eco-number {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--c-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .eco-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--c-ink);
+    letter-spacing: -0.015em;
+    margin: 0 0 10px;
+  }
+  .eco-desc {
+    font-size: 15px;
+    color: var(--c-body);
+    line-height: 1.55;
+    margin: 0 0 20px;
+  }
+  .eco-link {
+    margin-top: auto;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--c-blue);
+  }
+
+  .brands-section {
+    margin-top: 48px;
+    padding-top: 36px;
+    border-top: 1px solid var(--c-line);
+  }
+  .brands-eyebrow {
+    margin-bottom: 16px;
+  }
+  .brands-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .brand-chip {
+    padding: 8px 18px;
+    background: var(--c-soft);
+    border: 1px solid var(--c-line);
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--c-ink);
+    transition: all 0.2s;
+  }
+  .brand-chip:hover {
+    background: #ffffff;
+    border-color: var(--c-blue);
+    color: var(--c-blue);
+  }
+
+  /* PUBLICATIONS */
+  .section-publications {
+    background: #FAFCFF;
+    border-top: 1px solid var(--c-line);
+  }
+  .pub-header {
+    margin-bottom: 40px;
+  }
+  .pub-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(32px, 6vw, 64px);
+  }
+  @media (max-width: 860px) {
+    .pub-columns {
+      grid-template-columns: 1fr;
+    }
+  }
+  .pub-col-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--c-ink);
+    margin: 0 0 16px;
+  }
+  .pub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .pub-item {
+    border-top: 1px solid var(--c-line);
+  }
+  .pub-item:last-child {
+    border-bottom: 1px solid var(--c-line);
+  }
+  .pub-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 4px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .pub-link:hover .pub-name {
+    color: var(--c-blue);
+  }
+  .pub-link:hover .pub-arr {
+    color: var(--c-blue);
+    transform: translate(2px, -2px);
+  }
+  .pub-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .pub-source {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--c-blue);
+  }
+  .pub-name {
+    font-size: 15px;
+    color: var(--c-ink);
+    font-weight: 600;
+    line-height: 1.45;
+    transition: color 0.2s;
+  }
+  .pub-arr {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--c-muted);
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .pub-details {
+    margin-top: 12px;
+  }
+  .pub-summary {
+    cursor: pointer;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--c-blue);
+    padding: 12px 4px;
+    list-style: none;
+    outline: none;
+  }
+  .pub-summary::-webkit-details-marker {
+    display: none;
+  }
+  .pub-details:not([open]) .less-label {
+    display: none;
+  }
+  .pub-details[open] .more-label {
+    display: none;
+  }
+  .pub-list-nested {
+    margin-top: 8px;
+  }
+
+  /* CONTACT CARD - ELEGANT LIGHT HERO BOX */
+  .section-contact {
+    background: var(--c-paper);
+    padding-bottom: 80px;
+  }
+  .contact-card {
+    background: linear-gradient(135deg, #0A1633 0%, #0D214F 100%);
+    border-radius: 32px;
+    padding: clamp(32px, 6vw, 64px);
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 40px;
+    align-items: center;
+    color: #ffffff;
+    box-shadow: 0 20px 48px -12px rgba(10, 22, 51, 0.35);
+  }
+  @media (max-width: 860px) {
+    .contact-card {
+      grid-template-columns: 1fr;
+    }
+  }
+  .contact-title {
+    font-size: clamp(32px, 4.4vw, 52px);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin: 0 0 16px;
+  }
+  .contact-lead {
+    font-size: clamp(16px, 1.4vw, 18px);
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 44ch;
+    margin: 0 0 28px;
+    line-height: 1.6;
+  }
+  .contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .btn-primary-light {
+    background: #ffffff;
+    color: #0A1633;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  }
+  .btn-primary-light:hover {
+    background: var(--c-blue-subtle);
+    color: var(--c-blue);
+    transform: translateY(-2px);
+  }
+  .btn-ghost-light {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+  }
+  .btn-ghost-light:hover {
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .bni-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+  }
+  .bni-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10B981;
+  }
+
+  .contact-social {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 24px 28px;
+  }
+  .social-title {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 12px;
+  }
+  .social-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .social-list li {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .social-list li:first-child {
+    border-top: none;
+  }
+  .social-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 0;
+    color: #ffffff;
+    font-size: 15.5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .social-link:hover {
+    color: #60A5FA;
+    padding-left: 4px;
+  }
+  .social-link .arr {
+    color: rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s;
+  }
+  .social-link:hover .arr {
+    color: #60A5FA;
+    transform: translate(2px, -2px);
+  }
+</style>
