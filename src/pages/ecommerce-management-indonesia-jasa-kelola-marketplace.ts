@@ -1,9 +1,16 @@
 import type { APIRoute } from 'astro';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
-// Redirect to the static PDF served from public/
 export const GET: APIRoute = () => {
-  return new Response(null, {
-    status: 301,
-    headers: { Location: '/Cardi.co.id%20-%20Pricing.pdf' },
+  const pdfPath = join(process.cwd(), 'public', 'Cardi.co.id - Pricing.pdf');
+  const file = readFileSync(pdfPath);
+  return new Response(file, {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': 'inline; filename="Cardi-Pricing.pdf"',
+    },
   });
 };
+

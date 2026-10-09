@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../Navbar.astro';
 import Footer from '../Footer.astro';
-import { getLangFromUrl, useTranslations, useTranslatedPath } from '../../i18n/utils';
+import { getLangFromUrl, useTranslatedPath } from '../../i18n/utils';
 import type { LangKey } from '../../i18n/ui';
 
 interface Props {
@@ -10,123 +10,851 @@ interface Props {
 }
 
 const { lang = getLangFromUrl(Astro.url) } = Astro.props;
-const t = useTranslations(lang);
+const currentLang = (lang as string) === 'en' ? 'en' : (lang as string) === 'zh' ? 'zh' : 'id';
 const translatePath = useTranslatedPath(lang);
 
-const timeline = [
-  { year: '2016', name: 'Foodinhands', desc: 'Media dan komunitas kuliner — belajar langsung bagaimana brand F&B dilihat dan diingat.' },
-  { year: '2017', name: 'Inhands Agency', desc: 'Konsultan F&B dan branding untuk bisnis yang ingin naik kelas.' },
-  { year: '—', name: 'Nikmat Group', desc: 'Memimpin marketing untuk Kopi Lain Hati, Street Boba, dan Gildak sebagai VP Marketing.' },
-  { year: '2023', name: 'Cardi Nusantara', desc: 'Membangun grup jasa branding, digital, go-to-market, dan IPO Partner.' },
-  { year: '2026', name: 'Ekosistem Cardi', desc: 'Cardi menjadi induk dari dua mesin: Cardi Nusantara (tim ahli) dan Cardi Agent (tim AI).' }
-];
+const content = {
+  id: {
+    metaTitle: "Tentang Cardi — Cardi Nusantara Group",
+    metaDesc: "Cardi lahir dari satu keyakinan: yang menentukan bisnis dipercaya dan tumbuh bukan hanya kualitas produk, tapi kejelasan brand-nya — lalu sistem yang membuat penjualan terus berjalan.",
+    heroEyebrow: "Tentang Cardi",
+    heroH1: "Brand yang jelas adalah awal semua pertumbuhan.",
+    heroLead: "Cardi lahir dari satu keyakinan: yang menentukan bisnis dipercaya dan tumbuh bukan hanya kualitas produk, tapi kejelasan brand-nya — lalu sistem yang membuat penjualan terus berjalan.",
+    journeyEyebrow: "Perjalanan",
+    journeyH2: "Dari komunitas kuliner sampai ekosistem AI.",
+    journeyP1: "Selama lebih dari satu dekade kami membantu bisnis Indonesia membangun brand. Polanya selalu sama: bisnis yang brand-nya jelas lebih mudah dipercaya — tapi banyak yang berhenti di situ karena penjualan, tagihan, dan pelanggan lama tidak terurus.",
+    journeyP2: "Karena itu Cardi kini punya dua mesin. <strong class=\"highlight-bold\">Cardi Nusantara</strong> membangun brand bersama tim ahli. <strong class=\"highlight-bold\">Cardi Agent</strong> menjalankan sistem penjualan dengan AI.",
+    timeline: [
+      {
+        year: "2016",
+        title: "Foodinhands",
+        desc: "Media dan komunitas kuliner — belajar langsung bagaimana brand F&B dilihat dan diingat."
+      },
+      {
+        year: "2017",
+        title: "Inhands Agency",
+        desc: "Konsultan F&B dan branding untuk bisnis yang ingin naik kelas."
+      },
+      {
+        year: "2023",
+        title: "Cardi Nusantara",
+        desc: "Branding, digital, dan AI dalam satu ekosistem yang tumbuh dari akar yang sama."
+      }
+    ],
+    philosophyEyebrow: "Filosofi Logo",
+    philosophyH2: "Delapan kelopak, satu akar yang sama.",
+    philosophyP1: "Bunga pada logo Cardi bukan ornamen — ia adalah peta cara ekosistem ini tumbuh. Delapan kelopak merepresentasikan delapan arah pertumbuhan, dari lini usaha inti hingga unit-unit baru yang terus bertambah, semuanya berangkat dari satu titik pusat yang sama.",
+    philosophyP2: "Biru electric melambangkan kejernihan, kepercayaan, dan presisi teknologi. Bentuknya yang simetris dan mekar melambangkan pertumbuhan berkelanjutan — dari Build, Launch, Grow, hingga Scale.",
+    tagline: "dilihat · diingat · dipercaya",
+    visionEyebrow: "Visi",
+    visionText: "Menjadi ekosistem bisnis multi-vertikal terkemuka di Indonesia yang memberdayakan brand untuk dilihat, diingat, dan dipercaya — melalui sinergi kreativitas, teknologi, dan sistem yang terukur.",
+    missionEyebrow: "Misi",
+    missions: [
+      {
+        num: "01",
+        title: "Clarify Every Brand",
+        desc: "Membantu setiap brand menemukan positioning yang jelas dan otentik sebelum melangkah ke pasar."
+      },
+      {
+        num: "02",
+        title: "Build with System",
+        desc: "Membangun sistem branding dan pemasaran yang terstruktur, berbasis data, dan didukung teknologi AI."
+      },
+      {
+        num: "03",
+        title: "Activate the Ecosystem",
+        desc: "Menciptakan sinergi antar lini usaha sebagai satu kesatuan yang saling menguatkan."
+      },
+      {
+        num: "04",
+        title: "Grow the People",
+        desc: "Mengembangkan talenta internal yang kompeten, adaptif, dan berintegritas tinggi."
+      },
+      {
+        num: "05",
+        title: "Scale with Purpose",
+        desc: "Mengantarkan klien dan mitra menuju pertumbuhan berkelanjutan, dari fondasi hingga siap scale-up."
+      }
+    ],
+    valueEyebrow: "Value",
+    valueH2: "C · A · R · D · I",
+    valueLead: "Lima nilai yang berangkat dari nama kami sendiri — cara Cardi bekerja, dan cara setiap orang di Cardi berperilaku.",
+    values: [
+      {
+        letter: "C",
+        title: "Clarity",
+        tag: "KEJERNIHAN",
+        desc: "Setiap strategi berangkat dari tujuan yang jelas, bukan asumsi."
+      },
+      {
+        letter: "A",
+        title: "Agility",
+        tag: "KELINCAHAN",
+        desc: "Bergerak secepat perubahan pasar dan teknologi."
+      },
+      {
+        letter: "R",
+        title: "Reliability",
+        tag: "KETERANDALAN",
+        desc: "Konsisten pada kualitas dan komitmen waktu."
+      },
+      {
+        letter: "D",
+        title: "Dedication",
+        tag: "DEDIKASI",
+        desc: "Bekerja dengan rasa memiliki pada setiap hasil."
+      },
+      {
+        letter: "I",
+        title: "Innovation",
+        tag: "INOVASI",
+        desc: "Terus mendorong batas kreativitas dan teknologi."
+      }
+    ],
+    ctaH2: "Sudah jelas brand kamu?",
+    ctaLead: "Mulai dari cek brand — kami bantu lihat di mana kejelasannya, dan apa yang perlu dibangun berikutnya.",
+    ctaBtn: "Cek Brand",
+    ctaLink: "https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20ingin%20cek%20brand."
+  },
+  en: {
+    metaTitle: "About Cardi — Cardi Nusantara Group",
+    metaDesc: "Cardi was born from a single conviction: what determines whether a business is trusted and grows is not just product quality, but the clarity of its brand — followed by systems that keep sales running.",
+    heroEyebrow: "About Cardi",
+    heroH1: "A clear brand is the foundation of all growth.",
+    heroLead: "Cardi was born from a single conviction: what determines whether a business is trusted and grows is not just product quality, but the clarity of its brand — followed by systems that keep sales running.",
+    journeyEyebrow: "Journey",
+    journeyH2: "From culinary community to an AI ecosystem.",
+    journeyP1: "For more than a decade, we have helped Indonesian businesses build brands. The pattern is always the same: businesses with clear brands gain trust faster — yet many stall because sales, follow-ups, and customer retention get neglected.",
+    journeyP2: "That is why Cardi operates two growth engines. <strong class=\"highlight-bold\">Cardi Nusantara</strong> builds brands with expert teams. <strong class=\"highlight-bold\">Cardi Agent</strong> powers sales systems with AI.",
+    timeline: [
+      {
+        year: "2016",
+        title: "Foodinhands",
+        desc: "Culinary media and community — learning firsthand how F&B brands are seen and remembered."
+      },
+      {
+        year: "2017",
+        title: "Inhands Agency",
+        desc: "F&B and branding consultancy for businesses ready to scale."
+      },
+      {
+        year: "2023",
+        title: "Cardi Nusantara",
+        desc: "Branding, digital, and AI within one ecosystem rooted in the same core."
+      }
+    ],
+    philosophyEyebrow: "Logo Philosophy",
+    philosophyH2: "Eight petals, one shared root.",
+    philosophyP1: "The flower mark on the Cardi logo is not an ornament — it is a roadmap of how this ecosystem expands. Eight petals represent eight growth directions, from core business units to newly expanding ventures, all branching from the same center point.",
+    philosophyP2: "Electric blue represents clarity, trust, and technological precision. Its symmetrical blooming form symbolizes sustainable growth — through Build, Launch, Grow, and Scale.",
+    tagline: "seen · remembered · trusted",
+    visionEyebrow: "Vision",
+    visionText: "To become Indonesia's leading multi-vertical business ecosystem, empowering brands to be seen, remembered, and trusted — through the synergy of creativity, technology, and measurable systems.",
+    missionEyebrow: "Mission",
+    missions: [
+      {
+        num: "01",
+        title: "Clarify Every Brand",
+        desc: "Helping every brand discover authentic, clear positioning before entering the market."
+      },
+      {
+        num: "02",
+        title: "Build with System",
+        desc: "Building structured, data-driven branding and marketing systems powered by AI technology."
+      },
+      {
+        num: "03",
+        title: "Activate the Ecosystem",
+        desc: "Creating synergy across business lines as one mutually reinforcing whole."
+      },
+      {
+        num: "04",
+        title: "Grow the People",
+        desc: "Cultivating competent, adaptive, and high-integrity internal talent as the driving engine."
+      },
+      {
+        num: "05",
+        title: "Scale with Purpose",
+        desc: "Guiding clients and partners toward sustainable growth, from initial foundation to scale-up readiness."
+      }
+    ],
+    valueEyebrow: "Values",
+    valueH2: "C · A · R · D · I",
+    valueLead: "Five values drawn directly from our name — how Cardi operates, and how everyone at Cardi behaves.",
+    values: [
+      {
+        letter: "C",
+        title: "Clarity",
+        tag: "CLARITY",
+        desc: "Every strategy starts from clear objectives, never assumptions."
+      },
+      {
+        letter: "A",
+        title: "Agility",
+        tag: "AGILITY",
+        desc: "Moving as fast as market shifts and technological advancements."
+      },
+      {
+        letter: "R",
+        title: "Reliability",
+        tag: "RELIABILITY",
+        desc: "Consistent in quality standards and timeline commitments."
+      },
+      {
+        letter: "D",
+        title: "Dedication",
+        tag: "DEDICATION",
+        desc: "Working with genuine ownership in every outcome."
+      },
+      {
+        letter: "I",
+        title: "Innovation",
+        tag: "INNOVATION",
+        desc: "Continuously pushing the boundaries of creativity and technology."
+      }
+    ],
+    ctaH2: "Is your brand clear?",
+    ctaLead: "Start with a brand check — we'll help uncover where clarity lies and what needs to be built next.",
+    ctaBtn: "Check Brand",
+    ctaLink: "https://wa.me/6281289895646?text=Hello%20Cardi%2C%20I%20would%20like%20to%20check%20my%20brand."
+  },
+  zh: {
+    metaTitle: "关于 Cardi — Cardi Nusantara Group",
+    metaDesc: "Cardi 诞生于一个信念：决定企业能否获得信任并持续增长的，不仅在于产品质量，更在于品牌的清晰度——以及确保销售持续运转的系统。",
+    heroEyebrow: "关于 Cardi",
+    heroH1: "清晰的品牌是一切增长的起点。",
+    heroLead: "Cardi 诞生于一个信念：决定企业能否获得信任并持续增长的，不仅在于产品质量，更在于品牌的清晰度——以及确保销售持续运转的系统。",
+    journeyEyebrow: "发展历程",
+    journeyH2: "从美食社群到人工智能生态系统。",
+    journeyP1: "十多年来，我们一直助力印尼企业打造品牌。规律始终如一：定位清晰的品牌更容易赢得信任——但许多企业止步于此，因为销售、跟进和老客户维系无人打理。",
+    journeyP2: "因此，Cardi 现在拥有双引擎驱动：<strong class=\"highlight-bold\">Cardi Nusantara</strong> 由专家团队打造卓越品牌；<strong class=\"highlight-bold\">Cardi Agent</strong> 则利用 AI 运转销售系统。",
+    timeline: [
+      {
+        year: "2016",
+        title: "Foodinhands",
+        desc: "美食媒体与社群——切身体会餐饮品牌如何被看见与铭记。"
+      },
+      {
+        year: "2017",
+        title: "Inhands Agency",
+        desc: "面向成长型企业的餐饮与品牌咨询顾问。"
+      },
+      {
+        year: "2023",
+        title: "Cardi Nusantara",
+        desc: "品牌策划、数字营销与人工智能齐头并进，源自同一根基。"
+      }
+    ],
+    philosophyEyebrow: "标志哲学",
+    philosophyH2: "八片花瓣，同根同源。",
+    philosophyP1: "Cardi 标志上的花形图腾并非装饰——它是整个生态体系演进的蓝图。八片花瓣代表八个发展方向，从核心业务到新兴板块，皆始于同一个原点。",
+    philosophyP2: "电光蓝象征清晰、信任与科技的精准。对称绽放的形态寓意着可持续成长——贯穿 Build、Launch、Grow 到 Scale 的全过程。",
+    tagline: "被看见 · 被记住 · 被信任",
+    visionEyebrow: "愿景",
+    visionText: "成为印尼领先的多领域商业生态系统，通过创意、科技与量化系统的协同效应，赋能品牌被看见、被记住、被信任。",
+    missionEyebrow: "使命",
+    missions: [
+      {
+        num: "01",
+        title: "Clarify Every Brand",
+        desc: "助力每个品牌在进入市场前确立清晰真实的定位。"
+      },
+      {
+        num: "02",
+        title: "Build with System",
+        desc: "打造结构化、数据驱动并由 AI 赋能的品牌营销系统。"
+      },
+      {
+        num: "03",
+        title: "Activate the Ecosystem",
+        desc: "促进多业务板块间的协同效应，凝聚合力。"
+      },
+      {
+        num: "04",
+        title: "Grow the People",
+        desc: "培养高素质、强适应力与高诚信度的内部人才。"
+      },
+      {
+        num: "05",
+        title: "Scale with Purpose",
+        desc: "陪伴客户与伙伴稳健增长，从夯实根基到全面扩展。"
+      }
+    ],
+    valueEyebrow: "价值观",
+    valueH2: "C · A · R · D · I",
+    valueLead: "源于我们名字的五项核心价值观——Cardi 的工作方式，也是每一位成员的行为准则。",
+    values: [
+      {
+        letter: "C",
+        title: "Clarity",
+        tag: "明晰",
+        desc: "任何策略皆始于清晰的目标，而非主观臆断。"
+      },
+      {
+        letter: "A",
+        title: "Agility",
+        tag: "敏捷",
+        desc: "紧随市场脉搏与科技演进而快速行动。"
+      },
+      {
+        letter: "R",
+        title: "Reliability",
+        tag: "可靠",
+        desc: "恪守品质标准与时间承诺。"
+      },
+      {
+        letter: "D",
+        title: "Dedication",
+        tag: "专注",
+        desc: "以主人翁精神对待每一项成果。"
+      },
+      {
+        letter: "I",
+        title: "Innovation",
+        tag: "创新",
+        desc: "不断突破创意与科技的边界。"
+      }
+    ],
+    ctaH2: "您的品牌定位足够清晰吗？",
+    ctaLead: "从免费品牌评估开始——我们将协助您审视清晰度所在，并规划下一步的建设方向。",
+    ctaBtn: "评估品牌",
+    ctaLink: "https://wa.me/6281289895646?text=%E4%BD%A0%E5%A5%BDCardi%EF%BC%8C%E6%88%91%E6%83%B3%E8%BF%9B%E8%A1%8C%E5%93%81%E7%89%8C%E8%AF%84%E4%BC%B0%E3%80%82"
+  }
+};
 
-const pillars = [
-  { num: '01', title: 'Dilihat', desc: 'Brand hadir di tempat pelanggan mencari.' },
-  { num: '02', title: 'Diingat', desc: 'Identitas dan pesan yang konsisten.' },
-  { num: '03', title: 'Dipercaya', desc: 'Reputasi yang dibangun dengan bukti.' },
-  { num: '04', title: 'Dibeli', desc: 'Sistem penjualan yang berjalan setiap hari.' }
-];
+const c = content[currentLang];
 ---
 
-<Layout title="Tentang Cardi — Dilihat, Diingat, Dipercaya, Dibeli" description="Cerita dan filosofi Cardi: dilihat, diingat, dipercaya — lalu dibeli." lang={lang}>
+<Layout title={c.metaTitle} description={c.metaDesc} lang={lang}>
   <Navbar lang={lang} />
 
-  <main id="main">
-    <section class="hero">
-      <div class="wrap">
-        <div class="hero-copy">
-          <span class="eyebrow">Tentang Cardi</span>
-          <h1>Brand yang jelas adalah awal semua pertumbuhan.</h1>
-          <p class="lead">Cardi lahir dari satu keyakinan: yang menentukan bisnis dipercaya dan tumbuh bukan hanya kualitas produk, tapi kejelasan brand-nya — lalu sistem yang membuat penjualan terus berjalan.</p>
-        </div>
+  <main id="main" class="about-page">
+    <!-- ============ HERO ============ -->
+    <section id="top" class="hero-section">
+      <div class="wrap-narrow">
+        <p class="section-eyebrow">{c.heroEyebrow}</p>
+        <h1 class="hero-title">{c.heroH1}</h1>
+        <p class="hero-lead">{c.heroLead}</p>
       </div>
     </section>
 
-    <!-- Perjalanan / Timeline -->
-    <section class="sec">
-      <div class="wrap">
-        <div class="sec-head">
-          <span class="eyebrow">Perjalanan</span>
-          <h2>Dari komunitas kuliner sampai ekosistem AI.</h2>
-        </div>
-        <div class="split">
-          <div class="prose">
-            <p>Selama lebih dari satu dekade kami membantu bisnis Indonesia membangun brand. Polanya selalu sama: bisnis yang brand-nya jelas lebih mudah dipercaya — tapi banyak yang berhenti di situ karena penjualan, tagihan, dan pelanggan lama tidak terurus.</p>
-            <p>Karena itu Cardi kini punya dua mesin. <strong>Cardi Nusantara</strong> membangun brand bersama tim ahli. <strong>Cardi Agent</strong> menjalankan sistem penjualan dengan AI.</p>
+    <!-- ============ PERJALANAN ============ -->
+    <section id="perjalanan" class="journey-section">
+      <div class="wrap-standard">
+        <p class="section-eyebrow">{c.journeyEyebrow}</p>
+        <h2 class="section-title">{c.journeyH2}</h2>
+        <div class="journey-split">
+          <div class="journey-prose">
+            <p class="body-p">{c.journeyP1}</p>
+            <p class="body-p" set:html={c.journeyP2} />
           </div>
-          <ol class="timeline">
-            {timeline.map((item) => (
-              <li>
-                <b>{item.year}</b>
-                <h3>{item.name}</h3>
-                <p>{item.desc}</p>
-              </li>
+          <div class="journey-timeline">
+            {c.timeline.map((item) => (
+              <div class="timeline-entry">
+                <span class="timeline-dot" aria-hidden="true" />
+                <p class="timeline-year">{item.year}</p>
+                <h3 class="timeline-heading">{item.title}</h3>
+                <p class="timeline-text">{item.desc}</p>
+              </div>
             ))}
-          </ol>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 4 Pilar Filosofi -->
-    <section class="sec sec-white">
-      <div class="wrap">
-        <div class="sec-head">
-          <span class="eyebrow">Filosofi</span>
-          <h2>Dilihat, diingat, dipercaya — lalu dibeli.</h2>
+    <!-- ============ FILOSOFI LOGO ============ -->
+    <section id="filosofi" class="philosophy-section">
+      <div class="wrap-standard philosophy-grid">
+        <div class="philosophy-copy">
+          <p class="section-eyebrow">{c.philosophyEyebrow}</p>
+          <h2 class="section-title">{c.philosophyH2}</h2>
+          <p class="body-p">{c.philosophyP1}</p>
+          <p class="body-p">{c.philosophyP2}</p>
         </div>
-        <div class="grid g4">
-          {pillars.map((p) => (
-            <article class="card">
-              <div class="card-top">
-                <span class="num">{p.num}</span>
-              </div>
-              <h3>{p.title}</h3>
-              <p>{p.desc}</p>
+        <div class="philosophy-visual">
+          <svg viewBox="0 0 400 400" role="img" aria-label="Logo bunga delapan kelopak Cardi" class="flower-svg">
+            <g>
+              <path transform="rotate(0 200 200)" d="M200,200 C166,164 166,108 200,72  C234,108 234,164 200,200 Z" fill="#1f4f99" />
+              <path transform="rotate(45 200 200)" d="M200,200 C166,164 166,108 200,72  C234,108 234,164 200,200 Z" fill="#1f4f99" fill-opacity="0.92" />
+              <path transform="rotate(90 200 200)" d="M200,200 C166,164 166,108 200,72  C234,108 234,164 200,200 Z" fill="#1f4f99" fill-opacity="0.84" />
+              <path transform="rotate(135 200 200)" d="M200,200 C166,164 166,108 200,72  C234,108 234,164 200,200 Z" fill="#1f4f99" fill-opacity="0.92" />
+              <path transform="rotate(180 200 200)" d="M200,200 C166,164 166,108 200,72  C234,108 234,164 200,200 Z" fill="#1f4f99" />
+              <path transform="rotate(225 200 200)" d="M200,200 C166,164 166,108 200,72  C234,108 234,164 200,200 Z" fill="#1f4f99" fill-opacity="0.92" />
+              <path transform="rotate(270 200 200)" d="M200,200 C166,164 166,108 200,72  C234,108 234,164 200,200 Z" fill="#1f4f99" fill-opacity="0.84" />
+              <path transform="rotate(315 200 200)" d="M200,200 C166,164 166,108 200,72  C234,108 234,164 200,200 Z" fill="#1f4f99" fill-opacity="0.92" />
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="wrap-standard philosophy-ribbon">
+        <p class="tagline-text">{c.tagline}</p>
+      </div>
+    </section>
+
+    <!-- ============ VISI & MISI ============ -->
+    <section id="visi-misi" class="vision-mission-section">
+      <div class="wrap-standard">
+        <div class="vision-box">
+          <p class="section-eyebrow text-center">{c.visionEyebrow}</p>
+          <p class="vision-quote">{c.visionText}</p>
+        </div>
+
+        <p class="section-eyebrow text-center mission-tag">{c.missionEyebrow}</p>
+        <div class="mission-grid">
+          {c.missions.map((m) => (
+            <article class="mission-card">
+              <span class="mission-num">{m.num}</span>
+              <h3 class="mission-title">{m.title}</h3>
+              <p class="mission-desc">{m.desc}</p>
             </article>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- Kepemimpinan -->
-    <section class="sec">
-      <div class="wrap">
-        <div class="sec-head">
-          <span class="eyebrow">Kepemimpinan</span>
-          <h2>Orang di balik Cardi.</h2>
+    <!-- ============ VALUE CARDI ============ -->
+    <section id="value" class="value-section">
+      <div class="wrap-standard">
+        <div class="value-head">
+          <p class="section-eyebrow">{c.valueEyebrow}</p>
+          <h2 class="value-h2">{c.valueH2}</h2>
+          <p class="value-lead">{c.valueLead}</p>
         </div>
-        <div class="grid g2">
-          <article class="card">
-            <div class="card-top"></div>
-            <h3>Deo Cardi Nathanael</h3>
-            <p>Founder &amp; CEO · Creative Director</p>
-            <a class="card-link" href={translatePath('/deo-cardi-nathanael-profile')}>Profil →</a>
-          </article>
-          <article class="card">
-            <div class="card-top"></div>
-            <h3>Vanesha Octania</h3>
-            <p>Creative Director &amp; Brand Strategist</p>
-          </article>
+        <div class="value-grid">
+          {c.values.map((v) => (
+            <article class="value-card">
+              <div class="value-badge">
+                <span>{v.letter}</span>
+              </div>
+              <h3 class="value-title">{v.title}</h3>
+              <p class="value-tag">{v.tag}</p>
+              <p class="value-desc">{v.desc}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>
 
-    <!-- CTA Band -->
-    <section class="sec" style="padding-top:0;">
-      <div class="wrap">
-        <div class="cta-band">
-          <div>
-            <h2>Mari bicara soal bisnismu.</h2>
-            <p>Kami dengarkan dulu, lalu tunjukkan pintu yang tepat.</p>
-          </div>
-          <div class="btns">
-            <a class="btn btn-light" href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20ingin%20kenal%20lebih%20jauh." target="_blank" rel="noopener">Konsultasi via WhatsApp</a>
-          </div>
-        </div>
+    <!-- ============ CTA ============ -->
+    <section class="cta-section">
+      <div class="wrap-narrow text-center">
+        <h2 class="cta-title">{c.ctaH2}</h2>
+        <p class="cta-lead">{c.ctaLead}</p>
+        <a href={c.ctaLink} target="_blank" rel="noopener" class="cta-btn">
+          {c.ctaBtn}
+        </a>
       </div>
     </section>
   </main>
 
   <Footer lang={lang} />
 </Layout>
+
+<style>
+  /* Layout Wrappers */
+  .about-page {
+    background-color: #ffffff;
+    color: #0f1a30;
+    overflow-x: hidden;
+  }
+
+  .wrap-narrow {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+  }
+
+  .wrap-standard {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .highlight-bold {
+    color: #0b1220;
+    font-weight: 700;
+  }
+
+  /* Eyebrows */
+  .section-eyebrow {
+    font-size: 12.5px;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    color: #1f4f99;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  /* Section Titles */
+  .section-title {
+    font-size: clamp(28px, 3.8vw, 44px);
+    line-height: 1.12;
+    font-weight: 800;
+    color: #0b1220;
+    margin-bottom: 36px;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .body-p {
+    font-size: 16.5px;
+    line-height: 1.85;
+    color: #3a4560;
+    margin-bottom: 20px;
+    text-wrap: pretty;
+  }
+
+  /* Hero */
+  .hero-section {
+    padding: clamp(64px, 9vw, 112px) 0 clamp(48px, 7vw, 88px);
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: clamp(34px, 5.6vw, 60px);
+    line-height: 1.08;
+    font-weight: 800;
+    color: #0b1220;
+    margin-bottom: 28px;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .hero-lead {
+    font-size: clamp(16px, 1.7vw, 18.5px);
+    line-height: 1.75;
+    color: #3a4560;
+    max-width: 680px;
+    margin: 0 auto;
+    text-wrap: pretty;
+  }
+
+  /* Perjalanan / Journey */
+  .journey-section {
+    padding: clamp(40px, 6vw, 72px) 0 clamp(56px, 7vw, 96px);
+  }
+
+  .journey-split {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px 64px;
+    align-items: flex-start;
+  }
+
+  .journey-prose {
+    flex: 1 1 380px;
+    min-width: 0;
+  }
+
+  .journey-timeline {
+    flex: 1 1 380px;
+    min-width: 0;
+    border-left: 2px solid #d9e0ee;
+    padding-left: 0;
+    margin-left: 6px;
+  }
+
+  .timeline-entry {
+    position: relative;
+    padding: 0 0 32px 32px;
+  }
+
+  .timeline-entry:last-child {
+    padding-bottom: 8px;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -8px;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #1f4f99;
+    box-shadow: 0 0 0 4px rgba(31, 79, 153, 0.15);
+  }
+
+  .timeline-year {
+    font-size: 13px;
+    font-weight: 800;
+    color: #1f4f99;
+    margin-bottom: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .timeline-heading {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0b1220;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+
+  .timeline-text {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #4a5570;
+  }
+
+  /* Filosofi Logo */
+  .philosophy-section {
+    background: #f2f5fb;
+    padding: clamp(56px, 7vw, 96px) 0 clamp(40px, 5vw, 64px);
+  }
+
+  .philosophy-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 48px 72px;
+  }
+
+  .philosophy-copy {
+    flex: 1 1 420px;
+    min-width: 0;
+  }
+
+  .philosophy-visual {
+    flex: 1 1 260px;
+    min-width: 220px;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  .flower-svg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 14px 28px rgba(31, 79, 153, 0.12));
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .flower-svg:hover {
+    transform: rotate(45deg) scale(1.03);
+  }
+
+  .philosophy-ribbon {
+    margin-top: clamp(40px, 5vw, 64px);
+    text-align: center;
+  }
+
+  .tagline-text {
+    font-weight: 800;
+    font-size: clamp(18px, 2.4vw, 26px);
+    letter-spacing: -0.02em;
+    color: #14306b;
+  }
+
+  /* Visi & Misi */
+  .vision-mission-section {
+    padding: clamp(56px, 7vw, 100px) 0;
+  }
+
+  .vision-box {
+    text-align: center;
+    max-width: 860px;
+    margin: 0 auto clamp(48px, 6vw, 72px);
+  }
+
+  .vision-quote {
+    font-size: clamp(21px, 2.8vw, 31px);
+    line-height: 1.42;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #14306b;
+    text-wrap: balance;
+  }
+
+  .mission-tag {
+    margin-bottom: 24px;
+  }
+
+  .mission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+    gap: 20px;
+  }
+
+  .mission-card {
+    border: 1px solid #e3e8f2;
+    border-radius: 18px;
+    padding: 26px 24px;
+    background: #ffffff;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .mission-card:hover {
+    transform: translateY(-4px);
+    border-color: #cbd5e1;
+    box-shadow: 0 12px 30px rgba(15, 26, 48, 0.06);
+  }
+
+  .mission-num {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 800;
+    color: #1f4f99;
+    margin-bottom: 10px;
+  }
+
+  .mission-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0b1220;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .mission-desc {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: #4a5570;
+  }
+
+  /* Value Section */
+  .value-section {
+    background: #f2f5fb;
+    padding: clamp(56px, 7vw, 100px) 0;
+  }
+
+  .value-head {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 48px;
+  }
+
+  .value-h2 {
+    font-size: clamp(28px, 3.8vw, 44px);
+    line-height: 1.12;
+    font-weight: 800;
+    color: #0b1220;
+    margin-bottom: 16px;
+    letter-spacing: 0.04em;
+  }
+
+  .value-lead {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #3a4560;
+  }
+
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
+    gap: 20px;
+  }
+
+  .value-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 30px 22px;
+    text-align: center;
+    border: 1px solid rgba(227, 232, 242, 0.7);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .value-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(15, 26, 48, 0.08);
+  }
+
+  .value-badge {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #1f4f99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 25px;
+    box-shadow: 0 6px 16px rgba(31, 79, 153, 0.24);
+  }
+
+  .value-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #0b1220;
+    margin-bottom: 2px;
+  }
+
+  .value-tag {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #6b7488;
+    margin-bottom: 12px;
+  }
+
+  .value-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4a5570;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: clamp(64px, 8vw, 104px) 0 clamp(40px, 5vw, 56px);
+  }
+
+  .cta-title {
+    font-size: clamp(28px, 4vw, 46px);
+    line-height: 1.12;
+    font-weight: 800;
+    color: #0b1220;
+    margin-bottom: 18px;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .cta-lead {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #3a4560;
+    margin-bottom: 30px;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: #1f4f99;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 15px 36px;
+    border-radius: 12px;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 8px 24px rgba(31, 79, 153, 0.22);
+  }
+
+  .cta-btn:hover {
+    background: #173d78;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(31, 79, 153, 0.32);
+    color: #ffffff;
+  }
+
+  @media (max-width: 768px) {
+    .journey-timeline {
+      margin-left: 0;
+    }
+    
+    .mission-grid,
+    .value-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .philosophy-grid {
+      gap: 36px;
+    }
+  }
+</style>

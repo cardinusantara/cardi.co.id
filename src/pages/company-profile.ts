@@ -1,9 +1,15 @@
 import type { APIRoute } from 'astro';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
-// Redirect to the static PDF served from public/
 export const GET: APIRoute = () => {
-  return new Response(null, {
-    status: 301,
-    headers: { Location: '/company-profile.pdf' },
+  const pdfPath = join(process.cwd(), 'public', 'company-profile.pdf');
+  const file = readFileSync(pdfPath);
+  return new Response(file, {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': 'inline; filename="Cardi-Company-Profile.pdf"',
+    },
   });
 };
