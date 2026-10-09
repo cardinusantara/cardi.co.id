@@ -3003,6 +3003,7 @@ footer {
     margin-top: 16px;
   }
   .q-item { grid-template-columns: minmax(0, 1fr); }
+  .g4 { grid-template-columns: minmax(0, 1fr); }
   .bar-row { grid-template-columns: 90px minmax(0, 1fr) 46px; }
   .form, .q-pillar, .result { padding: 22px; }
   .cta-band { padding: 30px 24px; }
