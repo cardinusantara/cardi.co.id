@@ -74,7 +74,7 @@ img {
 }
 
 /* ---------- NAV ---------- */
-nav {
+nav#mainNav {
   position: fixed;
   top: 44px;
   left: 16px;
@@ -369,7 +369,7 @@ main.article-page {
 }
 
 @media(max-width:900px) {
-  nav {
+  nav#mainNav {
     top: 38px;
     left: 12px;
     right: 12px;
