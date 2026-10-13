@@ -18,8 +18,13 @@ const copy = {
     eyebrow: 'Toko Cardi',
     heading: 'Produk AI & IT siap pakai untuk bisnis.',
     lead: 'Dibeli sekali, langsung dipakai. Sebagian produk terhubung ke aplikasi Cardi Agent.',
-    btnShop: 'Belanja di TikTok Shop',
-    btnWa: 'Tanya via WhatsApp',
+    btnOrder: 'Pesan LoyaL Card',
+    btnOrderBadge: 'Mulai 69rb',
+    btnLearn: 'Pelajari Cara Kerja',
+    btnShopee: 'Beli di Shopee',
+    btnTokopedia: 'Beli di Tokopedia',
+    btnTiktok: 'TikTok Resmi',
+    btnWa: 'Konsultasi WhatsApp',
     secTitle: 'Pilihan produk.',
     secEyebrow: 'Produk',
     p1Tag: 'Terlaris',
@@ -46,8 +51,13 @@ const copy = {
     eyebrow: 'Cardi Store',
     heading: 'Ready-to-use AI & IT products for your business.',
     lead: 'One-time purchase, instant setup. Seamlessly connected to Cardi Agent applications.',
-    btnShop: 'Shop on TikTok Shop',
-    btnWa: 'Inquire via WhatsApp',
+    btnOrder: 'Order LoyaL Card',
+    btnOrderBadge: 'From IDR 69k',
+    btnLearn: 'How It Works',
+    btnShopee: 'Buy on Shopee',
+    btnTokopedia: 'Buy on Tokopedia',
+    btnTiktok: 'Official TikTok',
+    btnWa: 'WhatsApp Support',
     secTitle: 'Product selection.',
     secEyebrow: 'Products',
     p1Tag: 'Best Seller',
@@ -74,7 +84,12 @@ const copy = {
     eyebrow: 'Cardi 商店',
     heading: '适用于企业的即用型 AI 与 IT 产品。',
     lead: '一次购买，立即可用。无缝连接 Cardi Agent 智能系统。',
-    btnShop: '在 TikTok 商店选购',
+    btnOrder: '订购 LoyaL 实体卡',
+    btnOrderBadge: '69k 起',
+    btnLearn: '运作方式',
+    btnShopee: '在 Shopee 购买',
+    btnTokopedia: '在 Tokopedia 购买',
+    btnTiktok: '官方 TikTok',
     btnWa: 'WhatsApp 咨询',
     secTitle: '精选产品',
     secEyebrow: '产品系列',
@@ -111,16 +126,81 @@ const c = copy[lang] || copy.id;
           <span class="eyebrow">{c.eyebrow}</span>
           <h1>{c.heading}</h1>
           <p class="lead">{c.lead}</p>
-          <div class="btns">
-            <a class="btn btn-dark" href="https://www.tiktok.com/@tokocardi" target="_blank" rel="noopener">{c.btnShop}</a>
-            <a class="btn btn-outline" href="https://wa.me/6281289895646?text=Halo%20Toko%20Cardi%2C%20saya%20ingin%20tanya%20produk." target="_blank" rel="noopener">{c.btnWa}</a>
+          
+          <div class="hero-actions">
+            <!-- Action Button Cluster -->
+            <div class="action-cluster">
+              <a
+                href="https://lynk.id/cardinusantara/qk553ykn87dd"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary-order"
+              >
+                <span>{c.btnOrder}</span>
+                <span class="order-badge">{c.btnOrderBadge}</span>
+              </a>
+
+              <a href="#produk" class="btn-secondary-learn">
+                <svg class="play-icon" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>{c.btnLearn}</span>
+              </a>
+            </div>
+
+            <!-- Secondary Marketplace & Direct Action Row -->
+            <div class="market-row">
+              <a
+                href="https://shopee.co.id/product/887001422/56118419469/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="market-pill dark"
+              >
+                <img src="/icons/shopee-icon.svg" alt="Shopee" width="18" height="18" loading="lazy" />
+                <span>{c.btnShopee}</span>
+              </a>
+
+              <a
+                href="https://www.tokopedia.com/toko-cardi-agent/kartu-google-review-nfc-barcode-scan-google-maps-review-card-cafe-salon-barbershop-1737797533841785973?extParam=src%3Dshop%26whid%3D7691978422835513109&aff_unique_id=&channel=others&chain_key="
+                target="_blank"
+                rel="noopener noreferrer"
+                class="market-pill dark"
+              >
+                <img src="/icons/tokopedia-official.svg" alt="Tokopedia" width="18" height="18" loading="lazy" />
+                <span>{c.btnTokopedia}</span>
+              </a>
+
+              <a
+                href="https://www.tiktok.com/@cardiagent.ai?_r=1&_t=ZS-9AIQH0ySPZ9"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="market-pill dark"
+              >
+                <img src="/icons/tiktok-official.svg" alt="TikTok" width="18" height="18" loading="lazy" />
+                <span>{c.btnTiktok}</span>
+              </a>
+
+              <a
+                href="https://wa.me/6281289895646"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="market-pill light"
+              >
+                <img src="/icons/whatsapp-official.svg" alt="WhatsApp" width="18" height="18" loading="lazy" />
+                <span>{c.btnWa}</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Daftar Produk -->
-    <section class="sec">
+    <section class="sec" id="produk">
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">{c.secEyebrow}</span>
@@ -182,3 +262,172 @@ const c = copy[lang] || copy.id;
 
   <Footer lang={lang} />
 </Layout>
+
+<style>
+  .hero-actions {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .action-cluster {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .action-cluster {
+      flex-direction: row;
+      width: auto;
+    }
+  }
+
+  .btn-primary-order {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 28px;
+    border-radius: 9999px;
+    background: #0F172A;
+    color: #FFFFFF !important;
+    font-size: 15px;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.22), 0 4px 10px -2px rgba(15, 23, 42, 0.12);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    min-height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  @media (max-width: 639px) {
+    .btn-primary-order,
+    .btn-secondary-learn {
+      width: 100%;
+      max-width: 340px;
+    }
+  }
+
+  .btn-primary-order:hover {
+    background: #020617;
+    color: #FFFFFF !important;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px -4px rgba(15, 23, 42, 0.35);
+  }
+
+  .order-badge {
+    font-size: 11px;
+    font-weight: 900;
+    background: #EA580C;
+    color: #FFFFFF;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    letter-spacing: -0.01em;
+    transition: transform 0.2s ease;
+  }
+
+  .btn-primary-order:hover .order-badge {
+    transform: scale(1.05);
+  }
+
+  .btn-secondary-learn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 26px;
+    border-radius: 9999px;
+    background: #FFFFFF;
+    color: #0F172A !important;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1.5px solid #E2E8F0;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    min-height: 48px;
+  }
+
+  .btn-secondary-learn:hover {
+    background: #F8FAFC;
+    border-color: #CBD5E1;
+    color: #0F172A !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+  }
+
+  .play-icon {
+    width: 18px;
+    height: 18px;
+    color: #0F172A;
+    flex-shrink: 0;
+  }
+
+  .market-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 4px;
+    max-width: 680px;
+  }
+
+  .market-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: 9999px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    min-height: 40px;
+    user-select: none;
+  }
+
+  .market-pill img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .market-pill.dark {
+    background: #0F172A;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .market-pill.dark:hover {
+    background: #020617;
+    color: #FFFFFF !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  }
+
+  .market-pill.light {
+    background: #FFFFFF;
+    color: #0F172A !important;
+    border: 1px solid #CBD5E1;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  .market-pill.light:hover {
+    background: #F8FAFC;
+    border-color: #94A3B8;
+    color: #0F172A !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  }
+</style>
