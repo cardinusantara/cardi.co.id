@@ -67,18 +67,6 @@ const copy = {
     p2OrderBtn: 'Konsultasi Pesanan',
     p2Link: 'Lihat Spesifikasi Kartu →',
 
-    // Product 3
-    p3Tag: '🚀 Segera Hadir',
-    p3Price: 'Tahap Pengembangan',
-    p3Title: 'Ekosistem Perangkat AI & IoT Hardware',
-    p3Desc: 'Rangkaian perangkat keras cerdas berikutnya untuk automasi meja kasir, display antrean digital, dan sensor analitik gerai.',
-    p3Feat1: 'Perangkat kasir pintar & scanner AI',
-    p3Feat2: 'Display interaktif pengukur kepuasan pelanggan',
-    p3Feat3: 'Konektivitas langsung ke CRM & Analytics Cardi',
-    p3Feat4: 'Dukungan firmware over-the-air update',
-    p3Foot: 'Ikuti TikTok Toko Cardi untuk informasi rilis awal',
-    p3OrderBtn: 'Gabung Waitlist',
-
     // Partner Section
     partnerEyebrow: 'Peluang Bisnis & Kemitraan',
     partnerBadge: 'Margin Hingga 45%',
@@ -156,18 +144,6 @@ const copy = {
     p2OrderBtn: 'Inquire Order',
     p2Link: 'View Specifications →',
 
-    // Product 3
-    p3Tag: '🚀 Coming Soon',
-    p3Price: 'In Development',
-    p3Title: 'Cardi AI & IoT Smart Hardware Series',
-    p3Desc: 'Upcoming smart devices built for cashier checkout automation, interactive digital counter displays, and real-time branch analytics.',
-    p3Feat1: 'Smart checkout devices & AI vision scanners',
-    p3Feat2: 'Interactive customer satisfaction displays',
-    p3Feat3: 'Direct link to Cardi CRM & branch analytics',
-    p3Feat4: 'Firmware over-the-air updates',
-    p3Foot: 'Follow TikTok Toko Cardi for upcoming announcements',
-    p3OrderBtn: 'Join Waitlist',
-
     // Partner Section
     partnerEyebrow: 'Business & Distribution Opportunity',
     partnerBadge: 'Up to 45% Margin',
@@ -244,18 +220,6 @@ const copy = {
     p2Foot: '创始人、高管及精英商务首选',
     p2OrderBtn: '咨询订制方案',
     p2Link: '查看名片规格 →',
-
-    // Product 3
-    p3Tag: '🚀 即将推出',
-    p3Price: '研发中',
-    p3Title: 'Cardi AI 与物联网硬件系列',
-    p3Desc: '面向未来的收银台智能辅助设备、顾客满意度交互终端与门店分析传感器。',
-    p3Feat1: 'AI 智能收银视觉辅助设备',
-    p3Feat2: '交互式顾客评价反馈屏幕',
-    p3Feat3: '直连 Cardi CRM 与门店大数据',
-    p3Feat4: '支持云端固件 OTA 更新',
-    p3Foot: '关注 Toko Cardi 抖音/TikTok 获悉首发资讯',
-    p3OrderBtn: '加入候补名单',
 
     // Partner Section
     partnerEyebrow: '渠道合作与代理',
@@ -379,14 +343,14 @@ const c = copy[lang] || copy.id;
     </section>
 
     <!-- ==========================================
-         2. HARDWARE TRUST BAR (SECTION DIVIDER)
+         2. HARDWARE TRUST & SPEC HIGHLIGHTS
          ========================================== -->
-    <div class="trust-bar-wrapper">
+    <section class="sec-trust">
       <div class="wrap">
-        <div class="trust-bar">
-          <div class="trust-item">
-            <div class="trust-icon-box">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="trust-grid">
+          <div class="trust-card">
+            <div class="trust-icon-box orange">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
               </svg>
             </div>
@@ -396,11 +360,9 @@ const c = copy[lang] || copy.id;
             </div>
           </div>
 
-          <div class="trust-divider" aria-hidden="true"></div>
-
-          <div class="trust-item">
-            <div class="trust-icon-box">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F4F99" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <div class="trust-card">
+            <div class="trust-icon-box blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                 <line x1="9" y1="3" x2="9" y2="21"></line>
               </svg>
@@ -411,11 +373,9 @@ const c = copy[lang] || copy.id;
             </div>
           </div>
 
-          <div class="trust-divider" aria-hidden="true"></div>
-
-          <div class="trust-item">
-            <div class="trust-icon-box">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <div class="trust-card">
+            <div class="trust-icon-box emerald">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
                 <line x1="12" y1="18" x2="12.01" y2="18"></line>
               </svg>
@@ -426,11 +386,9 @@ const c = copy[lang] || copy.id;
             </div>
           </div>
 
-          <div class="trust-divider" aria-hidden="true"></div>
-
-          <div class="trust-item">
-            <div class="trust-icon-box">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <div class="trust-card">
+            <div class="trust-icon-box purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
               </svg>
             </div>
@@ -441,7 +399,7 @@ const c = copy[lang] || copy.id;
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- ==========================================
          3. DAFTAR PRODUK (BENTO HARDWARE CARDS)
@@ -625,81 +583,6 @@ const c = copy[lang] || copy.id;
                   class="btn-card-detail"
                 >
                   {c.p2Link}
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- PRODUCT 3: AI & IOT HARDWARE (COMING SOON) -->
-          <article class="bento-card bento-card-soon">
-            <div class="bento-card-media soon-media">
-              <div class="soon-visual-container">
-                <div class="pulse-hardware-orb"></div>
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
-                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
-                  <line x1="6" y1="1" x2="6" y2="4"></line>
-                  <line x1="10" y1="1" x2="10" y2="4"></line>
-                  <line x1="14" y1="1" x2="14" y2="4"></line>
-                </svg>
-              </div>
-              <span class="product-badge purple">{c.p3Tag}</span>
-            </div>
-
-            <div class="bento-card-content">
-              <div class="price-header">
-                <span class="price-val soon-price">{c.p3Price}</span>
-                <span class="price-tag">Roadmap Q4 2026</span>
-              </div>
-
-              <h3 class="product-title">{c.p3Title}</h3>
-              <p class="product-desc">{c.p3Desc}</p>
-
-              <!-- Features Check-List -->
-              <ul class="feature-checklist">
-                <li>
-                  <svg class="check-icon purple" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                  </svg>
-                  <span>{c.p3Feat1}</span>
-                </li>
-                <li>
-                  <svg class="check-icon purple" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                  </svg>
-                  <span>{c.p3Feat2}</span>
-                </li>
-                <li>
-                  <svg class="check-icon purple" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                  </svg>
-                  <span>{c.p3Feat3}</span>
-                </li>
-                <li>
-                  <svg class="check-icon purple" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                  </svg>
-                  <span>{c.p3Feat4}</span>
-                </li>
-              </ul>
-
-              <div class="product-foot-banner">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-                <span>{c.p3Foot}</span>
-              </div>
-
-              <!-- Product Buttons -->
-              <div class="product-cta-cluster">
-                <a
-                  href="https://www.tiktok.com/@cardiagent.ai?_r=1&_t=ZS-9AIQH0ySPZ9"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn-card-order dark"
-                >
-                  <img src="/icons/tiktok-official.svg" alt="TikTok" width="16" height="16" />
-                  <span>{c.p3OrderBtn}</span>
                 </a>
               </div>
             </div>
@@ -1151,82 +1034,106 @@ const c = copy[lang] || copy.id;
   /* ========================================================
      2. HARDWARE TRUST BAR (DISTINCT SECTION BOUNDARY)
      ======================================================== */
-  .trust-bar-wrapper {
+  .sec-trust {
     background: #F8FAFC;
     border-top: 1px solid #E2E8F0;
     border-bottom: 1px solid #E2E8F0;
-    padding: 24px 0;
+    padding: 32px 0;
   }
 
-  .trust-bar {
+  .trust-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    align-items: center;
     gap: 16px;
+    max-width: 1080px;
+    margin: 0 auto;
   }
 
-  @media (max-width: 900px) {
-    .trust-bar {
+  @media (max-width: 960px) {
+    .trust-grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-    .trust-divider {
-      display: none !important;
+      gap: 12px;
     }
   }
 
-  @media (max-width: 540px) {
-    .trust-bar {
+  @media (max-width: 520px) {
+    .trust-grid {
       grid-template-columns: 1fr;
-      gap: 16px;
+      gap: 10px;
     }
   }
 
-  .trust-item {
+  .trust-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    padding: 14px 18px;
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 6px 12px;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .trust-card:hover {
+    transform: translateY(-2px);
+    border-color: #CBD5E1;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
   }
 
   .trust-icon-box {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: #FFFFFF;
-    border: 1px solid #E2E8F0;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  }
+
+  .trust-icon-box.orange {
+    background: #FFF7ED;
+    color: #EA580C;
+    border: 1px solid #FFEDD5;
+  }
+
+  .trust-icon-box.blue {
+    background: #EFF6FF;
+    color: #1F4F99;
+    border: 1px solid #DBEAFE;
+  }
+
+  .trust-icon-box.emerald {
+    background: #ECFDF5;
+    color: #059669;
+    border: 1px solid #D1FAE5;
+  }
+
+  .trust-icon-box.purple {
+    background: #F5F3FF;
+    color: #7C3AED;
+    border: 1px solid #EDE9FE;
   }
 
   .trust-texts {
     display: flex;
     flex-direction: column;
+    min-width: 0;
   }
 
   .trust-val {
-    font-size: 15px;
+    font-size: 14.5px;
     font-weight: 800;
     color: #0F172A;
     line-height: 1.25;
   }
 
   .trust-lbl {
-    font-size: 12.5px;
+    font-size: 12px;
     font-weight: 500;
     color: #64748B;
     line-height: 1.35;
     margin-top: 2px;
-  }
-
-  .trust-divider {
-    width: 1px;
-    height: 38px;
-    background: #CBD5E1;
-    margin: 0 auto;
   }
 
   /* ========================================================
@@ -1277,18 +1184,21 @@ const c = copy[lang] || copy.id;
     text-wrap: pretty;
   }
 
-  /* Bento Grid Layout */
+  /* Bento Grid Layout - Balanced 2 Columns */
   .bento-product-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    max-width: 1040px;
+    margin: 0 auto;
     align-items: stretch;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 860px) {
     .bento-product-grid {
       grid-template-columns: 1fr;
-      gap: 32px;
+      gap: 24px;
+      max-width: 520px;
     }
   }
 
@@ -1335,10 +1245,6 @@ const c = copy[lang] || copy.id;
     background: linear-gradient(180deg, #F0F9FF 0%, #E0F2FE 100%);
   }
 
-  .soon-media {
-    background: linear-gradient(180deg, #FAF5FF 0%, #F3E8FF 100%);
-  }
-
   .product-showcase-img {
     max-height: 100%;
     max-width: 100%;
@@ -1374,23 +1280,6 @@ const c = copy[lang] || copy.id;
     border: 1px solid #BFDBFE;
   }
 
-  .product-badge.purple {
-    background: #FAF5FF;
-    color: #7E22CE;
-    border: 1px solid #E9D5FF;
-  }
-
-  .soon-visual-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: #FFFFFF;
-    box-shadow: 0 10px 24px rgba(126, 34, 206, 0.12);
-  }
-
   .bento-card-content {
     padding: 24px;
     display: flex;
@@ -1410,11 +1299,6 @@ const c = copy[lang] || copy.id;
     font-size: 20px;
     font-weight: 900;
     color: #0F172A;
-  }
-
-  .soon-price {
-    font-size: 16px;
-    color: #7E22CE;
   }
 
   .price-tag {
@@ -1462,10 +1346,6 @@ const c = copy[lang] || copy.id;
     color: #EA580C;
     flex-shrink: 0;
     margin-top: 1px;
-  }
-
-  .check-icon.purple {
-    color: #7E22CE;
   }
 
   .product-foot-banner {
@@ -1518,11 +1398,6 @@ const c = copy[lang] || copy.id;
 
   .btn-card-order.secondary:hover {
     background: #020617;
-  }
-
-  .btn-card-order.dark {
-    background: #000000;
-    color: #FFFFFF !important;
   }
 
   .btn-card-detail {
