@@ -13,11 +13,11 @@ const { lang = getLangFromUrl(Astro.url) } = Astro.props;
 
 const copy = {
   id: {
-    title: 'Toko Cardi — Produk AI & IT Siap Pakai',
-    desc: 'Toko produk AI & IT dari Cardi: kartu Google Review NFC, kartu nama NFC, dan lainnya.',
-    eyebrow: 'Toko Cardi',
-    heading: 'Produk AI & IT siap pakai untuk bisnis.',
-    lead: 'Dibeli sekali, langsung dipakai. Sebagian produk terhubung ke aplikasi Cardi Agent.',
+    title: 'Toko Cardi — Produk AI & Smart Hardware Siap Pakai',
+    desc: 'Toko resmi perangkat dan produk AI & IT dari Cardi: Plakat Google Review NFC, Kartu Nama Pintar, dan ekosistem Cardi Agent.',
+    eyebrow: 'Toko Resmi Cardi',
+    heading: 'Produk AI & Smart Hardware Siap Pakai untuk Bisnis.',
+    lead: 'Dibeli sekali, langsung siap pakai tanpa langganan bulanan. Percepat ulasan bintang 5 Google Maps dan integrasikan dengan ekosistem Cardi Agent.',
     btnOrder: 'Pesan LoyaL Card',
     btnOrderBadge: 'Mulai 69rb',
     btnLearn: 'Pelajari Cara Kerja',
@@ -25,32 +25,88 @@ const copy = {
     btnTokopedia: 'Beli di Tokopedia',
     btnTiktok: 'TikTok Resmi',
     btnWa: 'Konsultasi WhatsApp',
-    secTitle: 'Pilihan produk.',
-    secEyebrow: 'Produk',
-    p1Tag: 'Terlaris',
-    p1Title: 'Kartu Google Review NFC + QR',
-    p1Desc: 'Pelanggan cukup tap atau scan, langsung ke halaman ulasan Google bisnis kamu. Powered by Cardi Agent AI Loyal.',
-    p1Foot: 'Harga: Terjangkau untuk UMKM & Ritel',
-    p1Link: 'Detail produk →',
-    p2Title: 'Kartu nama NFC (Cardi Smart Business Card)',
-    p2Desc: 'Tap untuk berbagi kontak dan profil. Terhubung ke Cardi Agent AI MoM.',
-    p2Foot: 'Harga: Paket Personal & Korporat',
-    p2Link: 'Detail produk →',
-    p3Tag: 'Segera',
-    p3Title: 'Produk AI & IT lainnya',
-    p3Desc: 'Perangkat dan aksesori pendukung bisnis digital.',
-    p3Foot: 'Ikuti TikTok Toko Cardi untuk rilis terbaru',
-    partnerEyebrow: 'Program mitra',
-    partnerHeading: 'Jual kartu Google Review di kotamu.',
-    partnerDesc: 'Untuk reseller, agen, dan affiliator. Dapatkan harga khusus mitra serta panduan pemasaran lengkap.',
-    partnerBtn: 'Daftar jadi mitra'
+    
+    // Trust Bar
+    trust1Val: '< 1 Detik',
+    trust1Label: 'Respon Tap NFC Instan',
+    trust2Val: 'Akrilik Grade A',
+    trust2Label: 'Tebal 3mm Kokoh di Meja Kasir',
+    trust3Val: '100% Kompatibel',
+    trust3Label: 'iOS & Android Tanpa Aplikasi',
+    trust4Val: 'Garansi 1 Tahun',
+    trust4Label: 'Penggantian Sensor NFC Baru',
+
+    // Product Section
+    secEyebrow: 'Katalog Perangkat Resmi',
+    secTitle: 'Pilihan Hardware & Produk Pintar Cardi',
+    secSubtitle: 'Dirancang dengan presisi hardware dan perangkat lunak terpadu untuk mendorong pertumbuhan transaksi fisik maupun digital.',
+    
+    // Product 1
+    p1Tag: '🔥 Paling Laris',
+    p1Price: 'Rp 69.000',
+    p1Title: 'Plakat & Kartu Google Review NFC + QR',
+    p1Desc: 'Pelanggan cukup tap HP di meja kasir — formulir ulasan Google Maps langsung terbuka otomatis tanpa ketik manual.',
+    p1Feat1: 'Sensor chip NFC NTAG213 ultra-sensitif',
+    p1Feat2: 'Akrilik solid Grade A 10x10 cm tahan benturan',
+    p1Feat3: 'Cadangan laser QR code anti luntur',
+    p1Feat4: 'Sinkronisasi instan ke Cardi Agent AI LoyaL',
+    p1Foot: 'Ideal untuk Cafe, Restoran, Salon, Klinik & Ritel',
+    p1OrderBtn: 'Pesan via Lynk.id',
+    p1Link: 'Pelajari Detail Produk →',
+
+    // Product 2
+    p2Tag: '💼 Solusi Bisnis & Tim',
+    p2Price: 'Paket Personal & Tim',
+    p2Title: 'Cardi Smart NFC Business Card',
+    p2Desc: 'Kartu nama digital berdaya sentuh NFC. Berbagi profil profesional, katalog layanan, dan kontak instan dalam 1 detik.',
+    p2Feat1: 'Berbagi nomor, email, LinkedIn, & katalog sekali sentuh',
+    p2Feat2: 'Terintegrasi otomatis ke Cardi Agent AI MoM',
+    p2Feat3: 'Material Matte PVC & finishing metal anti gores',
+    p2Feat4: 'Custom branding nama & logo korporat perusahaan',
+    p2Foot: 'Pilihan tepat untuk Direktur, Sales & Profesional',
+    p2OrderBtn: 'Konsultasi Pesanan',
+    p2Link: 'Lihat Spesifikasi Kartu →',
+
+    // Product 3
+    p3Tag: '🚀 Segera Hadir',
+    p3Price: 'Tahap Pengembangan',
+    p3Title: 'Ekosistem Perangkat AI & IoT Hardware',
+    p3Desc: 'Rangkaian perangkat keras cerdas berikutnya untuk automasi meja kasir, display antrean digital, dan sensor analitik gerai.',
+    p3Feat1: 'Perangkat kasir pintar & scanner AI',
+    p3Feat2: 'Display interaktif pengukur kepuasan pelanggan',
+    p3Feat3: 'Konektivitas langsung ke CRM & Analytics Cardi',
+    p3Feat4: 'Dukungan firmware over-the-air update',
+    p3Foot: 'Ikuti TikTok Toko Cardi untuk informasi rilis awal',
+    p3OrderBtn: 'Gabung Waitlist',
+
+    // Partner Section
+    partnerEyebrow: 'Peluang Bisnis & Kemitraan',
+    partnerBadge: 'Margin Hingga 45%',
+    partnerHeading: 'Buka Peluang Bisnis: Jual Kartu Google Review di Kotamu.',
+    partnerDesc: 'Jadilah distributor atau reseller resmi Toko Cardi. Dapatkan harga modal khusus agen, materi promosi siap pakai, dan bimbingan penjualan.',
+    partnerFeat1: 'Harga modal grosir spesial mitra dengan potensi margin hingga 45%',
+    partnerFeat2: 'Paket banner promosi, display akrilik contoh, dan aset video konten',
+    partnerFeat3: 'Layanan konsultasi teknis & garansi ganti unit langsung dari pabrik',
+    partnerBtn: 'Daftar Jadi Mitra Toko Cardi (WhatsApp)',
+    partnerCardTitle: 'Paket Starter Kit Reseller',
+    partnerCardSubtitle: 'Mulai usaha distribusi perangkat smart NFC di kota Anda hari ini.',
+
+    // Quality Guarantees
+    guarEyebrow: 'Standar Kualitas',
+    guarTitle: 'Pengalaman Belanja Aman & Terjamin',
+    guar1Title: 'Packing Aman Seluruh Indonesia',
+    guar1Desc: 'Dilapisi film anti-gores dan bubble wrap tebal berlapis untuk proteksi maksimal sampai ke meja kasir Anda.',
+    guar2Title: 'Garansi Sensor NFC 1 Tahun',
+    guar2Desc: 'Penggantian unit baru secara cuma-cuma apabila sensor NFC mengalami malfungsi atau tidak terbaca.',
+    guar3Title: 'Bantuan Setup Gratis',
+    guar3Desc: 'Tim support kami siap membantu memasang dan mengarahkan link ulasan Google Maps toko Anda sampai berfungsi sempurna.'
   },
   en: {
-    title: 'Cardi Store — Ready-to-Use AI & IT Products',
-    desc: 'AI & IT products from Cardi: NFC Google Review cards, NFC business cards, and more.',
-    eyebrow: 'Cardi Store',
-    heading: 'Ready-to-use AI & IT products for your business.',
-    lead: 'One-time purchase, instant setup. Seamlessly connected to Cardi Agent applications.',
+    title: 'Cardi Store — Ready-to-Use AI & Smart Hardware Products',
+    desc: 'Official store for AI & IT smart devices from Cardi: NFC Google Review stands, Smart Business Cards, and Cardi Agent hardware.',
+    eyebrow: 'Official Cardi Store',
+    heading: 'Ready-to-Use AI & Smart Hardware for Modern Businesses.',
+    lead: 'One-time investment, immediately operational with zero recurring monthly hardware fees. Accelerate 5-star Google Maps reviews seamlessly.',
     btnOrder: 'Order LoyaL Card',
     btnOrderBadge: 'From IDR 69k',
     btnLearn: 'How It Works',
@@ -58,32 +114,88 @@ const copy = {
     btnTokopedia: 'Buy on Tokopedia',
     btnTiktok: 'Official TikTok',
     btnWa: 'WhatsApp Support',
-    secTitle: 'Product selection.',
-    secEyebrow: 'Products',
-    p1Tag: 'Best Seller',
-    p1Title: 'NFC + QR Google Review Card',
-    p1Desc: 'Customers simply tap or scan to open your business Google review page instantly. Powered by Cardi Agent AI Loyal.',
-    p1Foot: 'Affordable for SMBs & Retailers',
-    p1Link: 'Product details →',
-    p2Title: 'NFC Smart Business Card',
-    p2Desc: 'Tap to instantly share contact info and profile. Integrated with Cardi Agent AI MoM.',
-    p2Foot: 'Personal & Corporate Packages',
-    p2Link: 'Product details →',
-    p3Tag: 'Coming Soon',
-    p3Title: 'More AI & Hardware Products',
-    p3Desc: 'Smart devices and essential accessories for modern digital businesses.',
-    p3Foot: 'Follow TikTok Toko Cardi for upcoming releases',
-    partnerEyebrow: 'Partner Program',
-    partnerHeading: 'Distribute Google Review NFC cards in your city.',
-    partnerDesc: 'For resellers, agencies, and affiliates. Access special partner pricing and comprehensive sales enablement.',
-    partnerBtn: 'Become a Partner'
+
+    // Trust Bar
+    trust1Val: '< 1 Second',
+    trust1Label: 'Instant NFC Tap Response',
+    trust2Val: 'Grade A Acrylic',
+    trust2Label: '3mm Solid Desk Display',
+    trust3Val: '100% Compatible',
+    trust3Label: 'iOS & Android (No App Needed)',
+    trust4Val: '1-Year Warranty',
+    trust4Label: 'Replacement Sensor Guarantee',
+
+    // Product Section
+    secEyebrow: 'Official Hardware Catalog',
+    secTitle: 'Cardi Smart Hardware & Devices',
+    secSubtitle: 'Engineered with architectural hardware precision and unified AI systems to elevate your physical establishment.',
+
+    // Product 1
+    p1Tag: '🔥 Best Seller',
+    p1Price: 'IDR 69,000',
+    p1Title: 'NFC + QR Google Review Stand & Card',
+    p1Desc: 'Customers simply tap their smartphone on your cashier desk — Google Maps review form pops up instantly without search hassle.',
+    p1Feat1: 'Ultra-sensitive NTAG213 high-speed NFC chip',
+    p1Feat2: 'Solid 10x10 cm Grade A cast acrylic',
+    p1Feat3: 'Permanent laser-engraved backup QR code',
+    p1Feat4: 'Instant sync with Cardi Agent AI LoyaL',
+    p1Foot: 'Ideal for Cafes, Restaurants, Salons, Clinics & Retail',
+    p1OrderBtn: 'Order via Lynk.id',
+    p1Link: 'View Product Details →',
+
+    // Product 2
+    p2Tag: '💼 Business & Teams',
+    p2Price: 'Personal & Enterprise Tiers',
+    p2Title: 'Cardi Smart NFC Business Card',
+    p2Desc: 'Tap-to-share contactless business card. Instantly distribute contact details, portfolio links, and company profile in 1 second.',
+    p2Feat1: 'Share phone, email, LinkedIn & socials with a single tap',
+    p2Feat2: 'Automated integration with Cardi Agent AI MoM',
+    p2Feat3: 'Matte premium PVC & scratch-resistant metallic finish',
+    p2Feat4: 'Custom logo and employee branding customization',
+    p2Foot: 'Designed for Executives, Founders & Sales Champions',
+    p2OrderBtn: 'Inquire Order',
+    p2Link: 'View Specifications →',
+
+    // Product 3
+    p3Tag: '🚀 Coming Soon',
+    p3Price: 'In Development',
+    p3Title: 'Cardi AI & IoT Smart Hardware Series',
+    p3Desc: 'Upcoming smart devices built for cashier checkout automation, interactive digital counter displays, and real-time branch analytics.',
+    p3Feat1: 'Smart checkout devices & AI vision scanners',
+    p3Feat2: 'Interactive customer satisfaction displays',
+    p3Feat3: 'Direct link to Cardi CRM & branch analytics',
+    p3Feat4: 'Firmware over-the-air updates',
+    p3Foot: 'Follow TikTok Toko Cardi for upcoming announcements',
+    p3OrderBtn: 'Join Waitlist',
+
+    // Partner Section
+    partnerEyebrow: 'Business & Distribution Opportunity',
+    partnerBadge: 'Up to 45% Margin',
+    partnerHeading: 'Become a Cardi Hardware Reseller in Your City.',
+    partnerDesc: 'Join our certified distribution network. Enjoy wholesale partner pricing, ready-to-print marketing collateral, and full sales enablement.',
+    partnerFeat1: 'Exclusive wholesale margin of up to 45% per unit',
+    partnerFeat2: 'Complete promo assets, display samples & video collateral',
+    partnerFeat3: 'Dedicated technical support & factory replacement warranty',
+    partnerBtn: 'Chat Partner Desk (WhatsApp)',
+    partnerCardTitle: 'Reseller Starter Kit',
+    partnerCardSubtitle: 'Launch your NFC smart hardware distribution business today.',
+
+    // Quality Guarantees
+    guarEyebrow: 'Quality Assurance',
+    guarTitle: 'Engineered for Total Reliability',
+    guar1Title: 'Safe Nationwide Shipping',
+    guar1Desc: 'Protected with anti-scratch film and multi-layered bubble packaging.',
+    guar2Title: '1-Year NFC Sensor Warranty',
+    guar2Desc: 'Instant unit replacement guarantee if sensor fails to read on compatible phones.',
+    guar3Title: 'Complimentary Setup Support',
+    guar3Desc: 'Our technical team guides your Google Maps review setup until it functions seamlessly.'
   },
   zh: {
-    title: 'Cardi 官方商店 — 开箱即用的 AI 与 IT 产品',
-    desc: 'Cardi AI 与 IT 产品：NFC 谷歌评价卡、NFC 智能名片等。',
-    eyebrow: 'Cardi 商店',
-    heading: '适用于企业的即用型 AI 与 IT 产品。',
-    lead: '一次购买，立即可用。无缝连接 Cardi Agent 智能系统。',
+    title: 'Cardi 官方商店 — 开箱即用的 AI 与智能硬件产品',
+    desc: 'Cardi 官方智能硬件商店：NFC 谷歌评价展示牌、NFC 智能名片及 Cardi Agent 硬件生态。',
+    eyebrow: 'Cardi 官方商店',
+    heading: '适用于实体企业的即用型 AI 与智能硬件。',
+    lead: '一次性购买，无需月费。即刻提升谷歌地图 5 星好评，深度集成 Cardi Agent 智能生态。',
     btnOrder: '订购 LoyaL 实体卡',
     btnOrderBadge: '69k 起',
     btnLearn: '运作方式',
@@ -91,25 +203,81 @@ const copy = {
     btnTokopedia: '在 Tokopedia 购买',
     btnTiktok: '官方 TikTok',
     btnWa: 'WhatsApp 咨询',
-    secTitle: '精选产品',
-    secEyebrow: '产品系列',
-    p1Tag: '热销',
-    p1Title: 'NFC + QR 谷歌好评卡',
-    p1Desc: '顾客只需轻触或扫码，即可直达谷歌评价页面。Cardi Agent AI Loyal 提供技术支持。',
-    p1Foot: '中小企业与实体零售首选',
-    p1Link: '产品详情 →',
-    p2Title: 'NFC 智能商务名片',
-    p2Desc: '轻碰即刻分享联系方式与商务主页。与 Cardi Agent AI MoM 深度集成。',
-    p2Foot: '个人与企业定制方案',
-    p2Link: '产品详情 →',
-    p3Tag: '即将推出',
-    p3Title: '更多 AI 与智能硬件产品',
-    p3Desc: '支持数字化业务演进的智能硬件与配件。',
+
+    // Trust Bar
+    trust1Val: '< 1 秒',
+    trust1Label: 'NFC 触碰即刻响应',
+    trust2Val: 'A级实心亚克力',
+    trust2Label: '3mm 加厚立牌 稳固耐用',
+    trust3Val: '100% 广泛兼容',
+    trust3Label: '苹果与安卓 免装应用',
+    trust4Val: '1 年官方质保',
+    trust4Label: '芯片故障免费更换新机',
+
+    // Product Section
+    secEyebrow: '官方硬件目录',
+    secTitle: '精选智能硬件系列',
+    secSubtitle: '工业级硬件工艺结合深度集成的 AI 系统，助力实体门店数字化转型与声誉跃升。',
+
+    // Product 1
+    p1Tag: '🔥 销量冠军',
+    p1Price: 'IDR 69,000 起',
+    p1Title: 'NFC + QR 谷歌好评亚克力立牌',
+    p1Desc: '顾客收银台轻触手机，立即直达谷歌五星评价页面，无需繁琐搜索。',
+    p1Feat1: '高敏 NTAG213 极速感应芯片',
+    p1Feat2: '10x10 cm A级实心防刮亚克力',
+    p1Feat3: '永久激光雕刻备用二维码',
+    p1Feat4: '无缝接入 Cardi Agent AI LoyaL',
+    p1Foot: '咖啡厅、餐饮、美业、诊所及零售门店首选',
+    p1OrderBtn: '通过 Lynk.id 订购',
+    p1Link: '查看产品详情 →',
+
+    // Product 2
+    p2Tag: '💼 商务团队方案',
+    p2Price: '个人与团队定制',
+    p2Title: 'Cardi 智能商务 NFC 名片',
+    p2Desc: '轻碰即刻分享名片。瞬间交换联系方式、社交主页与服务画册。',
+    p2Feat1: '触碰秒传电话、邮箱与社交主页',
+    p2Feat2: '自动连接 Cardi Agent AI MoM 会议纪要',
+    p2Feat3: '哑光防刮 PVC 与金属工艺',
+    p2Feat4: '支持定制企业专属 Logo 与姓名',
+    p2Foot: '创始人、高管及精英商务首选',
+    p2OrderBtn: '咨询订制方案',
+    p2Link: '查看名片规格 →',
+
+    // Product 3
+    p3Tag: '🚀 即将推出',
+    p3Price: '研发中',
+    p3Title: 'Cardi AI 与物联网硬件系列',
+    p3Desc: '面向未来的收银台智能辅助设备、顾客满意度交互终端与门店分析传感器。',
+    p3Feat1: 'AI 智能收银视觉辅助设备',
+    p3Feat2: '交互式顾客评价反馈屏幕',
+    p3Feat3: '直连 Cardi CRM 与门店大数据',
+    p3Feat4: '支持云端固件 OTA 更新',
     p3Foot: '关注 Toko Cardi 抖音/TikTok 获悉首发资讯',
-    partnerEyebrow: '合作伙伴计划',
-    partnerHeading: '在您的城市代理销售 NFC 谷歌好评卡。',
-    partnerDesc: '面向分销商、代理商与合作伙伴。尊享专属渠道价格与销售赋能资料。',
-    partnerBtn: '申请成为合伙人'
+    p3OrderBtn: '加入候补名单',
+
+    // Partner Section
+    partnerEyebrow: '渠道合作与代理',
+    partnerBadge: '最高 45% 利润空间',
+    partnerHeading: '在您的城市代理销售 Cardi 谷歌好评卡。',
+    partnerDesc: '加入官方认证分销网络。尊享专属渠道批发价格、现成宣发物料及系统化销售赋能支持。',
+    partnerFeat1: '专属渠道供货价，单品利润空间高达 45%',
+    partnerFeat2: '全套展示样板、营销宣传册与短视频素材',
+    partnerFeat3: '专属技术对接服务与工厂质保支持',
+    partnerBtn: '联系代理合作负责人 (WhatsApp)',
+    partnerCardTitle: '代理商启动套装',
+    partnerCardSubtitle: '即刻在您的城市启动 NFC 智能硬件业务。',
+
+    // Quality Guarantees
+    guarEyebrow: '品质保障',
+    guarTitle: '官方正品 品质承诺',
+    guar1Title: '全国严密打包配送',
+    guar1Desc: '附带防刮保护膜与加厚气泡包装，确保安全送达。',
+    guar2Title: '1 年芯片官方质保',
+    guar2Desc: '若芯片出现读取异常，提供无条件免费换新服务。',
+    guar3Title: '免费技术设置指引',
+    guar3Desc: '技术团队一对一协助绑定配置谷歌地图评价链接。'
   }
 };
 
@@ -119,13 +287,24 @@ const c = copy[lang] || copy.id;
 <Layout title={c.title} description={c.desc} lang={lang}>
   <Navbar lang={lang} />
 
-  <main id="main">
-    <section class="hero">
-      <div class="wrap">
+  <main id="main" class="toko-main">
+    <!-- ==========================================
+         1. HERO SECTION: RICH MODERN ARCHITECTURE
+         ========================================== -->
+    <section class="toko-hero">
+      <div class="hero-ambient-glow" aria-hidden="true"></div>
+      <div class="hero-dot-pattern" aria-hidden="true"></div>
+
+      <div class="wrap hero-wrap">
         <div class="hero-copy">
-          <span class="eyebrow">{c.eyebrow}</span>
-          <h1>{c.heading}</h1>
-          <p class="lead">{c.lead}</p>
+          <!-- Eyebrow Pill Badge -->
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span class="badge-text">{c.eyebrow}</span>
+          </div>
+
+          <h1 class="hero-title">{c.heading}</h1>
+          <p class="hero-lead">{c.lead}</p>
           
           <div class="hero-actions">
             <!-- Action Button Cluster -->
@@ -141,7 +320,7 @@ const c = copy[lang] || copy.id;
               </a>
 
               <a href="#produk" class="btn-secondary-learn">
-                <svg class="play-icon" viewBox="0 0 20 20" fill="currentColor">
+                <svg class="play-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path
                     fill-rule="evenodd"
                     d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
@@ -199,61 +378,491 @@ const c = copy[lang] || copy.id;
       </div>
     </section>
 
-    <!-- Daftar Produk -->
-    <section class="sec" id="produk">
+    <!-- ==========================================
+         2. HARDWARE TRUST BAR (SECTION DIVIDER)
+         ========================================== -->
+    <div class="trust-bar-wrapper">
       <div class="wrap">
-        <div class="sec-head">
-          <span class="eyebrow">{c.secEyebrow}</span>
-          <h2>{c.secTitle}</h2>
+        <div class="trust-bar">
+          <div class="trust-item">
+            <div class="trust-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <div class="trust-texts">
+              <span class="trust-val">{c.trust1Val}</span>
+              <span class="trust-lbl">{c.trust1Label}</span>
+            </div>
+          </div>
+
+          <div class="trust-divider" aria-hidden="true"></div>
+
+          <div class="trust-item">
+            <div class="trust-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F4F99" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="9" y1="3" x2="9" y2="21"></line>
+              </svg>
+            </div>
+            <div class="trust-texts">
+              <span class="trust-val">{c.trust2Val}</span>
+              <span class="trust-lbl">{c.trust2Label}</span>
+            </div>
+          </div>
+
+          <div class="trust-divider" aria-hidden="true"></div>
+
+          <div class="trust-item">
+            <div class="trust-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+            </div>
+            <div class="trust-texts">
+              <span class="trust-val">{c.trust3Val}</span>
+              <span class="trust-lbl">{c.trust3Label}</span>
+            </div>
+          </div>
+
+          <div class="trust-divider" aria-hidden="true"></div>
+
+          <div class="trust-item">
+            <div class="trust-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <div class="trust-texts">
+              <span class="trust-val">{c.trust4Val}</span>
+              <span class="trust-lbl">{c.trust4Label}</span>
+            </div>
+          </div>
         </div>
-        <div class="grid g3">
-          <article class="card">
-            <div class="card-top">
-              <span class="tag gold">{c.p1Tag}</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         3. DAFTAR PRODUK (BENTO HARDWARE CARDS)
+         ========================================== -->
+    <section class="sec-products" id="produk">
+      <div class="wrap">
+        <!-- Section Header with Visual Eyebrow & Rule -->
+        <div class="section-head-center">
+          <div class="category-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+            <span>{c.secEyebrow}</span>
+          </div>
+          <h2 class="section-title-large">{c.secTitle}</h2>
+          <p class="section-subtitle">{c.secSubtitle}</p>
+        </div>
+
+        <!-- Bento Showcase Grid -->
+        <div class="bento-product-grid">
+          
+          <!-- PRODUCT 1: GOOGLE REVIEW STAND (HERO FEATURED CARD) -->
+          <article class="bento-card bento-card-featured">
+            <div class="bento-card-media">
+              <img
+                src="/products/mockup-google-review.png"
+                alt="Plakat Akrilik Google Review NFC"
+                class="product-showcase-img"
+                loading="lazy"
+              />
+              <span class="product-badge gold">{c.p1Tag}</span>
             </div>
-            <h3>{c.p1Title}</h3>
-            <p>{c.p1Desc}</p>
-            <div class="card-foot">{c.p1Foot}</div>
-            <a class="card-link" href="https://aiagent.cardi.co.id/cardiloyal/card/" target="_blank" rel="noopener">{c.p1Link}</a>
+
+            <div class="bento-card-content">
+              <div class="price-header">
+                <span class="price-val">{c.p1Price}</span>
+                <span class="price-tag">Beli Sekali Tanpa Biaya Bulanan</span>
+              </div>
+
+              <h3 class="product-title">{c.p1Title}</h3>
+              <p class="product-desc">{c.p1Desc}</p>
+
+              <!-- Features Check-List -->
+              <ul class="feature-checklist">
+                <li>
+                  <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>{c.p1Feat1}</span>
+                </li>
+                <li>
+                  <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>{c.p1Feat2}</span>
+                </li>
+                <li>
+                  <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>{c.p1Feat3}</span>
+                </li>
+                <li>
+                  <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>{c.p1Feat4}</span>
+                </li>
+              </ul>
+
+              <div class="product-foot-banner">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span>{c.p1Foot}</span>
+              </div>
+
+              <!-- Product Buttons -->
+              <div class="product-cta-cluster">
+                <a
+                  href="https://lynk.id/cardinusantara/qk553ykn87dd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-card-order"
+                >
+                  <span>{c.p1OrderBtn}</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+                <a
+                  href="https://aiagent.cardi.co.id/cardiloyal/card/"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn-card-detail"
+                >
+                  {c.p1Link}
+                </a>
+              </div>
+            </div>
           </article>
 
-          <article class="card">
-            <div class="card-top"></div>
-            <h3>{c.p2Title}</h3>
-            <p>{c.p2Desc}</p>
-            <div class="card-foot">{c.p2Foot}</div>
-            <a class="card-link" href="https://aiagent.cardi.co.id/cardimom/card/" target="_blank" rel="noopener">{c.p2Link}</a>
+          <!-- PRODUCT 2: CARDI SMART BUSINESS CARD -->
+          <article class="bento-card">
+            <div class="bento-card-media secondary-media">
+              <img
+                src="/products/fitur-phone-cards.png"
+                alt="Cardi Smart NFC Business Card"
+                class="product-showcase-img"
+                loading="lazy"
+              />
+              <span class="product-badge blue">{c.p2Tag}</span>
+            </div>
+
+            <div class="bento-card-content">
+              <div class="price-header">
+                <span class="price-val">{c.p2Price}</span>
+                <span class="price-tag">Corporate & Personal</span>
+              </div>
+
+              <h3 class="product-title">{c.p2Title}</h3>
+              <p class="product-desc">{c.p2Desc}</p>
+
+              <!-- Features Check-List -->
+              <ul class="feature-checklist">
+                <li>
+                  <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>{c.p2Feat1}</span>
+                </li>
+                <li>
+                  <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>{c.p2Feat2}</span>
+                </li>
+                <li>
+                  <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>{c.p2Feat3}</span>
+                </li>
+                <li>
+                  <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>{c.p2Feat4}</span>
+                </li>
+              </ul>
+
+              <div class="product-foot-banner">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>{c.p2Foot}</span>
+              </div>
+
+              <!-- Product Buttons -->
+              <div class="product-cta-cluster">
+                <a
+                  href="https://wa.me/6281289895646?text=Halo%20Toko%20Cardi%2C%20saya%20tertarik%20dengan%20Cardi%20Smart%20Business%20Card."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-card-order secondary"
+                >
+                  <span>{c.p2OrderBtn}</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+                <a
+                  href="https://aiagent.cardi.co.id/cardimom/card/"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn-card-detail"
+                >
+                  {c.p2Link}
+                </a>
+              </div>
+            </div>
           </article>
 
-          <article class="card">
-            <div class="card-top">
-              <span class="tag soon">{c.p3Tag}</span>
+          <!-- PRODUCT 3: AI & IOT HARDWARE (COMING SOON) -->
+          <article class="bento-card bento-card-soon">
+            <div class="bento-card-media soon-media">
+              <div class="soon-visual-container">
+                <div class="pulse-hardware-orb"></div>
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                  <line x1="6" y1="1" x2="6" y2="4"></line>
+                  <line x1="10" y1="1" x2="10" y2="4"></line>
+                  <line x1="14" y1="1" x2="14" y2="4"></line>
+                </svg>
+              </div>
+              <span class="product-badge purple">{c.p3Tag}</span>
             </div>
-            <h3>{c.p3Title}</h3>
-            <p>{c.p3Desc}</p>
-            <div class="card-foot">{c.p3Foot}</div>
+
+            <div class="bento-card-content">
+              <div class="price-header">
+                <span class="price-val soon-price">{c.p3Price}</span>
+                <span class="price-tag">Roadmap Q4 2026</span>
+              </div>
+
+              <h3 class="product-title">{c.p3Title}</h3>
+              <p class="product-desc">{c.p3Desc}</p>
+
+              <!-- Features Check-List -->
+              <ul class="feature-checklist">
+                <li>
+                  <svg class="check-icon purple" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>{c.p3Feat1}</span>
+                </li>
+                <li>
+                  <svg class="check-icon purple" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>{c.p3Feat2}</span>
+                </li>
+                <li>
+                  <svg class="check-icon purple" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>{c.p3Feat3}</span>
+                </li>
+                <li>
+                  <svg class="check-icon purple" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>{c.p3Feat4}</span>
+                </li>
+              </ul>
+
+              <div class="product-foot-banner">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span>{c.p3Foot}</span>
+              </div>
+
+              <!-- Product Buttons -->
+              <div class="product-cta-cluster">
+                <a
+                  href="https://www.tiktok.com/@cardiagent.ai?_r=1&_t=ZS-9AIQH0ySPZ9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-card-order dark"
+                >
+                  <img src="/icons/tiktok-official.svg" alt="TikTok" width="16" height="16" />
+                  <span>{c.p3OrderBtn}</span>
+                </a>
+              </div>
+            </div>
           </article>
+
         </div>
       </div>
     </section>
 
-    <!-- Program Mitra -->
-    <section class="sec sec-white">
+    <!-- ==========================================
+         4. ARCHITECTURAL SECTION SEPARATOR
+         ========================================== -->
+    <div class="architectural-divider" aria-hidden="true">
+      <div class="divider-line"></div>
+      <div class="divider-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        <span>Kemitraan & Distribusi</span>
+      </div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ==========================================
+         5. PROGRAM MITRA (DEEP CONTRAST BENTO HERO)
+         ========================================== -->
+    <section class="sec-partner">
       <div class="wrap">
-        <div class="split">
-          <div class="prose">
-            <span class="eyebrow">{c.partnerEyebrow}</span>
-            <h2 style="font-size:34px; color:var(--ink);">{c.partnerHeading}</h2>
-            <p>{c.partnerDesc}</p>
-            <a class="btn btn-dark" href="https://wa.me/6281289895646?text=Halo%20Toko%20Cardi%2C%20saya%20ingin%20jadi%20mitra%20reseller%20kartu%20Google%20Review%20NFC." target="_blank" rel="noopener" style="align-self:flex-start;">{c.partnerBtn}</a>
+        <div class="partner-card">
+          <!-- Ambient Background Highlights -->
+          <div class="partner-card-glow" aria-hidden="true"></div>
+
+          <div class="partner-grid">
+            <div class="partner-prose">
+              <div class="partner-eyebrow-cluster">
+                <span class="partner-eyebrow">{c.partnerEyebrow}</span>
+                <span class="partner-badge-pill">{c.partnerBadge}</span>
+              </div>
+
+              <h2 class="partner-heading">{c.partnerHeading}</h2>
+              <p class="partner-desc">{c.partnerDesc}</p>
+
+              <div class="partner-benefits">
+                <div class="benefit-item">
+                  <div class="benefit-check">✓</div>
+                  <p>{c.partnerFeat1}</p>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-check">✓</div>
+                  <p>{c.partnerFeat2}</p>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-check">✓</div>
+                  <p>{c.partnerFeat3}</p>
+                </div>
+              </div>
+
+              <div class="partner-actions">
+                <a
+                  class="btn-partner-whatsapp"
+                  href="https://wa.me/6281289895646?text=Halo%20Toko%20Cardi%2C%20saya%20tertarik%20mendaftar%20sebagai%20mitra%20reseller%20kartu%20Google%20Review%20NFC."
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <img src="/icons/whatsapp-official.svg" alt="WhatsApp" width="20" height="20" />
+                  <span>{c.partnerBtn}</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="partner-visual">
+              <div class="partner-showcase-box">
+                <div class="showcase-card-inner">
+                  <div class="showcase-card-top">
+                    <div class="showcase-chip">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                        <line x1="2" y1="10" x2="22" y2="10"></line>
+                      </svg>
+                      <span>Cardi Official Partner</span>
+                    </div>
+                    <span class="showcase-stock">Ready Stock</span>
+                  </div>
+
+                  <div class="showcase-product-preview">
+                    <img
+                      src="/products/plakat-depan.jpg"
+                      alt="Sample Plakat Toko Cardi"
+                      class="partner-mockup-thumb"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  <div class="showcase-card-bottom">
+                    <h4>{c.partnerCardTitle}</h4>
+                    <p>{c.partnerCardSubtitle}</p>
+                    <div class="partner-metrics-row">
+                      <div class="p-metric">
+                        <span class="m-val">100+</span>
+                        <span class="m-lbl">Mitra Terdaftar</span>
+                      </div>
+                      <div class="p-metric">
+                        <span class="m-val">1-3 Hari</span>
+                        <span class="m-lbl">Proses Kirim</span>
+                      </div>
+                      <div class="p-metric">
+                        <span class="m-val">100%</span>
+                        <span class="m-lbl">Dukungan Tim</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="card" style="min-height:280px; display:flex; flex-direction:column; justify-content:center; align-items:center; background:var(--bg); border:1px dashed var(--line); border-radius:var(--radius-lg); text-align:center; padding:32px;">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:14px; opacity:0.85;">
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <line x1="2" y1="10" x2="22" y2="10" />
-            </svg>
-            <span style="font-weight:700; color:var(--ink); font-size:16px;">Cardi Smart NFC Card Series</span>
-            <p style="font-size:14px; color:var(--muted); max-width:320px; margin-top:6px;">Google Review Tap Card & Smart Contact Business Card with instant cloud synchronization.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         6. JAMINAN KUALITAS & TRUST (3-CARD STRIP)
+         ========================================== -->
+    <section class="sec-guarantee">
+      <div class="wrap">
+        <div class="guarantee-header">
+          <span class="guar-eyebrow">{c.guarEyebrow}</span>
+          <h3 class="guar-title">{c.guarTitle}</h3>
+        </div>
+
+        <div class="guarantee-grid">
+          <div class="guar-card">
+            <div class="guar-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="15" height="13"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+            </div>
+            <h4>{c.guar1Title}</h4>
+            <p>{c.guar1Desc}</p>
+          </div>
+
+          <div class="guar-card">
+            <div class="guar-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1F4F99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <polyline points="9 12 12 15 16 10"></polyline>
+              </svg>
+            </div>
+            <h4>{c.guar2Title}</h4>
+            <p>{c.guar2Desc}</p>
+          </div>
+
+          <div class="guar-card">
+            <div class="guar-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+              </svg>
+            </div>
+            <h4>{c.guar3Title}</h4>
+            <p>{c.guar3Desc}</p>
           </div>
         </div>
       </div>
@@ -264,12 +873,120 @@ const c = copy[lang] || copy.id;
 </Layout>
 
 <style>
+  /* ========================================================
+     BASE TOKO STYLES & LAYOUT SYSTEM
+     ======================================================== */
+  .toko-main {
+    background-color: #FFFFFF;
+    color: #0F172A;
+    overflow-x: hidden;
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+  }
+
+  /* ========================================================
+     1. HERO SECTION
+     ======================================================== */
+  .toko-hero {
+    position: relative;
+    padding: clamp(64px, 8vw, 100px) 0 clamp(48px, 6vw, 76px);
+    background: #FFFFFF;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-ambient-glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1000px;
+    height: 480px;
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(234, 88, 12, 0.08), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-dot-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.75;
+  }
+
+  .hero-wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-copy {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    background: #FFF7ED;
+    border: 1px solid #FFEDD5;
+    color: #C2410C;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  }
+
+  .badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #EA580C;
+    box-shadow: 0 0 8px rgba(234, 88, 12, 0.6);
+  }
+
+  .hero-title {
+    font-size: clamp(34px, 5.2vw, 56px);
+    line-height: 1.1;
+    font-weight: 900;
+    color: #0B1220;
+    letter-spacing: -0.035em;
+    margin: 0 0 20px 0;
+    text-wrap: balance;
+  }
+
+  .hero-lead {
+    font-size: clamp(16px, 1.8vw, 19px);
+    line-height: 1.68;
+    color: #475569;
+    max-width: 660px;
+    margin: 0 auto;
+    text-wrap: pretty;
+  }
+
   .hero-actions {
     margin-top: 36px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
+    width: 100%;
   }
 
   .action-cluster {
@@ -429,5 +1146,756 @@ const c = copy[lang] || copy.id;
     color: #0F172A !important;
     transform: translateY(-2px);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  }
+
+  /* ========================================================
+     2. HARDWARE TRUST BAR (DISTINCT SECTION BOUNDARY)
+     ======================================================== */
+  .trust-bar-wrapper {
+    background: #F8FAFC;
+    border-top: 1px solid #E2E8F0;
+    border-bottom: 1px solid #E2E8F0;
+    padding: 24px 0;
+  }
+
+  .trust-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    gap: 16px;
+  }
+
+  @media (max-width: 900px) {
+    .trust-bar {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .trust-divider {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .trust-bar {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 6px 12px;
+  }
+
+  .trust-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  }
+
+  .trust-texts {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .trust-val {
+    font-size: 15px;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.25;
+  }
+
+  .trust-lbl {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #64748B;
+    line-height: 1.35;
+    margin-top: 2px;
+  }
+
+  .trust-divider {
+    width: 1px;
+    height: 38px;
+    background: #CBD5E1;
+    margin: 0 auto;
+  }
+
+  /* ========================================================
+     3. PRODUCTS SECTION (BENTO HARDWARE CARDS)
+     ======================================================== */
+  .sec-products {
+    padding: clamp(64px, 8vw, 100px) 0;
+    background: #FFFFFF;
+  }
+
+  .section-head-center {
+    text-align: center;
+    max-width: 740px;
+    margin: 0 auto 52px auto;
+  }
+
+  .category-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    background: rgba(31, 79, 153, 0.07);
+    color: #1F4F99;
+    border: 1px solid rgba(31, 79, 153, 0.16);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .section-title-large {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    color: #0B1220;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin: 0 0 14px 0;
+    text-wrap: balance;
+  }
+
+  .section-subtitle {
+    font-size: clamp(15px, 1.6vw, 17px);
+    line-height: 1.68;
+    color: #475569;
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* Bento Grid Layout */
+  .bento-product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  @media (max-width: 1024px) {
+    .bento-product-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+
+  .bento-card {
+    background: #FFFFFF;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  }
+
+  .bento-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.1), 0 4px 12px rgba(15, 23, 42, 0.04);
+    border-color: #CBD5E1;
+  }
+
+  .bento-card-featured {
+    border-color: #FDBA74;
+    box-shadow: 0 6px 24px -2px rgba(234, 88, 12, 0.08);
+  }
+
+  .bento-card-featured:hover {
+    border-color: #EA580C;
+    box-shadow: 0 18px 40px -4px rgba(234, 88, 12, 0.14);
+  }
+
+  .bento-card-media {
+    position: relative;
+    height: 220px;
+    background: linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 16px;
+    border-bottom: 1px solid #E2E8F0;
+  }
+
+  .secondary-media {
+    background: linear-gradient(180deg, #F0F9FF 0%, #E0F2FE 100%);
+  }
+
+  .soon-media {
+    background: linear-gradient(180deg, #FAF5FF 0%, #F3E8FF 100%);
+  }
+
+  .product-showcase-img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+  }
+
+  .bento-card:hover .product-showcase-img {
+    transform: scale(1.04);
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    letter-spacing: 0.02em;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  }
+
+  .product-badge.gold {
+    background: #FFF7ED;
+    color: #EA580C;
+    border: 1px solid #FED7AA;
+  }
+
+  .product-badge.blue {
+    background: #EFF6FF;
+    color: #1F4F99;
+    border: 1px solid #BFDBFE;
+  }
+
+  .product-badge.purple {
+    background: #FAF5FF;
+    color: #7E22CE;
+    border: 1px solid #E9D5FF;
+  }
+
+  .soon-visual-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    box-shadow: 0 10px 24px rgba(126, 34, 206, 0.12);
+  }
+
+  .bento-card-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .price-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .price-val {
+    font-size: 20px;
+    font-weight: 900;
+    color: #0F172A;
+  }
+
+  .soon-price {
+    font-size: 16px;
+    color: #7E22CE;
+  }
+
+  .price-tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748B;
+  }
+
+  .product-title {
+    font-size: 18.5px;
+    font-weight: 800;
+    color: #0B1220;
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+  }
+
+  .product-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #475569;
+    margin: 0 0 18px 0;
+  }
+
+  .feature-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .feature-checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    line-height: 1.45;
+    color: #334155;
+  }
+
+  .check-icon {
+    width: 17px;
+    height: 17px;
+    color: #EA580C;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .check-icon.purple {
+    color: #7E22CE;
+  }
+
+  .product-foot-banner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #F8FAFC;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    margin-top: auto;
+    margin-bottom: 20px;
+    border: 1px solid #E2E8F0;
+  }
+
+  .product-cta-cluster {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-card-order {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 12px;
+    background: #EA580C;
+    color: #FFFFFF !important;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.2);
+  }
+
+  .btn-card-order:hover {
+    background: #C2410C;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(234, 88, 12, 0.3);
+  }
+
+  .btn-card-order.secondary {
+    background: #0F172A;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  }
+
+  .btn-card-order.secondary:hover {
+    background: #020617;
+  }
+
+  .btn-card-order.dark {
+    background: #000000;
+    color: #FFFFFF !important;
+  }
+
+  .btn-card-detail {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1F4F99;
+    text-align: center;
+    text-decoration: none;
+    padding: 6px;
+    transition: color 0.2s ease;
+  }
+
+  .btn-card-detail:hover {
+    color: #153970;
+    text-decoration: underline;
+  }
+
+  /* ========================================================
+     4. ARCHITECTURAL SECTION SEPARATOR
+     ======================================================== */
+  .architectural-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1180px;
+    margin: 20px auto 40px auto;
+    padding: 0 24px;
+    gap: 20px;
+  }
+
+  .divider-line {
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #CBD5E1 50%, transparent);
+  }
+
+  .divider-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    background: #F1F5F9;
+    border: 1px solid #CBD5E1;
+    font-size: 12px;
+    font-weight: 700;
+    color: #475569;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ========================================================
+     5. PROGRAM MITRA (DEEP CONTRAST DARK BENTO)
+     ======================================================== */
+  .sec-partner {
+    padding: 20px 0 80px 0;
+    background: #FFFFFF;
+  }
+
+  .partner-card {
+    position: relative;
+    background: radial-gradient(circle at 100% 0%, #1E293B 0%, #0B1220 100%);
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+    padding: clamp(36px, 5vw, 64px);
+    box-shadow: 0 20px 50px -10px rgba(11, 18, 32, 0.4);
+    color: #FFFFFF;
+  }
+
+  .partner-card-glow {
+    position: absolute;
+    bottom: -60px;
+    right: -60px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(234, 88, 12, 0.18), transparent 70%);
+    pointer-events: none;
+  }
+
+  .partner-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  @media (max-width: 960px) {
+    .partner-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  .partner-eyebrow-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .partner-eyebrow {
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #93C5FD;
+  }
+
+  .partner-badge-pill {
+    font-size: 11px;
+    font-weight: 800;
+    background: #EA580C;
+    color: #FFFFFF;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    letter-spacing: 0.02em;
+  }
+
+  .partner-heading {
+    font-size: clamp(26px, 3.4vw, 38px);
+    line-height: 1.2;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin: 0 0 16px 0;
+    letter-spacing: -0.02em;
+  }
+
+  .partner-desc {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: #CBD5E1;
+    margin: 0 0 28px 0;
+  }
+
+  .partner-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+
+  .benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .benefit-check {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(234, 88, 12, 0.2);
+    border: 1px solid #EA580C;
+    color: #FFEDD5;
+    font-size: 12px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .benefit-item p {
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: #E2E8F0;
+    margin: 0;
+  }
+
+  .btn-partner-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 9999px;
+    background: #25D366;
+    color: #0F172A !important;
+    font-size: 15px;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 10px 25px -4px rgba(37, 211, 102, 0.35);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-partner-whatsapp:hover {
+    background: #1EBE5D;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px -4px rgba(37, 211, 102, 0.5);
+  }
+
+  /* Partner Showcase Preview Card */
+  .partner-showcase-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 24px;
+    backdrop-filter: blur(12px);
+  }
+
+  .showcase-card-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .showcase-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .showcase-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #FFFFFF;
+  }
+
+  .showcase-stock {
+    font-size: 11px;
+    font-weight: 700;
+    background: rgba(37, 211, 102, 0.15);
+    color: #4ADE80;
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    padding: 3px 8px;
+    border-radius: 9999px;
+  }
+
+  .showcase-product-preview {
+    height: 180px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #020617;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .partner-mockup-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .showcase-card-bottom h4 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin: 0 0 4px 0;
+  }
+
+  .showcase-card-bottom p {
+    font-size: 13px;
+    color: #94A3B8;
+    margin: 0 0 16px 0;
+  }
+
+  .partner-metrics-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .p-metric {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .m-val {
+    font-size: 15px;
+    font-weight: 900;
+    color: #F8FAFC;
+  }
+
+  .m-lbl {
+    font-size: 11px;
+    color: #94A3B8;
+    margin-top: 2px;
+  }
+
+  /* ========================================================
+     6. GUARANTEE / QUALITY ASSURANCE
+     ======================================================== */
+  .sec-guarantee {
+    padding: 48px 0 88px 0;
+    background: #F8FAFC;
+    border-top: 1px solid #E2E8F0;
+  }
+
+  .guarantee-header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .guar-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #64748B;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .guar-title {
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 800;
+    color: #0B1220;
+    margin: 0;
+  }
+
+  .guarantee-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 860px) {
+    .guarantee-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+
+  .guar-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .guar-card:hover {
+    transform: translateY(-2px);
+    border-color: #CBD5E1;
+  }
+
+  .guar-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .guar-card h4 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0F172A;
+    margin: 0 0 8px 0;
+  }
+
+  .guar-card p {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #64748B;
+    margin: 0;
   }
 </style>
