@@ -18,13 +18,6 @@
   ],
   "headers": [
     {
-      "source": "/company-profile",
-      "headers": [
-        { "key": "Content-Type", "value": "application/pdf" },
-        { "key": "Content-Disposition", "value": "inline; filename=\"Cardi - Quotation & Offering for Brands.pdf\"" }
-      ]
-    },
-    {
       "source": "/Cardi%20-%20Quotation%20&%20Offering%20for%20Brands.pdf",
       "headers": [
         { "key": "Content-Type", "value": "application/pdf" },
@@ -32,10 +25,10 @@
       ]
     },
     {
-      "source": "/ecommerce-management-indonesia-jasa-kelola-marketplace",
+      "source": "/Cardi.co.id%20-%20Pricing.pdf",
       "headers": [
         { "key": "Content-Type", "value": "application/pdf" },
-        { "key": "Content-Disposition", "value": "inline; filename=\"Cardi-Pricing.pdf\"" }
+        { "key": "Content-Disposition", "value": "inline; filename=\"Cardi.co.id - Pricing.pdf\"" }
       ]
     }
   ]

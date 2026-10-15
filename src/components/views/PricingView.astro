@@ -1,0 +1,386 @@
+---
+import DeckViewer from './DeckViewer.astro';
+import type { Chapter, Highlight } from './DeckViewer.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+import type { LangKey } from '../../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const currentLang = (lang as string) === 'en' ? 'en' : (lang as string) === 'zh' ? 'zh' : 'id';
+
+const content = {
+  id: {
+    metaTitle: "Pricing & Jasa Kelola Marketplace — Cardi Nusantara",
+    metaDesc: "Struktur biaya dan skema kemitraan pengelolaan marketplace (Shopee, Tokopedia, TikTok Shop, Lazada). Retainer terjangkau dengan pembagian hasil berbasis performa.",
+    title: "Cardi — Marketplace Management & Pricing Guide",
+    eyebrow: "Dokumen Resmi Manajemen Marketplace & Skema Biaya",
+    description: "Panduan lengkap layanan end-to-end jasa kelola toko online: operasional etalase, optimasi iklan berbayar (In-App Ads), live streaming harian, affiliate creator, dan matriks skala GMV.",
+    downloadFilename: "Cardi.co.id - Pricing.pdf",
+    waMessage: "Halo Tim Bisnis Cardi, saya telah melihat presentasi Marketplace Management & Pricing Guide di cardi.co.id dan ingin konsultasi mengenai pengelolaan marketplace untuk brand saya.",
+    chapters: [
+      {
+        number: "BAB 01",
+        page: 1,
+        title: "Strategic Partner for IPO",
+        desc: "Visi akselerasi bisnis dan standarisasi operasional marketplace menuju audit enterprise & IPO.",
+        badge: "Visi & Skala"
+      },
+      {
+        number: "BAB 02",
+        page: 4,
+        title: "Track Record & Profil Tim",
+        desc: "Pengalaman 10+ tahun Deo Cardi Nathanael bersama tim spesialis dalam mengelola 40+ brand top.",
+        badge: "Kredibilitas"
+      },
+      {
+        number: "BAB 03",
+        page: 6,
+        title: "Portofolio Brand Klien",
+        desc: "Studi kasus pertumbuhan brand kecantikan, personal care, dan retail di berbagai saluran marketplace.",
+        badge: "Portofolio"
+      },
+      {
+        number: "BAB 04",
+        page: 9,
+        title: "Indonesian Customer Behaviour",
+        desc: "Perilaku pembeli online di Indonesia dan dinamika keputusan belanja multi-channel lintas platform.",
+        badge: "Insight Pasar"
+      },
+      {
+        number: "BAB 05",
+        page: 11,
+        title: "5 Step Level Growth Matrix",
+        desc: "Klasifikasi level GMV brand: mengidentifikasi kebutuhan infrastruktur toko dan alokasi modal iklan.",
+        badge: "Matriks Pertumbuhan"
+      },
+      {
+        number: "BAB 06",
+        page: 13,
+        title: "Kriteria & Syarat Kemitraan",
+        desc: "Standar kualifikasi brand owner dan distributor resmi untuk memastikan sinergi kerja yang maksimal.",
+        badge: "Ketentuan"
+      },
+      {
+        number: "BAB 07",
+        page: 15,
+        title: "Skema Biaya & Performance Retainer",
+        desc: "Struktur pembagian biaya tetap (fixed retainer) dan revenue share adil yang berfokus pada kenaikan omset.",
+        badge: "Skema Biaya"
+      },
+      {
+        number: "BAB 08",
+        page: 24,
+        title: "Marketplace Multi-Channel Setup",
+        desc: "Optimasi etalase dekorasi toko, arsitektur katalog, SEO kata kunci, dan copywriting pada Shopee, Tokopedia, TikTok Shop, & Lazada.",
+        badge: "Operasional Toko"
+      },
+      {
+        number: "BAB 09",
+        page: 35,
+        title: "Live Streaming & Creator Affiliate",
+        desc: "Pemberdayaan host live shopping terlatih, jadwal siaran rutin, dan kolaborasi ribuan creator afiliasi.",
+        badge: "Live & Affiliate"
+      },
+      {
+        number: "BAB 10",
+        page: 48,
+        title: "Ads Management & ROAS Scaling",
+        desc: "Manajemen iklan berbayar in-app (Shopee Ads, Tokopedia Ads, TikTok GMV Ads) dengan target ROAS efisien.",
+        badge: "Iklan Berbayar"
+      },
+      {
+        number: "BAB 11",
+        page: 62,
+        title: "CRM & Repeat Order Optimization",
+        desc: "Strategi retensi pembeli, manajemen broadcast chat interaktif, dan automasi respons pesan pelanggan.",
+        badge: "Retensi Pelanggan"
+      },
+      {
+        number: "BAB 12",
+        page: 75,
+        title: "Diagnostik Brand & Form Onboarding",
+        desc: "Formulir kesiapan data produk, histori penjualan, dan langkah kick-off kemitraan resmi.",
+        badge: "Langkah Berikutnya"
+      }
+    ] as Chapter[],
+    highlights: [
+      {
+        tag: "MULTI-PLATFORM EXPERTISE",
+        title: "Shopee, Tokopedia, TikTok Shop, & Lazada",
+        desc: "Kelola seluruh akun toko marketplace Anda secara tersinkronisasi dalam satu payung manajemen terpadu."
+      },
+      {
+        tag: "SKEMA FAIR & HASIL NYATA",
+        title: "Retainer Terjangkau + Revenue Share",
+        desc: "Kami bertumbuh bersama kesuksesan omset Anda. Pembagian hasil berbasis performa GMV yang transparan."
+      },
+      {
+        tag: "TIM LENGKAP SIAP JALAN",
+        title: "Desainer, Advertiser, Host Live, & CS",
+        desc: "Anda tidak perlu merekrut dan melatih staf operasional sendiri. Seluruh fungsi dijalankan tim ahli berpengalaman."
+      },
+      {
+        tag: "STANDAR TINGKAT ENTERPRISE",
+        title: "Kesiapan Sistem Menuju Skala IPO",
+        desc: "Pencatatan data yang tertib, pelaporan cycle mingguan berkala, dan integrasi inventory yang akurat."
+      }
+    ] as Highlight[]
+  },
+  en: {
+    metaTitle: "Pricing & Marketplace Management — Cardi Nusantara",
+    metaDesc: "Cost structure and partnership packages for marketplace management (Shopee, Tokopedia, TikTok Shop, Lazada). Performance-driven revenue share model.",
+    title: "Cardi — Marketplace Management & Pricing Guide",
+    eyebrow: "Official Marketplace Management Document & Pricing Structure",
+    description: "An end-to-end guide to online store operations: storefront decor, targeted in-app advertising, daily livestreaming, creator affiliates, and GMV growth tiers.",
+    downloadFilename: "Cardi.co.id - Pricing.pdf",
+    waMessage: "Hello Cardi Team, I have reviewed the Marketplace Management & Pricing Guide presentation on cardi.co.id and would like to discuss managing my brand's online stores.",
+    chapters: [
+      {
+        number: "CH 01",
+        page: 1,
+        title: "Strategic Partner for IPO",
+        desc: "Scaling operational systems and marketplace standards toward enterprise audit readiness and IPO.",
+        badge: "Vision & Scale"
+      },
+      {
+        number: "CH 02",
+        page: 4,
+        title: "Track Record & Team Leadership",
+        desc: "10+ years of proven commercial execution led by Deo Cardi Nathanael managing 40+ leading brands.",
+        badge: "Credibility"
+      },
+      {
+        number: "CH 03",
+        page: 6,
+        title: "Brand Client Portfolio",
+        desc: "Demonstrated case studies across beauty, personal care, and retail on top Indonesian e-commerce platforms.",
+        badge: "Portfolio"
+      },
+      {
+        number: "CH 04",
+        page: 9,
+        title: "Indonesian Customer Behaviour",
+        desc: "Online purchasing dynamics in Indonesia and consumer behavior across cross-platform touchpoints.",
+        badge: "Market Insights"
+      },
+      {
+        number: "CH 05",
+        page: 11,
+        title: "5 Step Level Growth Matrix",
+        desc: "Brand GMV bracket classifications: diagnosing store infrastructure and marketing capital allocation.",
+        badge: "Growth Matrix"
+      },
+      {
+        number: "CH 06",
+        page: 13,
+        title: "Partnership Terms & Criteria",
+        desc: "Qualification benchmarks for brand owners and authorized distributors to ensure aligned incentives.",
+        badge: "Terms"
+      },
+      {
+        number: "CH 07",
+        page: 15,
+        title: "Pricing Structure & Performance Retainers",
+        desc: "Balanced fixed retainer and transparent revenue-sharing aligned directly with revenue growth.",
+        badge: "Pricing Model"
+      },
+      {
+        number: "CH 08",
+        page: 24,
+        title: "Multi-Channel Marketplace Setup",
+        desc: "Storefront branding, catalog architecture, SEO keyword optimization, and copy across Shopee, Tokopedia, TikTok Shop, & Lazada.",
+        badge: "Operations"
+      },
+      {
+        number: "CH 09",
+        page: 35,
+        title: "Livestreaming & Affiliate Creators",
+        desc: "Trained live shopping hosts, structured broadcasting schedules, and a network of thousands of affiliate creators.",
+        badge: "Live & Affiliate"
+      },
+      {
+        number: "CH 10",
+        page: 48,
+        title: "Ads Management & ROAS Scaling",
+        desc: "In-app paid acquisition across Shopee Ads, Tokopedia Ads, and TikTok Shop Ads engineered for optimal ROAS.",
+        badge: "Paid Ads"
+      },
+      {
+        number: "CH 11",
+        page: 62,
+        title: "CRM & Repeat Order Optimization",
+        desc: "Customer retention workflows, broadcast engagement campaigns, and automated inquiry responses.",
+        badge: "Customer Retention"
+      },
+      {
+        number: "CH 12",
+        page: 75,
+        title: "Brand Diagnostic & Onboarding Steps",
+        desc: "Data audit questionnaire, historical performance benchmark, and official partnership onboarding.",
+        badge: "Next Steps"
+      }
+    ] as Chapter[],
+    highlights: [
+      {
+        tag: "MULTI-PLATFORM COVERAGE",
+        title: "Shopee, Tokopedia, TikTok Shop, & Lazada",
+        desc: "Consolidated, synchronised management of all your Indonesian e-commerce channels under one roof."
+      },
+      {
+        tag: "PERFORMANCE-DRIVEN",
+        title: "Accessible Retainer + Revenue Share",
+        desc: "Our incentives match yours: transparent revenue sharing that rewards sustainable GMV expansion."
+      },
+      {
+        tag: "DEDICATED TURNKEY TEAM",
+        title: "Designers, Media Buyers, Live Hosts, & CS",
+        desc: "No need to recruit and train internal staff. Benefit immediately from specialized marketplace professionals."
+      },
+      {
+        tag: "ENTERPRISE STANDARD",
+        title: "Built for Growth toward IPO Readiness",
+        desc: "Standardized cycle reporting, rigorous inventory tracking, and auditable commercial data hygiene."
+      }
+    ] as Highlight[]
+  },
+  zh: {
+    metaTitle: "服务报价与电商代运营 — Cardi Nusantara",
+    metaDesc: "印尼主流电商平台（Shopee、Tokopedia、TikTok Shop、Lazada）运营管理收费标准与合作方案。灵活月费加销售额提成的绩效共赢模式。",
+    title: "Cardi — 电商平台代运营与价格指南",
+    eyebrow: "官方电商代运营指南与价格体系",
+    description: "端到端电商代运营全景方案：店铺装修设计、站内付费广告投放（In-App Ads）、日常直播带货、达人带货网络以及 GMV 阶段化增长矩阵。",
+    downloadFilename: "Cardi.co.id - Pricing.pdf",
+    waMessage: "您好 Cardi 团队，我已查阅 cardi.co.id 上的电商代运营与价格指南，希望咨询我们品牌的印尼电商运营合作方案。",
+    chapters: [
+      {
+        number: "第 01 章",
+        page: 1,
+        title: "迈向上市的战略合伙人",
+        desc: "推动电商平台规范化、数据标准化与企业审计合规，助力品牌加速扩张。",
+        badge: "愿景与规模"
+      },
+      {
+        number: "第 02 章",
+        page: 4,
+        title: "实战历程与专业团队",
+        desc: "创始人 Deo Cardi Nathanael 带领专业团队深耕印尼电商 10 余年，服务 40+ 头部品牌。",
+        badge: "核心实力"
+      },
+      {
+        number: "第 03 章",
+        page: 6,
+        title: "合作品牌案例库",
+        desc: "美妆护肤、个护与零售品牌在印尼主流电商渠道的高速增长实战经验。",
+        badge: "案例成果"
+      },
+      {
+        number: "第 04 章",
+        page: 9,
+        title: "印尼本土消费者决策旅程",
+        desc: "深度解构印尼网购消费习惯以及跨平台、多触点的消费购买决策规律。",
+        badge: "本土洞察"
+      },
+      {
+        number: "第 05 章",
+        page: 11,
+        title: "5 级 GMV 增长矩阵模型",
+        desc: "精准定位店铺阶段：厘清不同体量下的店铺基建升级与广告预算配比。",
+        badge: "增长矩阵"
+      },
+      {
+        number: "第 06 章",
+        page: 13,
+        title: "合作准入与准则要求",
+        desc: "品牌方及官方授权经销商的准入标准，保障双方长期高效协同。",
+        badge: "合作标准"
+      },
+      {
+        number: "第 07 章",
+        page: 15,
+        title: "收费结构与绩效分成模式",
+        desc: "基础服务月费结合销售额业绩提成，实现利益深度绑定的共赢机制。",
+        badge: "收费标准"
+      },
+      {
+        number: "第 08 章",
+        page: 24,
+        title: "多电商平台全套建店与精细化运营",
+        desc: "Shopee、Tokopedia、TikTok Shop 及 Lazada 的视觉装修、产品架构、SEO 关键词优化及转化文案。",
+        badge: "精细运营"
+      },
+      {
+        number: "第 09 章",
+        page: 35,
+        title: "常态化直播带货与达人分销网络",
+        desc: "印尼本土专业主播孵化、固定直播排班，协同数千名带货达人建立分销矩阵。",
+        badge: "直播与达人"
+      },
+      {
+        number: "第 10 章",
+        page: 48,
+        title: "站内付费广告与高投产比优化",
+        desc: "Shopee 广告、Tokopedia 广告与 TikTok GMV 广告精细化操盘，力保高 ROAS 回报。",
+        badge: "精准投放"
+      },
+      {
+        number: "第 11 章",
+        page: 62,
+        title: "用户私域运营与复购率提升",
+        desc: "客户触达留存机制、群发唤醒活动设计及自动化智能客服响应体系。",
+        badge: "复购增长"
+      },
+      {
+        number: "第 12 章",
+        page: 75,
+        title: "品牌诊断问卷与入驻启动",
+        desc: "填报产品现状与销售历史数据，正式开启合作对接流程。",
+        badge: "即刻启动"
+      }
+    ] as Chapter[],
+    highlights: [
+      {
+        tag: "多渠道全网覆盖",
+        title: "Shopee、Tokopedia、TikTok Shop 与 Lazada",
+        desc: "打破平台壁垒，实现印尼主流电商渠道的一体化全盘托管与跨平台统筹。"
+      },
+      {
+        tag: "业绩导向模式",
+        title: "亲民月费 + 真实销售额分成",
+        desc: "深度捆绑品牌利益，专注以 GMV 持续增长为核心目标，共担风险、共享成果。"
+      },
+      {
+        tag: "整编团队即刻开工",
+        title: "设计师、广告投手、专业主播与客服",
+        desc: "无需品牌自建团队与漫长试错，即刻接入成熟且经验丰富的印尼本地作战队伍。"
+      },
+      {
+        tag: "企业级高标准",
+        title: "规范化数据体系助力长远发展",
+        desc: "周期化透明报表交付、库存周转预警以及符合企业上市标准的规范化流程。"
+      }
+    ] as Highlight[]
+  }
+};
+
+const c = content[currentLang];
+---
+
+<DeckViewer
+  lang={lang}
+  title={c.title}
+  eyebrow={c.eyebrow}
+  description={c.description}
+  pdfUrl="/Cardi.co.id - Pricing.pdf"
+  downloadFilename={c.downloadFilename}
+  fileSize="6.9 MB"
+  totalPages={83}
+  updatedDate="2026"
+  waMessage={c.waMessage}
+  chapters={c.chapters}
+  highlights={c.highlights}
+  metaTitle={c.metaTitle}
+  metaDesc={c.metaDesc}
+/>

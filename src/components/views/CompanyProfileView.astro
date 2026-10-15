@@ -1,0 +1,428 @@
+---
+import DeckViewer from './DeckViewer.astro';
+import type { Chapter, Highlight } from './DeckViewer.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+import type { LangKey } from '../../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const currentLang = (lang as string) === 'en' ? 'en' : (lang as string) === 'zh' ? 'zh' : 'id';
+
+const content = {
+  id: {
+    metaTitle: "Company Profile & Quotation — Cardi Nusantara",
+    metaDesc: "Dokumen resmi penawaran dan company profile PT Digital Cardi Nusantara. Pelajari matriks 5 level pertumbuhan, paket ekosistem brand, dan studi kasus aktivasi digital.",
+    title: "Cardi — Quotation & Offering for Brands",
+    eyebrow: "Dokumen Resmi PT Digital Cardi Nusantara",
+    description: "Panduan komprehensif ekosistem pertumbuhan brand: matriks 5 level GMV, ketentuan kemitraan, paket aktivasi digital terintegrasi, dan studi kasus akselerasi 40+ brand terkemuka.",
+    downloadFilename: "Cardi - Quotation & Offering for Brands.pdf",
+    waMessage: "Halo Tim Bisnis Cardi, saya telah melihat presentasi Quotation & Offering for Brands di cardi.co.id/company-profile dan ingin berdiskusi mengenai strategi pertumbuhan untuk brand saya.",
+    chapters: [
+      {
+        number: "BAB 01",
+        page: 4,
+        title: "Track Record & Profil Founder",
+        desc: "Latar belakang PT Digital Cardi Nusantara bersama Deo Cardi Nathanael dalam membangun ekosistem brand berdaya saing tinggi.",
+        badge: "Fondasi"
+      },
+      {
+        number: "BAB 02",
+        page: 6,
+        title: "Pengalaman Industri & Portofolio",
+        desc: "Kemitraan sukses bersama lebih dari 40+ brand kecantikan, personal care, dan FMCG (DanDan, Hair and Me, BDL, TrueElegance).",
+        badge: "Portofolio"
+      },
+      {
+        number: "BAB 03",
+        page: 9,
+        title: "Customer Behaviour Journey",
+        desc: "Pemetaan alur perilaku belanja konsumen modern di Indonesia (B2B & B2C) dan alasan pentingnya aktivasi digital yang terintegrasi.",
+        badge: "Insight"
+      },
+      {
+        number: "BAB 04",
+        page: 11,
+        title: "5 Step Level Cardi Matrix",
+        desc: "Framework penentuan posisi brand Anda: dari level awal (<1M), pertumbuhan (1-5M), hingga skala enterprise (100M+).",
+        badge: "Matriks Utama"
+      },
+      {
+        number: "BAB 05",
+        page: 12,
+        title: "Cheat Sheet: Inventory Marketing",
+        desc: "Rencana alokasi anggaran, strategi perputaran stok, dan kebutuhan kanal pemasaran di setiap tahapan GMV.",
+        badge: "Strategi"
+      },
+      {
+        number: "BAB 06",
+        page: 14,
+        title: "Ketentuan Partner Cardi Marketplace",
+        desc: "Kriteria kesiapan brand/distributor untuk menjalin kemitraan strategis, komitmen stok, dan standarisasi operasional.",
+        badge: "Kemitraan"
+      },
+      {
+        number: "BAB 07",
+        page: 15,
+        title: "Brand Ecosystem Package",
+        desc: "Paket lengkap aktivasi: FCBO (Fractional Chief Brand Officer), Launch New Star, dan arsitektur kampanye pemasaran.",
+        badge: "Paket Layanan"
+      },
+      {
+        number: "BAB 08",
+        page: 17,
+        title: "Fase 0: Brand Check Up Gratis",
+        desc: "Program audit diagnostik 1 minggu tanpa biaya: analisa kelemahan touchpoint, aset digital, dan potensi pasar brand Anda.",
+        badge: "Free Diagnostic"
+      },
+      {
+        number: "BAB 09",
+        page: 18,
+        title: "Timeline Kerja & Siklus Retainer",
+        desc: "Bulan 1-2 perapihan fondasi aset dan strategi, dilanjutkan bulan 3-12 untuk aktivasi, optimasi penjualan, dan ekspansi skala.",
+        badge: "Roadmap"
+      },
+      {
+        number: "BAB 10",
+        page: 20,
+        title: "Google Business & Cardi Loyal Card",
+        desc: "Dominasi pencarian lokal Google Maps, peningkatan rating organik, ide promo, gift member, dan paket Review Pro.",
+        badge: "Local SEO"
+      },
+      {
+        number: "BAB 11",
+        page: 25,
+        title: "Website Development & Etalase 24 Jam",
+        desc: "Pembuatan website brand berkecepatan tinggi, integrasi katalog katalog pintar, dan standar SEO teknis.",
+        badge: "Digital Asset"
+      },
+      {
+        number: "BAB 12",
+        page: 34,
+        title: "Fractional Chief Brand Officer (FCBO)",
+        desc: "Dukungan C-level strategis setara Chief Brand Officer internal tanpa beban fixed-cost penuh bagi perusahaan.",
+        badge: "Executive Leadership"
+      },
+      {
+        number: "BAB 13",
+        page: 43,
+        title: "Studi Kasus, Lead Generation & ROI",
+        desc: "Laporan riil cycle 1-5, peningkatan lead chat masuk, efisiensi belanja iklan multi-channel, dan konversi omset.",
+        badge: "Data & Metrik"
+      },
+      {
+        number: "BAB 14",
+        page: 66,
+        title: "Next Steps & Onboarding",
+        desc: "Langkah pembentukan tim WhatsApp Group, pengisian formulir diagnostik brand, dan kick-off meeting.",
+        badge: "Aksi Nyata"
+      }
+    ] as Chapter[],
+    highlights: [
+      {
+        tag: "EKOSISTEM LENGKAP",
+        title: "Branding, Digital, & AI Terpadu",
+        desc: "Bukan sekadar agensi kreatif biasa, Cardi memadukan strategi brand, eksekusi kampanye digital, dan automasi AI dalam satu payung."
+      },
+      {
+        tag: "MATRIKS 5 LEVEL",
+        title: "Strategi Tepat Sesuai Skala GMV",
+        desc: "Fokus anggaran dan alur kerja disesuaikan dengan posisi riil bisnis Anda agar pertumbuhan efisien tanpa pemborosan modal."
+      },
+      {
+        tag: "FCBO LEADERSHIP",
+        title: "Arahan Eksekutif Tingkat C-Level",
+        desc: "Didukung Fractional Chief Brand Officer untuk memastikan seluruh pesan, tampilan, dan saluran distribusi bergerak selaras."
+      },
+      {
+        tag: "HASIL TERUKUR",
+        title: "Transparansi Data & Pelaporan Cycle",
+        desc: "Setiap siklus kerja dilengkapi evaluasi konversi, efisiensi biaya iklan, serta rekomendasi peningkatan berkala."
+      }
+    ] as Highlight[]
+  },
+  en: {
+    metaTitle: "Company Profile & Quotation — Cardi Nusantara",
+    metaDesc: "Official quotation and company profile of PT Digital Cardi Nusantara. Explore the 5-level growth matrix, brand ecosystem packages, and digital activation case studies.",
+    title: "Cardi — Quotation & Offering for Brands",
+    eyebrow: "Official Document of PT Digital Cardi Nusantara",
+    description: "A comprehensive guide to brand acceleration: 5-level GMV matrix, partnership terms, integrated digital activation packages, and verified case studies from 40+ leading brands.",
+    downloadFilename: "Cardi - Quotation & Offering for Brands.pdf",
+    waMessage: "Hello Cardi Team, I have reviewed the Quotation & Offering for Brands presentation on cardi.co.id/company-profile and would like to discuss a growth strategy for my brand.",
+    chapters: [
+      {
+        number: "CH 01",
+        page: 4,
+        title: "Track Record & Founder Profile",
+        desc: "Background of PT Digital Cardi Nusantara with Deo Cardi Nathanael building high-performing brand ecosystems.",
+        badge: "Foundation"
+      },
+      {
+        number: "CH 02",
+        page: 6,
+        title: "Industry Experience & Portfolio",
+        desc: "Proven track record across 40+ beauty, personal care, and retail brands (DanDan, Hair and Me, BDL, TrueElegance).",
+        badge: "Portfolio"
+      },
+      {
+        number: "CH 03",
+        page: 9,
+        title: "Customer Behaviour Journey",
+        desc: "Mapping Indonesian consumer purchasing habits across B2B & B2C touchpoints and why integrated digital activation matters.",
+        badge: "Insight"
+      },
+      {
+        number: "CH 04",
+        page: 11,
+        title: "5 Step Level Cardi Matrix",
+        desc: "Strategic framework to position your brand: from initial scale (<1M GMV), acceleration (1-5M), to enterprise dominance (100M+).",
+        badge: "Core Matrix"
+      },
+      {
+        number: "CH 05",
+        page: 12,
+        title: "Inventory Marketing Cheat Sheet",
+        desc: "Budget allocation, inventory turnover pacing, and channel priorities customized per GMV bracket.",
+        badge: "Strategy"
+      },
+      {
+        number: "CH 06",
+        page: 14,
+        title: "Marketplace Partner Terms",
+        desc: "Partner qualification criteria, inventory commitments, and operational standards for growth-driven brands.",
+        badge: "Partnership"
+      },
+      {
+        number: "CH 07",
+        page: 15,
+        title: "Brand Ecosystem Package",
+        desc: "End-to-end activation: Fractional CBO, Launch New Star, and integrated multi-channel marketing campaigns.",
+        badge: "Packages"
+      },
+      {
+        number: "CH 08",
+        page: 17,
+        title: "Phase 0: Complimentary Brand Check Up",
+        desc: "A 1-week complimentary diagnostic audit analyzing digital assets, customer touchpoints, and growth opportunities.",
+        badge: "Free Diagnostic"
+      },
+      {
+        number: "CH 09",
+        page: 18,
+        title: "Roadmap & Retainer Cycles",
+        desc: "Months 1-2 foundation and asset setup, followed by months 3-12 continuous sales activation and scale.",
+        badge: "Timeline"
+      },
+      {
+        number: "CH 10",
+        page: 20,
+        title: "Google Business & Cardi Loyal Card",
+        desc: "Google Maps local SEO dominance, organic review growth, promo ideation, loyalty gifts, and Review Pro packages.",
+        badge: "Local SEO"
+      },
+      {
+        number: "CH 11",
+        page: 25,
+        title: "Website Development & Digital Storefront",
+        desc: "High-performance brand web development, catalog showcases, and technical SEO infrastructure.",
+        badge: "Digital Assets"
+      },
+      {
+        number: "CH 12",
+        page: 34,
+        title: "Fractional Chief Brand Officer (FCBO)",
+        desc: "C-level executive leadership providing high-level brand strategy without the full-time executive overhead.",
+        badge: "Leadership"
+      },
+      {
+        number: "CH 13",
+        page: 43,
+        title: "Case Studies, Lead Gen & ROI Reports",
+        desc: "Real cycle 1-5 results, incoming chat inquiries, multi-channel ad spend efficiency, and revenue conversion metrics.",
+        badge: "Data & ROI"
+      },
+      {
+        number: "CH 14",
+        page: 66,
+        title: "Next Steps & Onboarding",
+        desc: "WhatsApp dedicated coordination group, brand assessment questionnaire, and strategic kick-off.",
+        badge: "Next Steps"
+      }
+    ] as Chapter[],
+    highlights: [
+      {
+        tag: "COMPLETE ECOSYSTEM",
+        title: "Branding, Digital, & AI Synergy",
+        desc: "More than a creative agency — we unite brand strategy, digital campaigns, and AI automation under one roof."
+      },
+      {
+        tag: "5-LEVEL MATRIX",
+        title: "Calibrated to Your Exact GMV Stage",
+        desc: "Spend and focus tailored to your true business scale so you achieve efficient growth without wasted capital."
+      },
+      {
+        tag: "FCBO LEADERSHIP",
+        title: "Executive Strategic Direction",
+        desc: "Guided by a Fractional Chief Brand Officer to ensure messaging, visuals, and channels align seamlessly."
+      },
+      {
+        tag: "MEASURABLE IMPACT",
+        title: "Transparent Cycle-Based Reporting",
+        desc: "Continuous conversion tracking, ad efficiency audits, and proactive roadmap iterations."
+      }
+    ] as Highlight[]
+  },
+  zh: {
+    metaTitle: "公司简介与商业提案 — Cardi Nusantara",
+    metaDesc: "PT Digital Cardi Nusantara 官方商业提案与公司简介。了解五阶段品牌增长矩阵、品牌生态系统套餐以及数字化激活实证案例。",
+    title: "Cardi — 品牌商业提案与全套解决方案",
+    eyebrow: "PT Digital Cardi Nusantara 官方文件",
+    description: "品牌加速全景指南：5 级 GMV 增长矩阵、合作条款、全渠道数字激活方案以及 40+ 知名品牌的落地实操案例。",
+    downloadFilename: "Cardi - Quotation & Offering for Brands.pdf",
+    waMessage: "您好 Cardi 团队，我已查阅 cardi.co.id/company-profile 上的商业提案展示，希望与您探讨我们品牌的增长策略。",
+    chapters: [
+      {
+        number: "第 01 章",
+        page: 4,
+        title: "发展历程与创始人简介",
+        desc: "PT Digital Cardi Nusantara 与创始人 Deo Cardi Nathanael 打造高竞争力品牌生态系统的历程。",
+        badge: "根基"
+      },
+      {
+        number: "第 02 章",
+        page: 6,
+        title: "行业经验与品牌案例库",
+        desc: "深耕美妆个护及零售领域，成功服务 40 余家知名品牌（DanDan、Hair and Me、BDL、TrueElegance 等）。",
+        badge: "案例库"
+      },
+      {
+        number: "第 03 章",
+        page: 9,
+        title: "印尼消费者行为全触点分析",
+        desc: "深度解构印尼本地 B2B 与 B2C 消费决策旅程，以及品牌为何需要一体化数字激活。",
+        badge: "市场洞察"
+      },
+      {
+        number: "第 04 章",
+        page: 11,
+        title: "Cardi 5 级品牌矩阵模型",
+        desc: "精准定位品牌所处阶段：从起步期（<1M GMV）、加速期（1-5M）到规模化（100M+）。",
+        badge: "核心模型"
+      },
+      {
+        number: "第 05 章",
+        page: 12,
+        title: "库存与营销分配速查表",
+        desc: "根据不同 GMV 阶段定制的预算配比、库存周转规划及重点推广渠道。",
+        badge: "策略表"
+      },
+      {
+        number: "第 06 章",
+        page: 14,
+        title: "电商合作与准入标准",
+        desc: "品牌方及经销商的合作资质、货品储备承诺及运营交付规范。",
+        badge: "合作准则"
+      },
+      {
+        number: "第 07 章",
+        page: 15,
+        title: "品牌生态系统套餐",
+        desc: "涵盖外聘首席品牌官（FCBO）、新星启动计划（Launch New Star）及全渠道市场营销方案。",
+        badge: "服务套餐"
+      },
+      {
+        number: "第 08 章",
+        page: 17,
+        title: "阶段 0：免费品牌诊断",
+        desc: "为期一周的免费体检：全面排查数字资产短板、触点流失及市场增长潜力。",
+        badge: "免费体检"
+      },
+      {
+        number: "第 09 章",
+        page: 18,
+        title: "工作路线图与年度周期",
+        desc: "第 1-2 个月梳理资产与打牢基石，第 3-12 个月持续拉动销售并扩大规模。",
+        badge: "路线图"
+      },
+      {
+        number: "第 10 章",
+        page: 20,
+        title: "谷歌地图商家与会员留存",
+        desc: "本地 SEO 霸屏、自然好评提升、营销活动创意、会员专属礼遇与 Review Pro 方案。",
+        badge: "本地推广"
+      },
+      {
+        number: "第 11 章",
+        page: 25,
+        title: "24 小时在线品牌网站开发",
+        desc: "打造高转化、极速响应的品牌数字展厅，搭配智能产品目录与技术 SEO 架构。",
+        badge: "数字资产"
+      },
+      {
+        number: "第 12 章",
+        page: 34,
+        title: "外聘首席品牌官（FCBO）",
+        desc: "提供 C 级别高管战略支持，无需企业承担全职高管的高额固定成本。",
+        badge: "战略领航"
+      },
+      {
+        number: "第 13 章",
+        page: 43,
+        title: "实战案例、商机转化与 ROI 报告",
+        desc: "1-5 期真实业务数据复盘、即时咨询量激增、多渠道广告投放效率及 GMV 转化分析。",
+        badge: "数据复盘"
+      },
+      {
+        number: "第 14 章",
+        page: 66,
+        title: "后续步骤与入驻启动",
+        desc: "建立专属对接群组、填写品牌诊断问卷并开启首期战略对齐会。",
+        badge: "即刻启动"
+      }
+    ] as Chapter[],
+    highlights: [
+      {
+        tag: "完整生态闭环",
+        title: "品牌策划、数字营销与 AI 深度协同",
+        desc: "打破传统广告公司局限，融合战略顶层设计、全链路数字运营与 AI 自动化系统。"
+      },
+      {
+        tag: "5 级增长矩阵",
+        title: "量身定制与当前 GMV 匹配的策略",
+        desc: "杜绝资源盲目浪费，根据品牌真实发展阶段精准配置投放与人员。"
+      },
+      {
+        tag: "FCBO 首席领航",
+        title: "高水准 C-Level 战略把关",
+        desc: "外聘首席品牌官全程指导，确保品牌视觉、价值主张与销售渠道步调统一。"
+      },
+      {
+        tag: "数据量化交付",
+        title: "透明化周期数据追踪与报告",
+        desc: "各阶段均提供细致的转化率复盘、广告花费效率分析与动态优化建议。"
+      }
+    ] as Highlight[]
+  }
+};
+
+const c = content[currentLang];
+---
+
+<DeckViewer
+  lang={lang}
+  title={c.title}
+  eyebrow={c.eyebrow}
+  description={c.description}
+  pdfUrl="/Cardi - Quotation & Offering for Brands.pdf"
+  downloadFilename={c.downloadFilename}
+  fileSize="4.9 MB"
+  totalPages={69}
+  updatedDate="2026"
+  waMessage={c.waMessage}
+  chapters={c.chapters}
+  highlights={c.highlights}
+  metaTitle={c.metaTitle}
+  metaDesc={c.metaDesc}
+/>
