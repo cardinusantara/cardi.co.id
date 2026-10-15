@@ -13,21 +13,22 @@
     { "source": "/zh/plugin", "destination": "/zh/ekosistem", "permanent": true },
     { "source": "/blog", "destination": "/insight", "permanent": true },
     { "source": "/en/blog", "destination": "/en/insight", "permanent": true },
-    { "source": "/zh/blog", "destination": "/zh/insight", "permanent": true }
+    { "source": "/zh/blog", "destination": "/zh/insight", "permanent": true },
+    { "source": "/company-profile.pdf", "destination": "/company-profile", "permanent": true }
   ],
   "headers": [
     {
       "source": "/company-profile",
       "headers": [
         { "key": "Content-Type", "value": "application/pdf" },
-        { "key": "Content-Disposition", "value": "inline; filename=\"Cardi-Company-Profile.pdf\"" }
+        { "key": "Content-Disposition", "value": "inline; filename=\"Cardi - Quotation & Offering for Brands.pdf\"" }
       ]
     },
     {
-      "source": "/company-profile.pdf",
+      "source": "/Cardi%20-%20Quotation%20&%20Offering%20for%20Brands.pdf",
       "headers": [
         { "key": "Content-Type", "value": "application/pdf" },
-        { "key": "Content-Disposition", "value": "inline; filename=\"Cardi-Company-Profile.pdf\"" }
+        { "key": "Content-Disposition", "value": "inline; filename=\"Cardi - Quotation & Offering for Brands.pdf\"" }
       ]
     },
     {
