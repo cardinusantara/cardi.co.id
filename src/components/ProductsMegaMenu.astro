@@ -1,0 +1,636 @@
+---
+import { getLangFromUrl, useTranslatedPath } from '../i18n/utils';
+import type { LangKey } from '../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const translatePath = useTranslatedPath(lang);
+
+// Localized strings
+const content = {
+  id: {
+    agentTitle: 'agent',
+    agentSubtitle: 'Platform bisnis berbasis AI. Satu aplikasi, tiga produk.',
+    nadiName: 'nadi',
+    nadiTag: '/nadi/',
+    nadiDesc: 'ERP + CRM & terima pembayaran',
+    momName: 'mom',
+    momTag: '/mom/',
+    momDesc: 'Kartu nama NFC, jadwal & notulen AI',
+    loyalName: 'loyal',
+    loyalTag: '/loyal/',
+    loyalDesc: 'Member, poin & Google Review',
+    viewAllProducts: 'Lihat semua produk →',
+    
+    nusantaraTitle: 'nusantara',
+    nusantaraSubtitle: 'Tim ahli untuk bisnis yang ingin tumbuh dan dipercaya.',
+    brandingTitle: 'Branding',
+    brandingDesc: 'Identitas & strategi brand',
+    digitalTitle: 'Digital Activation',
+    digitalDesc: 'Konten, iklan & media sosial',
+    gtmTitle: 'Go-to-Market',
+    gtmDesc: 'Strategi masuk pasar & penjualan',
+    ipoTitle: 'IPO Readiness',
+    ipoDesc: 'Siap naik kelas ke bursa',
+    viewServices: 'Lihat layanan →',
+    
+    bannerTitle: 'Bingung mulai dari mana?',
+    bannerDesc: 'Cek kondisi brand Anda gratis dalam 5 menit, atau ngobrol langsung dengan tim.',
+    btnCheckBrand: 'Cek Brand Gratis',
+    btnWA: 'Konsultasi via WhatsApp',
+    waText: 'Halo Cardi! Saya ingin konsultasi mengenai produk dan layanan.'
+  },
+  en: {
+    agentTitle: 'agent',
+    agentSubtitle: 'AI business platform. One app, three products.',
+    nadiName: 'nadi',
+    nadiTag: '/nadi/',
+    nadiDesc: 'ERP + CRM & payment collection',
+    momName: 'mom',
+    momTag: '/mom/',
+    momDesc: 'NFC card, schedule & AI meeting notes',
+    loyalName: 'loyal',
+    loyalTag: '/loyal/',
+    loyalDesc: 'Members, points & Google Reviews',
+    viewAllProducts: 'View all products →',
+    
+    nusantaraTitle: 'nusantara',
+    nusantaraSubtitle: 'Expert team for businesses looking to scale and gain trust.',
+    brandingTitle: 'Branding',
+    brandingDesc: 'Brand identity & strategy',
+    digitalTitle: 'Digital Activation',
+    digitalDesc: 'Content, ads & social media',
+    gtmTitle: 'Go-to-Market',
+    gtmDesc: 'Market entry & sales strategy',
+    ipoTitle: 'IPO Readiness',
+    ipoDesc: 'Ready to scale to public market',
+    viewServices: 'View services →',
+    
+    bannerTitle: 'Unsure where to start?',
+    bannerDesc: 'Check your brand health for free in 5 minutes, or chat directly with our team.',
+    btnCheckBrand: 'Free Brand Check',
+    btnWA: 'Consult via WhatsApp',
+    waText: 'Hello Cardi! I would like to consult about your products and services.'
+  },
+  zh: {
+    agentTitle: 'agent',
+    agentSubtitle: '基于AI的商业平台。一个应用，三大产品。',
+    nadiName: 'nadi',
+    nadiTag: '/nadi/',
+    nadiDesc: 'ERP + CRM 与在线收款',
+    momName: 'mom',
+    momTag: '/mom/',
+    momDesc: 'NFC商务名片、AI日程与会议纪要',
+    loyalName: 'loyal',
+    loyalTag: '/loyal/',
+    loyalDesc: '会员、积分与谷歌评价',
+    viewAllProducts: '查看所有产品 →',
+    
+    nusantaraTitle: 'nusantara',
+    nusantaraSubtitle: '助力企业成长与信赖的专家团队。',
+    brandingTitle: 'Branding',
+    brandingDesc: '品牌定位与视觉识别',
+    digitalTitle: 'Digital Activation',
+    digitalDesc: '内容策划、广告投放与社媒运营',
+    gtmTitle: 'Go-to-Market',
+    gtmDesc: '市场准入与销售增长策略',
+    ipoTitle: 'IPO Readiness',
+    ipoDesc: '上市辅导与企业合规辅导',
+    viewServices: '查看服务 →',
+    
+    bannerTitle: '不知从何开始？',
+    bannerDesc: '5分钟免费诊断品牌现状，或直接与我们的专业顾问沟通。',
+    btnCheckBrand: '免费品牌诊断',
+    btnWA: 'WhatsApp 咨询',
+    waText: '您好 Cardi！我想咨询关于产品与服务。'
+  }
+};
+
+const t = content[lang] || content.id;
+const waUrl = `https://api.whatsapp.com/send?phone=6281289895646&text=${encodeURIComponent(t.waText)}`;
+---
+
+<div class="products-mega-dropdown" id="productsMegaMenu">
+  <div class="mega-body">
+    <!-- LEFT COLUMN: CARDI AGENT -->
+    <div class="mega-col mega-agent-col">
+      <div class="mega-header">
+        <img 
+          src="/logos/agent/icon-agent.png" 
+          alt="cardi agent" 
+          class="brand-mark-agent" 
+          width="34" 
+          height="22" 
+          loading="lazy"
+        />
+        <div class="brand-text">
+          <span class="brand-prefix">cardi</span>
+          <span class="brand-title">{t.agentTitle}</span>
+        </div>
+      </div>
+      <p class="mega-subtitle">{t.agentSubtitle}</p>
+
+      <div class="products-list">
+        <!-- 1. NADI -->
+        <a href="https://aiagent.cardi.co.id/crm/" target="_blank" rel="noopener" class="product-item">
+          <div class="product-item-main">
+            <img 
+              src="/logos/nadi/icon-nadi-app.png" 
+              alt="nadi" 
+              class="product-icon nadi-icon" 
+              width="42" 
+              height="42"
+              loading="lazy" 
+            />
+            <div class="product-info">
+              <span class="product-name">{t.nadiName}</span>
+              <span class="product-desc">{t.nadiDesc}</span>
+            </div>
+          </div>
+          <span class="product-tag">{t.nadiTag}</span>
+        </a>
+
+        <!-- 2. MOM -->
+        <a href="https://aiagent.cardi.co.id/mom/" target="_blank" rel="noopener" class="product-item">
+          <div class="product-item-main">
+            <img 
+              src="/logos/mom/icon-mom-app.png" 
+              alt="mom" 
+              class="product-icon mom-icon" 
+              width="42" 
+              height="42"
+              loading="lazy" 
+            />
+            <div class="product-info">
+              <span class="product-name">{t.momName}</span>
+              <span class="product-desc">{t.momDesc}</span>
+            </div>
+          </div>
+          <span class="product-tag">{t.momTag}</span>
+        </a>
+
+        <!-- 3. LOYAL -->
+        <a href="https://aiagent.cardi.co.id/loyal/" target="_blank" rel="noopener" class="product-item">
+          <div class="product-item-main">
+            <img 
+              src="/logos/loyal/icon-loyal-app.png" 
+              alt="loyal" 
+              class="product-icon loyal-icon" 
+              width="42" 
+              height="42"
+              loading="lazy" 
+            />
+            <div class="product-info">
+              <span class="product-name">{t.loyalName}</span>
+              <span class="product-desc">{t.loyalDesc}</span>
+            </div>
+          </div>
+          <span class="product-tag">{t.loyalTag}</span>
+        </a>
+      </div>
+
+      <a href="https://aiagent.cardi.co.id/" target="_blank" rel="noopener" class="col-footer-link">
+        <span class="footer-action">{t.viewAllProducts}</span>
+        <span class="footer-domain">aiagent.cardi.co.id</span>
+      </a>
+    </div>
+
+    <!-- RIGHT COLUMN: CARDI NUSANTARA -->
+    <div class="mega-col mega-nusantara-col">
+      <div class="mega-header">
+        <img 
+          src="/logos/nusantara/icon-nusantara.png" 
+          alt="cardi nusantara" 
+          class="brand-mark-nusantara" 
+          width="20" 
+          height="32" 
+          loading="lazy"
+        />
+        <div class="brand-text">
+          <span class="brand-prefix">cardi</span>
+          <span class="brand-title">{t.nusantaraTitle}</span>
+        </div>
+      </div>
+      <p class="mega-subtitle">{t.nusantaraSubtitle}</p>
+
+      <div class="services-grid">
+        <!-- 1. Branding -->
+        <a href="https://cardinusantara.com/branding" target="_blank" rel="noopener" class="service-card">
+          <div class="service-card-head">
+            <svg class="service-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="16"></line>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            <span class="service-name">{t.brandingTitle}</span>
+          </div>
+          <span class="service-desc">{t.brandingDesc}</span>
+        </a>
+
+        <!-- 2. Digital Activation -->
+        <a href="https://cardinusantara.com/digital" target="_blank" rel="noopener" class="service-card">
+          <div class="service-card-head">
+            <svg class="service-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span class="service-name">{t.digitalTitle}</span>
+          </div>
+          <span class="service-desc">{t.digitalDesc}</span>
+        </a>
+
+        <!-- 3. Go-to-Market -->
+        <a href="https://cardinusantara.com/gtm" target="_blank" rel="noopener" class="service-card">
+          <div class="service-card-head">
+            <svg class="service-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+            <span class="service-name">{t.gtmTitle}</span>
+          </div>
+          <span class="service-desc">{t.gtmDesc}</span>
+        </a>
+
+        <!-- 4. IPO Readiness -->
+        <a href="https://cardinusantara.com/ipo-partner" target="_blank" rel="noopener" class="service-card">
+          <div class="service-card-head">
+            <svg class="service-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+              <line x1="2" y1="20" x2="22" y2="20"></line>
+            </svg>
+            <span class="service-name">{t.ipoTitle}</span>
+          </div>
+          <span class="service-desc">{t.ipoDesc}</span>
+        </a>
+      </div>
+
+      <a href="https://cardinusantara.com/" target="_blank" rel="noopener" class="col-footer-link">
+        <span class="footer-action">{t.viewServices}</span>
+        <span class="footer-domain">cardinusantara.com</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- BOTTOM BANNER -->
+  <div class="mega-bottom-banner">
+    <div class="banner-text">
+      <span class="banner-heading">{t.bannerTitle}</span>
+      <span class="banner-sub">{t.bannerDesc}</span>
+    </div>
+    <div class="banner-actions">
+      <a href={translatePath('/cek-brand')} class="btn-check-brand">
+        {t.btnCheckBrand}
+      </a>
+      <a href={waUrl} target="_blank" rel="noopener noreferrer" class="btn-wa">
+        {t.btnWA}
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .products-mega-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    width: 900px;
+    max-width: 96vw;
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: 18px;
+    box-shadow: 0 24px 48px -12px rgba(10, 22, 51, 0.16), 0 4px 16px rgba(10, 22, 51, 0.04);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    z-index: 120;
+    overflow: hidden;
+    pointer-events: none;
+    text-align: left;
+  }
+
+  .products-mega-dropdown::before {
+    content: "";
+    position: absolute;
+    top: -16px;
+    left: 0;
+    width: 100%;
+    height: 16px;
+    background: transparent;
+  }
+
+  :global(.menu-item:hover) .products-mega-dropdown,
+  .products-mega-dropdown:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+
+  .mega-body {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 36px;
+    padding: 28px 32px 22px;
+  }
+
+  .mega-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Header Branding */
+  .mega-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-mark-agent {
+    width: 32px;
+    height: auto;
+    max-height: 22px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .brand-mark-nusantara {
+    width: 18px;
+    height: auto;
+    max-height: 28px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  .brand-prefix {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0A1633;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .brand-title {
+    font-size: 21px;
+    font-weight: 800;
+    color: #0A1633;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+
+  .mega-subtitle {
+    font-size: 12.5px;
+    color: #64748B;
+    line-height: 1.45;
+    margin: 8px 0 16px;
+    font-weight: 400;
+  }
+
+  /* Left Side: Product List */
+  .products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: auto;
+  }
+
+  .product-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+
+  .product-item:hover {
+    background: #F1F5F9;
+  }
+
+  .product-item-main {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .product-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .product-name {
+    font-size: 14.5px;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .product-desc {
+    font-size: 12px;
+    color: #64748B;
+    line-height: 1.35;
+    margin-top: 2px;
+    font-weight: 400;
+  }
+
+  .product-tag {
+    font-size: 12px;
+    color: #94A3B8;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  /* Right Side: Services Grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: auto;
+  }
+
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 14px;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    background: #ffffff;
+    text-align: left;
+  }
+
+  .service-card:hover {
+    border-color: #0B63C5;
+    background: #F8FAFC;
+    box-shadow: 0 4px 12px rgba(11, 99, 197, 0.08);
+  }
+
+  .service-card-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #0B63C5;
+  }
+
+  .service-svg {
+    stroke: #0B63C5;
+    flex-shrink: 0;
+  }
+
+  .service-name {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0F172A;
+    line-height: 1.2;
+  }
+
+  .service-desc {
+    font-size: 11.5px;
+    color: #64748B;
+    line-height: 1.35;
+    font-weight: 400;
+  }
+
+  /* Column Footer Link */
+  .col-footer-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    margin-top: 14px;
+    padding: 4px 6px;
+    text-align: left;
+  }
+
+  .footer-action {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0B63C5;
+    line-height: 1.3;
+    transition: color 0.15s ease;
+  }
+
+  .col-footer-link:hover .footer-action {
+    color: #084993;
+    text-decoration: underline;
+  }
+
+  .footer-domain {
+    font-size: 11px;
+    color: #64748B;
+    line-height: 1.3;
+    margin-top: 1px;
+  }
+
+  /* Bottom Banner */
+  .mega-bottom-banner {
+    background: #F8FAFC;
+    border-top: 1px solid #E2E8F0;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .banner-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .banner-heading {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.25;
+  }
+
+  .banner-sub {
+    font-size: 12px;
+    color: #64748B;
+    line-height: 1.35;
+    margin-top: 2px;
+  }
+
+  .banner-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .btn-check-brand {
+    background: #0B63C5;
+    color: #ffffff;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 9999px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+
+  .btn-check-brand:hover {
+    background: #084993;
+    transform: translateY(-1px);
+  }
+
+  .btn-wa {
+    background: #ffffff;
+    color: #0B63C5;
+    border: 1.5px solid #0B63C5;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 7px 16px;
+    border-radius: 9999px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+
+  .btn-wa:hover {
+    background: #EFF6FF;
+    border-color: #084993;
+    color: #084993;
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 991px) {
+    .products-mega-dropdown {
+      display: none;
+    }
+  }
+</style>
