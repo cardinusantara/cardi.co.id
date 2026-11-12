@@ -63,7 +63,7 @@ const translatePath = useTranslatedPath(lang);
 <noscript>
   <style>
     /* Without JS neither the entrance nor the scroll-driven animation ever
-       runs — force the settled end state instead of leaving text/CTA
+       runs - force the settled end state instead of leaving text/CTA
        permanently hidden. */
     .hero-intro-track { height: auto !important; }
     .hero-intro-stage {
@@ -96,7 +96,7 @@ const translatePath = useTranslatedPath(lang);
 
   document.addEventListener('DOMContentLoaded', initHeroIntro);
 
-  // Each petal's resting throw distance/rotation/scale — used both as the
+  // Each petal's resting throw distance/rotation/scale - used both as the
   // entrance's scattered starting point and the collapse's scattered target.
   const petalConfig = [
     { angle: 0, dx: -200, dy: -55, rot: -100, scale: 0.25 },
@@ -128,7 +128,7 @@ const translatePath = useTranslatedPath(lang);
     if (!track || !logoGroup || !logoEl || !wordmarkEl || !titleEl || !bodyEl || !ctaEl || !copyEl || !cueEl || !introRoot || petals.length === 0) return;
 
     // The head script in Layout.astro already decided (reduced-motion) whether
-    // the intro should run at all — its decision is the single source of
+    // the intro should run at all - its decision is the single source of
     // truth via the intro-pending class.
     const introPending = document.documentElement.classList.contains('intro-pending');
     if (!introPending) {
@@ -164,7 +164,7 @@ const translatePath = useTranslatedPath(lang);
     }
 
     // =====================================================================
-    // ENTRANCE — auto-plays once on load, independent of scroll: the mark
+    // ENTRANCE - auto-plays once on load, independent of scroll: the mark
     // assembles itself from scattered pieces (lp: 1 -> 0) while spinning in.
     // =====================================================================
     let entranceDone = false;
@@ -203,7 +203,7 @@ const translatePath = useTranslatedPath(lang);
     }
 
     // =====================================================================
-    // SCROLL-DRIVEN — only takes over once the entrance has finished: the
+    // SCROLL-DRIVEN - only takes over once the entrance has finished: the
     // assembled mark breaks apart again (lp: 0 -> 1) and the headline reveals.
     // =====================================================================
     let ticking = false;

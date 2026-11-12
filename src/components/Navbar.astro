@@ -14,8 +14,11 @@ interface Props {
 const { lang = getLangFromUrl(Astro.url) } = Astro.props;
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
+
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isHomePage = pathname === '/' || pathname === '/en' || pathname === '/zh';
 ---
-<EcoNav lang={lang} />
+{isHomePage && <EcoNav lang={lang} />}
 <nav id="mainNav">
   <div class="navIn">
     <a class="brand" href={translatePath('/')} style="display:flex; align-items:center;">
@@ -38,7 +41,6 @@ const translatePath = useTranslatedPath(lang);
 
       <a href={translatePath('/tentang-kami')}>{t('foot.about')}</a>
       <a href={translatePath('/ekosistem')}>{t('nav.ecosystem')}</a>
-      <a href={translatePath('/toko')}>{t('foot.shop')}</a>
     </div>
 
     <!-- Desktop CTA & Language Switcher -->
@@ -83,55 +85,55 @@ const translatePath = useTranslatedPath(lang);
         <div class="mob-section-title">
           <img src="/logos/agent/icon-agent.png" alt="Cardi Agent" style="width:18px;height:auto;object-fit:contain;" />
           <b>Cardi Agent</b>
-          <span class="mob-section-sub">Platform Bisnis AI</span>
+          <span class="mob-section-sub">Ekosistem AI Agent</span>
         </div>
-        <a href="https://aiagent.cardi.co.id/crm/" target="_blank" rel="noopener" class="mobile-sub-link">
-          <span class="dLock">
-            <img src="/logos/nadi/icon-nadi-app.png" alt="nadi" style="width:24px;height:24px;border-radius:6px;object-fit:contain;" />
-            <b>nadi</b>
-            <span style="font-size:11px;color:#94A3B8;margin-left:auto;">/nadi/</span>
-          </span>
-          <small>ERP + CRM & terima pembayaran</small>
-        </a>
         <a href="https://aiagent.cardi.co.id/mom/" target="_blank" rel="noopener" class="mobile-sub-link">
           <span class="dLock">
             <img src="/logos/mom/icon-mom-app.png" alt="mom" style="width:24px;height:24px;border-radius:6px;object-fit:contain;" />
-            <b>mom</b>
+            <b>MoM</b>
             <span style="font-size:11px;color:#94A3B8;margin-left:auto;">/mom/</span>
           </span>
-          <small>Kartu nama NFC, jadwal & notulen AI</small>
+          <small>Notulen meeting AI & kartu nama Smart NFC</small>
         </a>
         <a href="https://aiagent.cardi.co.id/loyal/" target="_blank" rel="noopener" class="mobile-sub-link">
           <span class="dLock">
             <img src="/logos/loyal/icon-loyal-app.png" alt="loyal" style="width:24px;height:24px;border-radius:6px;object-fit:contain;" />
-            <b>loyal</b>
+            <b>Loyal</b>
             <span style="font-size:11px;color:#94A3B8;margin-left:auto;">/loyal/</span>
           </span>
-          <small>Member, poin & Google Review</small>
+          <small>Member poin, reward & Google Review NFC</small>
+        </a>
+        <a href="https://aiagent.cardi.co.id/aspri/" target="_blank" rel="noopener" class="mobile-sub-link">
+          <span class="dLock">
+            <img src="/logos/aspri/icon-aspri.png" alt="aspri" style="width:24px;height:24px;border-radius:6px;object-fit:contain;" />
+            <b>Aspri</b>
+            <span style="font-size:11px;color:#94A3B8;margin-left:auto;">/aspri/</span>
+          </span>
+          <small>Asisten AI pribadi cerdas di WhatsApp</small>
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=6281289895646&text=Halo%20Cardi%2C%20saya%20tertarik%20dengan%20Askoo%20AI%20Agent" target="_blank" rel="noopener" class="mobile-sub-link">
+          <span class="dLock">
+            <img src="/logos/agent-ai/icon-agent-ai.png" alt="askoo" style="width:24px;height:24px;border-radius:6px;object-fit:contain;" />
+            <b>Askoo</b>
+            <span style="font-size:10px;background:#FEF3C7;color:#92400E;padding:1px 6px;border-radius:9999px;margin-left:auto;font-weight:700;">Segera</span>
+          </span>
+          <small>AI support & sales agent 24/7 otomatis</small>
         </a>
 
         <!-- Cardi Nusantara Section -->
         <div class="mob-section-title" style="margin-top:14px;">
           <img src="/logos/nusantara/icon-nusantara.png" alt="Cardi Nusantara" style="width:13px;height:auto;object-fit:contain;" />
           <b>Cardi Nusantara</b>
-          <span class="mob-section-sub">Tim Ahli & Jasa</span>
+          <span class="mob-section-sub">Agensi Strategis</span>
         </div>
-        <div class="mob-services-grid">
+        <div class="mob-services-grid" style="grid-template-columns: 1fr;">
           <a href="https://cardinusantara.com/branding" target="_blank" rel="noopener" class="mob-service-card">
             <b>Branding</b>
-            <small>Identitas & strategi brand</small>
+            <small>Identitas, strategi & diferensiasi brand</small>
           </a>
           <a href="https://cardinusantara.com/digital" target="_blank" rel="noopener" class="mob-service-card">
             <b>Digital Activation</b>
-            <small>Konten, iklan & medsos</small>
-          </a>
-          <a href="https://cardinusantara.com/gtm" target="_blank" rel="noopener" class="mob-service-card">
-            <b>Go-to-Market</b>
-            <small>Strategi pasar & sales</small>
-          </a>
-          <a href="https://cardinusantara.com/ipo-partner" target="_blank" rel="noopener" class="mob-service-card">
-            <b>IPO Readiness</b>
-            <small>Siap naik ke bursa</small>
+            <small>Konten, iklan performa & media sosial</small>
           </a>
         </div>
       </div>
@@ -162,7 +164,6 @@ const translatePath = useTranslatedPath(lang);
 
     <a href={translatePath('/tentang-kami')} class="mobile-nav-link">{t('foot.about')}</a>
     <a href={translatePath('/ekosistem')} class="mobile-nav-link">{t('nav.ecosystem')}</a>
-    <a href={translatePath('/toko')} class="mobile-nav-link">{t('foot.shop')}</a>
 
     <!-- Mobile CTA Button -->
     <div class="mobile-nav-cta">

@@ -601,7 +601,7 @@ export const solutionsData: SolutionItem[] = [
     },
     heroSub: {
       id: 'Pantau posisi transaksi setiap calon pembeli dalam bentuk board Kanban interaktif, dari Kontak Pertama, Penawaran, Negosiasi, hingga Pembayaran.',
-      en: 'Track every prospective deal stage in interactive Kanban boards—from Initial Contact, Proposal, Negotiation to Payment.',
+      en: 'Track every prospective deal stage in interactive Kanban boards - from Initial Contact, Proposal, Negotiation to Payment.',
       zh: '在看板视图中直观掌握每笔交易进阶状态：首次接洽、方案报价、商务谈判到回款。'
     },
     benefits: {

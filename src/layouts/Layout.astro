@@ -101,7 +101,7 @@ const zhUrl = new URL(translatePath(Astro.url.pathname, 'zh'), 'https://cardi.co
       // Runs synchronously before <body> paints, so the navbar/WhatsApp float
       // never flash visible-then-hidden. Decides once, up front, whether the
       // hero intro should run this load: motion allowed (same sequence on
-      // every viewport width now; it replays on every visit — no session
+      // every viewport width now; it replays on every visit - no session
       // persistence). HeroStory.astro's own script reads this same
       // "intro-pending" class as its source of truth.
       (function () {

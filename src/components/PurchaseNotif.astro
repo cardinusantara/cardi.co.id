@@ -254,7 +254,7 @@ const t = useTranslations(lang);
 
   // While the desktop hero intro is playing (see Layout.astro's head script +
   // HeroStory.astro), hold off the purchase-toast cycle so it doesn't pop up
-  // over the "just the logo" moment — start it once the intro reveals the navbar.
+  // over the "just the logo" moment - start it once the intro reveals the navbar.
   if (document.documentElement.classList.contains('intro-pending')) {
     document.addEventListener('cardi:introDone', startNotificationCycle, { once: true });
   } else {

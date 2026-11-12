@@ -2072,7 +2072,7 @@ const pageMeta = metaContent[currentLang] || metaContent.id;
     const eshStatus = document.getElementById('esh-matrix-status');
     if (eshStatus) {
       if (L) {
-        eshStatus.innerHTML = '<b>' + L.focus + '</b><br>' + t.roas + ': <b>' + (S.roas ? '✓' : '—') + '</b> · ' + t.grow + ': <b>' + (S.grow ? '✓' : '—') + '</b>';
+        eshStatus.innerHTML = '<b>' + L.focus + '</b><br>' + t.roas + ': <b>' + (S.roas ? '✓' : ' - ') + '</b> · ' + t.grow + ': <b>' + (S.grow ? '✓' : ' - ') + '</b>';
       } else {
         eshStatus.innerHTML = '<em>' + t.selectRevenue + '</em>';
       }
