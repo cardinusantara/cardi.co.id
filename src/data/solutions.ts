@@ -15,7 +15,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'haji-umroh',
     category: 'industri',
-    icon: '🕌',
+    icon: 'travel',
     title: {
       id: 'Haji & Umroh',
       en: 'Hajj & Umrah Travel',
@@ -62,7 +62,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'klinik-kecantikan',
     category: 'industri',
-    icon: '💄',
+    icon: 'sparkle',
     title: {
       id: 'Klinik Kecantikan & Spa',
       en: 'Beauty Clinic & Spa',
@@ -109,7 +109,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'sekolah-pendidikan',
     category: 'industri',
-    icon: '🎓',
+    icon: 'education',
     title: {
       id: 'Sekolah & Pendidikan',
       en: 'Schools & Education',
@@ -156,7 +156,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'udd-pmi',
     category: 'industri',
-    icon: '🏥',
+    icon: 'health',
     title: {
       id: 'UDD PMI & Kesehatan',
       en: 'Healthcare & Blood Bank',
@@ -203,7 +203,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'provider-wifi',
     category: 'industri',
-    icon: '📡',
+    icon: 'wifi',
     title: {
       id: 'Provider WiFi & ISP',
       en: 'Home WiFi & ISP',
@@ -250,7 +250,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'dealer-mobil',
     category: 'industri',
-    icon: '🚗',
+    icon: 'car',
     title: {
       id: 'Dealer Mobil & Otomotif',
       en: 'Car Dealership & Automotive',
@@ -299,7 +299,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'founder-ceo',
     category: 'role',
-    icon: '👑',
+    icon: 'crown',
     title: {
       id: 'Founder & CEO',
       en: 'Founder & CEO',
@@ -346,7 +346,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'sales-manager',
     category: 'role',
-    icon: '📈',
+    icon: 'chart',
     title: {
       id: 'Sales & Growth Manager',
       en: 'Sales & Growth Manager',
@@ -393,7 +393,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'customer-support',
     category: 'role',
-    icon: '🎧',
+    icon: 'headset',
     title: {
       id: 'Customer Support Lead',
       en: 'Customer Support Lead',
@@ -440,7 +440,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'marketing-team',
     category: 'role',
-    icon: '🎯',
+    icon: 'target',
     title: {
       id: 'Digital Marketing Team',
       en: 'Digital Marketing Team',
@@ -489,7 +489,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'ticketing-system',
     category: 'fitur',
-    icon: '🎫',
+    icon: 'ticket',
     title: {
       id: 'Ticketing System',
       en: 'Ticketing System',
@@ -536,7 +536,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'lead-management',
     category: 'fitur',
-    icon: '🎯',
+    icon: 'funnel',
     title: {
       id: 'Lead Management',
       en: 'Lead Management',
@@ -583,7 +583,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'sales-pipeline',
     category: 'fitur',
-    icon: '📊',
+    icon: 'kanban',
     title: {
       id: 'Sales Pipeline Management',
       en: 'Sales Pipeline Management',
@@ -630,7 +630,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'client-management',
     category: 'fitur',
-    icon: '🧰',
+    icon: 'repeat',
     title: {
       id: 'Client & Renewal Management',
       en: 'Client & Renewal Management',
@@ -677,7 +677,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'whatsapp-autopilot',
     category: 'fitur',
-    icon: '⚡',
+    icon: 'bot',
     title: {
       id: 'WhatsApp Autopilot Chatbot',
       en: 'WhatsApp Autopilot Chatbot',
@@ -726,7 +726,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'whatsapp-api',
     category: 'integrasi',
-    icon: '📱',
+    icon: 'message',
     title: {
       id: 'WhatsApp Business API',
       en: 'WhatsApp Business API',
@@ -773,7 +773,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'instagram-direct',
     category: 'integrasi',
-    icon: '📸',
+    icon: 'camera',
     title: {
       id: 'Instagram Direct Automation',
       en: 'Instagram Direct Automation',
@@ -820,7 +820,7 @@ export const solutionsData: SolutionItem[] = [
   {
     slug: 'payment-gateway',
     category: 'integrasi',
-    icon: '💳',
+    icon: 'card',
     title: {
       id: 'Payment Gateway Integration',
       en: 'Payment Gateway Integration',

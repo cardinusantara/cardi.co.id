@@ -2,7 +2,7 @@
 import LanguageSelector from './LanguageSelector.astro';
 import SolutionsMegaMenu from './SolutionsMegaMenu.astro';
 import ProductsMegaMenu from './ProductsMegaMenu.astro';
-import EcoNav from './EcoNav.astro';
+import SolutionIcon from './SolutionIcon.astro';
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
 import type { LangKey } from '../i18n/ui';
 import { solutionsData } from '../data/solutions';
@@ -18,7 +18,6 @@ const translatePath = useTranslatedPath(lang);
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isHomePage = pathname === '/' || pathname === '/en' || pathname === '/zh';
 ---
-{isHomePage && <EcoNav lang={lang} />}
 <nav id="mainNav">
   <div class="navIn">
     <a class="brand" href={translatePath('/')} style="display:flex; align-items:center;">
@@ -83,57 +82,44 @@ const isHomePage = pathname === '/' || pathname === '/en' || pathname === '/zh';
       <div class="mobile-accordion-body">
         <!-- Cardi Agent Section -->
         <div class="mob-section-title">
-          <img src="/logos/agent/icon-agent.png" alt="Cardi Agent" style="width:18px;height:auto;object-fit:contain;" />
-          <b>Cardi Agent</b>
-          <span class="mob-section-sub">Ekosistem AI Agent</span>
+          <img src="/logos/lockups/cardi-agent.png" alt="Cardi Agent" style="height:20px; width:auto; object-fit:contain;" />
+          <span class="mob-section-sub">Ekosistem AI</span>
         </div>
         <a href="https://aiagent.cardi.co.id/mom/" target="_blank" rel="noopener" class="mobile-sub-link">
           <span class="dLock">
-            <img src="/logos/mom/icon-mom-app.png" alt="mom" style="width:24px;height:24px;border-radius:6px;object-fit:contain;" />
-            <b>MoM</b>
+            <img src="/logos/lockups/cardi-agent-mom.png" alt="Cardi Agent | MoM" style="height:18px; width:auto; object-fit:contain;" />
             <span style="font-size:11px;color:#94A3B8;margin-left:auto;">/mom/</span>
           </span>
           <small>Notulen meeting AI & kartu nama Smart NFC</small>
         </a>
         <a href="https://aiagent.cardi.co.id/loyal/" target="_blank" rel="noopener" class="mobile-sub-link">
           <span class="dLock">
-            <img src="/logos/loyal/icon-loyal-app.png" alt="loyal" style="width:24px;height:24px;border-radius:6px;object-fit:contain;" />
-            <b>Loyal</b>
+            <img src="/logos/lockups/cardi-agent-loyal.png" alt="Cardi Agent | Loyal" style="height:18px; width:auto; object-fit:contain;" />
             <span style="font-size:11px;color:#94A3B8;margin-left:auto;">/loyal/</span>
           </span>
           <small>Member poin, reward & Google Review NFC</small>
         </a>
-        <a href="https://aiagent.cardi.co.id/aspri/" target="_blank" rel="noopener" class="mobile-sub-link">
+        <a href="https://aiagent.cardi.co.id/nadi/" target="_blank" rel="noopener" class="mobile-sub-link">
           <span class="dLock">
-            <img src="/logos/aspri/icon-aspri.png" alt="aspri" style="width:24px;height:24px;border-radius:6px;object-fit:contain;" />
-            <b>Aspri</b>
-            <span style="font-size:11px;color:#94A3B8;margin-left:auto;">/aspri/</span>
+            <img src="/logos/lockups/cardi-agent-nadi.png" alt="Cardi Agent | Nadi" style="height:18px; width:auto; object-fit:contain;" />
+            <span style="font-size:11px;color:#94A3B8;margin-left:auto;">/nadi/</span>
           </span>
-          <small>Asisten AI pribadi cerdas di WhatsApp</small>
-        </a>
-        <a href="https://api.whatsapp.com/send?phone=6281289895646&text=Halo%20Cardi%2C%20saya%20tertarik%20dengan%20Askoo%20AI%20Agent" target="_blank" rel="noopener" class="mobile-sub-link">
-          <span class="dLock">
-            <img src="/logos/agent-ai/icon-agent-ai.png" alt="askoo" style="width:24px;height:24px;border-radius:6px;object-fit:contain;" />
-            <b>Askoo</b>
-            <span style="font-size:10px;background:#FEF3C7;color:#92400E;padding:1px 6px;border-radius:9999px;margin-left:auto;font-weight:700;">Segera</span>
-          </span>
-          <small>AI support & sales agent 24/7 otomatis</small>
+          <small>AI operasional & pemantauan bisnis cerdas</small>
         </a>
 
         <!-- Cardi Nusantara Section -->
         <div class="mob-section-title" style="margin-top:14px;">
-          <img src="/logos/nusantara/icon-nusantara.png" alt="Cardi Nusantara" style="width:13px;height:auto;object-fit:contain;" />
-          <b>Cardi Nusantara</b>
+          <img src="/logos/lockups/cardi-nusantara.png" alt="Cardi Nusantara" style="height:20px; width:auto; object-fit:contain;" />
           <span class="mob-section-sub">Agensi Strategis</span>
         </div>
         <div class="mob-services-grid" style="grid-template-columns: 1fr;">
           <a href="https://cardinusantara.com/branding" target="_blank" rel="noopener" class="mob-service-card">
-            <b>Branding</b>
+            <img src="/logos/lockups/cardi-branding.png" alt="Cardi Branding" style="height:18px; width:fit-content; object-fit:contain; margin-bottom:4px;" />
             <small>Identitas, strategi & diferensiasi brand</small>
           </a>
           <a href="https://cardinusantara.com/digital" target="_blank" rel="noopener" class="mob-service-card">
-            <b>Digital Activation</b>
-            <small>Konten, iklan performa & media sosial</small>
+            <img src="/logos/lockups/cardi-digital.png" alt="Cardi Digital" style="height:18px; width:fit-content; object-fit:contain; margin-bottom:4px;" />
+            <small>Konten, iklan performa & aktivasi digital</small>
           </a>
         </div>
       </div>
@@ -153,7 +139,9 @@ const isHomePage = pathname === '/' || pathname === '/en' || pathname === '/zh';
         {solutionsData.slice(0, 6).map(sol => (
           <a href={translatePath(`/solusi/${sol.slug}`)} class="mobile-sub-link">
             <span class="dLock">
-              <span style="font-size:16px; margin-right:4px;">{sol.icon}</span>
+              <span style="display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; color:var(--blue); margin-right:6px; flex-shrink:0;">
+                <SolutionIcon name={sol.icon} size={18} />
+              </span>
               <b>{sol.title[lang] || sol.title.id}</b>
             </span>
             <small>{sol.desc[lang] || sol.desc.id}</small>

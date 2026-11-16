@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../Navbar.astro';
 import Footer from '../Footer.astro';
 import ConsultModal from '../ConsultModal.astro';
+import SolutionIcon from '../SolutionIcon.astro';
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../../i18n/utils';
 import type { LangKey } from '../../i18n/ui';
 import type { SolutionItem } from '../../data/solutions';
@@ -31,7 +32,7 @@ const benefitsList = solution.benefits[lang] || solution.benefits.id || [];
     <div class="wrap">
       <div class="hero-copy">
         <span class="eyebrow" style="display:inline-flex; align-items:center; gap:8px;">
-          <span>{solution.icon}</span>
+          <SolutionIcon name={solution.icon} size={18} />
           <span>{badgeText}</span>
         </span>
         <h1>{titleText}</h1>

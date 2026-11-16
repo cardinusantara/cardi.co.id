@@ -2,6 +2,7 @@
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
 import type { LangKey } from '../i18n/ui';
 import { solutionsData } from '../data/solutions';
+import SolutionIcon from './SolutionIcon.astro';
 
 interface Props {
   lang?: LangKey;
@@ -21,22 +22,22 @@ const translatePath = useTranslatedPath(lang);
       
       <div class="mega-tabs">
         <button class="mega-tab-btn active" data-category="industri" type="button">
-          <span class="tab-icon">🏢</span>
+          <span class="tab-icon"><SolutionIcon name="industri" size={16} /></span>
           <span>{t('solMenu.tabIndustri')}</span>
           <span class="tab-arrow">&rsaquo;</span>
         </button>
         <button class="mega-tab-btn" data-category="role" type="button">
-          <span class="tab-icon">👤</span>
+          <span class="tab-icon"><SolutionIcon name="role" size={16} /></span>
           <span>{t('solMenu.tabRole')}</span>
           <span class="tab-arrow">&rsaquo;</span>
         </button>
         <button class="mega-tab-btn" data-category="fitur" type="button">
-          <span class="tab-icon">⚡</span>
+          <span class="tab-icon"><SolutionIcon name="fitur" size={16} /></span>
           <span>{t('solMenu.tabFitur')}</span>
           <span class="tab-arrow">&rsaquo;</span>
         </button>
         <button class="mega-tab-btn" data-category="integrasi" type="button">
-          <span class="tab-icon">🔗</span>
+          <span class="tab-icon"><SolutionIcon name="integrasi" size={16} /></span>
           <span>{t('solMenu.tabIntegrasi')}</span>
           <span class="tab-arrow">&rsaquo;</span>
         </button>
@@ -76,7 +77,7 @@ const translatePath = useTranslatedPath(lang);
             data-category={sol.category}
             data-keywords={`${sol.title[lang] || sol.title.id} ${sol.desc[lang] || sol.desc.id} ${sol.slug}`}
           >
-            <div class="sol-icon-box">{sol.icon}</div>
+            <div class="sol-icon-box"><SolutionIcon name={sol.icon} size={20} /></div>
             <div class="sol-info">
               <h4>{sol.title[lang] || sol.title.id}</h4>
               <p>{sol.desc[lang] || sol.desc.id}</p>
