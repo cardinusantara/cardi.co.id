@@ -1,0 +1,323 @@
+---
+import DeckViewer from './DeckViewer.astro';
+import type { Chapter, Highlight } from './DeckViewer.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+import type { LangKey } from '../../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const currentLang = (lang as string) === 'en' ? 'en' : (lang as string) === 'zh' ? 'zh' : 'id';
+
+const content = {
+  id: {
+    metaTitle: "Cara Bikin Brand & Brand Development - Cardi Nusantara",
+    metaDesc: "Panduan lengkap membangun brand dari nol bersama PT Digital Cardi Nusantara. Pelajari Brand Blueprint Strategy, identitas visual, logo, kemasan, desain interior, hingga produksi konten komersial.",
+    title: "Cardi – Panduan Cara Bikin Brand & Brand Development",
+    eyebrow: "Dokumen Resmi PT Digital Cardi Nusantara",
+    description: "Panduan komprehensif membangun brand dari awal hingga siap bersaing: penyusunan Brand Blueprint Strategy, logo & identitas visual, kemasan, desain interior, FCBO, serta studi kasus 30+ brand sukses.",
+    downloadFilename: "Cardi - Cara Bikin Brand.pdf",
+    waMessage: "Halo Tim Bisnis Cardi, saya telah melihat presentasi Cara Bikin Brand (Brand Development Company) di cardi.co.id/cara-bikin-brand/ dan ingin berkonsultasi untuk membangun brand baru.",
+    chapters: [
+      {
+        number: "BAB 01",
+        page: 2,
+        title: "Visi, Misi & Profil Founder",
+        desc: "Perjalanan Cardi Branding sejak 2017 bersama Deo Cardi Nathanael dalam membangun dan mengembangkan 30+ brand di Indonesia.",
+        badge: "Fondasi"
+      },
+      {
+        number: "BAB 02",
+        page: 4,
+        title: "Portofolio 200+ Klien Lintas Industri",
+        desc: "Rekam jejak kerja sama di sektor F&B, fashion, beauty, FMCG, lifestyle, hingga korporasi (Kopi Lain Hati, Street Boba, Gudbite, dll).",
+        badge: "Portofolio"
+      },
+      {
+        number: "BAB 03",
+        page: 6,
+        title: "Alur Kerja & The Cardi Matrix Framework",
+        desc: "Tahapan onboarding dari online meeting hingga kick-off, serta kerangka Positioning Power, Guerrilla Growth, dan Compounding Ecosystem.",
+        badge: "Framework"
+      },
+      {
+        number: "BAB 04",
+        page: 9,
+        title: "Fractional Chief Brand Officer (FCBO)",
+        desc: "Pendampingan strategis level C-Suite untuk menyelaraskan arsitektur brand, narasi kampanye, dan pertumbuhan bisnis.",
+        badge: "Leadership"
+      },
+      {
+        number: "BAB 05",
+        page: 18,
+        title: "Brand Development & Blueprint Strategy",
+        desc: "Perumusan Brand DNA, brand personality, storytelling, brand experience, serta studi kasus Gudbite, GabaG Beauty, dan Tea N Tales.",
+        badge: "Brand Blueprint"
+      },
+      {
+        number: "BAB 06",
+        page: 24,
+        title: "Identitas Visual, Logo, Kemasan & Interior",
+        desc: "Pembuatan logo & filosofi, brand guideline, desain kemasan produk, desain interior gerai, hingga paket lengkap Brand Identity.",
+        badge: "Visual Identity"
+      },
+      {
+        number: "BAB 07",
+        page: 32,
+        title: "Content Production, Foto & Video Komersial",
+        desc: "Layanan foto produk, video company profile, motion graphic, serta produksi konten kreatif Instagram Reels & TikTok.",
+        badge: "Content Studio"
+      },
+      {
+        number: "BAB 08",
+        page: 45,
+        title: "Success Story & Studi Kasus Peluncuran Brand",
+        desc: "Kisah sukses peluncuran brand dari nol hingga viral dan ekspansi cabang (Kopi Lain Hati, Street Boba, Gudbite, Re:mine, Sumimo).",
+        badge: "Studi Kasus"
+      },
+      {
+        number: "BAB 09",
+        page: 53,
+        title: "Kenapa Memilih Cardi Branding (Why Us)",
+        desc: "Enam pilar keunggulan layanan end-to-end berbasis riset pasar mendalam dan eksekusi kreatif yang terukur.",
+        badge: "Keunggulan"
+      }
+    ] as Chapter[],
+    highlights: [
+      {
+        tag: "BANGUN DARI NOL",
+        title: "Strategi & Identitas Brand Menyeluruh",
+        desc: "Mulai dari riset pasar, perumusan Brand DNA, penamaan, hingga desain logo, kemasan, dan pedoman visual yang siap pakai."
+      },
+      {
+        tag: "CARDI MATRIX",
+        title: "Positioning Kuat & Pertumbuhan Terukur",
+        desc: "Memadukan kekuatan positioning, taktik pemasaran kreatif, dan ekosistem penjualan agar brand baru cepat dikenal pasar."
+      },
+      {
+        tag: "FCBO LEADERSHIP",
+        title: "Arahan Langsung Level Chief Brand Officer",
+        desc: "Didampingi arsitek brand berpengalaman untuk memastikan setiap aset visual dan komunikasi berjalan dalam satu arah."
+      },
+      {
+        tag: "TERBUKTI 30+ BRAND",
+        title: "Rekam Jejak Melahirkan Brand Nasional",
+        desc: "Berpengalaman membangun brand dari konsep awal hingga mencapai ratusan cabang dan jutaan penjualan."
+      }
+    ] as Highlight[]
+  },
+  en: {
+    metaTitle: "How to Build a Brand & Brand Development - Cardi Nusantara",
+    metaDesc: "Complete guide to building a brand from scratch with PT Digital Cardi Nusantara. Explore Brand Blueprint Strategy, visual identity, packaging, interior design, and commercial content production.",
+    title: "Cardi – Brand Development & Brand Building Guide",
+    eyebrow: "Official Document of PT Digital Cardi Nusantara",
+    description: "A comprehensive guide to building a brand from the ground up: Brand Blueprint Strategy, logo & visual identity, packaging, interior design, FCBO, and case studies from 30+ successful brands.",
+    downloadFilename: "Cardi - Cara Bikin Brand.pdf",
+    waMessage: "Hello Cardi Team, I have reviewed the Brand Development presentation on cardi.co.id/cara-bikin-brand/ and would like to discuss building a new brand.",
+    chapters: [
+      {
+        number: "CH 01",
+        page: 2,
+        title: "Vision, Mission & Founder Profile",
+        desc: "Cardi Branding's journey since 2017 with Deo Cardi Nathanael building and scaling 30+ brands across Indonesia.",
+        badge: "Foundation"
+      },
+      {
+        number: "CH 02",
+        page: 4,
+        title: "200+ Cross-Industry Client Portfolio",
+        desc: "Proven track record across F&B, fashion, beauty, FMCG, lifestyle, and corporate sectors.",
+        badge: "Portfolio"
+      },
+      {
+        number: "CH 03",
+        page: 6,
+        title: "Workflow & The Cardi Matrix Framework",
+        desc: "End-to-end onboarding flow and the 3-pillar framework: Positioning Power, Guerrilla Growth, and Compounding Ecosystem.",
+        badge: "Framework"
+      },
+      {
+        number: "CH 04",
+        page: 9,
+        title: "Fractional Chief Brand Officer (FCBO)",
+        desc: "C-level strategic leadership aligning brand architecture, campaign narratives, and commercial growth.",
+        badge: "Leadership"
+      },
+      {
+        number: "CH 05",
+        page: 18,
+        title: "Brand Development & Blueprint Strategy",
+        desc: "Defining Brand DNA, personality, storytelling, and experience with Gudbite, GabaG Beauty, and Tea N Tales case studies.",
+        badge: "Brand Blueprint"
+      },
+      {
+        number: "CH 06",
+        page: 24,
+        title: "Visual Identity, Logo, Packaging & Interior",
+        desc: "Logo creation, brand guidelines, product packaging, retail interior concepts, and full Brand Identity packages.",
+        badge: "Visual Identity"
+      },
+      {
+        number: "CH 07",
+        page: 32,
+        title: "Content Production, Commercial Photo & Video",
+        desc: "Product photography, company profile videos, motion graphics, and high-performing Reels & TikTok production.",
+        badge: "Content Studio"
+      },
+      {
+        number: "CH 08",
+        page: 45,
+        title: "Brand Launch Success Stories",
+        desc: "Real case studies launching brands from zero to nationwide expansion (Kopi Lain Hati, Street Boba, Gudbite, Re:mine, Sumimo).",
+        badge: "Case Studies"
+      },
+      {
+        number: "CH 09",
+        page: 53,
+        title: "Why Choose Cardi Branding",
+        desc: "Six core pillars of our research-driven, end-to-end brand building methodology.",
+        badge: "Why Us"
+      }
+    ] as Chapter[],
+    highlights: [
+      {
+        tag: "BUILD FROM ZERO",
+        title: "End-to-End Brand Strategy & Identity",
+        desc: "From market research and Brand DNA to naming, logo, packaging, and ready-to-use visual guidelines."
+      },
+      {
+        tag: "CARDI MATRIX",
+        title: "Strong Positioning & Scalable Growth",
+        desc: "Combining clear market positioning, creative growth tactics, and sales ecosystems for rapid brand adoption."
+      },
+      {
+        tag: "FCBO LEADERSHIP",
+        title: "Direct C-Level Brand Architecture",
+        desc: "Guided by experienced brand architects to ensure every visual and message moves in unison."
+      },
+      {
+        tag: "30+ BRANDS BUILT",
+        title: "Proven Track Record Launching Market Leaders",
+        desc: "Experienced in taking brands from initial concept to hundreds of outlets and millions in sales."
+      }
+    ] as Highlight[]
+  },
+  zh: {
+    metaTitle: "品牌孵化与品牌建设指南 - Cardi Nusantara",
+    metaDesc: "PT Digital Cardi Nusantara 从零打造品牌的完整指南。涵盖品牌蓝图战略、视觉识别、标志与包装设计、空间设计及商业内容制作。",
+    title: "Cardi – 品牌建设与孵化全案指南",
+    eyebrow: "PT Digital Cardi Nusantara 官方文件",
+    description: "从零构建高竞争力品牌的全面指南：品牌蓝图战略、标志与视觉识别系统、产品包装、门店空间设计、FCBO 外聘首席品牌官及 30+ 成功品牌孵化案例。",
+    downloadFilename: "Cardi - Cara Bikin Brand.pdf",
+    waMessage: "您好 Cardi 团队，我已查阅 cardi.co.id/cara-bikin-brand/ 上的品牌建设全案展示，希望与您探讨新品牌孵化方案。",
+    chapters: [
+      {
+        number: "第 01 章",
+        page: 2,
+        title: "愿景、使命与创始人简介",
+        desc: "Cardi Branding 自 2017 年起由 Deo Cardi Nathanael 领航，在印尼成功孵化并打造 30 余个知名品牌。",
+        badge: "根基"
+      },
+      {
+        number: "第 02 章",
+        page: 4,
+        title: "200+ 跨行业客户案例库",
+        desc: "覆盖餐饮连锁、时尚、美妆个护、快消品、生活方式及大型企业。",
+        badge: "案例库"
+      },
+      {
+        number: "第 03 章",
+        page: 6,
+        title: "服务流程与 Cardi 矩阵框架",
+        desc: "从需求沟通到项目启动的标准化流程，以及定位力、游击增长与复利生态三大核心支柱。",
+        badge: "核心框架"
+      },
+      {
+        number: "第 04 章",
+        page: 9,
+        title: "外聘首席品牌官（FCBO）",
+        desc: "提供 C 级别战略指导，统筹品牌架构、传播叙事与商业增长。",
+        badge: "战略领航"
+      },
+      {
+        number: "第 05 章",
+        page: 18,
+        title: "品牌开发与蓝图战略",
+        desc: "构建品牌基因、个性、故事与触点体验，附 Gudbite、GabaG Beauty 与 Tea N Tales 实战解析。",
+        badge: "品牌蓝图"
+      },
+      {
+        number: "第 06 章",
+        page: 24,
+        title: "视觉识别、标志、包装与空间设计",
+        desc: "品牌命名与标志设计、视觉规范手册、产品包装、门店空间概念及全套视觉识别方案。",
+        badge: "视觉识别"
+      },
+      {
+        number: "第 07 章",
+        page: 32,
+        title: "内容制作、商业摄影与视频拍摄",
+        desc: "产品商业摄影、企业宣传片、动态图形设计以及爆款 Reels 与 TikTok 短视频制作。",
+        badge: "内容工场"
+      },
+      {
+        number: "第 08 章",
+        page: 45,
+        title: "从零到一品牌孵化成功案例",
+        desc: "Kopi Lain Hati、Street Boba、Gudbite、Re:mine、Sumimo 等品牌从孵化到全国扩张的实战复盘。",
+        badge: "成功案例"
+      },
+      {
+        number: "第 09 章",
+        page: 53,
+        title: "为何选择 Cardi Branding",
+        desc: "深度市场调研与端到端创意落地相结合的六大核心优势。",
+        badge: "核心优势"
+      }
+    ] as Chapter[],
+    highlights: [
+      {
+        tag: "从零孵化品牌",
+        title: "全链路品牌战略与视觉识别",
+        desc: "涵盖市场调研、品牌基因定义、命名、标志、包装及可直接落地的视觉规范系统。"
+      },
+      {
+        tag: "CARDI 品牌矩阵",
+        title: "精准市场定位与可持续增长",
+        desc: "融合强势品牌定位、创意增长策略与销售生态，助力新品牌快速赢得市场青睐。"
+      },
+      {
+        tag: "FCBO 首席领航",
+        title: "C-Level 品牌架构师全程把关",
+        desc: "由资深品牌架构师指导，确保所有视觉资产与市场传播保持高度一致。"
+      },
+      {
+        tag: "30+ 品牌成功验证",
+        title: "打造行业标杆品牌的实战经验",
+        desc: "具备将品牌从最初构想培育至数百家门店及百万级销量的完整履历。"
+      }
+    ] as Highlight[]
+  }
+};
+
+const c = content[currentLang];
+---
+
+<DeckViewer
+  lang={lang}
+  title={c.title}
+  eyebrow={c.eyebrow}
+  description={c.description}
+  pdfUrl="/Cardi - Cara Bikin Brand.pdf"
+  downloadFilename={c.downloadFilename}
+  fileSize="5.2 MB"
+  totalPages={54}
+  updatedDate="2026"
+  waMessage={c.waMessage}
+  chapters={c.chapters}
+  highlights={c.highlights}
+  metaTitle={c.metaTitle}
+  metaDesc={c.metaDesc}
+/>
