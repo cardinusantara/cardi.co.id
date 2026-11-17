@@ -1,0 +1,407 @@
+---
+import DeckViewer from './DeckViewer.astro';
+import type { Chapter, Highlight } from './DeckViewer.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+import type { LangKey } from '../../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const currentLang = (lang as string) === 'en' ? 'en' : (lang as string) === 'zh' ? 'zh' : 'id';
+
+const content = {
+  id: {
+    metaTitle: "Go-To-Market Strategy Partner Indonesia - Cardi Nusantara",
+    metaDesc: "Panduan lengkap Go-To-Market Strategy Partner Indonesia oleh PT Digital Cardi Nusantara. Pelajari ekosistem pertumbuhan brand, matriks 5 level GMV, layanan branding, digital activation, hingga studi kasus ROI.",
+    title: "Cardi – Go-To-Market Strategy Partner Indonesia",
+    eyebrow: "Dokumen Resmi PT Digital Cardi Nusantara",
+    description: "Panduan komprehensif Go-To-Market & akselerasi bisnis di pasar Indonesia: matriks 5 level GMV, strategi branding, digital activation, e-commerce, FCBO, serta studi kasus ROI 200+ klien.",
+    downloadFilename: "Cardi - Go-To-Market Strategy Partner Indonesia.pdf",
+    waMessage: "Halo Tim Bisnis Cardi, saya telah melihat presentasi Go-To-Market Strategy Partner Indonesia di cardi.co.id/go-to-market-strategy-partner-indonesia/ dan ingin berdiskusi mengenai strategi pertumbuhan untuk brand saya.",
+    chapters: [
+      {
+        number: "BAB 01",
+        page: 4,
+        title: "Track Record & Profil Founder",
+        desc: "Latar belakang PT Digital Cardi Nusantara bersama Deo Cardi Nathanael dalam membangun ekosistem pertumbuhan brand di Indonesia.",
+        badge: "Fondasi"
+      },
+      {
+        number: "BAB 02",
+        page: 6,
+        title: "Pengalaman Industri & Portofolio 200+ Klien",
+        desc: "Rekam jejak lintas 25+ industri dan 280+ brand (Kopi Lain Hati, Street Boba, Gudbite, Infinix, ABC, hingga korporasi & FMCG).",
+        badge: "Portofolio"
+      },
+      {
+        number: "BAB 03",
+        page: 8,
+        title: "Customer Behaviour Journey (B2B & B2C)",
+        desc: "Pemetaan alur perilaku belanja konsumen modern di Indonesia dan alasan pentingnya aktivasi digital terintegrasi.",
+        badge: "Insight"
+      },
+      {
+        number: "BAB 04",
+        page: 9,
+        title: "5 Level Cardi Matrix & Cheat Sheet",
+        desc: "Framework penentuan posisi brand dari tahap Validasi (<1M/thn), Growth (1-5M), hingga Market Leader (100+M/thn).",
+        badge: "Matriks Utama"
+      },
+      {
+        number: "BAB 05",
+        page: 12,
+        title: "Branding, Rebranding & Visual Identity",
+        desc: "Penyusunan Brand Blueprint Strategy, identitas visual, kemasan, desain interior, hingga produksi foto dan video komersial.",
+        badge: "Brand Building"
+      },
+      {
+        number: "BAB 06",
+        page: 27,
+        title: "Ketentuan Partner & Strategi Growth FMCG",
+        desc: "Kriteria kemitraan New Star, Rising Star, dan Super Star serta alur ekspansi produk unggulan ke pasar nasional.",
+        badge: "Go-To-Market"
+      },
+      {
+        number: "BAB 07",
+        page: 35,
+        title: "Fractional Chief Brand Officer (FCBO)",
+        desc: "Kepemimpinan strategis setara C-Level eksternal untuk menyelaraskan arah brand, kampanye, dan pertumbuhan bisnis.",
+        badge: "Executive Leadership"
+      },
+      {
+        number: "BAB 08",
+        page: 43,
+        title: "Website Development & Paket Launch",
+        desc: "Pembuatan website company profile, katalog B2B, hingga e-commerce yang terintegrasi dengan strategi launch.",
+        badge: "Digital Asset"
+      },
+      {
+        number: "BAB 09",
+        page: 48,
+        title: "Social Media Management & Content Production",
+        desc: "Pengelolaan konten kreatif Instagram, TikTok, YouTube Shorts, dan video kampanye dengan jangkauan jutaan views.",
+        badge: "Content & Social"
+      },
+      {
+        number: "BAB 10",
+        page: 60,
+        title: "Performance Ads, E-Commerce & Live Shopping",
+        desc: "Optimasi Meta Ads, TikTok Ads, Google Ads, pengelolaan marketplace, live shopping harian, hingga PR media nasional.",
+        badge: "Growth & Sales"
+      },
+      {
+        number: "BAB 11",
+        page: 76,
+        title: "Strategi Toko Offline & Cardi Loyal Card",
+        desc: "Optimasi Google Business Profile, peningkatan rating organik dengan kartu NFC/QR Cardi Loyal, serta program retensi member.",
+        badge: "Local & Loyalty"
+      },
+      {
+        number: "BAB 12",
+        page: 102,
+        title: "Studi Kasus ROI & Laporan Kinerja",
+        desc: "Data performa riil klien (Samudra Cipta Rasa, Latezza Beauty Parlour, Surya Painting) beserta metrik leads dan ROAS.",
+        badge: "Data & Metrik"
+      },
+      {
+        number: "BAB 13",
+        page: 127,
+        title: "Brand Check Up & Next Steps",
+        desc: "Kerangka audit diagnostik Dilihat, Diingat, Dipercaya serta langkah onboarding bersama tim Cardi.",
+        badge: "Aksi Nyata"
+      }
+    ] as Chapter[],
+    highlights: [
+      {
+        tag: "GO-TO-MARKET PARTNER",
+        title: "Ekosistem Lengkap dari Ide hingga Skala Nasional",
+        desc: "Menyatukan strategi brand, aktivasi digital, e-commerce, dan automasi AI untuk menembus pasar Indonesia secara terukur."
+      },
+      {
+        tag: "MATRIKS 5 LEVEL",
+        title: "Strategi Tepat Sesuai Skala GMV",
+        desc: "Alokasi budget dan prioritas kanal pemasaran disesuaikan dengan omzet riil bisnis Anda agar efisien tanpa pemborosan modal."
+      },
+      {
+        tag: "FCBO LEADERSHIP",
+        title: "Arahan Eksekutif Tingkat C-Level",
+        desc: "Didukung Fractional Chief Brand Officer untuk memastikan pesan, visual, dan saluran distribusi bergerak dalam satu komando."
+      },
+      {
+        tag: "TERBUKTI DI 200+ KLIEN",
+        title: "Transparansi Data & Pelaporan Cycle",
+        desc: "Dilengkapi studi kasus nyata lintas industri dengan pelaporan konversi, leads, dan efisiensi biaya iklan yang transparan."
+      }
+    ] as Highlight[]
+  },
+  en: {
+    metaTitle: "Go-To-Market Strategy Partner Indonesia - Cardi Nusantara",
+    metaDesc: "Comprehensive Go-To-Market Strategy Partner Indonesia deck by PT Digital Cardi Nusantara. Explore our 5-level GMV growth matrix, branding, digital activation, and ROI case studies.",
+    title: "Cardi – Go-To-Market Strategy Partner Indonesia",
+    eyebrow: "Official Document of PT Digital Cardi Nusantara",
+    description: "A complete Go-To-Market & business acceleration guide for the Indonesian market: 5-level GMV matrix, brand building, digital activation, e-commerce, FCBO, and verified ROI case studies from 200+ clients.",
+    downloadFilename: "Cardi - Go-To-Market Strategy Partner Indonesia.pdf",
+    waMessage: "Hello Cardi Team, I have reviewed the Go-To-Market Strategy Partner Indonesia presentation on cardi.co.id/go-to-market-strategy-partner-indonesia/ and would like to discuss a growth strategy for my brand.",
+    chapters: [
+      {
+        number: "CH 01",
+        page: 4,
+        title: "Track Record & Founder Profile",
+        desc: "Background of PT Digital Cardi Nusantara with Deo Cardi Nathanael building scalable brand ecosystems in Indonesia.",
+        badge: "Foundation"
+      },
+      {
+        number: "CH 02",
+        page: 6,
+        title: "Industry Experience & 200+ Client Portfolio",
+        desc: "Proven track record across 25+ industries and 280+ brands across F&B, FMCG, retail, beauty, and corporate sectors.",
+        badge: "Portfolio"
+      },
+      {
+        number: "CH 03",
+        page: 8,
+        title: "Customer Behaviour Journey (B2B & B2C)",
+        desc: "Mapping modern Indonesian consumer purchasing journeys and why integrated digital activation drives conversion.",
+        badge: "Insight"
+      },
+      {
+        number: "CH 04",
+        page: 9,
+        title: "5-Level Cardi Matrix & Marketing Cheat Sheet",
+        desc: "Strategic framework positioning your brand from Validation (<1M/yr) and Growth (1-5M) to Market Leader (100+M/yr).",
+        badge: "Core Matrix"
+      },
+      {
+        number: "CH 05",
+        page: 12,
+        title: "Branding, Rebranding & Visual Identity",
+        desc: "Brand Blueprint Strategy, visual identity, packaging, interior design, and commercial photo/video production.",
+        badge: "Brand Building"
+      },
+      {
+        number: "CH 06",
+        page: 27,
+        title: "Partner Terms & FMCG Growth Strategy",
+        desc: "New Star, Rising Star, and Super Star partnership tiers and nationwide go-to-market execution.",
+        badge: "Go-To-Market"
+      },
+      {
+        number: "CH 07",
+        page: 35,
+        title: "Fractional Chief Brand Officer (FCBO)",
+        desc: "C-level executive brand leadership aligning positioning, campaigns, and commercial growth.",
+        badge: "Leadership"
+      },
+      {
+        number: "CH 08",
+        page: 43,
+        title: "Website Development & Launch Packages",
+        desc: "High-converting company profiles, B2B catalogs, and e-commerce storefronts paired with launch strategy.",
+        badge: "Digital Assets"
+      },
+      {
+        number: "CH 09",
+        page: 48,
+        title: "Social Media Management & Content Production",
+        desc: "Creative content production across Instagram, TikTok, and YouTube Shorts engineered for viral reach.",
+        badge: "Content & Social"
+      },
+      {
+        number: "CH 10",
+        page: 60,
+        title: "Performance Ads, E-Commerce & Live Shopping",
+        desc: "Meta, TikTok, and Google Ads management, marketplace optimization, daily live shopping, and national PR.",
+        badge: "Growth & Sales"
+      },
+      {
+        number: "CH 11",
+        page: 76,
+        title: "Offline Store Growth & Cardi Loyal Card",
+        desc: "Google Business Profile optimization, organic review growth with NFC/QR Cardi Loyal cards, and member retention.",
+        badge: "Local & Loyalty"
+      },
+      {
+        number: "CH 12",
+        page: 102,
+        title: "ROI Case Studies & Performance Reports",
+        desc: "Real client performance reports (Samudra Cipta Rasa, Latezza Beauty Parlour, Surya Painting) with verified ROAS.",
+        badge: "Data & ROI"
+      },
+      {
+        number: "CH 13",
+        page: 127,
+        title: "Brand Check Up & Next Steps",
+        desc: "Diagnostic assessment framework (Visibility, Memorable, Trusted) and onboarding roadmap.",
+        badge: "Next Steps"
+      }
+    ] as Chapter[],
+    highlights: [
+      {
+        tag: "GO-TO-MARKET PARTNER",
+        title: "End-to-End Ecosystem from Idea to Scale",
+        desc: "Uniting brand strategy, digital activation, e-commerce, and AI automation to win the Indonesian market."
+      },
+      {
+        tag: "5-LEVEL MATRIX",
+        title: "Calibrated to Your Exact GMV Stage",
+        desc: "Budget allocation and channel priorities tailored to your true revenue scale for capital-efficient growth."
+      },
+      {
+        tag: "FCBO LEADERSHIP",
+        title: "Executive C-Level Strategic Direction",
+        desc: "Guided by a Fractional Chief Brand Officer to keep messaging, visuals, and channels aligned."
+      },
+      {
+        tag: "PROVEN ACROSS 200+ CLIENTS",
+        title: "Transparent Cycle-Based Reporting",
+        desc: "Backed by real cross-industry case studies with transparent lead, conversion, and ad efficiency tracking."
+      }
+    ] as Highlight[]
+  },
+  zh: {
+    metaTitle: "印尼市场进入战略合作伙伴 (Go-To-Market) - Cardi Nusantara",
+    metaDesc: "PT Digital Cardi Nusantara 印尼市场进入（Go-To-Market）官方战略方案。了解品牌增长生态系统、5 级 GMV 增长矩阵、品牌策划、数字激活及真实 ROI 案例。",
+    title: "Cardi – 印尼市场进入战略合作伙伴 (Go-To-Market)",
+    eyebrow: "PT Digital Cardi Nusantara 官方文件",
+    description: "印尼市场进入与业务加速全景指南：5 级 GMV 增长矩阵、品牌建设、全渠道数字激活、电商运营、FCBO 外聘首席品牌官及 200+ 客户实战 ROI 案例。",
+    downloadFilename: "Cardi - Go-To-Market Strategy Partner Indonesia.pdf",
+    waMessage: "您好 Cardi 团队，我已查阅 cardi.co.id/go-to-market-strategy-partner-indonesia/ 上的印尼市场进入战略方案，希望与您探讨我们品牌的增长策略。",
+    chapters: [
+      {
+        number: "第 01 章",
+        page: 4,
+        title: "发展历程与创始人简介",
+        desc: "PT Digital Cardi Nusantara 与创始人 Deo Cardi Nathanael 在印尼打造高竞争力品牌生态系统的历程。",
+        badge: "根基"
+      },
+      {
+        number: "第 02 章",
+        page: 6,
+        title: "行业经验与 200+ 客户案例库",
+        desc: "深耕 25+ 行业并成功服务 280+ 品牌，涵盖餐饮连锁、快消品、美妆零售及大型企业。",
+        badge: "案例库"
+      },
+      {
+        number: "第 03 章",
+        page: 8,
+        title: "印尼消费者行为全触点分析",
+        desc: "深度解构印尼本地 B2B 与 B2C 消费决策旅程，以及一体化数字激活的核心价值。",
+        badge: "市场洞察"
+      },
+      {
+        number: "第 04 章",
+        page: 9,
+        title: "Cardi 5 级品牌矩阵与营销速查表",
+        desc: "精准定位品牌所处阶段：从验证期（<1M/年）、成长期（1-5M）到市场领导者（100+M/年）。",
+        badge: "核心模型"
+      },
+      {
+        number: "第 05 章",
+        page: 12,
+        title: "品牌策划、重塑与视觉识别",
+        desc: "品牌蓝图战略、视觉识别系统、包装设计、空间美学及商业摄影视频制作。",
+        badge: "品牌建设"
+      },
+      {
+        number: "第 06 章",
+        page: 27,
+        title: "合作伙伴标准与快消品增长策略",
+        desc: "新星（New Star）、崛起之星（Rising Star）与超级之星（Super Star）合作机制及全国市场扩张路径。",
+        badge: "市场进入"
+      },
+      {
+        number: "第 07 章",
+        page: 35,
+        title: "外聘首席品牌官（FCBO）",
+        desc: "提供 C 级别高管战略领航，统筹品牌定位、市场战役与商业增长。",
+        badge: "战略领航"
+      },
+      {
+        number: "第 08 章",
+        page: 43,
+        title: "品牌官网开发与启动套餐",
+        desc: "打造高转化企业官网、B2B 产品目录及电商独立站，配套完整上线策略。",
+        badge: "数字资产"
+      },
+      {
+        number: "第 09 章",
+        page: 48,
+        title: "社交媒体代运营与内容制作",
+        desc: "覆盖 Instagram、TikTok、YouTube Shorts 的创意内容生产与千万级曝光传播。",
+        badge: "社媒与内容"
+      },
+      {
+        number: "第 10 章",
+        page: 60,
+        title: "效果广告投放、电商与直播带货",
+        desc: "Meta、TikTok 与 Google 广告优化、电商平台代运营、日常直播带货及全国媒体公关。",
+        badge: "增长与销售"
+      },
+      {
+        number: "第 11 章",
+        page: 76,
+        title: "线下门店增长与 Cardi Loyal 会员系统",
+        desc: "谷歌商家档案优化、NFC/二维码智能卡片提升自然好评及会员复购体系。",
+        badge: "本地与留存"
+      },
+      {
+        number: "第 12 章",
+        page: 102,
+        title: "实战 ROI 案例与数据复盘报告",
+        desc: "Samudra Cipta Rasa、Latezza、Surya Painting 等客户真实投放回报率（ROAS）与商机转化数据。",
+        badge: "数据复盘"
+      },
+      {
+        number: "第 13 章",
+        page: 127,
+        title: "品牌诊断体检与启动步骤",
+        desc: "围绕“被看见、被记住、被信任”三维诊断评估框架及专属团队对接流程。",
+        badge: "即刻启动"
+      }
+    ] as Chapter[],
+    highlights: [
+      {
+        tag: "印尼市场进入伙伴",
+        title: "从品牌孵化到全国扩张的完整生态",
+        desc: "融合品牌战略、数字激活、电商运营与 AI 自动化，助力品牌高效落地印尼市场。"
+      },
+      {
+        tag: "5 级增长矩阵",
+        title: "量身定制与当前 GMV 匹配的策略",
+        desc: "根据企业实际营收规模精准配置预算与推广渠道，避免资源浪费。"
+      },
+      {
+        tag: "FCBO 首席领航",
+        title: "高水准 C-Level 战略把关",
+        desc: "外聘首席品牌官全程指导，确保品牌价值主张、视觉与销售渠道步调一致。"
+      },
+      {
+        tag: "200+ 客户实战验证",
+        title: "透明化周期数据追踪与报告",
+        desc: "依托跨行业真实成功案例，提供清晰的潜客转化与广告投放效率追踪。"
+      }
+    ] as Highlight[]
+  }
+};
+
+const c = content[currentLang];
+---
+
+<DeckViewer
+  lang={lang}
+  title={c.title}
+  eyebrow={c.eyebrow}
+  description={c.description}
+  pdfUrl="/Cardi - Go-To-Market Strategy Partner Indonesia.pdf"
+  downloadFilename={c.downloadFilename}
+  fileSize="12.5 MB"
+  totalPages={130}
+  updatedDate="2026"
+  waMessage={c.waMessage}
+  chapters={c.chapters}
+  highlights={c.highlights}
+  metaTitle={c.metaTitle}
+  metaDesc={c.metaDesc}
+/>
