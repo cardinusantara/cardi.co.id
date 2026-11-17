@@ -201,6 +201,7 @@ export const ui = {
     'solPage.back': '← Kembali ke Direktori Solusi',
     'solPage.ctaHeading': 'Siap Mengimplementasikan Solusi Ini untuk Bisnis Anda?',
     'solPage.ctaDesc': 'Jadwalkan konsultasi 1-on-1 dengan tim spesialis Cardi. Kami bantu petakan workflow dan integrasikan sistem dalam 24 jam.',
+    'solPage.ctaBtn': 'Jadwalkan Konsultasi',
     'solPage.benefitsTitle': 'Keunggulan & Manfaat Utama',
     'solPage.metricsTitle': 'Hasil & Estimasi ROI Terukur',
 
@@ -621,6 +622,7 @@ export const ui = {
     'solPage.back': '← Back to Solutions Directory',
     'solPage.ctaHeading': 'Ready to Implement This Solution for Your Business?',
     'solPage.ctaDesc': 'Book a 1-on-1 session with Cardi growth specialists. We will map your workflow and deploy in under 24 hours.',
+    'solPage.ctaBtn': 'Schedule Consultation',
     'solPage.benefitsTitle': 'Key Advantages & Capabilities',
     'solPage.metricsTitle': 'Measurable Impact & ROI',
 

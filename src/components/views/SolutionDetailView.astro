@@ -27,84 +27,86 @@ const benefitsList = solution.benefits[lang] || solution.benefits.id || [];
 <Layout title={`${titleText} - Solusi Cardi Business Ecosystem`} description={descText} lang={lang}>
   <Navbar lang={lang} />
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-copy">
-        <span class="eyebrow" style="display:inline-flex; align-items:center; gap:8px;">
-          <SolutionIcon name={solution.icon} size={18} />
-          <span>{badgeText}</span>
-        </span>
-        <h1>{titleText}</h1>
-        <p class="lead">{heroSubText}</p>
+  <main id="main">
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-copy">
+          <span class="eyebrow" style="display:inline-flex; align-items:center; gap:8px;">
+            <SolutionIcon name={solution.icon} size={18} />
+            <span>{badgeText}</span>
+          </span>
+          <h1>{titleText}</h1>
+          <p class="lead">{heroSubText}</p>
 
-        <div class="heroCta">
-          <button class="btn open-consult-modal-btn" type="button">
-            Jadwalkan Konsultasi Solusi ini &rarr;
-          </button>
-          <a href={translatePath('/solusi')} class="btn ghost">
-            {t('solPage.back')}
-          </a>
+          <div class="heroCta">
+            <button class="btn open-consult-modal-btn" type="button">
+              Jadwalkan Konsultasi Solusi ini &rarr;
+            </button>
+            <a href={translatePath('/solusi')} class="btn ghost">
+              {t('solPage.back')}
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- METRICS BANNER (IF AVAILABLE) -->
-  {solution.metrics && solution.metrics.length > 0 && (
-    <section class="sec sec-tight" style="background:var(--soft, #F5F8FE); border-top:1px solid var(--line, #E6ECF7); border-bottom:1px solid var(--line, #E6ECF7);">
+    <!-- METRICS BANNER (IF AVAILABLE) -->
+    {solution.metrics && solution.metrics.length > 0 && (
+      <section class="sec sec-tight" style="background:var(--soft, #F5F8FE); border-top:1px solid var(--line, #E6ECF7); border-bottom:1px solid var(--line, #E6ECF7);">
+        <div class="wrap">
+          <div class="sol-metrics-grid">
+            {solution.metrics.map(m => (
+              <div class="sol-metric-card">
+                <div class="metric-val">{m.val}</div>
+                <div class="metric-lbl">{m.label[lang] || m.label.id}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- BENEFITS & CAPABILITIES SECTION -->
+    <section class="sec">
       <div class="wrap">
-        <div class="sol-metrics-grid">
-          {solution.metrics.map(m => (
-            <div class="sol-metric-card">
-              <div class="metric-val">{m.val}</div>
-              <div class="metric-lbl">{m.label[lang] || m.label.id}</div>
+        <div class="sec-head">
+          <span class="eyebrow">{t('solPage.benefitsTitle')}</span>
+          <h2>Mengapa Memilih Solusi {titleText}?</h2>
+          <p class="lead" style="font-size:15px; margin-top:4px;">Dirancang khusus untuk efisiensi operasional dan pertumbuhan pendapatan yang terukur.</p>
+        </div>
+
+        <div class="benefits-grid">
+          {benefitsList.map((item, idx) => (
+            <div class="benefit-card">
+              <div class="benefit-num">0{idx + 1}</div>
+              <p>{item}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )}
 
-  <!-- BENEFITS & CAPABILITIES SECTION -->
-  <section class="sec">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">{t('solPage.benefitsTitle')}</span>
-        <h2>Mengapa Memilih Solusi {titleText}?</h2>
-        <p class="lead" style="font-size:15px; margin-top:4px;">Dirancang khusus untuk efisiensi operasional dan pertumbuhan pendapatan yang terukur.</p>
-      </div>
-
-      <div class="benefits-grid">
-        {benefitsList.map((item, idx) => (
-          <div class="benefit-card">
-            <div class="benefit-num">0{idx + 1}</div>
-            <p>{item}</p>
+    <!-- BOTTOM CTA BANNER -->
+    <section class="sec" style="padding-top:0;">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>{t('solPage.ctaHeading')}</h2>
+            <p>{t('solPage.ctaDesc')}</p>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- BOTTOM CTA BANNER -->
-  <section class="sec" style="padding-top:0;">
-    <div class="wrap">
-      <div class="cta-band">
-        <div>
-          <h2>{t('solPage.ctaHeading')}</h2>
-          <p>{t('solPage.ctaDesc')}</p>
-        </div>
-        <div class="btns">
-          <button class="btn btn-light open-consult-modal-btn" type="button">
-            {t('hero.ctaConsult')} &rarr;
-          </button>
-          <a class="btn ghost" style="border-color: rgba(255,255,255,0.3); color:#fff;" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20solution." target="_blank" rel="noopener noreferrer">
-            Chat WhatsApp &rarr;
-          </a>
+          <div class="btns">
+            <button class="btn btn-light open-consult-modal-btn" type="button">
+              {t('solPage.ctaBtn')} &rarr;
+            </button>
+            <a class="btn ghost" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20solution." target="_blank" rel="noopener noreferrer">
+              Chat WhatsApp &rarr;
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <Footer lang={lang} />
   <ConsultModal lang={lang} />
