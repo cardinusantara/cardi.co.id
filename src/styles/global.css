@@ -100,8 +100,7 @@ nav#mainNav {
    this makes it genuinely absent, not just dimmed. Added by an inline head
    script in Layout.astro so it's present before first paint — never added at
    all without JS or on mobile. */
-html.intro-pending #mainNav,
-html.intro-pending .eco-bar {
+html.intro-pending #mainNav {
   opacity: 0;
   transform: translateY(-14px) scale(.98);
   pointer-events: none;
