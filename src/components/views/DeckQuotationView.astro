@@ -1,0 +1,386 @@
+---
+import DeckViewer from './DeckViewer.astro';
+import type { Chapter, Highlight } from './DeckViewer.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+import type { LangKey } from '../../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const currentLang = (lang as string) === 'en' ? 'en' : (lang as string) === 'zh' ? 'zh' : 'id';
+
+const content = {
+  id: {
+    metaTitle: "Deck & Quotation 2026 (Full) - Cardi Nusantara",
+    metaDesc: "Dokumen lengkap Company Profile, Deck & Quotation 2026 PT Digital Cardi Nusantara. Pelajari ekosistem pertumbuhan 4 lapis (Presence, Traffic, Convert, Retain), AI Agents, paket layanan, dan studi kasus ROI.",
+    title: "Cardi – Profile, Deck & Quotation 2026 (Full)",
+    eyebrow: "Dokumen Resmi PT Digital Cardi Nusantara",
+    description: "Panduan lengkap ekosistem pertumbuhan bisnis & AI Agents: matriks 5 level GMV, branding, FCBO, layanan Presence–Traffic–Convert–Retain, skema investasi, serta studi kasus ROI klien.",
+    downloadFilename: "Cardi - Profile, Deck & Quotation 2026 - Full.pdf",
+    waMessage: "Halo Tim Bisnis Cardi, saya telah melihat presentasi Profile, Deck & Quotation 2026 (Full) di cardi.co.id/deck-quotation dan ingin berdiskusi mengenai paket layanan untuk bisnis saya.",
+    chapters: [
+      {
+        number: "BAB 01",
+        page: 3,
+        title: "Visi, Holding Company & Profil Founder",
+        desc: "Perjalanan ekosistem PT Digital Cardi Nusantara sejak 2016 bersama Deo Cardi Nathanael dalam membangun dan mengotomasi brand.",
+        badge: "Fondasi"
+      },
+      {
+        number: "BAB 02",
+        page: 5,
+        title: "Pengalaman Industri & Portofolio 200+ Klien",
+        desc: "Rekam jejak lintas 25+ industri dan 280+ brand dengan pengelolaan 8,1 juta+ pesanan dan omzet Rp 453 miliar+.",
+        badge: "Portofolio"
+      },
+      {
+        number: "BAB 03",
+        page: 10,
+        title: "Customer Journey & 5 Level Cardi Matrix",
+        desc: "Pemetaan perilaku belanja B2B & B2C serta penentuan posisi brand dari Validasi (<1M/thn) hingga Market Leader (100+M/thn).",
+        badge: "Matriks Utama"
+      },
+      {
+        number: "BAB 04",
+        page: 13,
+        title: "Branding, Rebranding & Brand Book",
+        desc: "Penyusunan Brand Blueprint Strategy, paket Brand Identity (Basic, Pro, Enterprise), dan portofolio peluncuran brand.",
+        badge: "Brand Building"
+      },
+      {
+        number: "BAB 05",
+        page: 17,
+        title: "Ketentuan Partner & Fractional CBO (FCBO)",
+        desc: "Kriteria kemitraan New Star, Rising Star, Super Star serta pendampingan strategis level C-Suite oleh Deo Cardi Nathanael.",
+        badge: "Leadership"
+      },
+      {
+        number: "BAB 06",
+        page: 27,
+        title: "Lapis 01 Presence: Google Business & Website",
+        desc: "Optimasi Google Business Profile, review management dengan kartu NFC Cardi Loyal, dan paket pembuatan website.",
+        badge: "Presence"
+      },
+      {
+        number: "BAB 07",
+        page: 35,
+        title: "Lapis 02 Traffic: Google Ads & SEO",
+        desc: "Strategi Google Search Ads dan manajemen 30 artikel SEO bulanan untuk mendatangkan pengunjung dengan niat beli tinggi.",
+        badge: "Traffic"
+      },
+      {
+        number: "BAB 08",
+        page: 39,
+        title: "Lapis 03 Convert: Social Media & Ads ke WA",
+        desc: "Produksi konten kreatif, manajemen Instagram & TikTok, serta iklan Meta/TikTok yang diarahkan langsung ke WhatsApp.",
+        badge: "Convert"
+      },
+      {
+        number: "BAB 09",
+        page: 52,
+        title: "Lapis 04 Retain: Ekosistem CRM & AI Agent",
+        desc: "Sistem operasi bisnis otomatis 24/7 menggunakan Askoo (CRM omnichannel), Aspri (AI WA), MoM (notulensi AI), dan Loyal.",
+        badge: "AI Operating System"
+      },
+      {
+        number: "BAB 10",
+        page: 58,
+        title: "Alur Kerja, Paket Layanan & Skema Investasi",
+        desc: "Tahapan kerja dari Brand Check Up gratis serta perbandingan investasi paket New Star, Rising Star, dan Super Star.",
+        badge: "Quotation & Paket"
+      },
+      {
+        number: "BAB 11",
+        page: 60,
+        title: "Studi Kasus Kinerja & ROI Klien",
+        desc: "Laporan lengkap pencapaian leads, peringkat SEO, efisiensi iklan, dan ROAS pada Samudra Cipta Rasa, Latezza, dan Surya Painting.",
+        badge: "Studi Kasus ROI"
+      },
+      {
+        number: "BAB 12",
+        page: 85,
+        title: "Keunggulan Cardi (Why Us) & Onboarding",
+        desc: "Enam pilar keunggulan layanan end-to-end serta langkah memulai Brand Check Up gratis bersama tim Cardi.",
+        badge: "Onboarding"
+      }
+    ] as Chapter[],
+    highlights: [
+      {
+        tag: "EDISI LENGKAP 86 HALAMAN",
+        title: "Profil, Penawaran Harga & Studi Kasus ROI",
+        desc: "Memuat rincian harga seluruh layanan, paket retainer, skema investasi GMV, hingga laporan data performa klien nyata."
+      },
+      {
+        tag: "4 LAPIS PERTUMBUHAN",
+        title: "Presence → Traffic → Convert → Retain",
+        desc: "Sistem terintegrasi mulai dari visibilitas di Google hingga retensi pelanggan otomatis menggunakan ekosistem AI Agent."
+      },
+      {
+        tag: "CARDI AGENT AI",
+        title: "Otomasi Operasional Bisnis 24/7",
+        desc: "Dilengkapi Askoo, Aspri, MoM, dan Loyal untuk menangani admin WhatsApp, prospek penjualan, notulensi rapat, dan poin member."
+      },
+      {
+        tag: "TERBUKTI DI 200+ KLIEN",
+        title: "Transparansi Data & ROAS Terukur",
+        desc: "Dilengkapi studi kasus detail untuk tahap New Star, Rising Star, hingga Super Star lintas industri."
+      }
+    ] as Highlight[]
+  },
+  en: {
+    metaTitle: "Deck & Quotation 2026 (Full) - Cardi Nusantara",
+    metaDesc: "Complete 2026 Company Profile, Deck & Quotation of PT Digital Cardi Nusantara. Explore our 4-layer growth ecosystem (Presence, Traffic, Convert, Retain), AI Agents, pricing packages, and ROI case studies.",
+    title: "Cardi – Profile, Deck & Quotation 2026 (Full)",
+    eyebrow: "Official Document of PT Digital Cardi Nusantara",
+    description: "Complete guide to our Business Power Ecosystem & AI Agents: 5-level GMV matrix, branding, FCBO, Presence–Traffic–Convert–Retain services, investment tiers, and verified client ROI case studies.",
+    downloadFilename: "Cardi - Profile, Deck & Quotation 2026 - Full.pdf",
+    waMessage: "Hello Cardi Team, I have reviewed the 2026 Profile, Deck & Quotation (Full) on cardi.co.id/deck-quotation and would like to discuss a growth package for my business.",
+    chapters: [
+      {
+        number: "CH 01",
+        page: 3,
+        title: "Vision, Holding Company & Founder Profile",
+        desc: "PT Digital Cardi Nusantara's journey since 2016 with Deo Cardi Nathanael building and automating scalable brands.",
+        badge: "Foundation"
+      },
+      {
+        number: "CH 02",
+        page: 5,
+        title: "Industry Experience & 200+ Client Portfolio",
+        desc: "Track record across 25+ industries and 280+ brands with 8.1M+ orders and IDR 453B+ managed revenue.",
+        badge: "Portfolio"
+      },
+      {
+        number: "CH 03",
+        page: 10,
+        title: "Customer Journey & 5-Level Cardi Matrix",
+        desc: "Mapping B2B & B2C purchasing habits and positioning brands from Validation (<1M/yr) to Market Leader (100+M/yr).",
+        badge: "Core Matrix"
+      },
+      {
+        number: "CH 04",
+        page: 13,
+        title: "Branding, Rebranding & Brand Book",
+        desc: "Brand Blueprint Strategy, Brand Identity packages (Basic, Pro, Enterprise), and brand launch showcases.",
+        badge: "Brand Building"
+      },
+      {
+        number: "CH 05",
+        page: 17,
+        title: "Partner Terms & Fractional CBO (FCBO)",
+        desc: "New Star, Rising Star, and Super Star partnership tiers alongside C-suite brand leadership by Deo Cardi Nathanael.",
+        badge: "Leadership"
+      },
+      {
+        number: "CH 06",
+        page: 27,
+        title: "Layer 01 Presence: Google Business & Website",
+        desc: "Google Business Profile optimization, organic reviews via Cardi Loyal NFC cards, and website packages.",
+        badge: "Presence"
+      },
+      {
+        number: "CH 07",
+        page: 35,
+        title: "Layer 02 Traffic: Google Ads & SEO",
+        desc: "High-intent Google Search Ads and 30 monthly SEO articles engineered to attract qualified buyers.",
+        badge: "Traffic"
+      },
+      {
+        number: "CH 08",
+        page: 39,
+        title: "Layer 03 Convert: Social Media & Ads to WA",
+        desc: "Creative content production, Instagram & TikTok management, and Meta/TikTok Ads converting straight to WhatsApp.",
+        badge: "Convert"
+      },
+      {
+        number: "CH 09",
+        page: 52,
+        title: "Layer 04 Retain: CRM & AI Agent Ecosystem",
+        desc: "24/7 automated business operations powered by Askoo (omnichannel CRM), Aspri (WA AI), MoM (AI notes), and Loyal.",
+        badge: "AI Operating System"
+      },
+      {
+        number: "CH 10",
+        page: 58,
+        title: "How We Work, Packages & Investment Tiers",
+        desc: "Three-phase workflow from free Brand Check Up and pricing comparison for New Star, Rising Star, and Super Star.",
+        badge: "Quotation"
+      },
+      {
+        number: "CH 11",
+        page: 60,
+        title: "Client Performance & ROI Case Studies",
+        desc: "In-depth lead generation, SEO rankings, ad spend efficiency, and ROAS reports for Samudra Cipta Rasa, Latezza, and Surya Painting.",
+        badge: "ROI Case Studies"
+      },
+      {
+        number: "CH 12",
+        page: 85,
+        title: "Why Choose Cardi & Onboarding",
+        desc: "Six core advantages of our end-to-end growth ecosystem and how to start with a complimentary Brand Check Up.",
+        badge: "Onboarding"
+      }
+    ] as Chapter[],
+    highlights: [
+      {
+        tag: "COMPLETE 86-PAGE EDITION",
+        title: "Company Profile, Pricing & ROI Case Studies",
+        desc: "Includes complete service rate cards, retainer tiers, GMV investment models, and real client performance metrics."
+      },
+      {
+        tag: "4 GROWTH LAYERS",
+        title: "Presence → Traffic → Convert → Retain",
+        desc: "End-to-end growth engine from Google search visibility to automated customer retention via AI Agents."
+      },
+      {
+        tag: "CARDI AGENT AI",
+        title: "24/7 Automated Business Operating System",
+        desc: "Powered by Askoo, Aspri, MoM, and Loyal to automate WhatsApp admin, sales leads, meeting notes, and loyalty."
+      },
+      {
+        tag: "PROVEN ACROSS 200+ CLIENTS",
+        title: "Transparent Data & Measurable ROAS",
+        desc: "Backed by detailed case studies spanning New Star, Rising Star, and Super Star stages across industries."
+      }
+    ] as Highlight[]
+  },
+  zh: {
+    metaTitle: "2026 完整版商业演示与报价方案 - Cardi Nusantara",
+    metaDesc: "PT Digital Cardi Nusantara 2026 完整版公司简介、商业演示与报价方案。深入了解四层增长生态（Presence、Traffic、Convert、Retain）、AI 智能体系统、服务报价及实战 ROI 案例。",
+    title: "Cardi – 2026 完整版公司简介与商业报价方案",
+    eyebrow: "PT Digital Cardi Nusantara 官方文件",
+    description: "商业增长生态与 AI 智能体完整指南：5 级 GMV 增长矩阵、品牌建设、FCBO、Presence–Traffic–Convert–Retain 全链路服务报价及客户实战 ROI 案例。",
+    downloadFilename: "Cardi - Profile, Deck & Quotation 2026 - Full.pdf",
+    waMessage: "您好 Cardi 团队，我已查阅 cardi.co.id/deck-quotation 上的 2026 完整版商业报价方案，希望与您探讨适合我们业务的服务套餐。",
+    chapters: [
+      {
+        number: "第 01 章",
+        page: 3,
+        title: "愿景、控股集团与创始人简介",
+        desc: "PT Digital Cardi Nusantara 自 2016 年起由 Deo Cardi Nathanael 领航打造品牌增长与自动化生态的历程。",
+        badge: "根基"
+      },
+      {
+        number: "第 02 章",
+        page: 5,
+        title: "行业经验与 200+ 客户案例库",
+        desc: "深耕 25+ 行业并服务 280+ 品牌，累计管理超 810 万笔订单与 4530 亿印尼盾营收。",
+        badge: "案例库"
+      },
+      {
+        number: "第 03 章",
+        page: 10,
+        title: "消费者旅程与 5 级增长矩阵",
+        desc: "解析 B2B 与 B2C 消费决策路径，精准定位从验证期（<1M/年）到市场领导者（100+M/年）的策略。",
+        badge: "核心矩阵"
+      },
+      {
+        number: "第 04 章",
+        page: 13,
+        title: "品牌建设、重塑与品牌手册",
+        desc: "品牌蓝图战略、视觉识别套餐（基础版、专业版、企业版）及品牌孵化案例。",
+        badge: "品牌建设"
+      },
+      {
+        number: "第 05 章",
+        page: 17,
+        title: "合作伙伴机制与外聘首席品牌官 (FCBO)",
+        desc: "新星、崛起之星与超级之星合作标准，以及 C-Level 品牌战略指导。",
+        badge: "战略领航"
+      },
+      {
+        number: "第 06 章",
+        page: 27,
+        title: "第一层 Presence：谷歌商家与品牌官网",
+        desc: "Google Business Profile 优化、NFC 智能卡片提升自然好评及专业官网开发套餐。",
+        badge: "品牌曝光"
+      },
+      {
+        number: "第 07 章",
+        page: 35,
+        title: "第二层 Traffic：Google 广告与 SEO",
+        desc: "高意向搜索广告投放与每月 30 篇有机 SEO 文章，持续获取精准潜在客户。",
+        badge: "精准引流"
+      },
+      {
+        number: "第 08 章",
+        page: 39,
+        title: "第三层 Convert：社交媒体与 WhatsApp 转化",
+        desc: "创意内容制作、Instagram 与 TikTok 代运营及直达 WhatsApp 的效果广告投放。",
+        badge: "高效转化"
+      },
+      {
+        number: "第 09 章",
+        page: 52,
+        title: "第四层 Retain：CRM 与 AI 智能体生态",
+        desc: "全天候 24/7 业务自动化：Askoo 全渠道客服、Aspri 群聊助手、MoM 会议纪要与 Loyal 会员系统。",
+        badge: "AI 操作系统"
+      },
+      {
+        number: "第 10 章",
+        page: 58,
+        title: "合作流程、服务报价与投资方案",
+        desc: "从免费品牌诊断起步，对比 New Star、Rising Star 与 Super Star 套餐报价及佣金机制。",
+        badge: "报价方案"
+      },
+      {
+        number: "第 11 章",
+        page: 60,
+        title: "客户实战业绩与 ROI 数据报告",
+        desc: "Samudra Cipta Rasa、Latezza 与 Surya Painting 的潜客转化、SEO 排名及 ROAS 详细数据复盘。",
+        badge: "ROI 案例"
+      },
+      {
+        number: "第 12 章",
+        page: 85,
+        title: "核心优势 (Why Us) 与启动合作",
+        desc: "端到端增长生态的六大核心优势及免费品牌诊断体检申请流程。",
+        badge: "即刻启动"
+      }
+    ] as Chapter[],
+    highlights: [
+      {
+        tag: "86 页完整版本",
+        title: "公司简介、服务报价与实战 ROI 案例",
+        desc: "完整收录各项服务报价表、月度托管套餐、GMV 合作模式及客户真实投放数据。"
+      },
+      {
+        tag: "四层增长闭环",
+        title: "Presence → Traffic → Convert → Retain",
+        desc: "构建从谷歌搜索可见度到 AI 自动化客户留存的完整商业增长引擎。"
+      },
+      {
+        tag: "CARDI AGENT AI",
+        title: "24/7 全天候自动化业务操作系统",
+        desc: "集成 Askoo、Aspri、MoM 与 Loyal，全面自动化销售跟进、群聊管理、会议记录与会员运营。"
+      },
+      {
+        tag: "200+ 客户实战验证",
+        title: "透明化数据追踪与可量化 ROAS",
+        desc: "涵盖新星、崛起之星与超级之星各阶段跨行业深度实战案例。"
+      }
+    ] as Highlight[]
+  }
+};
+
+const c = content[currentLang];
+---
+
+<DeckViewer
+  lang={lang}
+  title={c.title}
+  eyebrow={c.eyebrow}
+  description={c.description}
+  pdfUrl="/Cardi - Profile, Deck & Quotation 2026 - Full.pdf"
+  downloadFilename={c.downloadFilename}
+  fileSize="14.5 MB"
+  totalPages={86}
+  updatedDate="2026"
+  waMessage={c.waMessage}
+  chapters={c.chapters}
+  highlights={c.highlights}
+  metaTitle={c.metaTitle}
+  metaDesc={c.metaDesc}
+/>
