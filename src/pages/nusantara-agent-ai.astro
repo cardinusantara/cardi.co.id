@@ -1,18 +1,12 @@
 ---
 import rawHtml from '../../public/nusantara-agent-ai.html?raw';
 
-const fixedHtml = rawHtml
-  .replace(/<link[^>]*rel=["'](?:shortcut )?icon["'][^>]*>/gi, '')
-  .replace(
-    '</head>',
-    '<link rel="icon" type="image/png" href="/40.png" />\n<link rel="apple-touch-icon" href="/40.png" />\n</head>'
-  );
----
+const cardiFavicon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230054A6'/%3E%3Cg fill='%23FFFFFF'%3E%3Cellipse cx='32' cy='19' rx='4.2' ry='9.5'/%3E%3Cellipse cx='32' cy='45' rx='4.2' ry='9.5'/%3E%3Cellipse cx='19' cy='32' rx='9.5' ry='4.2'/%3E%3Cellipse cx='45' cy='32' rx='9.5' ry='4.2'/%3E%3Cellipse cx='22.8' cy='22.8' rx='4.2' ry='9.5' transform='rotate(-45 22.8 22.8)'/%3E%3Cellipse cx='41.2' cy='41.2' rx='4.2' ry='9.5' transform='rotate(-45 41.2 41.2)'/%3E%3Cellipse cx='41.2' cy='22.8' rx='4.2' ry='9.5' transform='rotate(45 41.2 22.8)'/%3E%3Cellipse cx='22.8' cy='41.2' rx='4.2' ry='9.5' transform='rotate(45 22.8 41.2)'/%3E%3Ccircle cx='32' cy='32' r='6'/%3E%3C/g%3E%3C/svg%3E";
 
-<Fragment set:html={fixedHtml} />
-
-<style is:global>
-  /* Floating WhatsApp Button */
+const headInject = `
+<link rel="icon" type="image/svg+xml" href="${cardiFavicon}" />
+<link rel="shortcut icon" href="${cardiFavicon}" />
+<style>
   .cardi-wa-float {
     position: fixed !important;
     right: 24px !important;
@@ -42,7 +36,6 @@ const fixedHtml = rawHtml
     display: block !important;
   }
 
-  /* Language Dropdown Switcher (Between Paket & Harga and Login) */
   .cardi-lang-wrap {
     position: relative;
     display: inline-flex;
@@ -62,20 +55,20 @@ const fixedHtml = rawHtml
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
   }
   .cardi-lang-btn:hover {
     background: #f8fafc;
     border-color: #cbd5e1;
   }
   .cardi-lang-flag {
-    width: 20px;
-    height: 14px;
+    width: 22px;
+    height: 15px;
     border-radius: 3px;
     overflow: hidden;
     display: inline-flex;
     flex-shrink: 0;
-    box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.12);
+    box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.14);
   }
   .cardi-lang-flag svg {
     width: 100%;
@@ -164,7 +157,9 @@ const fixedHtml = rawHtml
     }
   }
 </style>
+`;
 
+const bodyInject = `
 <a
   href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20ingin%20konsultasi%20tentang%20kebutuhan%20bisnis%20saya."
   class="cardi-wa-float"
@@ -177,16 +172,15 @@ const fixedHtml = rawHtml
     <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 28.8l6.564-1.722a12.74 12.74 0 0 0 6.34 1.682h.006c7.058 0 12.798-5.74 12.798-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.396h-.004a10.58 10.58 0 0 1-5.394-1.476l-.386-.23-3.896 1.022 1.04-3.798-.252-.4a10.562 10.562 0 0 1-1.622-5.634c0-5.844 4.756-10.6 10.604-10.6 2.832 0 5.494 1.104 7.496 3.106a10.533 10.533 0 0 1 3.102 7.498c0 5.846-4.756 10.602-10.604 10.602zm5.816-7.94c-.318-.16-1.886-.93-2.178-1.036-.292-.106-.504-.16-.716.16-.212.318-.822 1.036-1.008 1.248-.186.212-.372.238-.69.08-.318-.16-1.344-.496-2.56-1.58-.946-.844-1.586-1.886-1.772-2.204-.186-.318-.02-.49.14-.648.144-.142.318-.372.478-.558.16-.186.212-.318.318-.53.106-.212.054-.398-.026-.558-.08-.16-.716-1.726-.982-2.364-.258-.62-.52-.536-.716-.546l-.61-.01c-.212 0-.558.08-.85.398-.292.318-1.114 1.088-1.114 2.654s1.14 3.078 1.3 3.29c.16.212 2.244 3.426 5.436 4.804.76.328 1.352.524 1.814.67.762.242 1.456.208 2.004.126.612-.092 1.886-.77 2.152-1.514.266-.744.266-1.382.186-1.514-.08-.132-.292-.212-.61-.372z"/>
   </svg>
 </a>
-
-<script is:inline>
-(() => {
-  const FLAGS = {
+<script>
+(function() {
+  var FLAGS = {
     id: '<svg viewBox="0 0 24 16"><rect width="24" height="8" fill="#E70011"/><rect y="8" width="24" height="8" fill="#FFFFFF"/></svg>',
     en: '<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#012169"/><path d="M0,0 L24,16 M24,0 L0,16" stroke="#FFFFFF" stroke-width="3"/><path d="M0,0 L24,16 M24,0 L0,16" stroke="#C8102E" stroke-width="1.6"/><path d="M12,0 V16 M0,8 H24" stroke="#FFFFFF" stroke-width="5"/><path d="M12,0 V16 M0,8 H24" stroke="#C8102E" stroke-width="3"/></svg>',
     zh: '<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#DE2910"/><polygon points="4.5,2 5.2,4.1 7.4,4.1 5.6,5.4 6.3,7.5 4.5,6.2 2.7,7.5 3.4,5.4 1.6,4.1 3.8,4.1" fill="#FFDE00"/><circle cx="9.2" cy="2.2" r="0.7" fill="#FFDE00"/><circle cx="10.8" cy="4" r="0.7" fill="#FFDE00"/><circle cx="10.8" cy="6.4" r="0.7" fill="#FFDE00"/><circle cx="9.2" cy="8.2" r="0.7" fill="#FFDE00"/></svg>'
   };
 
-  const DICT = [
+  var DICT = [
     ["Lewati ke konten", "Skip to content", "跳转至内容"],
     ["Layanan", "Services", "服务"],
     ["Agent AI", "AI Agents", "AI 智能体"],
@@ -227,6 +221,7 @@ const fixedHtml = rawHtml
     ["Lihat harga social media", "View social media pricing", "查看社媒运营价格"],
     ["Arah strategi dari Deo Cardi Nathanael.", "Strategic direction from Deo Cardi Nathanael.", "由 Deo Cardi Nathanael 提供战略指导。"],
     ["Founder dan CEO Cardi Nusantara mendampingi bisnis sebagai Chief Brand Officer eksternal. Tim Cardi membantu menyelaraskan positioning, konten, kampanye, dan KPI dengan tujuan bisnis.", "The Founder and CEO of Cardi Nusantara accompanies your business as an external Chief Brand Officer. The Cardi team aligns positioning, content, campaigns, and KPIs with your business goals.", "Cardi Nusantara 创始人兼首席执行官作为外部首席品牌官陪伴您的企业成长，团队协助将品牌定位、内容、营销活动与 KPI 与商业目标高度对齐。"],
+    ["Lihat harga fractional CBO", "View fractional CBO pricing", "查看外聘首席品牌官价格"],
     ["AI untuk kerja harian tim Anda.", "AI for your team's daily operations.", "助力团队日常运营的 AI 智能体。"],
     ["Kelola chat dan prospek, rekap progres tim, catat hasil rapat, dan jalankan program loyalitas.", "Manage chats and leads, summarize team progress, record meeting minutes, and run loyalty programs.", "统一管理对话与潜客、汇总团队进度、自动生成会议纪要并运营客户忠诚度计划。"],
     ["Kelola stempel, voucher, dan program member digital. Gunakan kartu NFC/QR untuk memudahkan ulasan Google.", "Manage digital stamps, vouchers, and membership programs. Use NFC/QR cards to boost Google reviews.", "管理电子印章、优惠券和数字会员计划，通过 NFC/QR 卡片轻松获取 Google 好评。"],
@@ -242,67 +237,72 @@ const fixedHtml = rawHtml
     ["Kembali ke atas", "Back to top", "返回顶部"]
   ];
 
-  const trackedNodes = [];
-  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-  let node;
+  var trackedNodes = [];
+  var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  var node;
   while ((node = walker.nextNode())) {
     if (node.parentElement && node.parentElement.closest('.cardi-lang-wrap, script, style')) continue;
-    const raw = node.nodeValue;
-    const trimmed = raw.trim();
+    var raw = node.nodeValue;
+    var trimmed = raw.trim();
     if (!trimmed) continue;
-    for (let i = 0; i < DICT.length; i++) {
+    for (var i = 0; i < DICT.length; i++) {
       if (trimmed === DICT[i][0]) {
-        trackedNodes.push({ node, idx: i, lead: raw.match(/^\s*/)[0], trail: raw.match(/\s*$/)[0] });
+        trackedNodes.push({
+          node: node,
+          idx: i,
+          lead: raw.match(/^\s*/)[0],
+          trail: raw.match(/\s*$/)[0]
+        });
         break;
       }
     }
   }
 
   function applyLang(lang) {
-    const col = lang === 'en' ? 1 : lang === 'zh' ? 2 : 0;
-    trackedNodes.forEach(({ node, idx, lead, trail }) => {
-      node.nodeValue = lead + DICT[idx][col] + trail;
-    });
+    var col = lang === 'en' ? 1 : lang === 'zh' ? 2 : 0;
+    for (var i = 0; i < trackedNodes.length; i++) {
+      var item = trackedNodes[i];
+      item.node.nodeValue = item.lead + DICT[item.idx][col] + item.trail;
+    }
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
-    const activeFlagEl = document.getElementById('cardi-active-flag');
+    var activeFlagEl = document.getElementById('cardi-active-flag');
     if (activeFlagEl) activeFlagEl.innerHTML = FLAGS[lang];
-    document.querySelectorAll('.cardi-lang-item').forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-    });
+    var btns = document.querySelectorAll('.cardi-lang-item');
+    for (var j = 0; j < btns.length; j++) {
+      btns[j].classList.toggle('active', btns[j].getAttribute('data-lang') === lang);
+    }
     try { localStorage.setItem('cardi_lang', lang); } catch (e) {}
   }
 
-  // Insert Language Switcher between "Paket & Harga" and "Login"
-  const navLinks = document.getElementById('nav-links') || document.querySelector('header nav');
+  var navLinks = document.getElementById('nav-links') || document.querySelector('header nav');
   if (navLinks && !document.getElementById('cardi-lang-switcher')) {
-    const wrap = document.createElement('div');
+    var wrap = document.createElement('div');
     wrap.id = 'cardi-lang-switcher';
     wrap.className = 'cardi-lang-wrap';
-    wrap.innerHTML = `
-      <button type="button" class="cardi-lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Pilih Bahasa">
-        <span class="cardi-lang-flag" id="cardi-active-flag">${FLAGS.id}</span>
-        <svg class="cardi-lang-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 7.5L10 12.5L15 7.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <div class="cardi-lang-menu" role="listbox">
-        <button type="button" class="cardi-lang-item active" data-lang="id">
-          <span class="cardi-lang-item-left"><span class="cardi-lang-flag">${FLAGS.id}</span><span>Indonesia</span></span>
-          <svg class="cardi-lang-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 10.5L8.2 14.2L15.5 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button type="button" class="cardi-lang-item" data-lang="en">
-          <span class="cardi-lang-item-left"><span class="cardi-lang-flag">${FLAGS.en}</span><span>English</span></span>
-          <svg class="cardi-lang-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 10.5L8.2 14.2L15.5 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button type="button" class="cardi-lang-item" data-lang="zh">
-          <span class="cardi-lang-item-left"><span class="cardi-lang-flag">${FLAGS.zh}</span><span>中文</span></span>
-          <svg class="cardi-lang-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 10.5L8.2 14.2L15.5 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-    `;
+    wrap.innerHTML =
+      '<button type="button" class="cardi-lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Pilih Bahasa">' +
+        '<span class="cardi-lang-flag" id="cardi-active-flag">' + FLAGS.id + '</span>' +
+        '<svg class="cardi-lang-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">' +
+          '<path d="M5 7.5L10 12.5L15 7.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '</svg>' +
+      '</button>' +
+      '<div class="cardi-lang-menu" role="listbox">' +
+        '<button type="button" class="cardi-lang-item active" data-lang="id">' +
+          '<span class="cardi-lang-item-left"><span class="cardi-lang-flag">' + FLAGS.id + '</span><span>Indonesia</span></span>' +
+          '<svg class="cardi-lang-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 10.5L8.2 14.2L15.5 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</button>' +
+        '<button type="button" class="cardi-lang-item" data-lang="en">' +
+          '<span class="cardi-lang-item-left"><span class="cardi-lang-flag">' + FLAGS.en + '</span><span>English</span></span>' +
+          '<svg class="cardi-lang-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 10.5L8.2 14.2L15.5 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</button>' +
+        '<button type="button" class="cardi-lang-item" data-lang="zh">' +
+          '<span class="cardi-lang-item-left"><span class="cardi-lang-flag">' + FLAGS.zh + '</span><span>中文</span></span>' +
+          '<svg class="cardi-lang-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 10.5L8.2 14.2L15.5 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</button>' +
+      '</div>';
 
-    const paketLink = navLinks.querySelector('a[href="#paket"]');
-    const loginLink = navLinks.querySelector('.nav-login, a[href*="login"]');
+    var paketLink = navLinks.querySelector('a[href="#paket"]');
+    var loginLink = navLinks.querySelector('.nav-login, a[href*="login"]');
     if (paketLink && paketLink.nextSibling) {
       navLinks.insertBefore(wrap, paketLink.nextSibling);
     } else if (loginLink) {
@@ -311,22 +311,23 @@ const fixedHtml = rawHtml
       navLinks.appendChild(wrap);
     }
 
-    const toggleBtn = wrap.querySelector('.cardi-lang-btn');
-    toggleBtn.addEventListener('click', (e) => {
+    var toggleBtn = wrap.querySelector('.cardi-lang-btn');
+    toggleBtn.addEventListener('click', function(e) {
       e.stopPropagation();
-      const isOpen = wrap.classList.toggle('open');
+      var isOpen = wrap.classList.toggle('open');
       toggleBtn.setAttribute('aria-expanded', String(isOpen));
     });
 
-    wrap.querySelectorAll('.cardi-lang-item').forEach(item => {
-      item.addEventListener('click', () => {
-        applyLang(item.getAttribute('data-lang'));
+    var items = wrap.querySelectorAll('.cardi-lang-item');
+    for (var k = 0; k < items.length; k++) {
+      items[k].addEventListener('click', function() {
+        applyLang(this.getAttribute('data-lang'));
         wrap.classList.remove('open');
         toggleBtn.setAttribute('aria-expanded', 'false');
       });
-    });
+    }
 
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', function(e) {
       if (!wrap.contains(e.target)) {
         wrap.classList.remove('open');
         toggleBtn.setAttribute('aria-expanded', 'false');
@@ -334,8 +335,22 @@ const fixedHtml = rawHtml
     });
   }
 
-  let savedLang = 'id';
+  var savedLang = 'id';
   try { savedLang = localStorage.getItem('cardi_lang') || 'id'; } catch (e) {}
   if (savedLang !== 'id' && FLAGS[savedLang]) applyLang(savedLang);
 })();
 </script>
+`;
+
+const cleanedHtml = rawHtml.replace(/<link[^>]*rel=["'](?:shortcut )?icon["'][^>]*>/gi, '');
+
+const withHead = /<\/head>/i.test(cleanedHtml)
+  ? cleanedHtml.replace(/<\/head>/i, `${headInject}\n</head>`)
+  : `${headInject}\n${cleanedHtml}`;
+
+const finalHtml = /<\/body>/i.test(withHead)
+  ? withHead.replace(/<\/body>/i, `${bodyInject}\n</body>`)
+  : `${withHead}\n${bodyInject}`;
+---
+
+<Fragment set:html={finalHtml} />
