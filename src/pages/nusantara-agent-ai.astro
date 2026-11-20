@@ -1,7 +1,7 @@
 ---
 import rawHtml from '../../public/nusantara-agent-ai.html?raw';
 
-const cardiFavicon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230054A6'/%3E%3Cg fill='%23FFFFFF'%3E%3Cellipse cx='32' cy='19' rx='4.2' ry='9.5'/%3E%3Cellipse cx='32' cy='45' rx='4.2' ry='9.5'/%3E%3Cellipse cx='19' cy='32' rx='9.5' ry='4.2'/%3E%3Cellipse cx='45' cy='32' rx='9.5' ry='4.2'/%3E%3Cellipse cx='22.8' cy='22.8' rx='4.2' ry='9.5' transform='rotate(-45 22.8 22.8)'/%3E%3Cellipse cx='41.2' cy='41.2' rx='4.2' ry='9.5' transform='rotate(-45 41.2 41.2)'/%3E%3Cellipse cx='41.2' cy='22.8' rx='4.2' ry='9.5' transform='rotate(45 41.2 22.8)'/%3E%3Cellipse cx='22.8' cy='41.2' rx='4.2' ry='9.5' transform='rotate(45 22.8 41.2)'/%3E%3Ccircle cx='32' cy='32' r='6'/%3E%3C/g%3E%3C/svg%3E";
+const cardiFavicon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230B57A4'/%3E%3Cg fill='%23FFFFFF'%3E%3Cellipse cx='32' cy='18.5' rx='4.3' ry='9.8'/%3E%3Cellipse cx='32' cy='45.5' rx='4.3' ry='9.8'/%3E%3Cellipse cx='18.5' cy='32' rx='9.8' ry='4.3'/%3E%3Cellipse cx='45.5' cy='32' rx='9.8' ry='4.3'/%3E%3Cellipse cx='22.5' cy='22.5' rx='4.3' ry='9.8' transform='rotate(-45 22.5 22.5)'/%3E%3Cellipse cx='41.5' cy='41.5' rx='4.3' ry='9.8' transform='rotate(-45 41.5 41.5)'/%3E%3Cellipse cx='41.5' cy='22.5' rx='4.3' ry='9.8' transform='rotate(45 41.5 22.5)'/%3E%3Cellipse cx='22.5' cy='41.5' rx='4.3' ry='9.8' transform='rotate(45 22.5 41.5)'/%3E%3Ccircle cx='32' cy='32' r='6.2'/%3E%3C/g%3E%3C/svg%3E";
 
 const headInject = `
 <link rel="icon" type="image/svg+xml" href="${cardiFavicon}" />
@@ -159,188 +159,154 @@ const headInject = `
 </style>
 `;
 
-const bodyInject = `
-<a
-  href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20ingin%20konsultasi%20tentang%20kebutuhan%20bisnis%20saya."
-  class="cardi-wa-float"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="WhatsApp Cardi (+62 812-8989-5646)"
-  title="Hubungi WhatsApp +62 812-8989-5646"
->
-  <svg viewBox="0 0 32 32" aria-hidden="true">
-    <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 28.8l6.564-1.722a12.74 12.74 0 0 0 6.34 1.682h.006c7.058 0 12.798-5.74 12.798-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.396h-.004a10.58 10.58 0 0 1-5.394-1.476l-.386-.23-3.896 1.022 1.04-3.798-.252-.4a10.562 10.562 0 0 1-1.622-5.634c0-5.844 4.756-10.6 10.604-10.6 2.832 0 5.494 1.104 7.496 3.106a10.533 10.533 0 0 1 3.102 7.498c0 5.846-4.756 10.602-10.604 10.602zm5.816-7.94c-.318-.16-1.886-.93-2.178-1.036-.292-.106-.504-.16-.716.16-.212.318-.822 1.036-1.008 1.248-.186.212-.372.238-.69.08-.318-.16-1.344-.496-2.56-1.58-.946-.844-1.586-1.886-1.772-2.204-.186-.318-.02-.49.14-.648.144-.142.318-.372.478-.558.16-.186.212-.318.318-.53.106-.212.054-.398-.026-.558-.08-.16-.716-1.726-.982-2.364-.258-.62-.52-.536-.716-.546l-.61-.01c-.212 0-.558.08-.85.398-.292.318-1.114 1.088-1.114 2.654s1.14 3.078 1.3 3.29c.16.212 2.244 3.426 5.436 4.804.76.328 1.352.524 1.814.67.762.242 1.456.208 2.004.126.612-.092 1.886-.77 2.152-1.514.266-.744.266-1.382.186-1.514-.08-.132-.292-.212-.61-.372z"/>
-  </svg>
-</a>
-<script>
-(function() {
-  var FLAGS = {
-    id: '<svg viewBox="0 0 24 16"><rect width="24" height="8" fill="#E70011"/><rect y="8" width="24" height="8" fill="#FFFFFF"/></svg>',
-    en: '<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#012169"/><path d="M0,0 L24,16 M24,0 L0,16" stroke="#FFFFFF" stroke-width="3"/><path d="M0,0 L24,16 M24,0 L0,16" stroke="#C8102E" stroke-width="1.6"/><path d="M12,0 V16 M0,8 H24" stroke="#FFFFFF" stroke-width="5"/><path d="M12,0 V16 M0,8 H24" stroke="#C8102E" stroke-width="3"/></svg>',
-    zh: '<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#DE2910"/><polygon points="4.5,2 5.2,4.1 7.4,4.1 5.6,5.4 6.3,7.5 4.5,6.2 2.7,7.5 3.4,5.4 1.6,4.1 3.8,4.1" fill="#FFDE00"/><circle cx="9.2" cy="2.2" r="0.7" fill="#FFDE00"/><circle cx="10.8" cy="4" r="0.7" fill="#FFDE00"/><circle cx="10.8" cy="6.4" r="0.7" fill="#FFDE00"/><circle cx="9.2" cy="8.2" r="0.7" fill="#FFDE00"/></svg>'
-  };
-
-  var DICT = [
-    ["Lewati ke konten", "Skip to content", "跳转至内容"],
-    ["Layanan", "Services", "服务"],
-    ["Agent AI", "AI Agents", "AI 智能体"],
-    ["Portofolio", "Portfolio", "案例"],
-    ["Paket & Harga", "Packages & Pricing", "套餐与价格"],
-    ["Login", "Login", "登录"],
-    ["Cek Brand Gratis", "Free Brand Check", "免费品牌诊断"],
-    ["Ekosistem pertumbuhan bisnis", "Business growth ecosystem", "商业增长生态"],
-    ["Dilihat, diingat, dipercaya.", "Seen, remembered, trusted.", "被看见、被记住、被信赖。"],
-    ["Lalu dibeli.", "Then bought.", "然后成交。"],
-    ["Cardi Nusantara membangun brand yang dipercaya. Cardi Agent AI membantu tim Anda mengelola prospek, menindaklanjuti penjualan, dan membuat pelanggan kembali.", "Cardi Nusantara builds trusted brands. Cardi Agent AI helps your team manage leads, follow up on sales, and keep customers coming back.", "Cardi Nusantara 打造值得信赖的品牌。Cardi Agent AI 帮助您的团队管理潜在客户、跟进销售并提升客户复购率。"],
-    ["Lihat Paket & Harga", "View Packages & Pricing", "查看套餐与价格"],
-    ["Konsultasi WhatsApp", "WhatsApp Consultation", "WhatsApp 咨询"],
-    ["Ekosistem Cardi", "Cardi Ecosystem", "Cardi 生态系统"],
-    ["CARDI NUSANTARA · TIM AHLI", "CARDI NUSANTARA · EXPERT TEAM", "CARDI NUSANTARA · 专家团队"],
-    ["Bangun Brand", "Build Brand", "打造品牌"],
-    ["Strategi & identitas", "Strategy & identity", "战略与视觉识别"],
-    ["Masuk Pasar", "Enter Market", "进入市场"],
-    ["Go-to-market", "Go-to-market", "市场进入策略"],
-    ["Tumbuhkan Brand", "Grow Brand", "品牌增长"],
-    ["Konten, ads & SEO", "Content, ads & SEO", "内容、广告与 SEO"],
-    ["CARDI AGENT · TIM AI", "CARDI AGENT · AI TEAM", "CARDI AGENT · AI 团队"],
-    ["Kelola Penjualan", "Manage Sales", "销售管理"],
-    ["CRM & otomasi", "CRM & automation", "CRM 与自动化"],
-    ["Bangun Loyalitas", "Build Loyalty", "建立忠诚度"],
-    ["Retensi & ulasan", "Retention & reviews", "留存与评价"],
-    ["Klien & karya pilihan", "Selected clients & works", "精选客户与作品"],
-    ["Solusi untuk setiap tahap bisnis.", "Solutions for every business stage.", "适用于企业各发展阶段的解决方案。"],
-    ["Bangun fondasi brand, hadir di kanal yang tepat, dan ubah perhatian menjadi penjualan.", "Build your brand foundation, show up on the right channels, and turn attention into sales.", "夯实品牌根基，布局精准渠道，将流量关注转化为实际销售。"],
-    ["Brand blueprint, positioning, identitas visual, brand book, dan panduan penerapan di kemasan hingga signage.", "Brand blueprint, positioning, visual identity, brand book, and application guidelines from packaging to signage.", "品牌蓝图、市场定位、视觉识别、品牌手册以及从包装到门店导视的应用规范。"],
-    ["Lihat harga branding", "View branding pricing", "查看品牌设计价格"],
-    ["Landing page, company profile, e-commerce, serta optimasi Google Search dan Maps.", "Landing pages, company profiles, e-commerce, plus Google Search and Maps optimization.", "着陆页、企业官网、电商网站以及 Google 搜索与地图优化。"],
-    ["Lihat harga website", "View website pricing", "查看建站价格"],
-    ["Jangkau pencarian yang relevan lewat iklan dan bangun visibilitas organik lewat konten serta optimasi website.", "Capture high-intent searches through ads and build organic visibility via content and website optimization.", "通过搜索广告触达精准客户，并借助优质内容与网站优化建立自然搜索曝光。"],
-    ["Lihat harga Google Ads & SEO", "View Google Ads & SEO pricing", "查看广告与 SEO 价格"],
-    ["Konten, Social Media & Ads", "Content, Social Media & Ads", "内容创作、社媒与广告"],
-    ["Produksi foto, desain, dan video pendek. Kelola social media dan arahkan prospek dari Meta atau TikTok ke WhatsApp.", "Photo, design, and short video production. Manage social media and drive leads from Meta or TikTok to WhatsApp.", "商业摄影、平面设计与短视频制作。运营社交媒体并将 Meta 或 TikTok 潜客引流至 WhatsApp。"],
-    ["Lihat harga social media", "View social media pricing", "查看社媒运营价格"],
-    ["Arah strategi dari Deo Cardi Nathanael.", "Strategic direction from Deo Cardi Nathanael.", "由 Deo Cardi Nathanael 提供战略指导。"],
-    ["Founder dan CEO Cardi Nusantara mendampingi bisnis sebagai Chief Brand Officer eksternal. Tim Cardi membantu menyelaraskan positioning, konten, kampanye, dan KPI dengan tujuan bisnis.", "The Founder and CEO of Cardi Nusantara accompanies your business as an external Chief Brand Officer. The Cardi team aligns positioning, content, campaigns, and KPIs with your business goals.", "Cardi Nusantara 创始人兼首席执行官作为外部首席品牌官陪伴您的企业成长，团队协助将品牌定位、内容、营销活动与 KPI 与商业目标高度对齐。"],
-    ["Lihat harga fractional CBO", "View fractional CBO pricing", "查看外聘首席品牌官价格"],
-    ["AI untuk kerja harian tim Anda.", "AI for your team's daily operations.", "助力团队日常运营的 AI 智能体。"],
-    ["Kelola chat dan prospek, rekap progres tim, catat hasil rapat, dan jalankan program loyalitas.", "Manage chats and leads, summarize team progress, record meeting minutes, and run loyalty programs.", "统一管理对话与潜客、汇总团队进度、自动生成会议纪要并运营客户忠诚度计划。"],
-    ["Kelola stempel, voucher, dan program member digital. Gunakan kartu NFC/QR untuk memudahkan ulasan Google.", "Manage digital stamps, vouchers, and membership programs. Use NFC/QR cards to boost Google reviews.", "管理电子印章、优惠券和数字会员计划，通过 NFC/QR 卡片轻松获取 Google 好评。"],
-    ["Mulai Rp149.000", "Starting at IDR 149,000", "Rp149,000 起"],
-    ["pembayaran pertama", "first payment", "首次付款"],
-    ["Lihat paket AI", "View AI packages", "查看 AI 套餐"],
-    ["PORTOFOLIO CARDI", "CARDI PORTFOLIO", "CARDI 精选案例"],
-    ["Karya dari strategi hingga aktivasi.", "Works from strategy to activation.", "从品牌战略到市场落地的实战成果。"],
-    ["Semua paket pertumbuhan dimulai dengan Brand Check Up gratis.", "All growth packages start with a complimentary Brand Check Up.", "所有增长套餐均从免费品牌诊断体检开始。"],
-    ["MULAI BERSAMA CARDI", "START WITH CARDI", "与 CARDI 携手启航"],
-    ["Siap tumbuh bersama Cardi?", "Ready to grow with Cardi?", "准备好与 Cardi 一起增长了吗？"],
-    ["Ceritakan kebutuhan bisnis Anda. Kami bantu menentukan langkah pertama.", "Tell us about your business needs. We will help define your first step.", "告诉我们您的业务需求，我们将协助您制定第一步行动方案。"],
-    ["Kembali ke atas", "Back to top", "返回顶部"]
-  ];
-
-  var trackedNodes = [];
-  var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-  var node;
-  while ((node = walker.nextNode())) {
-    if (node.parentElement && node.parentElement.closest('.cardi-lang-wrap, script, style')) continue;
-    var raw = node.nodeValue;
-    var trimmed = raw.trim();
-    if (!trimmed) continue;
-    for (var i = 0; i < DICT.length; i++) {
-      if (trimmed === DICT[i][0]) {
-        trackedNodes.push({
-          node: node,
-          idx: i,
-          lead: raw.match(/^\s*/)[0],
-          trail: raw.match(/\s*$/)[0]
-        });
-        break;
-      }
-    }
-  }
-
-  function applyLang(lang) {
-    var col = lang === 'en' ? 1 : lang === 'zh' ? 2 : 0;
-    for (var i = 0; i < trackedNodes.length; i++) {
-      var item = trackedNodes[i];
-      item.node.nodeValue = item.lead + DICT[item.idx][col] + item.trail;
-    }
-    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
-    var activeFlagEl = document.getElementById('cardi-active-flag');
-    if (activeFlagEl) activeFlagEl.innerHTML = FLAGS[lang];
-    var btns = document.querySelectorAll('.cardi-lang-item');
-    for (var j = 0; j < btns.length; j++) {
-      btns[j].classList.toggle('active', btns[j].getAttribute('data-lang') === lang);
-    }
-    try { localStorage.setItem('cardi_lang', lang); } catch (e) {}
-  }
-
-  var navLinks = document.getElementById('nav-links') || document.querySelector('header nav');
-  if (navLinks && !document.getElementById('cardi-lang-switcher')) {
-    var wrap = document.createElement('div');
-    wrap.id = 'cardi-lang-switcher';
-    wrap.className = 'cardi-lang-wrap';
-    wrap.innerHTML =
-      '<button type="button" class="cardi-lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Pilih Bahasa">' +
-        '<span class="cardi-lang-flag" id="cardi-active-flag">' + FLAGS.id + '</span>' +
-        '<svg class="cardi-lang-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">' +
-          '<path d="M5 7.5L10 12.5L15 7.5" stroke-linecap="round" stroke-linejoin="round"/>' +
-        '</svg>' +
-      '</button>' +
-      '<div class="cardi-lang-menu" role="listbox">' +
-        '<button type="button" class="cardi-lang-item active" data-lang="id">' +
-          '<span class="cardi-lang-item-left"><span class="cardi-lang-flag">' + FLAGS.id + '</span><span>Indonesia</span></span>' +
-          '<svg class="cardi-lang-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 10.5L8.2 14.2L15.5 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-        '</button>' +
-        '<button type="button" class="cardi-lang-item" data-lang="en">' +
-          '<span class="cardi-lang-item-left"><span class="cardi-lang-flag">' + FLAGS.en + '</span><span>English</span></span>' +
-          '<svg class="cardi-lang-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 10.5L8.2 14.2L15.5 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-        '</button>' +
-        '<button type="button" class="cardi-lang-item" data-lang="zh">' +
-          '<span class="cardi-lang-item-left"><span class="cardi-lang-flag">' + FLAGS.zh + '</span><span>中文</span></span>' +
-          '<svg class="cardi-lang-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 10.5L8.2 14.2L15.5 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-        '</button>' +
-      '</div>';
-
-    var paketLink = navLinks.querySelector('a[href="#paket"]');
-    var loginLink = navLinks.querySelector('.nav-login, a[href*="login"]');
-    if (paketLink && paketLink.nextSibling) {
-      navLinks.insertBefore(wrap, paketLink.nextSibling);
-    } else if (loginLink) {
-      navLinks.insertBefore(wrap, loginLink);
-    } else {
-      navLinks.appendChild(wrap);
-    }
-
-    var toggleBtn = wrap.querySelector('.cardi-lang-btn');
-    toggleBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var isOpen = wrap.classList.toggle('open');
-      toggleBtn.setAttribute('aria-expanded', String(isOpen));
-    });
-
-    var items = wrap.querySelectorAll('.cardi-lang-item');
-    for (var k = 0; k < items.length; k++) {
-      items[k].addEventListener('click', function() {
-        applyLang(this.getAttribute('data-lang'));
-        wrap.classList.remove('open');
-        toggleBtn.setAttribute('aria-expanded', 'false');
-      });
-    }
-
-    document.addEventListener('click', function(e) {
-      if (!wrap.contains(e.target)) {
-        wrap.classList.remove('open');
-        toggleBtn.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
-
-  var savedLang = 'id';
-  try { savedLang = localStorage.getItem('cardi_lang') || 'id'; } catch (e) {}
-  if (savedLang !== 'id' && FLAGS[savedLang]) applyLang(savedLang);
-})();
-</script>
-`;
+const bodyInject = [
+  '<a href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20ingin%20konsultasi%20tentang%20kebutuhan%20bisnis%20saya." class="cardi-wa-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Cardi (+62 812-8989-5646)" title="Hubungi WhatsApp +62 812-8989-5646">',
+  '  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 28.8l6.564-1.722a12.74 12.74 0 0 0 6.34 1.682h.006c7.058 0 12.798-5.74 12.798-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.396h-.004a10.58 10.58 0 0 1-5.394-1.476l-.386-.23-3.896 1.022 1.04-3.798-.252-.4a10.562 10.562 0 0 1-1.622-5.634c0-5.844 4.756-10.6 10.604-10.6 2.832 0 5.494 1.104 7.496 3.106a10.533 10.533 0 0 1 3.102 7.498c0 5.846-4.756 10.602-10.604 10.602zm5.816-7.94c-.318-.16-1.886-.93-2.178-1.036-.292-.106-.504-.16-.716.16-.212.318-.822 1.036-1.008 1.248-.186.212-.372.238-.69.08-.318-.16-1.344-.496-2.56-1.58-.946-.844-1.586-1.886-1.772-2.204-.186-.318-.02-.49.14-.648.144-.142.318-.372.478-.558.16-.186.212-.318.318-.53.106-.212.054-.398-.026-.558-.08-.16-.716-1.726-.982-2.364-.258-.62-.52-.536-.716-.546l-.61-.01c-.212 0-.558.08-.85.398-.292.318-1.114 1.088-1.114 2.654s1.14 3.078 1.3 3.29c.16.212 2.244 3.426 5.436 4.804.76.328 1.352.524 1.814.67.762.242 1.456.208 2.004.126.612-.092 1.886-.77 2.152-1.514.266-.744.266-1.382.186-1.514-.08-.132-.292-.212-.61-.372z"/></svg>',
+  '</a>',
+  '<script>',
+  '(function() {',
+  '  var FLAGS = {',
+  '    id: \'<svg viewBox="0 0 24 16"><rect width="24" height="8" fill="#E70011"/><rect y="8" width="24" height="8" fill="#FFFFFF"/></svg>\',',
+  '    en: \'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#012169"/><path d="M0,0 L24,16 M24,0 L0,16" stroke="#FFFFFF" stroke-width="3"/><path d="M0,0 L24,16 M24,0 L0,16" stroke="#C8102E" stroke-width="1.6"/><path d="M12,0 V16 M0,8 H24" stroke="#FFFFFF" stroke-width="5"/><path d="M12,0 V16 M0,8 H24" stroke="#C8102E" stroke-width="3"/></svg>\',',
+  '    zh: \'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#DE2910"/><polygon points="4.5,2 5.2,4.1 7.4,4.1 5.6,5.4 6.3,7.5 4.5,6.2 2.7,7.5 3.4,5.4 1.6,4.1 3.8,4.1" fill="#FFDE00"/><circle cx="9.2" cy="2.2" r="0.7" fill="#FFDE00"/><circle cx="10.8" cy="4" r="0.7" fill="#FFDE00"/><circle cx="10.8" cy="6.4" r="0.7" fill="#FFDE00"/><circle cx="9.2" cy="8.2" r="0.7" fill="#FFDE00"/></svg>\'',
+  '  };',
+  '  var DICT = [',
+  '    ["Lewati ke konten", "Skip to content", "跳转至内容"],',
+  '    ["Layanan", "Services", "服务"],',
+  '    ["Agent AI", "AI Agents", "AI 智能体"],',
+  '    ["Portofolio", "Portfolio", "案例"],',
+  '    ["Paket & Harga", "Packages & Pricing", "套餐与价格"],',
+  '    ["Login", "Login", "登录"],',
+  '    ["Cek Brand Gratis", "Free Brand Check", "免费品牌诊断"],',
+  '    ["Ekosistem pertumbuhan bisnis", "Business growth ecosystem", "商业增长生态"],',
+  '    ["Dilihat, diingat, dipercaya.", "Seen, remembered, trusted.", "被看见、被记住、被信赖。"],',
+  '    ["Lalu dibeli.", "Then bought.", "然后成交。"],',
+  '    ["Cardi Nusantara membangun brand yang dipercaya. Cardi Agent AI membantu tim Anda mengelola prospek, menindaklanjuti penjualan, dan membuat pelanggan kembali.", "Cardi Nusantara builds trusted brands. Cardi Agent AI helps your team manage leads, follow up on sales, and keep customers coming back.", "Cardi Nusantara 打造值得信赖的品牌。Cardi Agent AI 帮助您的团队管理潜在客户、跟进销售并提升客户复购率。"],',
+  '    ["Lihat Paket & Harga", "View Packages & Pricing", "查看套餐与价格"],',
+  '    ["Konsultasi WhatsApp", "WhatsApp Consultation", "WhatsApp 咨询"],',
+  '    ["Ekosistem Cardi", "Cardi Ecosystem", "Cardi 生态系统"],',
+  '    ["CARDI NUSANTARA · TIM AHLI", "CARDI NUSANTARA · EXPERT TEAM", "CARDI NUSANTARA · 专家团队"],',
+  '    ["Bangun Brand", "Build Brand", "打造品牌"],',
+  '    ["Strategi & identitas", "Strategy & identity", "战略与视觉识别"],',
+  '    ["Masuk Pasar", "Enter Market", "进入市场"],',
+  '    ["Go-to-market", "Go-to-market", "市场进入策略"],',
+  '    ["Tumbuhkan Brand", "Grow Brand", "品牌增长"],',
+  '    ["Konten, ads & SEO", "Content, ads & SEO", "内容、广告与 SEO"],',
+  '    ["CARDI AGENT · TIM AI", "CARDI AGENT · AI TEAM", "CARDI AGENT · AI 团队"],',
+  '    ["Kelola Penjualan", "Manage Sales", "销售管理"],',
+  '    ["CRM & otomasi", "CRM & automation", "CRM 与自动化"],',
+  '    ["Bangun Loyalitas", "Build Loyalty", "建立忠诚度"],',
+  '    ["Retensi & ulasan", "Retention & reviews", "留存与评价"],',
+  '    ["Klien & karya pilihan", "Selected clients & works", "精选客户与作品"],',
+  '    ["Solusi untuk setiap tahap bisnis.", "Solutions for every business stage.", "适用于企业各发展阶段的解决方案。"],',
+  '    ["Bangun fondasi brand, hadir di kanal yang tepat, dan ubah perhatian menjadi penjualan.", "Build your brand foundation, show up on the right channels, and turn attention into sales.", "夯实品牌根基，布局精准渠道，将流量关注转化为实际销售。"],',
+  '    ["Brand blueprint, positioning, identitas visual, brand book, dan panduan penerapan di kemasan hingga signage.", "Brand blueprint, positioning, visual identity, brand book, and application guidelines from packaging to signage.", "品牌蓝图、市场定位、视觉识别、品牌手册以及从包装到门店导视的应用规范。"],',
+  '    ["Lihat harga branding", "View branding pricing", "查看品牌设计价格"],',
+  '    ["Landing page, company profile, e-commerce, serta optimasi Google Search dan Maps.", "Landing pages, company profiles, e-commerce, plus Google Search and Maps optimization.", "着陆页、企业官网、电商网站以及 Google 搜索与地图优化。"],',
+  '    ["Lihat harga website", "View website pricing", "查看建站价格"],',
+  '    ["Jangkau pencarian yang relevan lewat iklan dan bangun visibilitas organik lewat konten serta optimasi website.", "Capture high-intent searches through ads and build organic visibility via content and website optimization.", "通过搜索广告触达精准客户，并借助优质内容与网站优化建立自然搜索曝光。"],',
+  '    ["Lihat harga Google Ads & SEO", "View Google Ads & SEO pricing", "查看广告与 SEO 价格"],',
+  '    ["Konten, Social Media & Ads", "Content, Social Media & Ads", "内容创作、社媒与广告"],',
+  '    ["Produksi foto, desain, dan video pendek. Kelola social media dan arahkan prospek dari Meta atau TikTok ke WhatsApp.", "Photo, design, and short video production. Manage social media and drive leads from Meta or TikTok to WhatsApp.", "商业摄影、平面设计与短视频制作。运营社交媒体并将 Meta 或 TikTok 潜客引流至 WhatsApp。"],',
+  '    ["Lihat harga social media", "View social media pricing", "查看社媒运营价格"],',
+  '    ["Arah strategi dari Deo Cardi Nathanael.", "Strategic direction from Deo Cardi Nathanael.", "由 Deo Cardi Nathanael 提供战略指导。"],',
+  '    ["Founder dan CEO Cardi Nusantara mendampingi bisnis sebagai Chief Brand Officer eksternal. Tim Cardi membantu menyelaraskan positioning, konten, kampanye, dan KPI dengan tujuan bisnis.", "The Founder and CEO of Cardi Nusantara accompanies your business as an external Chief Brand Officer. The Cardi team aligns positioning, content, campaigns, and KPIs with your business goals.", "Cardi Nusantara 创始人兼首席执行官作为外部首席品牌官陪伴您的企业成长，团队协助将品牌定位、内容、营销活动与 KPI 与商业目标高度对齐。"],',
+  '    ["Lihat harga fractional CBO", "View fractional CBO pricing", "查看外聘首席品牌官价格"],',
+  '    ["AI untuk kerja harian tim Anda.", "AI for your team\'s daily operations.", "助力团队日常运营的 AI 智能体。"],',
+  '    ["Kelola chat dan prospek, rekap progres tim, catat hasil rapat, dan jalankan program loyalitas.", "Manage chats and leads, summarize team progress, record meeting minutes, and run loyalty programs.", "统一管理对话与潜客、汇总团队进度、自动生成会议纪要并运营客户忠诚度计划。"],',
+  '    ["Kelola stempel, voucher, dan program member digital. Gunakan kartu NFC/QR untuk memudahkan ulasan Google.", "Manage digital stamps, vouchers, and membership programs. Use NFC/QR cards to boost Google reviews.", "管理电子印章、优惠券和数字会员计划，通过 NFC/QR 卡片轻松获取 Google 好评。"],',
+  '    ["Mulai Rp149.000", "Starting at IDR 149,000", "Rp149,000 起"],',
+  '    ["pembayaran pertama", "first payment", "首次付款"],',
+  '    ["Lihat paket AI", "View AI packages", "查看 AI 套餐"],',
+  '    ["PORTOFOLIO CARDI", "CARDI PORTFOLIO", "CARDI 精选案例"],',
+  '    ["Karya dari strategi hingga aktivasi.", "Works from strategy to activation.", "从品牌战略到市场落地的实战成果。"],',
+  '    ["Semua paket pertumbuhan dimulai dengan Brand Check Up gratis.", "All growth packages start with a complimentary Brand Check Up.", "所有增长套餐均从免费品牌诊断体检开始。"],',
+  '    ["MULAI BERSAMA CARDI", "START WITH CARDI", "与 CARDI 携手启航"],',
+  '    ["Siap tumbuh bersama Cardi?", "Ready to grow with Cardi?", "准备好与 Cardi 一起增长了吗？"],',
+  '    ["Ceritakan kebutuhan bisnis Anda. Kami bantu menentukan langkah pertama.", "Tell us about your business needs. We will help define your first step.", "告诉我们您的业务需求，我们将协助您制定第一步行动方案。"],',
+  '    ["Kembali ke atas", "Back to top", "返回顶部"]',
+  '  ];',
+  '  var trackedNodes = [];',
+  '  var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);',
+  '  var node;',
+  '  while ((node = walker.nextNode())) {',
+  '    if (node.parentElement && node.parentElement.closest(".cardi-lang-wrap, script, style")) continue;',
+  '    var raw = node.nodeValue;',
+  '    var trimmed = raw.trim();',
+  '    if (!trimmed) continue;',
+  '    for (var i = 0; i < DICT.length; i++) {',
+  '      if (trimmed === DICT[i][0]) {',
+  '        trackedNodes.push({ node: node, idx: i, lead: raw.match(/^\\s*/)[0], trail: raw.match(/\\s*$/)[0] });',
+  '        break;',
+  '      }',
+  '    }',
+  '  }',
+  '  function applyLang(lang) {',
+  '    var col = lang === "en" ? 1 : lang === "zh" ? 2 : 0;',
+  '    for (var i = 0; i < trackedNodes.length; i++) {',
+  '      var item = trackedNodes[i];',
+  '      item.node.nodeValue = item.lead + DICT[item.idx][col] + item.trail;',
+  '    }',
+  '    document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;',
+  '    var activeFlagEl = document.getElementById("cardi-active-flag");',
+  '    if (activeFlagEl) activeFlagEl.innerHTML = FLAGS[lang];',
+  '    var btns = document.querySelectorAll(".cardi-lang-item");',
+  '    for (var j = 0; j < btns.length; j++) {',
+  '      btns[j].classList.toggle("active", btns[j].getAttribute("data-lang") === lang);',
+  '    }',
+  '    try { localStorage.setItem("cardi_lang", lang); } catch (e) {}',
+  '  }',
+  '  var navLinks = document.getElementById("nav-links") || document.querySelector("header nav");',
+  '  if (navLinks && !document.getElementById("cardi-lang-switcher")) {',
+  '    var wrap = document.createElement("div");',
+  '    wrap.id = "cardi-lang-switcher";',
+  '    wrap.className = "cardi-lang-wrap";',
+  '    wrap.innerHTML =',
+  '      \'<button type="button" class="cardi-lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Pilih Bahasa">\' +',
+  '        \'<span class="cardi-lang-flag" id="cardi-active-flag">\' + FLAGS.id + \'</span>\' +',
+  '        \'<svg class="cardi-lang-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7.5L10 12.5L15 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg>\' +',
+  '      \'</button>\' +',
+  '      \'<div class="cardi-lang-menu" role="listbox">\' +',
+  '        \'<button type="button" class="cardi-lang-item active" data-lang="id"><span class="cardi-lang-item-left"><span class="cardi-lang-flag">\' + FLAGS.id + \'</span><span>Indonesia</span></span><svg class="cardi-lang-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 10.5L8.2 14.2L15.5 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>\' +',
+  '        \'<button type="button" class="cardi-lang-item" data-lang="en"><span class="cardi-lang-item-left"><span class="cardi-lang-flag">\' + FLAGS.en + \'</span><span>English</span></span><svg class="cardi-lang-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 10.5L8.2 14.2L15.5 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>\' +',
+  '        \'<button type="button" class="cardi-lang-item" data-lang="zh"><span class="cardi-lang-item-left"><span class="cardi-lang-flag">\' + FLAGS.zh + \'</span><span>中文</span></span><svg class="cardi-lang-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 10.5L8.2 14.2L15.5 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>\' +',
+  '      \'</div>\';',
+  '    var paketLink = navLinks.querySelector(\'a[href="#paket"]\');',
+  '    var loginLink = navLinks.querySelector(\'.nav-login, a[href*="login"]\');',
+  '    if (paketLink && paketLink.nextSibling) {',
+  '      navLinks.insertBefore(wrap, paketLink.nextSibling);',
+  '    } else if (loginLink) {',
+  '      navLinks.insertBefore(wrap, loginLink);',
+  '    } else {',
+  '      navLinks.appendChild(wrap);',
+  '    }',
+  '    var toggleBtn = wrap.querySelector(".cardi-lang-btn");',
+  '    toggleBtn.addEventListener("click", function(e) {',
+  '      e.stopPropagation();',
+  '      var isOpen = wrap.classList.toggle("open");',
+  '      toggleBtn.setAttribute("aria-expanded", String(isOpen));',
+  '    });',
+  '    var items = wrap.querySelectorAll(".cardi-lang-item");',
+  '    for (var k = 0; k < items.length; k++) {',
+  '      items[k].addEventListener("click", function() {',
+  '        applyLang(this.getAttribute("data-lang"));',
+  '        wrap.classList.remove("open");',
+  '        toggleBtn.setAttribute("aria-expanded", "false");',
+  '      });',
+  '    }',
+  '    document.addEventListener("click", function(e) {',
+  '      if (!wrap.contains(e.target)) {',
+  '        wrap.classList.remove("open");',
+  '        toggleBtn.setAttribute("aria-expanded", "false");',
+  '      }',
+  '    });',
+  '  }',
+  '  var savedLang = "id";',
+  '  try { savedLang = localStorage.getItem("cardi_lang") || "id"; } catch (e) {}',
+  '  if (savedLang !== "id" && FLAGS[savedLang]) applyLang(savedLang);',
+  '})();',
+  '<' + '/script>'
+].join('\n');
 
 const cleanedHtml = rawHtml.replace(/<link[^>]*rel=["'](?:shortcut )?icon["'][^>]*>/gi, '');
 
