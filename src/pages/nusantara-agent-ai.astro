@@ -1,5 +1,28 @@
 ---
 import rawHtml from '../../public/nusantara-agent-ai.html?raw';
+
+const origin = 'https://cardi-branding-crm-2026.spectacularflame.chatgpt.site';
+
+const fixedHtml = rawHtml
+  .replace(/\s+crossorigin(?:=(["'])[^"']*\1)?/gi, '')
+  .replace(
+    /\b(src|href|poster)=(["'])(?!https?:\/\/|\/\/|#|mailto:|tel:|data:|javascript:)(\.?\/?)([^"']+)\2/gi,
+    `$1=$2${origin}/$4$2`
+  )
+  .replace(
+    /\bsrcset=(["'])([^"']+)\1/gi,
+    (_, quote, val) => {
+      const rewritten = val.replace(
+        /(^|,\s*)(?!https?:\/\/|\/\/|data:)(\.?\/?)([^\s,]+)/gi,
+        `$1${origin}/$3`
+      );
+      return `srcset=${quote}${rewritten}${quote}`;
+    }
+  )
+  .replace(
+    /url\((["']?)(?!https?:\/\/|\/\/|data:|#)(\.?\/?)([^"')]+)\1\)/gi,
+    `url($1${origin}/$3$1)`
+  );
 ---
 
-<Fragment set:html={rawHtml} />
+<Fragment set:html={fixedHtml} />
