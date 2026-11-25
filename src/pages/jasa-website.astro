@@ -299,3 +299,472 @@
         font-size: 12px;
         padding: 10px 14px;
       }
+      .wa-float-btn {
+        width: 52px;
+        height: 52px;
+      }
+      .wa-float-btn svg {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div style="background:#0556A0;color:#fff">
+    <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;padding-bottom:22px;flex-wrap:wrap;gap:12px">
+      <div style="font-size:26px;font-weight:800;letter-spacing:-0.5px">cardi</div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <!-- 3-Language Dropdown Switcher -->
+        <div class="lang-switcher" id="langSwitcher">
+          <button type="button" class="lang-trigger" id="langTrigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Pilih Bahasa">
+            <span class="lang-flag" id="activeFlag"></span>
+            <span id="activeCode">ID</span>
+            <svg class="lang-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M5 7.5L10 12.5L15 7.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="lang-dropdown" id="langDropdown" role="listbox">
+            <button type="button" class="lang-option active" data-lang="id">
+              <span class="lang-option-left">
+                <span class="lang-flag" data-flag="id"></span>
+                <span>
+                  <span class="lang-option-title">Indonesia</span>
+                  <span class="lang-option-sub">Bahasa Indonesia</span>
+                </span>
+              </span>
+              <svg class="lang-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4">
+                <path d="M4.5 10.5L8.2 14.2L15.5 6.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <button type="button" class="lang-option" data-lang="en">
+              <span class="lang-option-left">
+                <span class="lang-flag" data-flag="en"></span>
+                <span>
+                  <span class="lang-option-title">English</span>
+                  <span class="lang-option-sub">Global English</span>
+                </span>
+              </span>
+              <svg class="lang-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4">
+                <path d="M4.5 10.5L8.2 14.2L15.5 6.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <button type="button" class="lang-option" data-lang="zh">
+              <span class="lang-option-left">
+                <span class="lang-flag" data-flag="zh"></span>
+                <span>
+                  <span class="lang-option-title">简体中文</span>
+                  <span class="lang-option-sub">Chinese</span>
+                </span>
+              </span>
+              <svg class="lang-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4">
+                <path d="M4.5 10.5L8.2 14.2L15.5 6.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <a class="btn btn-line wa-link-general" href="https://wa.me/6281289895646" target="_blank" rel="noopener noreferrer" data-i18n="headerCta" style="padding:10px 18px;font-size:15px">Konsultasi via WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div style="background:#0556A0;color:#fff;padding-bottom:88px">
+    <div class="wrap" style="padding-top:40px">
+      <div data-i18n="heroEyebrow" style="font-size:15px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#FFD54F">Jasa Landing Page</div>
+      <h1 class="hero-h" data-i18n="heroTitle" style="margin:14px 0 0;font-size:56px;line-height:1.1;font-weight:800;max-width:820px">Bisnis Anda Dilihat, Diingat, dan Dipercaya Lewat Satu Halaman</h1>
+      <p data-i18n="heroDesc" style="margin:22px 0 0;font-size:20px;line-height:1.6;max-width:720px;color:#DCE8F7">Landing page yang rapi di HP, memakai copywriting yang jelas, dan langsung terhubung ke WhatsApp supaya calon pelanggan bisa langsung bertanya.</p>
+      <div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap">
+        <a class="btn btn-red" href="https://lynk.id/cardinusantara/7lmv7e4x0wd5" target="_blank" rel="noopener noreferrer" data-i18n="heroPrimaryCta">Checkout Sekarang</a>
+        <a class="btn btn-line" href="#paket" data-i18n="heroSecondaryCta">Lihat Harga</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAKET -->
+  <div id="paket" style="margin-top:-56px;padding-bottom:72px">
+    <div class="wrap">
+      <div class="card" style="padding:40px;border-top:6px solid #FFC93C;max-width:640px;margin:0 auto;box-shadow:0 12px 40px rgba(5,86,160,0.15)">
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+          <div data-i18n="promoTitle" style="font-size:26px;font-weight:800">Landing Page</div>
+          <span data-i18n="promoBadge" style="background:#E53935;color:#fff;font-weight:800;font-size:13px;padding:6px 12px;border-radius:999px">Promo Hari Ini</span>
+        </div>
+        <div style="margin-top:18px;font-size:20px;color:#6B7A90;text-decoration:line-through">Rp7.500.000</div>
+        <div style="font-size:44px;font-weight:800;color:#0556A0;line-height:1.1">Rp2.500.000</div>
+        <ul style="margin:26px 0 0;padding:0;list-style:none;font-size:17px;line-height:1.6">
+          <li data-i18n="promoFeat1" style="padding:8px 0;border-bottom:1px solid #E6ECF5">HTML, copywriting, dan desain UI</li>
+          <li data-i18n="promoFeat2" style="padding:8px 0;border-bottom:1px solid #E6ECF5">Mobile friendly dan tombol WhatsApp</li>
+          <li data-i18n="promoFeat3" style="padding:8px 0;border-bottom:1px solid #E6ECF5">1 email bisnis custom</li>
+          <li data-i18n="promoFeat4" style="padding:8px 0">Hosting, domain, keamanan, dan setup Google Analytics tersedia terpisah</li>
+        </ul>
+        <a class="btn btn-red" href="https://lynk.id/cardinusantara/7lmv7e4x0wd5" target="_blank" rel="noopener noreferrer" data-i18n="promoCta" style="display:block;margin-top:30px">Checkout Promo Sekarang</a>
+        <a class="btn btn-outline-blue wa-link-promo" href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20mau%20ambil%20promo%20Landing%20Page" target="_blank" rel="noopener noreferrer" data-i18n="promoWaCta" style="display:block;margin-top:12px">Tanya Promo via WhatsApp</a>
+        <div data-i18n="promoPhone" style="margin-top:14px;font-size:14px;color:#6B7A90;text-align:center">Nomor konsultasi: 0812-8989-5646</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTOH DESAIN / PORTOFOLIO WEBSITE -->
+  <div style="padding-bottom:80px">
+    <div class="wrap">
+      <h2 data-i18n="portTitle" style="margin:0 0 12px;font-size:36px;font-weight:800;text-align:center">Contoh Desain Website Berbagai Industri</h2>
+      <p data-i18n="portDesc" style="margin:0 0 36px;font-size:18px;text-align:center;color:#3A4A60">Tampilan responsif untuk desktop dan smartphone yang dirancang sesuai karakter bisnis Anda.</p>
+      <div class="grid3">
+        <div class="portfolio-card">
+          <img src="/WhatsApp Image 2026-11-24 at 23.51.26.jpeg" alt="Website Klinik Kecantikan - Avara Skin Clinic" loading="lazy" />
+          <div class="portfolio-meta">
+            <span class="portfolio-title" data-i18n="port1Title">Klinik Kecantikan</span>
+            <span class="portfolio-tag">Avara Skin Clinic</span>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <img src="/Website Spa.jpeg" alt="Website Spa & Wellness - Ruang Teduh Spa" loading="lazy" />
+          <div class="portfolio-meta">
+            <span class="portfolio-title" data-i18n="port2Title">Spa & Wellness</span>
+            <span class="portfolio-tag">Ruang Teduh Spa</span>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <img src="/2026-11-24 at 23.51.27.jpeg" alt="Website Bengkel Mobil - Piton Auto Garage" loading="lazy" />
+          <div class="portfolio-meta">
+            <span class="portfolio-title" data-i18n="port3Title">Bengkel & Otomotif</span>
+            <span class="portfolio-tag">Piton Auto Garage</span>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <img src="/STUDIO PILATES.jpeg" alt="Website Studio Pilates - Aluna Pilates" loading="lazy" />
+          <div class="portfolio-meta">
+            <span class="portfolio-title" data-i18n="port4Title">Studio Pilates & Fitness</span>
+            <span class="portfolio-tag">Aluna Pilates</span>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <img src="/WhatsApp Image 2026-11-24 at 23.51.27.jpeg" alt="Website Barbershop - Garis Pangkas" loading="lazy" />
+          <div class="portfolio-meta">
+            <span class="portfolio-title" data-i18n="port5Title">Barbershop & Grooming</span>
+            <span class="portfolio-tag">Garis Pangkas</span>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <img src="/Jasa Pembuatan Website.jpeg" alt="Website Kuliner & Restoran - Dapur Rona" loading="lazy" />
+          <div class="portfolio-meta">
+            <span class="portfolio-title" data-i18n="port6Title">Kuliner & Restoran</span>
+            <span class="portfolio-tag">Dapur Rona</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANFAAT -->
+  <div style="padding-bottom:80px">
+    <div class="wrap">
+      <h2 data-i18n="whyTitle" style="margin:0 0 32px;font-size:36px;font-weight:800;text-align:center">Kenapa Landing Page dari Cardi</h2>
+      <div class="grid3">
+        <div class="card">
+          <div data-i18n="why1Title" style="font-size:20px;font-weight:800;color:#0556A0">Tampil di Semua Layar</div>
+          <p data-i18n="why1Desc" style="margin:12px 0 0;font-size:16px;line-height:1.6;color:#3A4A60">Halaman dibuat mobile friendly, karena sebagian besar calon pelanggan membuka tautan dari HP.</p>
+        </div>
+        <div class="card">
+          <div data-i18n="why2Title" style="font-size:20px;font-weight:800;color:#0556A0">Pesan yang Jelas</div>
+          <p data-i18n="why2Desc" style="margin:12px 0 0;font-size:16px;line-height:1.6;color:#3A4A60">Copywriting disusun supaya pengunjung paham apa yang Anda tawarkan dalam beberapa detik pertama.</p>
+        </div>
+        <div class="card">
+          <div data-i18n="why3Title" style="font-size:20px;font-weight:800;color:#0556A0">Langsung Terhubung ke WhatsApp</div>
+          <p data-i18n="why3Desc" style="margin:12px 0 0;font-size:16px;line-height:1.6;color:#3A4A60">Tombol WhatsApp ditaruh di tempat yang mudah dilihat, sehingga calon pelanggan bisa langsung menghubungi Anda.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERBANDINGAN PAKET -->
+  <div style="background:#fff;padding:72px 0">
+    <div class="wrap">
+      <h2 data-i18n="compTitle" style="margin:0 0 12px;font-size:36px;font-weight:800;text-align:center">Butuh Lebih dari Satu Halaman?</h2>
+      <p data-i18n="compSubtitle" style="margin:0 0 36px;font-size:18px;text-align:center;color:#3A4A60">Pilih format website yang sesuai tujuan bisnis Anda.</p>
+      <div class="grid3">
+        <div class="card" style="background:#F6F9FD;border-top:6px solid #FFC93C">
+          <div style="font-size:14px;font-weight:700;color:#6B7A90">Landing Page</div>
+          <div style="font-size:24px;font-weight:800;margin-top:6px">Rp2.500.000</div>
+          <p data-i18n="comp1Desc" style="margin:10px 0 0;font-size:15px;color:#3A4A60;line-height:1.6">Satu halaman fokus untuk promosi, produk, atau pendaftaran.</p>
+        </div>
+        <div class="card" style="background:#F6F9FD;border-top:6px solid #B98AE0">
+          <div style="font-size:14px;font-weight:700;color:#6B7A90">Company Profile</div>
+          <div data-i18n="comp2Price" style="font-size:24px;font-weight:800;margin-top:6px">Mulai Rp12.500.000</div>
+          <p data-i18n="comp2Desc" style="margin:10px 0 0;font-size:15px;color:#3A4A60;line-height:1.6">Website profil lengkap dengan 1 email bisnis custom, hosting dan domain 1 tahun, serta bandwidth 200 GB.</p>
+        </div>
+        <div class="card" style="background:#F6F9FD;border-top:6px solid #6CC58F">
+          <div style="font-size:14px;font-weight:700;color:#6B7A90">E-Commerce</div>
+          <div data-i18n="comp3Price" style="font-size:24px;font-weight:800;margin-top:6px">Mulai Rp45.000.000</div>
+          <p data-i18n="comp3Desc" style="margin:10px 0 0;font-size:15px;color:#3A4A60;line-height:1.6">Katalog custom dan payment gateway, dengan 5 email bisnis custom, hosting dan domain 1 tahun.</p>
+        </div>
+      </div>
+      <p data-i18n="compAddon" style="margin:28px 0 0;font-size:15px;color:#6B7A90;text-align:center">Add-on tersedia untuk email bisnis, pengelolaan web, maintenance, bahasa, Elementor Pro, dan halaman tambahan.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="background:#0556A0;color:#fff;padding:72px 0">
+    <div class="wrap" style="text-align:center">
+      <h2 data-i18n="ctaTitle" style="margin:0;font-size:36px;font-weight:800">Siap Punya Landing Page Sendiri?</h2>
+      <p data-i18n="ctaDesc" style="margin:14px auto 0;font-size:18px;max-width:640px;color:#DCE8F7;line-height:1.6">Ceritakan kebutuhan bisnis Anda ke Cardi lewat WhatsApp. Kami bantu tentukan format yang paling tepat.</p>
+      <div style="margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-red" href="https://lynk.id/cardinusantara/7lmv7e4x0wd5" target="_blank" rel="noopener noreferrer" data-i18n="ctaCheckoutBtn">Checkout Sekarang</a>
+        <a class="btn btn-line wa-link-consult" href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20mau%20konsultasi%20landing%20page" target="_blank" rel="noopener noreferrer" data-i18n="ctaBtn">Chat WhatsApp: 0812-8989-5646</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="padding:28px 0;background:#0F1B2D;color:#AEB9CB;font-size:14px">
+    <div class="wrap" data-i18n="footerText" style="text-align:center">Cardi Nusantara · Jakarta · dilihat, diingat, dipercaya</div>
+  </div>
+
+  <!-- FLOATING WHATSAPP WIDGET -->
+  <a
+    href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20ingin%20konsultasi%20mengenai%20pembuatan%20website."
+    class="wa-float-container wa-link-float"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Konsultasi dengan Cardi Agent via WhatsApp"
+  >
+    <span class="wa-float-label" data-i18n="waFloatLabel">Konsultasi dengan Cardi Agent</span>
+    <span class="wa-float-btn">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 28.8l6.564-1.722a12.74 12.74 0 0 0 6.34 1.682h.006c7.058 0 12.798-5.74 12.798-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.396h-.004a10.58 10.58 0 0 1-5.394-1.476l-.386-.23-3.896 1.022 1.04-3.798-.252-.4a10.562 10.562 0 0 1-1.622-5.634c0-5.844 4.756-10.6 10.604-10.6 2.832 0 5.494 1.104 7.496 3.106a10.533 10.533 0 0 1 3.102 7.498c0 5.846-4.756 10.602-10.604 10.602zm5.816-7.94c-.318-.16-1.886-.93-2.178-1.036-.292-.106-.504-.16-.716.16-.212.318-.822 1.036-1.008 1.248-.186.212-.372.238-.69.08-.318-.16-1.344-.496-2.56-1.58-.946-.844-1.586-1.886-1.772-2.204-.186-.318-.02-.49.14-.648.144-.142.318-.372.478-.558.16-.186.212-.318.318-.53.106-.212.054-.398-.026-.558-.08-.16-.716-1.726-.982-2.364-.258-.62-.52-.536-.716-.546l-.61-.01c-.212 0-.558.08-.85.398-.292.318-1.114 1.088-1.114 2.654s1.14 3.078 1.3 3.29c.16.212 2.244 3.426 5.436 4.804.76.328 1.352.524 1.814.67.762.242 1.456.208 2.004.126.612-.092 1.886-.77 2.152-1.514.266-.744.266-1.382.186-1.514-.08-.132-.292-.212-.61-.372z" />
+      </svg>
+    </span>
+  </a>
+
+  <script is:inline>
+    (function () {
+      var FLAGS = {
+        id: '<svg viewBox="0 0 24 16"><rect width="24" height="8" fill="#E70011"/><rect y="8" width="24" height="8" fill="#FFFFFF"/></svg>',
+        en: '<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#012169"/><path d="M0,0 L24,16 M24,0 L0,16" stroke="#FFFFFF" stroke-width="3"/><path d="M0,0 L24,16 M24,0 L0,16" stroke="#C8102E" stroke-width="1.6"/><path d="M12,0 V16 M0,8 H24" stroke="#FFFFFF" stroke-width="5"/><path d="M12,0 V16 M0,8 H24" stroke="#C8102E" stroke-width="3"/></svg>',
+        zh: '<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#DE2910"/><polygon points="4.5,2 5.2,4.1 7.4,4.1 5.6,5.4 6.3,7.5 4.5,6.2 2.7,7.5 3.4,5.4 1.6,4.1 3.8,4.1" fill="#FFDE00"/><circle cx="9.2" cy="2.2" r="0.7" fill="#FFDE00"/><circle cx="10.8" cy="4" r="0.7" fill="#FFDE00"/><circle cx="10.8" cy="6.4" r="0.7" fill="#FFDE00"/><circle cx="9.2" cy="8.2" r="0.7" fill="#FFDE00"/></svg>'
+      };
+
+      var CODES = { id: 'ID', en: 'EN', zh: 'CN' };
+
+      var TRANSLATIONS = {
+        id: {
+          pageTitle: "Landing Page Cardi - Jasa Website Development",
+          headerCta: "Konsultasi via WhatsApp",
+          heroEyebrow: "Jasa Landing Page",
+          heroTitle: "Bisnis Anda Dilihat, Diingat, dan Dipercaya Lewat Satu Halaman",
+          heroDesc: "Landing page yang rapi di HP, memakai copywriting yang jelas, dan langsung terhubung ke WhatsApp supaya calon pelanggan bisa langsung bertanya.",
+          heroPrimaryCta: "Checkout Sekarang",
+          heroSecondaryCta: "Lihat Harga",
+          promoTitle: "Landing Page",
+          promoBadge: "Promo Hari Ini",
+          promoFeat1: "HTML, copywriting, dan desain UI",
+          promoFeat2: "Mobile friendly dan tombol WhatsApp",
+          promoFeat3: "1 email bisnis custom",
+          promoFeat4: "Hosting, domain, keamanan, dan setup Google Analytics tersedia terpisah",
+          promoCta: "Checkout Promo Sekarang",
+          promoWaCta: "Tanya Promo via WhatsApp",
+          promoPhone: "Nomor konsultasi: 0812-8989-5646",
+          portTitle: "Contoh Desain Website Berbagai Industri",
+          portDesc: "Tampilan responsif untuk desktop dan smartphone yang dirancang sesuai karakter bisnis Anda.",
+          port1Title: "Klinik Kecantikan",
+          port2Title: "Spa & Wellness",
+          port3Title: "Bengkel & Otomotif",
+          port4Title: "Studio Pilates & Fitness",
+          port5Title: "Barbershop & Grooming",
+          port6Title: "Kuliner & Restoran",
+          whyTitle: "Kenapa Landing Page dari Cardi",
+          why1Title: "Tampil di Semua Layar",
+          why1Desc: "Halaman dibuat mobile friendly, karena sebagian besar calon pelanggan membuka tautan dari HP.",
+          why2Title: "Pesan yang Jelas",
+          why2Desc: "Copywriting disusun supaya pengunjung paham apa yang Anda tawarkan dalam beberapa detik pertama.",
+          why3Title: "Langsung Terhubung ke WhatsApp",
+          why3Desc: "Tombol WhatsApp ditaruh di tempat yang mudah dilihat, sehingga calon pelanggan bisa langsung menghubungi Anda.",
+          compTitle: "Butuh Lebih dari Satu Halaman?",
+          compSubtitle: "Pilih format website yang sesuai tujuan bisnis Anda.",
+          comp1Desc: "Satu halaman fokus untuk promosi, produk, atau pendaftaran.",
+          comp2Price: "Mulai Rp12.500.000",
+          comp2Desc: "Website profil lengkap dengan 1 email bisnis custom, hosting dan domain 1 tahun, serta bandwidth 200 GB.",
+          comp3Price: "Mulai Rp45.000.000",
+          comp3Desc: "Katalog custom dan payment gateway, dengan 5 email bisnis custom, hosting dan domain 1 tahun.",
+          compAddon: "Add-on tersedia untuk email bisnis, pengelolaan web, maintenance, bahasa, Elementor Pro, dan halaman tambahan.",
+          ctaTitle: "Siap Punya Landing Page Sendiri?",
+          ctaDesc: "Ceritakan kebutuhan bisnis Anda ke Cardi lewat WhatsApp. Kami bantu tentukan format yang paling tepat.",
+          ctaCheckoutBtn: "Checkout Sekarang",
+          ctaBtn: "Chat WhatsApp: 0812-8989-5646",
+          footerText: "Cardi Nusantara · Jakarta · dilihat, diingat, dipercaya",
+          waFloatLabel: "Konsultasi dengan Cardi Agent",
+          waMsgPromo: "Halo Cardi, saya mau tanya promo Landing Page",
+          waMsgConsult: "Halo Cardi, saya mau konsultasi landing page"
+        },
+        en: {
+          pageTitle: "Cardi Landing Page - Website Development Services",
+          headerCta: "Consult via WhatsApp",
+          heroEyebrow: "Landing Page Service",
+          heroTitle: "Get Your Business Seen, Remembered, and Trusted on a Single Page",
+          heroDesc: "A mobile-optimized landing page crafted with clear copywriting and direct WhatsApp integration so prospects can inquire right away.",
+          heroPrimaryCta: "Checkout Now",
+          heroSecondaryCta: "View Pricing",
+          promoTitle: "Landing Page",
+          promoBadge: "Today's Promo",
+          promoFeat1: "HTML, copywriting, and UI design",
+          promoFeat2: "Mobile-friendly layout and WhatsApp button",
+          promoFeat3: "1 custom business email",
+          promoFeat4: "Hosting, domain, security, and Google Analytics setup available separately",
+          promoCta: "Checkout Promo Now",
+          promoWaCta: "Ask Promo via WhatsApp",
+          promoPhone: "Consultation number: +62 812-8989-5646",
+          portTitle: "Website Design Showcases Across Industries",
+          portDesc: "Responsive desktop and mobile layouts tailored to reflect your brand's unique identity.",
+          port1Title: "Beauty & Aesthetic Clinic",
+          port2Title: "Spa & Wellness",
+          port3Title: "Auto Workshop & Garage",
+          port4Title: "Pilates & Fitness Studio",
+          port5Title: "Barbershop & Grooming",
+          port6Title: "Culinary & Restaurant",
+          whyTitle: "Why Choose a Landing Page by Cardi",
+          why1Title: "Looks Great on Every Screen",
+          why1Desc: "Built mobile-first, because the vast majority of your prospective customers open links from their phones.",
+          why2Title: "Crystal-Clear Messaging",
+          why2Desc: "Structured copywriting ensures visitors immediately understand your value proposition within the first few seconds.",
+          why3Title: "Direct WhatsApp Connection",
+          why3Desc: "Strategically placed WhatsApp buttons allow interested visitors to message your team with a single tap.",
+          compTitle: "Need More Than One Page?",
+          compSubtitle: "Choose the website format that fits your business goals.",
+          comp1Desc: "A focused single-page site for promotions, product launches, or lead registration.",
+          comp2Price: "Starting at Rp12.500.000",
+          comp2Desc: "Complete company profile website with 1 custom business email, 1-year hosting & domain, and 200 GB bandwidth.",
+          comp3Price: "Starting at Rp45.000.000",
+          comp3Desc: "Custom product catalog and payment gateway, including 5 custom business emails and 1-year hosting & domain.",
+          compAddon: "Add-ons available for business emails, web management, maintenance, extra languages, Elementor Pro, and additional pages.",
+          ctaTitle: "Ready to Launch Your Own Landing Page?",
+          ctaDesc: "Tell Cardi about your business needs via WhatsApp. We will help determine the best website format for you.",
+          ctaCheckoutBtn: "Checkout Now",
+          ctaBtn: "Chat WhatsApp: +62 812-8989-5646",
+          footerText: "Cardi Nusantara · Jakarta · seen, remembered, trusted",
+          waFloatLabel: "Consult with Cardi Agent",
+          waMsgPromo: "Hello Cardi, I would like to ask about the Landing Page promo",
+          waMsgConsult: "Hello Cardi, I would like a consultation regarding a landing page"
+        },
+        zh: {
+          pageTitle: "Cardi 着陆页服务 - 专业网站开发",
+          headerCta: "通过 WhatsApp 咨询",
+          heroEyebrow: "着陆页开发服务",
+          heroTitle: "通过一个高转化页面，让您的企业被看见、被记住、被信赖",
+          heroDesc: "专为手机端优化的着陆页，配备清晰有力的营销文案，并直连 WhatsApp，让潜在客户随时一键咨询。",
+          heroPrimaryCta: "立即下单支付",
+          heroSecondaryCta: "查看价格",
+          promoTitle: "着陆页 (Landing Page)",
+          promoBadge: "今日特惠",
+          promoFeat1: "HTML 开发、营销文案撰写与 UI 界面设计",
+          promoFeat2: "完美适配手机端并内置 WhatsApp 按钮",
+          promoFeat3: "赠送 1 个企业专属定制邮箱",
+          promoFeat4: "服务器托管、域名、安全防护及 Google Analytics 配置可按需单独选购",
+          promoCta: "立即抢购优惠",
+          promoWaCta: "通过 WhatsApp 咨询优惠",
+          promoPhone: "咨询热线：+62 812-8989-5646",
+          portTitle: "多行业网站设计案例展示",
+          portDesc: "兼顾电脑端与手机端的响应式视觉设计，精准契合您的品牌调性。",
+          port1Title: "医美护肤诊所",
+          port2Title: "水疗与健康养生",
+          port3Title: "汽车维修与保养中心",
+          port4Title: "普拉提与健身工作室",
+          port5Title: "男士理发与造型馆",
+          port6Title: "餐饮与特色美食",
+          whyTitle: "为什么选择 Cardi 打造着陆页",
+          why1Title: "全设备完美呈现",
+          why1Desc: "采用移动优先设计，确保绝大多数通过手机点击链接的潜在客户都能获得流畅体验。",
+          why2Title: "信息清晰直击痛点",
+          why2Desc: "专业营销文案布局，让访客在打开页面的最初几秒内就能迅速了解您的核心优势。",
+          why3Title: "一键直连 WhatsApp",
+          why3Desc: "在页面醒目位置配置 WhatsApp 咨询入口，大幅缩短客户从浏览到联系您的路径。",
+          compTitle: "需要多页面完整网站？",
+          compSubtitle: "根据您的业务发展目标选择合适的网站方案。",
+          comp1Desc: "专注于促销活动、单品推广或潜客表单收集的高转化单页网站。",
+          comp2Price: "Rp12.500.000 起",
+          comp2Desc: "完整企业官网方案，含 1 个定制企业邮箱、1 年主机与域名及 200 GB 流量带宽。",
+          comp3Price: "Rp45.000.000 起",
+          comp3Desc: "支持定制商品目录与在线支付网关，含 5 个定制企业邮箱及 1 年主机与域名。",
+          compAddon: "支持按需增购企业邮箱、网站代运营、日常维护、多语言版本、Elementor Pro 及额外内页。",
+          ctaTitle: "准备好拥有专属高转化着陆页了吗？",
+          ctaDesc: "通过 WhatsApp 告诉 Cardi 您的业务需求，我们将为您推荐最合适的建站方案。",
+          ctaCheckoutBtn: "立即下单支付",
+          ctaBtn: "WhatsApp 咨询：+62 812-8989-5646",
+          footerText: "Cardi Nusantara · 雅加达 · 被看见、被记住、被信赖",
+          waFloatLabel: "咨询 Cardi Agent",
+          waMsgPromo: "您好 Cardi，我想咨询着陆页今日特惠方案",
+          waMsgConsult: "您好 Cardi，我想咨询网站与着陆页开发"
+        }
+      };
+
+      // Populate flag SVGs
+      document.querySelectorAll('[data-flag]').forEach(function (el) {
+        var code = el.getAttribute('data-flag');
+        if (FLAGS[code]) el.innerHTML = FLAGS[code];
+      });
+
+      function setLanguage(lang) {
+        var t = TRANSLATIONS[lang] || TRANSLATIONS.id;
+        document.title = t.pageTitle;
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
+
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n');
+          if (t[key]) el.textContent = t[key];
+        });
+
+        // Update active button display
+        var activeFlag = document.getElementById('activeFlag');
+        var activeCode = document.getElementById('activeCode');
+        if (activeFlag) activeFlag.innerHTML = FLAGS[lang];
+        if (activeCode) activeCode.textContent = CODES[lang];
+
+        document.querySelectorAll('.lang-option').forEach(function (btn) {
+          btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        });
+
+        // Update WhatsApp links with localized pre-filled messages
+        var baseWa = 'https://wa.me/6281289895646?text=';
+        document.querySelectorAll('.wa-link-promo').forEach(function (a) {
+          a.href = baseWa + encodeURIComponent(t.waMsgPromo);
+        });
+        document.querySelectorAll('.wa-link-consult, .wa-link-float, .wa-link-general').forEach(function (a) {
+          a.href = baseWa + encodeURIComponent(t.waMsgConsult);
+        });
+
+        try { localStorage.setItem('cardi_website_lang', lang); } catch (e) {}
+      }
+
+      var switcher = document.getElementById('langSwitcher');
+      var trigger = document.getElementById('langTrigger');
+
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var isOpen = switcher.classList.toggle('open');
+        trigger.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      document.querySelectorAll('.lang-option').forEach(function (opt) {
+        opt.addEventListener('click', function () {
+          setLanguage(opt.getAttribute('data-lang'));
+          switcher.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!switcher.contains(e.target)) {
+          switcher.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      var saved = 'id';
+      try { saved = localStorage.getItem('cardi_website_lang') || 'id'; } catch (e) {}
+      setLanguage(TRANSLATIONS[saved] ? saved : 'id');
+    })();
+  </script>
+</body>
+</html>
