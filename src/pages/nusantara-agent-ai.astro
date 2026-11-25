@@ -5,6 +5,7 @@ const headInject = `
 <link rel="icon" type="image/png" href="/40.png" />
 <link rel="apple-touch-icon" href="/40.png" />
 <style>
+  /* Floating WhatsApp Button */
   .cardi-wa-float {
     position: fixed !important;
     right: 24px !important;
@@ -34,6 +35,7 @@ const headInject = `
     display: block !important;
   }
 
+  /* 3-Language Switcher */
   .cardi-lang-wrap {
     position: relative;
     display: inline-flex;
@@ -139,6 +141,452 @@ const headInject = `
   .cardi-lang-item.active .cardi-lang-check {
     opacity: 1;
   }
+
+  /* Scoped Embeddable Styles: Portofolio, Industry Experience & Studi Kasus */
+  .cardi-embed-wrapper {
+    --cn-primary: #1d4ed8;
+    --cn-primary-dark: #1e40af;
+    --cn-primary-light: #eff6ff;
+    --cn-primary-border: #bfdbfe;
+    --cn-text-dark: #0f172a;
+    --cn-text-muted: #475569;
+    --cn-text-subtle: #64748b;
+    --cn-bg-soft: #f8fafc;
+    --cn-border: #e2e8f0;
+    --cn-radius-lg: 20px;
+    --cn-radius-md: 14px;
+    font-family: inherit;
+    color: var(--cn-text-dark);
+    line-height: 1.6;
+    box-sizing: border-box;
+    background: #ffffff;
+  }
+  .cardi-embed-wrapper *,
+  .cardi-embed-wrapper *::before,
+  .cardi-embed-wrapper *::after {
+    box-sizing: border-box;
+  }
+  .cn-section {
+    padding: 72px 20px;
+  }
+  .cn-section-soft {
+    background-color: var(--cn-bg-soft);
+    border-top: 1px solid var(--cn-border);
+    border-bottom: 1px solid var(--cn-border);
+  }
+  .cn-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .cn-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 40px;
+  }
+  .cn-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--cn-primary-light);
+    color: var(--cn-primary);
+    border: 1px solid var(--cn-primary-border);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+    letter-spacing: 0.02em;
+  }
+  .cn-title {
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 800;
+    color: var(--cn-text-dark);
+    margin: 0 0 12px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .cn-subtitle {
+    font-size: 16px;
+    color: var(--cn-text-muted);
+    margin: 0;
+  }
+  .cn-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+  .cn-filter-btn {
+    background: #ffffff;
+    border: 1px solid var(--cn-border);
+    color: var(--cn-text-muted);
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .cn-filter-btn:hover {
+    border-color: var(--cn-primary);
+    color: var(--cn-primary);
+  }
+  .cn-filter-btn.active {
+    background: var(--cn-primary);
+    border-color: var(--cn-primary);
+    color: #ffffff;
+    box-shadow: 0 6px 16px rgba(29, 78, 216, 0.2);
+  }
+  .cn-portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 24px;
+  }
+  .cn-card {
+    background: #ffffff;
+    border: 1px solid var(--cn-border);
+    border-radius: var(--cn-radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .cn-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+    border-color: var(--cn-primary-border);
+  }
+  .cn-card.hidden {
+    display: none;
+  }
+  .cn-card-thumb {
+    position: relative;
+    height: 196px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+  }
+  .cn-card-thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .cn-card:hover .cn-card-thumb img {
+    transform: scale(1.04);
+  }
+  .cn-card-thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.65) 0%, rgba(15, 23, 42, 0.05) 60%);
+  }
+  .cn-thumb-badges {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cn-badge-cat {
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--cn-text-dark);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 11px;
+    border-radius: 999px;
+  }
+  .cn-badge-new {
+    background: var(--cn-primary);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 999px;
+  }
+  .cn-card-body {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .cn-card-title {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0 0 4px;
+    color: var(--cn-text-dark);
+  }
+  .cn-card-meta {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cn-primary);
+    margin: 0 0 12px;
+  }
+  .cn-card-desc {
+    font-size: 14px;
+    color: var(--cn-text-muted);
+    margin: 0 0 20px;
+    flex: 1;
+  }
+  .cn-card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--cn-border);
+  }
+  .cn-btn-link {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--cn-text-dark);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .cn-btn-link:hover {
+    color: var(--cn-primary);
+  }
+  .cn-btn-order {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--cn-primary-light);
+    color: var(--cn-primary);
+    border: 1px solid var(--cn-primary-border);
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .cn-btn-order:hover {
+    background: var(--cn-primary);
+    color: #ffffff;
+  }
+  .cn-search-box {
+    max-width: 480px;
+    margin: 0 auto 32px;
+    position: relative;
+  }
+  .cn-search-input {
+    width: 100%;
+    padding: 13px 18px 13px 44px;
+    border-radius: 999px;
+    border: 1px solid var(--cn-border);
+    background: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--cn-text-dark);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .cn-search-input:focus {
+    border-color: var(--cn-primary);
+    box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.1);
+  }
+  .cn-search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+  }
+  .cn-industry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+    gap: 16px;
+  }
+  .cn-ind-card {
+    background: #ffffff;
+    border: 1px solid var(--cn-border);
+    border-radius: var(--cn-radius-md);
+    padding: 18px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .cn-ind-card:hover {
+    border-color: var(--cn-primary-border);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+    transform: translateY(-2px);
+  }
+  .cn-ind-card.hidden {
+    display: none;
+  }
+  .cn-ind-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .cn-ind-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--cn-primary-light);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    flex-shrink: 0;
+  }
+  .cn-ind-name {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--cn-text-dark);
+  }
+  .cn-ind-desc {
+    font-size: 13px;
+    color: var(--cn-text-muted);
+    margin: 0;
+    line-height: 1.55;
+  }
+  .cn-testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 24px;
+  }
+  .cn-testi-card {
+    background: #ffffff;
+    border: 1px solid var(--cn-border);
+    border-radius: var(--cn-radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .cn-testi-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.07);
+  }
+  .cn-testi-img {
+    height: 170px;
+    width: 100%;
+    object-fit: cover;
+    background: #e2e8f0;
+  }
+  .cn-testi-body {
+    padding: 20px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .cn-testi-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .cn-testi-tag {
+    background: var(--cn-primary-light);
+    color: var(--cn-primary);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .cn-testi-stars {
+    color: #2563eb;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  .cn-testi-quote {
+    font-size: 14px;
+    color: var(--cn-text-dark);
+    margin: 0 0 16px;
+    flex: 1;
+    line-height: 1.6;
+  }
+  .cn-testi-role {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cn-text-subtle);
+    margin: 0;
+  }
+  .cn-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 2147483645;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .cn-modal-backdrop.open {
+    display: flex;
+  }
+  .cn-modal-box {
+    background: #ffffff;
+    border-radius: 20px;
+    max-width: 520px;
+    width: 100%;
+    padding: 28px;
+    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.2);
+    position: relative;
+  }
+  .cn-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    border: 1px solid var(--cn-border);
+    background: var(--cn-bg-soft);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cn-text-dark);
+  }
+  .cn-modal-close:hover {
+    background: #e2e8f0;
+  }
+  .cn-modal-list {
+    margin: 16px 0 24px;
+    padding-left: 20px;
+    color: var(--cn-text-muted);
+    font-size: 14px;
+  }
+  .cn-modal-list li {
+    margin-bottom: 8px;
+  }
+  .cn-modal-cta {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: var(--cn-primary);
+    color: #ffffff;
+    padding: 13px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .cn-modal-cta:hover {
+    background: var(--cn-primary-dark);
+    color: #ffffff;
+  }
+
   @media (max-width: 860px) {
     .cardi-lang-wrap {
       margin: 6px 0;
@@ -157,12 +605,672 @@ const headInject = `
 </style>
 `;
 
+const embedSectionHtml = `
+<div class="cardi-embed-wrapper" id="cardi-showcase-sync">
+  <!-- BAGIAN 1: PORTOFOLIO & EKSPLORASI UI -->
+  <section class="cn-section" id="portofolio-cardi">
+    <div class="cn-container">
+      <div class="cn-header">
+        <span class="cn-eyebrow">Portofolio & Eksplorasi UI</span>
+        <h2 class="cn-title">Contoh Desain Website Berbagai Industri</h2>
+        <p class="cn-subtitle">
+          Setiap desain disesuaikan dengan karakter visual brand Anda—mulai dari restoran premium, klinik kecantikan, hingga bengkel otomotif dan studio kebugaran.
+        </p>
+      </div>
+
+      <div class="cn-filters" role="tablist" aria-label="Filter Kategori Portofolio">
+        <button type="button" class="cn-filter-btn active" data-filter="all">Semua (6)</button>
+        <button type="button" class="cn-filter-btn" data-filter="klinik">Klinik & Wellness</button>
+        <button type="button" class="cn-filter-btn" data-filter="kuliner">Kuliner & Catering</button>
+        <button type="button" class="cn-filter-btn" data-filter="otomotif">Otomotif & Lifestyle</button>
+      </div>
+
+      <div class="cn-portfolio-grid" id="cnPortfolioGrid">
+        <!-- 1. Avara Skin Clinic -->
+        <article class="cn-card" data-category="klinik">
+          <div class="cn-card-thumb" style="background:#e0e7ff;">
+            <img
+              src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x500/EFF6FF/1D4ED8?text=Avara+Skin+Clinic';"
+              alt="Contoh Website Avara Skin Clinic"
+              loading="lazy"
+            />
+            <div class="cn-thumb-badges">
+              <span class="cn-badge-cat">Klinik Kecantikan</span>
+              <span class="cn-badge-new">Studi Kasus Terbaru</span>
+            </div>
+          </div>
+          <div class="cn-card-body">
+            <h3 class="cn-card-title">Avara Skin Clinic</h3>
+            <p class="cn-card-meta">Aesthetic & Dermatology · Jakarta Selatan</p>
+            <p class="cn-card-desc">
+              Tampilan bersih dan menenangkan untuk klinik estetika. Memudahkan pasien memilih paket perawatan wajah, melihat profil dokter, dan menjadwalkan konsultasi via Cardi Agent AI Aspri.
+            </p>
+            <div class="cn-card-actions">
+              <button type="button" class="cn-btn-link" onclick="cnOpenModal('avara')">Lihat Detail Fitur →</button>
+              <a href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20tertarik%20buat%20website%20seperti%20Avara%20Skin%20Clinic" target="_blank" rel="noopener noreferrer" class="cn-btn-order">Pesan Serupa</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Dapur Rona -->
+        <article class="cn-card" data-category="kuliner">
+          <div class="cn-card-thumb" style="background:#fef3c7;">
+            <img
+              src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=800&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x500/FEF3C7/B45309?text=Dapur+Rona';"
+              alt="Contoh Website Dapur Rona"
+              loading="lazy"
+            />
+            <div class="cn-thumb-badges">
+              <span class="cn-badge-cat">Kuliner & Catering</span>
+            </div>
+          </div>
+          <div class="cn-card-body">
+            <h3 class="cn-card-title">Dapur Rona</h3>
+            <p class="cn-card-meta">Hidangan Nusantara & Hampers · Tangerang</p>
+            <p class="cn-card-desc">
+              Halaman pemesanan paket nasi box, prasmanan acara kantor, dan hampers musiman dengan kalkulator porsi otomatis yang langsung terhubung ke WhatsApp admin.
+            </p>
+            <div class="cn-card-actions">
+              <button type="button" class="cn-btn-link" onclick="cnOpenModal('dapur')">Lihat Detail Fitur →</button>
+              <a href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20tertarik%20buat%20website%20seperti%20Dapur%20Rona" target="_blank" rel="noopener noreferrer" class="cn-btn-order">Pesan Serupa</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Ruang Teduh Spa -->
+        <article class="cn-card" data-category="klinik">
+          <div class="cn-card-thumb" style="background:#dcfce7;">
+            <img
+              src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x500/DCFCE7/15803D?text=Ruang+Teduh+Spa';"
+              alt="Contoh Website Ruang Teduh Spa"
+              loading="lazy"
+            />
+            <div class="cn-thumb-badges">
+              <span class="cn-badge-cat">Spa & Wellness</span>
+            </div>
+          </div>
+          <div class="cn-card-body">
+            <h3 class="cn-card-title">Ruang Teduh Spa</h3>
+            <p class="cn-card-meta">Holistic Body Spa & Reflexology · Kemang</p>
+            <p class="cn-card-desc">
+              Landing page dengan nuansa hangat untuk pusat relaksasi. Pengunjung dapat memilih durasi terapi, terapis, dan jam kedatangan langsung dari smartphone.
+            </p>
+            <div class="cn-card-actions">
+              <button type="button" class="cn-btn-link" onclick="cnOpenModal('spa')">Lihat Detail Fitur →</button>
+              <a href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20tertarik%20buat%20website%20seperti%20Ruang%20Teduh%20Spa" target="_blank" rel="noopener noreferrer" class="cn-btn-order">Pesan Serupa</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. Piton Auto Garage -->
+        <article class="cn-card" data-category="otomotif">
+          <div class="cn-card-thumb" style="background:#e2e8f0;">
+            <img
+              src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x500/E2E8F0/0F172A?text=Piton+Auto+Garage';"
+              alt="Contoh Website Piton Auto Garage"
+              loading="lazy"
+            />
+            <div class="cn-thumb-badges">
+              <span class="cn-badge-cat">Bengkel & Otomotif</span>
+            </div>
+          </div>
+          <div class="cn-card-body">
+            <h3 class="cn-card-title">Piton Auto Garage</h3>
+            <p class="cn-card-meta">Servis Berkala, Tune-Up & Detailing · Jakarta Barat</p>
+            <p class="cn-card-desc">
+              Website layanan bengkel modern dengan daftar paket servis transparan, booking jadwal tanpa antre, dan pengingat servis berkala otomatis via WhatsApp.
+            </p>
+            <div class="cn-card-actions">
+              <button type="button" class="cn-btn-link" onclick="cnOpenModal('piton')">Lihat Detail Fitur →</button>
+              <a href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20tertarik%20buat%20website%20seperti%20Piton%20Auto%20Garage" target="_blank" rel="noopener noreferrer" class="cn-btn-order">Pesan Serupa</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. Aluna Pilates -->
+        <article class="cn-card" data-category="klinik">
+          <div class="cn-card-thumb" style="background:#fce7f3;">
+            <img
+              src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x500/FCE7F3/BE185D?text=Aluna+Pilates';"
+              alt="Contoh Website Aluna Pilates"
+              loading="lazy"
+            />
+            <div class="cn-thumb-badges">
+              <span class="cn-badge-cat">Studio Pilates & Fitness</span>
+            </div>
+          </div>
+          <div class="cn-card-body">
+            <h3 class="cn-card-title">Aluna Pilates</h3>
+            <p class="cn-card-meta">Reformer Pilates & Private Class · Senopati</p>
+            <p class="cn-card-desc">
+              Landing page modern untuk studio pilates dengan jadwal kelas mingguan, paket trial member baru, dan konfirmasi pendaftaran instan lewat WhatsApp.
+            </p>
+            <div class="cn-card-actions">
+              <button type="button" class="cn-btn-link" onclick="cnOpenModal('aluna')">Lihat Detail Fitur →</button>
+              <a href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20tertarik%20buat%20website%20seperti%20Aluna%20Pilates" target="_blank" rel="noopener noreferrer" class="cn-btn-order">Pesan Serupa</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. Garis Pangkas -->
+        <article class="cn-card" data-category="otomotif">
+          <div class="cn-card-thumb" style="background:#f1f5f9;">
+            <img
+              src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=800&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x500/F1F5F9/1E293B?text=Garis+Pangkas';"
+              alt="Contoh Website Garis Pangkas"
+              loading="lazy"
+            />
+            <div class="cn-thumb-badges">
+              <span class="cn-badge-cat">Barbershop & Grooming</span>
+            </div>
+          </div>
+          <div class="cn-card-body">
+            <h3 class="cn-card-title">Garis Pangkas</h3>
+            <p class="cn-card-meta">Modern Gentlemen Grooming · Bandung & Jakarta</p>
+            <p class="cn-card-desc">
+              Tampilan maskulin nan rapi untuk jaringan barbershop modern. Menampilkan katalog gaya rambut, paket grooming, dan reservasi kursi kapster pilihan.
+            </p>
+            <div class="cn-card-actions">
+              <button type="button" class="cn-btn-link" onclick="cnOpenModal('garis')">Lihat Detail Fitur →</button>
+              <a href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20tertarik%20buat%20website%20seperti%20Garis%20Pangkas" target="_blank" rel="noopener noreferrer" class="cn-btn-order">Pesan Serupa</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAGIAN 2: INDUSTRY EXPERIENCE (19 SEKTOR TERINTEGRASI) -->
+  <section class="cn-section cn-section-soft" id="industry-experience">
+    <div class="cn-container">
+      <div class="cn-header">
+        <span class="cn-eyebrow">Industry Experience · Ekosistem Cardi</span>
+        <h2 class="cn-title">Solusi Terintegrasi Lintas Sektor Bisnis</h2>
+        <p class="cn-subtitle">
+          Pengalaman merancang identitas brand, website konversi tinggi, kampanye iklan digital, hingga sistem CRM Agent AI Aspri untuk 19+ sektor industri.
+        </p>
+      </div>
+
+      <div class="cn-search-box">
+        <span class="cn-search-icon">🔍</span>
+        <input
+          type="text"
+          id="cnIndustrySearch"
+          class="cn-search-input"
+          placeholder="Cari industri (cth: Klinik, Travel, Kuliner)..."
+          aria-label="Cari sektor industri"
+        />
+      </div>
+
+      <div class="cn-industry-grid" id="cnIndustryGrid">
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">✈️</span>
+            <h3 class="cn-ind-name">Travel & Umroh</h3>
+          </div>
+          <p class="cn-ind-desc">Landing page paket & katalog | Iklan digital calon jamaah | Follow-up otomatis & kelola berkas via WhatsApp</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">💄</span>
+            <h3 class="cn-ind-name">Beauty & Klinik</h3>
+          </div>
+          <p class="cn-ind-desc">Website & branding klinik | Booking slot & reminder treatment | Otomatisasi retensi & loyalitas pasien</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">💳</span>
+            <h3 class="cn-ind-name">Finance & Asuransi</h3>
+          </div>
+          <p class="cn-ind-desc">Halaman edukasi produk | Lead scoring & nurturing nasabah | Telesales terintegrasi dengan riwayat panggilan</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">🎓</span>
+            <h3 class="cn-ind-name">Edukasi & Sekolah</h3>
+          </div>
+          <p class="cn-ind-desc">Website profil sekolah | Kampanye PMB digital | Balasan inquiry & update orang tua otomatis via WA</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">🚗</span>
+            <h3 class="cn-ind-name">Otomotif & Bengkel</h3>
+          </div>
+          <p class="cn-ind-desc">Katalog & landing page promo | Booking test drive & servis | Pengingat jadwal servis & upsell via broadcast</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">📡</span>
+            <h3 class="cn-ind-name">ISP / Telco</h3>
+          </div>
+          <p class="cn-ind-desc">Portal layanan & paket | Tiket gangguan otomatis 24/7 | Notifikasi tagihan & retensi pelanggan</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">🍽️</span>
+            <h3 class="cn-ind-name">Kuliner & Restoran</h3>
+          </div>
+          <p class="cn-ind-desc">Website menu & reservasi meja | Iklan promo cabang | Broadcast voucher & loyalty member via WA</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">➕</span>
+            <h3 class="cn-ind-name">Kesehatan & Apotek</h3>
+          </div>
+          <p class="cn-ind-desc">Website informasi layanan | Jadwal konsultasi & edukasi pasien | Koordinasi rujukan & pengingat kontrol</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">🚘</span>
+            <h3 class="cn-ind-name">Dealer Mobil</h3>
+          </div>
+          <p class="cn-ind-desc">Microsite promo unit | Manajemen lead showroom | Follow-up test drive & simulasi kredit via WhatsApp</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">🔑</span>
+            <h3 class="cn-ind-name">Rental Mobil</h3>
+          </div>
+          <p class="cn-ind-desc">Katalog armada & tarif | Booking unit otomatis | Pengingat pengembalian & perpanjangan sewa</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">🏗️</span>
+            <h3 class="cn-ind-name">Kontraktor & Properti</h3>
+          </div>
+          <p class="cn-ind-desc">Company profile & portofolio | Penjaringan leads proyek | Follow-up klien & koordinasi tim lapangan</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">🏥</span>
+            <h3 class="cn-ind-name">Healthcare / Rumah Sakit</h3>
+          </div>
+          <p class="cn-ind-desc">Portal jadwal dokter | Appointment pasien otomatis | Riwayat komunikasi pasien terpusat</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">🏛️</span>
+            <h3 class="cn-ind-name">Pemerintah & Publik</h3>
+          </div>
+          <p class="cn-ind-desc">Portal informasi publik | Kelola aduan warga terpusat | Monitoring kecepatan respons & kinerja divisi</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">📦</span>
+            <h3 class="cn-ind-name">FMCG & Manufaktur</h3>
+          </div>
+          <p class="cn-ind-desc">Katalog B2B & distributor | Pipeline penjualan terukur | Koordinasi order distributor & tim sales lapangan</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">🤝</span>
+            <h3 class="cn-ind-name">Non-Profit & NGO</h3>
+          </div>
+          <p class="cn-ind-desc">Landing page kampanye donasi | Kelola data donor & relawan | Laporan & update program otomatis</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">🛒</span>
+            <h3 class="cn-ind-name">Ritel & E-Commerce</h3>
+          </div>
+          <p class="cn-ind-desc">Toko online & payment gateway | Inbox chat terpusat | Broadcast promo & analitik perilaku belanja</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">💼</span>
+            <h3 class="cn-ind-name">Professional Service</h3>
+          </div>
+          <p class="cn-ind-desc">Website kredibilitas firma | Otomatisasi jadwal konsultasi | Pipeline proyek & follow-up klien dalam satu sistem</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">🏫</span>
+            <h3 class="cn-ind-name">Kampus & Universitas</h3>
+          </div>
+          <p class="cn-ind-desc">Portal pendaftaran mahasiswa | Tracking leads PMB & inquiry | Funnel penerimaan & komunikasi alumni</p>
+        </div>
+
+        <div class="cn-ind-card">
+          <div class="cn-ind-top">
+            <span class="cn-ind-icon">💠</span>
+            <h3 class="cn-ind-name">25+ Industri Lainnya</h3>
+          </div>
+          <p class="cn-ind-desc">Hotel, Koperasi, Studio Pilates, Barbershop, Agency, Logistik, Event Organizer, dan berbagai sektor bisnis lainnya</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAGIAN 3: STUDI KASUS & SKENARIO PENERAPAN (TESTIMONIAL) -->
+  <section class="cn-section" id="skenario-penerapan">
+    <div class="cn-container">
+      <div class="cn-header">
+        <span class="cn-eyebrow">Studi Kasus & Skenario Penerapan</span>
+        <h2 class="cn-title">Cardi Nusantara untuk berbagai industri</h2>
+        <p class="cn-subtitle">
+          Kutipan dan bintang adalah contoh skenario penerapan layanan terintegrasi Cardi Nusantara (Website, Digital Growth & Agent AI Aspri).
+        </p>
+      </div>
+
+      <div class="cn-testi-grid">
+        <!-- 1. Travel & Umroh -->
+        <article class="cn-testi-card">
+          <img
+            class="cn-testi-img"
+            src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80"
+            onerror="this.onerror=null;this.src='https://placehold.co/800x450/EFF6FF/1D4ED8?text=Travel+%26+Umroh';"
+            alt="Ilustrasi Industri Travel & Umroh"
+            loading="lazy"
+          />
+          <div class="cn-testi-body">
+            <div class="cn-testi-header">
+              <span class="cn-testi-tag">Travel & Umroh</span>
+              <span class="cn-testi-stars" aria-label="5 Bintang">★★★★★</span>
+            </div>
+            <p class="cn-testi-quote">
+              “Sebelumnya calon jamaah sering bingung cek jadwal dan harga paket karena info tersebar di banyak chat. Setelah pakai landing page dan Agent AI dari Cardi, katalog paket rapi dalam satu halaman dan status berkas jamaah langsung terpantau otomatis.”
+            </p>
+            <p class="cn-testi-role">Admin Travel</p>
+          </div>
+        </article>
+
+        <!-- 2. Beauty & Klinik -->
+        <article class="cn-testi-card">
+          <img
+            class="cn-testi-img"
+            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80"
+            onerror="this.onerror=null;this.src='https://placehold.co/800x450/EFF6FF/1D4ED8?text=Beauty+%26+Klinik';"
+            alt="Ilustrasi Industri Beauty & Klinik"
+            loading="lazy"
+          />
+          <div class="cn-testi-body">
+            <div class="cn-testi-header">
+              <span class="cn-testi-tag">Beauty & Klinik</span>
+              <span class="cn-testi-stars" aria-label="5 Bintang">★★★★★</span>
+            </div>
+            <p class="cn-testi-quote">
+              “Tampilan website baru membuat klinik terlihat jauh lebih profesional dan dipercaya calon pasien baru. Saat pelanggan chat untuk booking, jadwal treatment langsung tercatat dan pengingat terkirim otomatis tanpa admin harus balas satu per satu.”
+            </p>
+            <p class="cn-testi-role">Manajer Klinik Kecantikan</p>
+          </div>
+        </article>
+
+        <!-- 3. Finance & Asuransi -->
+        <article class="cn-testi-card">
+          <img
+            class="cn-testi-img"
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80"
+            onerror="this.onerror=null;this.src='https://placehold.co/800x450/EFF6FF/1D4ED8?text=Finance+%26+Asuransi';"
+            alt="Ilustrasi Industri Finance & Asuransi"
+            loading="lazy"
+          />
+          <div class="cn-testi-body">
+            <div class="cn-testi-header">
+              <span class="cn-testi-tag">Finance & Asuransi</span>
+              <span class="cn-testi-stars" aria-label="5 Bintang">★★★★★</span>
+            </div>
+            <p class="cn-testi-quote">
+              “Kampanye digital kami sekarang jauh lebih terukur karena halaman penawarannya jelas dan langsung mengarah ke WhatsApp. Tim sales juga terbantu karena riwayat komunikasi dan kesiapan calon nasabah bisa dipantau dalam satu tempat.”
+            </p>
+            <p class="cn-testi-role">Supervisor Telesales</p>
+          </div>
+        </article>
+
+        <!-- 4. Edukasi -->
+        <article class="cn-testi-card">
+          <img
+            class="cn-testi-img"
+            src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80"
+            onerror="this.onerror=null;this.src='https://placehold.co/800x450/EFF6FF/1D4ED8?text=Edukasi+%26+Sekolah';"
+            alt="Ilustrasi Industri Edukasi"
+            loading="lazy"
+          />
+          <div class="cn-testi-body">
+            <div class="cn-testi-header">
+              <span class="cn-testi-tag">Edukasi</span>
+              <span class="cn-testi-stars" aria-label="5 Bintang">★★★★★</span>
+            </div>
+            <p class="cn-testi-quote">
+              “Saat penerimaan siswa baru dibuka, ratusan pertanyaan orang tua masuk bersamaan. Dengan halaman informasi PMB yang lengkap dan respons otomatis di WhatsApp, tim admin tidak lagi kewalahan menjawab pertanyaan berulang.”
+            </p>
+            <p class="cn-testi-role">Koordinator PMB Sekolah</p>
+          </div>
+        </article>
+
+        <!-- 5. Otomotif -->
+        <article class="cn-testi-card">
+          <img
+            class="cn-testi-img"
+            src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+            onerror="this.onerror=null;this.src='https://placehold.co/800x450/EFF6FF/1D4ED8?text=Otomotif+%26+Bengkel';"
+            alt="Ilustrasi Industri Otomotif"
+            loading="lazy"
+          />
+          <div class="cn-testi-body">
+            <div class="cn-testi-header">
+              <span class="cn-testi-tag">Otomotif</span>
+              <span class="cn-testi-stars" aria-label="5 Bintang">★★★★★</span>
+            </div>
+            <p class="cn-testi-quote">
+              “Pelanggan sering baru ingat jadwal servis saat kendaraan sudah mulai bermasalah. Sekarang promo bengkel mudah diakses lewat website, dan pengingat servis berkala terkirim otomatis sehingga pelanggan lebih rutin kembali.”
+            </p>
+            <p class="cn-testi-role">Kepala Operasional Bengkel</p>
+          </div>
+        </article>
+
+        <!-- 6. Kuliner & Restoran -->
+        <article class="cn-testi-card">
+          <img
+            class="cn-testi-img"
+            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80"
+            onerror="this.onerror=null;this.src='https://placehold.co/800x450/EFF6FF/1D4ED8?text=Kuliner+%26+Restoran';"
+            alt="Ilustrasi Industri Kuliner & Restoran"
+            loading="lazy"
+          />
+          <div class="cn-testi-body">
+            <div class="cn-testi-header">
+              <span class="cn-testi-tag">Kuliner & Restoran</span>
+              <span class="cn-testi-stars" aria-label="5 Bintang">★★★★★</span>
+            </div>
+            <p class="cn-testi-quote">
+              “Tamu sering bertanya lokasi, menu andalan, dan ketersediaan meja lewat DM maupun WA. Kini semua info menu tampil elegan di website, dan reservasi langsung masuk ke WhatsApp admin tanpa perlu aplikasi tambahan.”
+            </p>
+            <p class="cn-testi-role">Manajer Operasional Restoran</p>
+          </div>
+        </article>
+
+        <!-- 7. ISP / Telco -->
+        <article class="cn-testi-card">
+          <img
+            class="cn-testi-img"
+            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
+            onerror="this.onerror=null;this.src='https://placehold.co/800x450/EFF6FF/1D4ED8?text=ISP+%2F+Telco';"
+            alt="Ilustrasi Industri ISP / Telco"
+            loading="lazy"
+          />
+          <div class="cn-testi-body">
+            <div class="cn-testi-header">
+              <span class="cn-testi-tag">ISP / Telco</span>
+              <span class="cn-testi-stars" aria-label="5 Bintang">★★★★★</span>
+            </div>
+            <p class="cn-testi-quote">
+              “Pelanggan yang melapor gangguan butuh kepastian respons cepat. Sistem tiket otomatis dan notifikasi tagihan membantu tim teknis memprioritaskan penanganan sekaligus menjaga tingkat kepuasan pelanggan.”
+            </p>
+            <p class="cn-testi-role">Customer Operations Lead</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Detail Fitur -->
+  <div class="cn-modal-backdrop" id="cnFeatureModal" role="dialog" aria-modal="true" aria-labelledby="cnModalTitle">
+    <div class="cn-modal-box">
+      <button type="button" class="cn-modal-close" onclick="cnCloseModal()" aria-label="Tutup">×</button>
+      <span class="cn-eyebrow" id="cnModalCat">Kategori</span>
+      <h3 class="cn-card-title" id="cnModalTitle" style="font-size:22px;">Judul Proyek</h3>
+      <p class="cn-card-meta" id="cnModalMeta">Subjudul</p>
+      <ul class="cn-modal-list" id="cnModalFeatures"></ul>
+      <a href="#" id="cnModalWa" target="_blank" rel="noopener noreferrer" class="cn-modal-cta">Konsultasi Desain Serupa via WhatsApp</a>
+    </div>
+  </div>
+</div>
+`;
+
 const bodyInject = [
   '<a href="https://wa.me/6281289895646?text=Halo%20Cardi%2C%20saya%20ingin%20konsultasi%20tentang%20kebutuhan%20bisnis%20saya." class="cardi-wa-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Cardi (+62 812-8989-5646)" title="Hubungi WhatsApp +62 812-8989-5646">',
   '  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.59 4.458 1.71 6.398L3.1 28.8l6.564-1.722a12.74 12.74 0 0 0 6.34 1.682h.006c7.058 0 12.798-5.74 12.798-12.8 0-3.42-1.332-6.636-3.75-9.054A12.716 12.716 0 0 0 16.004 3.2zm0 23.396h-.004a10.58 10.58 0 0 1-5.394-1.476l-.386-.23-3.896 1.022 1.04-3.798-.252-.4a10.562 10.562 0 0 1-1.622-5.634c0-5.844 4.756-10.6 10.604-10.6 2.832 0 5.494 1.104 7.496 3.106a10.533 10.533 0 0 1 3.102 7.498c0 5.846-4.756 10.602-10.604 10.602zm5.816-7.94c-.318-.16-1.886-.93-2.178-1.036-.292-.106-.504-.16-.716.16-.212.318-.822 1.036-1.008 1.248-.186.212-.372.238-.69.08-.318-.16-1.344-.496-2.56-1.58-.946-.844-1.586-1.886-1.772-2.204-.186-.318-.02-.49.14-.648.144-.142.318-.372.478-.558.16-.186.212-.318.318-.53.106-.212.054-.398-.026-.558-.08-.16-.716-1.726-.982-2.364-.258-.62-.52-.536-.716-.546l-.61-.01c-.212 0-.558.08-.85.398-.292.318-1.114 1.088-1.114 2.654s1.14 3.078 1.3 3.29c.16.212 2.244 3.426 5.436 4.804.76.328 1.352.524 1.814.67.762.242 1.456.208 2.004.126.612-.092 1.886-.77 2.152-1.514.266-.744.266-1.382.186-1.514-.08-.132-.292-.212-.61-.372z"/></svg>',
   '</a>',
   '<script>',
   '(function() {',
+  '  // 1. Filter Kategori Portofolio',
+  '  var filterBtns = document.querySelectorAll(".cardi-embed-wrapper .cn-filter-btn");',
+  '  var portfolioCards = document.querySelectorAll("#cnPortfolioGrid .cn-card");',
+  '  for (var fb = 0; fb < filterBtns.length; fb++) {',
+  '    filterBtns[fb].addEventListener("click", function() {',
+  '      for (var x = 0; x < filterBtns.length; x++) filterBtns[x].classList.remove("active");',
+  '      this.classList.add("active");',
+  '      var target = this.getAttribute("data-filter");',
+  '      for (var c = 0; c < portfolioCards.length; c++) {',
+  '        var card = portfolioCards[c];',
+  '        if (target === "all" || card.getAttribute("data-category") === target) {',
+  '          card.classList.remove("hidden");',
+  '        } else {',
+  '          card.classList.add("hidden");',
+  '        }',
+  '      }',
+  '    });',
+  '  }',
+  '',
+  '  // 2. Pencarian Real-Time Sektor Industri',
+  '  var searchInput = document.getElementById("cnIndustrySearch");',
+  '  var industryCards = document.querySelectorAll("#cnIndustryGrid .cn-ind-card");',
+  '  if (searchInput) {',
+  '    searchInput.addEventListener("input", function(e) {',
+  '      var keyword = e.target.value.toLowerCase().trim();',
+  '      for (var ic = 0; ic < industryCards.length; ic++) {',
+  '        var text = industryCards[ic].textContent.toLowerCase();',
+  '        industryCards[ic].classList.toggle("hidden", text.indexOf(keyword) === -1);',
+  '      }',
+  '    });',
+  '  }',
+  '',
+  '  // 3. Modal Detail Fitur Portofolio',
+  '  var modalData = {',
+  '    avara: {',
+  '      cat: "Klinik Kecantikan",',
+  '      title: "Avara Skin Clinic",',
+  '      meta: "Aesthetic & Dermatology · Jakarta Selatan",',
+  '      features: [',
+  '        "Katalog perawatan wajah & harga transparan",',
+  '        "Profil dokter & sertifikasi klinis untuk meningkatkan trust pasien",',
+  '        "Form booking jadwal konsultasi terhubung otomatis ke WhatsApp AI Aspri",',
+  '        "Desain mobile-first dengan kecepatan muat tinggi untuk iklan Instagram/Meta"',
+  '      ]',
+  '    },',
+  '    dapur: {',
+  '      cat: "Kuliner & Catering",',
+  '      title: "Dapur Rona",',
+  '      meta: "Hidangan Nusantara & Hampers · Tangerang",',
+  '      features: [',
+  '        "Menu paket nasi box, prasmanan kantor, dan hampers musiman",',
+  '        "Simulasi perhitungan jumlah porsi & estimasi total otomatis",',
+  '        "Tombol kirim rincian pesanan langsung ke WhatsApp admin katering",',
+  '        "Galeri foto hidangan & testimoni pelanggan korporat"',
+  '      ]',
+  '    },',
+  '    spa: {',
+  '      cat: "Spa & Wellness",',
+  '      title: "Ruang Teduh Spa",',
+  '      meta: "Holistic Body Spa & Reflexology · Kemang",',
+  '      features: [',
+  '        "Pilihan paket terapi berdasarkan durasi (60, 90, 120 menit)",',
+  '        "Reservasi jam kedatangan & preferensi terapis dari smartphone",',
+  '        "Integrasi peta lokasi Google Maps & informasi fasilitas ruangan",',
+  '        "Reminder jadwal kedatangan otomatis via WhatsApp"',
+  '      ]',
+  '    },',
+  '    piton: {',
+  '      cat: "Bengkel & Otomotif",',
+  '      title: "Piton Auto Garage",',
+  '      meta: "Servis Berkala, Tune-Up & Detailing · Jakarta Barat",',
+  '      features: [',
+  '        "Daftar paket servis berkala, ganti oli, dan detailing beserta estimasi biaya",',
+  '        "Booking slot servis tanpa perlu mengantre di bengkel",',
+  '        "Pengingat jadwal servis berikutnya otomatis via WhatsApp broadcast",',
+  '        "Tampilan responsif untuk pemilik kendaraan yang mencari bengkel terdekat"',
+  '      ]',
+  '    },',
+  '    aluna: {',
+  '      cat: "Studio Pilates & Fitness",',
+  '      title: "Aluna Pilates",',
+  '      meta: "Reformer Pilates & Private Class · Senopati",',
+  '      features: [',
+  '        "Jadwal kelas mingguan interaktif & profil instruktur bersertifikat",',
+  '        "Penawaran khusus paket trial untuk member baru",',
+  '        "Pendaftaran kelas instan dengan konfirmasi otomatis lewat WhatsApp",',
+  '        "Integrasi informasi keanggotaan & lokasi studio"',
+  '      ]',
+  '    },',
+  '    garis: {',
+  '      cat: "Barbershop & Grooming",',
+  '      title: "Garis Pangkas",',
+  '      meta: "Modern Gentlemen Grooming · Bandung & Jakarta",',
+  '      features: [',
+  '        "Katalog inspirasi gaya rambut & paket perawatan pria",',
+  '        "Pemilihan cabang dan reservasi kursi kapster pilihan",',
+  '        "Tampilan maskulin, cepat diakses dari bio Instagram & Google Business",',
+  '        "Sistem pengingat jadwal cukur berkala"',
+  '      ]',
+  '    }',
+  '  };',
+  '',
+  '  var modalEl = document.getElementById("cnFeatureModal");',
+  '  window.cnOpenModal = function(key) {',
+  '    var item = modalData[key];',
+  '    if (!item || !modalEl) return;',
+  '    document.getElementById("cnModalCat").textContent = item.cat;',
+  '    document.getElementById("cnModalTitle").textContent = item.title;',
+  '    document.getElementById("cnModalMeta").textContent = item.meta;',
+  '    var listEl = document.getElementById("cnModalFeatures");',
+  '    listEl.innerHTML = item.features.map(function(f) { return "<li>" + f + "</li>"; }).join("");',
+  '    var waText = encodeURIComponent("Halo Cardi, saya tertarik membuat website seperti " + item.title);',
+  '    document.getElementById("cnModalWa").href = "https://wa.me/6281289895646?text=" + waText;',
+  '    modalEl.classList.add("open");',
+  '  };',
+  '  window.cnCloseModal = function() {',
+  '    if (modalEl) modalEl.classList.remove("open");',
+  '  };',
+  '  if (modalEl) {',
+  '    modalEl.addEventListener("click", function(e) {',
+  '      if (e.target === modalEl) window.cnCloseModal();',
+  '    });',
+  '  }',
+  '',
+  '  // 4. Sinkronisasi 3 Bahasa (Indonesia, English, 中文)',
   '  var FLAGS = {',
   '    id: \'<svg viewBox="0 0 24 16"><rect width="24" height="8" fill="#E70011"/><rect y="8" width="24" height="8" fill="#FFFFFF"/></svg>\',',
   '    en: \'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#012169"/><path d="M0,0 L24,16 M24,0 L0,16" stroke="#FFFFFF" stroke-width="3"/><path d="M0,0 L24,16 M24,0 L0,16" stroke="#C8102E" stroke-width="1.6"/><path d="M12,0 V16 M0,8 H24" stroke="#FFFFFF" stroke-width="5"/><path d="M12,0 V16 M0,8 H24" stroke="#C8102E" stroke-width="3"/></svg>\',',
@@ -219,6 +1327,31 @@ const bodyInject = [
   '    ["PORTOFOLIO CARDI", "CARDI PORTFOLIO", "CARDI 精选案例"],',
   '    ["Karya dari strategi hingga aktivasi.", "Works from strategy to activation.", "从品牌战略到市场落地的实战成果。"],',
   '    ["Semua paket pertumbuhan dimulai dengan Brand Check Up gratis.", "All growth packages start with a complimentary Brand Check Up.", "所有增长套餐均从免费品牌诊断体检开始。"],',
+  '    ["Portofolio & Eksplorasi UI", "Portfolio & UI Exploration", "作品集与 UI 界面探索"],',
+  '    ["Contoh Desain Website Berbagai Industri", "Website Design Showcases Across Industries", "多行业网站设计案例展示"],',
+  '    ["Semua (6)", "All (6)", "全部 (6)"],',
+  '    ["Klinik & Wellness", "Clinic & Wellness", "诊所与健康养生"],',
+  '    ["Kuliner & Catering", "Culinary & Catering", "餐饮与宴会团餐"],',
+  '    ["Otomotif & Lifestyle", "Automotive & Lifestyle", "汽车与生活方式"],',
+  '    ["Klinik Kecantikan", "Beauty Clinic", "医美护肤诊所"],',
+  '    ["Studi Kasus Terbaru", "Latest Case Study", "最新实战案例"],',
+  '    ["Pesan Serupa", "Order Similar", "定制同类网站"],',
+  '    ["Spa & Wellness", "Spa & Wellness", "水疗与健康养生"],',
+  '    ["Bengkel & Otomotif", "Auto Workshop & Garage", "汽车维修与保养"],',
+  '    ["Studio Pilates & Fitness", "Pilates & Fitness Studio", "普拉提与健身工作室"],',
+  '    ["Barbershop & Grooming", "Barbershop & Grooming", "男士理发与造型"],',
+  '    ["Industry Experience · Ekosistem Cardi", "Industry Experience · Cardi Ecosystem", "行业经验 · Cardi 生态系统"],',
+  '    ["Solusi Terintegrasi Lintas Sektor Bisnis", "Integrated Solutions Across Business Sectors", "跨行业整合式商业增长方案"],',
+  '    ["Studi Kasus & Skenario Penerapan", "Case Studies & Implementation Scenarios", "实战案例与应用场景"],',
+  '    ["Cardi Nusantara untuk berbagai industri", "Cardi Nusantara across diverse industries", "Cardi Nusantara 赋能多元行业"],',
+  '    ["CARA KERJA", "HOW WE WORK", "合作流程"],',
+  '    ["Mulai dari Brand Check Up.", "Start with a Brand Check Up.", "从免费品牌诊断开始。"],',
+  '    ["Audit kebutuhan", "Needs audit", "需求诊断评估"],',
+  '    ["Kami cek kondisi brand, channel pemasaran, dan prioritas bisnis Anda.", "We assess your brand health, marketing channels, and business priorities.", "我们全面评估您的品牌现状、营销渠道与核心业务优先级。"],',
+  '    ["Bangun dan jalankan", "Build and execute", "搭建并落地执行"],',
+  '    ["Kami sepakati ruang lingkup, lalu kerjakan fondasi dan aktivasi yang dibutuhkan.", "We agree on the scope, then build the foundation and run the required activations.", "确认合作范围后，系统搭建品牌根基并执行全渠道营销激活。"],',
+  '    ["Ukur dan optimalkan", "Measure and optimize", "数据复盘与优化"],',
+  '    ["Kami tinjau performa dan sesuaikan strategi berdasarkan hasilnya.", "We review performance metrics and refine the strategy based on real outcomes.", "持续追踪业务数据表现，并根据实际结果不断优化增长策略。"],',
   '    ["MULAI BERSAMA CARDI", "START WITH CARDI", "与 CARDI 携手启航"],',
   '    ["Siap tumbuh bersama Cardi?", "Ready to grow with Cardi?", "准备好与 Cardi 一起增长了吗？"],',
   '    ["Ceritakan kebutuhan bisnis Anda. Kami bantu menentukan langkah pertama.", "Tell us about your business needs. We will help define your first step.", "告诉我们您的业务需求，我们将协助您制定第一步行动方案。"],',
@@ -244,6 +1377,13 @@ const bodyInject = [
   '    for (var i = 0; i < trackedNodes.length; i++) {',
   '      var item = trackedNodes[i];',
   '      item.node.nodeValue = item.lead + DICT[item.idx][col] + item.trail;',
+  '    }',
+  '    if (searchInput) {',
+  '      searchInput.placeholder = lang === "en"',
+  '        ? "Search industry (e.g., Clinic, Travel, Culinary)..."',
+  '        : lang === "zh"',
+  '          ? "搜索行业（例如：诊所、旅游、餐饮）..."',
+  '          : "Cari industri (cth: Klinik, Travel, Kuliner)...";',
   '    }',
   '    document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;',
   '    var activeFlagEl = document.getElementById("cardi-active-flag");',
@@ -312,9 +1452,26 @@ const withHead = /<\/head>/i.test(cleanedHtml)
   ? cleanedHtml.replace(/<\/head>/i, () => `${headInject}\n</head>`)
   : `${headInject}\n${cleanedHtml}`;
 
-const finalHtml = /<\/body>/i.test(withHead)
-  ? withHead.replace(/<\/body>/i, () => `${bodyInject}\n</body>`)
-  : `${withHead}\n${bodyInject}`;
+// Sisipkan 3 bagian baru tepat di atas "CARA KERJA / Mulai dari Brand Check Up."
+const markerIdx = withHead.indexOf('Mulai dari Brand Check Up');
+const fallbackIdx = withHead.indexOf('Siap tumbuh bersama Cardi?');
+const targetIdx = markerIdx !== -1 ? markerIdx : fallbackIdx;
+
+let withSections = withHead;
+if (targetIdx !== -1) {
+  const sectionStart = withHead.lastIndexOf('<section', targetIdx);
+  if (sectionStart !== -1) {
+    withSections =
+      withHead.slice(0, sectionStart) +
+      embedSectionHtml +
+      '\n' +
+      withHead.slice(sectionStart);
+  }
+}
+
+const finalHtml = /<\/body>/i.test(withSections)
+  ? withSections.replace(/<\/body>/i, () => `${bodyInject}\n</body>`)
+  : `${withSections}\n${bodyInject}`;
 ---
 
 <Fragment set:html={finalHtml} />
