@@ -1,0 +1,301 @@
+---
+// Halaman Standalone: Jasa Website & Landing Page Cardi Nusantara
+---
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Landing Page Cardi - Jasa Website Development</title>
+  <meta name="description" content="Jasa pembuatan Landing Page, Company Profile, dan E-Commerce oleh Cardi Nusantara. Tampil rapi di HP, copywriting jelas, dan langsung terhubung ke WhatsApp." />
+  <link rel="icon" type="image/png" href="/40.png" />
+  <link rel="apple-touch-icon" href="/40.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style is:global>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #0F1B2D;
+      background: #EEF3FA;
+    }
+    a { color: #0556A0; }
+    a:hover { color: #033B70; }
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+      box-sizing: border-box;
+    }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 800;
+      border-radius: 10px;
+      padding: 16px 26px;
+      font-size: 17px;
+      text-align: center;
+      transition: background-color 0.18s ease, transform 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+    }
+    .btn-red {
+      background: #B3261E;
+      color: #fff !important;
+    }
+    .btn-red:hover {
+      background: #8E1D17;
+      color: #fff !important;
+      transform: translateY(-1px);
+    }
+    .btn-line {
+      border: 2px solid #fff;
+      color: #fff !important;
+    }
+    .btn-line:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff !important;
+    }
+    .btn-outline-blue {
+      border: 2px solid #0556A0;
+      color: #0556A0 !important;
+      background: #fff;
+    }
+    .btn-outline-blue:hover {
+      background: #EEF3FA;
+      color: #033B70 !important;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px;
+      box-sizing: border-box;
+    }
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* Portfolio Gallery Cards */
+    .portfolio-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 24px rgba(15, 27, 45, 0.07);
+      border: 1px solid #E2E8F0;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 32px rgba(5, 86, 160, 0.14);
+    }
+    .portfolio-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+    }
+    .portfolio-meta {
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    .portfolio-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0F1B2D;
+    }
+    .portfolio-tag {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0556A0;
+      background: #E8F1FB;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    /* Language Dropdown Switcher (Pill Style) */
+    .lang-switcher {
+      position: relative;
+      display: inline-block;
+    }
+    .lang-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FFFFFF;
+      color: #0556A0;
+      border: 1.5px solid #BFDBFE;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: background-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .lang-trigger:hover {
+      background: #F8FAFC;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+    .lang-flag {
+      width: 20px;
+      height: 14px;
+      border-radius: 3px;
+      overflow: hidden;
+      display: inline-flex;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.14);
+    }
+    .lang-flag svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .lang-chevron {
+      width: 14px;
+      height: 14px;
+      color: #0556A0;
+      transition: transform 0.2s ease;
+    }
+    .lang-switcher.open .lang-chevron {
+      transform: rotate(180deg);
+    }
+    .lang-dropdown {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      width: 248px;
+      background: #FFFFFF;
+      border-radius: 18px;
+      padding: 8px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 18px 40px rgba(15, 27, 45, 0.18);
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 10000;
+    }
+    .lang-switcher.open .lang-dropdown {
+      display: flex;
+    }
+    .lang-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 12px;
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      transition: background-color 0.15s ease;
+    }
+    .lang-option:hover {
+      background: #F8FAFC;
+    }
+    .lang-option.active {
+      background: #F1F6FD;
+    }
+    .lang-option-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .lang-option-title {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: #0F1B2D;
+      line-height: 1.25;
+    }
+    .lang-option-sub {
+      display: block;
+      font-size: 12px;
+      font-weight: 400;
+      color: #64748B;
+      margin-top: 2px;
+    }
+    .lang-check {
+      width: 17px;
+      height: 17px;
+      color: #0556A0;
+      opacity: 0;
+      flex-shrink: 0;
+    }
+    .lang-option.active .lang-check {
+      opacity: 1;
+    }
+
+    /* Floating WhatsApp Widget (Pill + Round Green Icon) */
+    .wa-float-container {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .wa-float-label {
+      background: #0B132B;
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 18px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(11, 19, 43, 0.24);
+      white-space: nowrap;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+    .wa-float-btn {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+      flex-shrink: 0;
+      transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .wa-float-container:hover .wa-float-label {
+      transform: translateY(-2px);
+      background: #14213D;
+    }
+    .wa-float-container:hover .wa-float-btn {
+      background: #1EBE5D;
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 12px 28px rgba(37, 211, 102, 0.5);
+    }
+    .wa-float-btn svg {
+      width: 31px;
+      height: 31px;
+      fill: #FFFFFF;
+      display: block;
+    }
+
+    @media (max-width: 860px) {
+      .grid3 { grid-template-columns: 1fr; }
+      .hero-h { font-size: 36px !important; }
+      .wa-float-container {
+        right: 16px;
+        bottom: 16px;
+        gap: 8px;
+      }
+      .wa-float-label {
+        font-size: 12px;
+        padding: 10px 14px;
+      }
